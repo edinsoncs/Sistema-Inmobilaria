@@ -20,6 +20,8 @@ module.exports = function(passport) {
 
     passport.use(new local(function(email, password, done){
 
+    	console.log(email);
+
     	process.nextTick(function(){
     		usuario.findOne({
     			'email': email
@@ -33,10 +35,13 @@ module.exports = function(passport) {
     			if(user.password != password) {
     				return done(null, false);
     			}
+    			console.log(user);
     			return done(null, user);
 
     		});
     	});
+
+
 
     }));
 

@@ -14,6 +14,11 @@ var passport = require('passport');
 var LocalStrategy  = require('passport-local').Strategy;  
 var database = monk('localhost:27017/administracion');
 
+//Requires passportjs
+require('./models/usuario');
+require('./models/passport')(passport);
+
+
 /* To connect mongodb database */
 
 var routes = require('./routes/index');
@@ -35,9 +40,7 @@ mongodb.connect('mongodb://localhost:27017/administracion', function(){
 });
 
 
-//Requires passportjs
-require('./models/usuario');
-require('./models/passport')(passport);
+
 
 
 //Initialize passport module 
@@ -69,8 +72,10 @@ app.use('/panel', panel);
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/panel',
-  failureRdirect: '/notfound'
+  failureRedirect: '/notfound'
 }));
+
+
 
 
 
