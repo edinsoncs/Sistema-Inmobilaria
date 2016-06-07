@@ -1,0 +1,93 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+}
+
+fieldset {
+  border: none;
+  padding: 0;
+}
+
+.c1 {
+  width: 1220px;
+}
+
+.c2 {
+  width: 620px;
+}
+
+.c3 {
+  width: 140px;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.uNone {
+  text-decoration: none;
+}
+
+* {
+  border-sizing: border-box;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.bgHome {
+  background: #3498DB;
+}
+
+.panelHomeLogin {
+  position: absolute;
+  width: 450px;
+  background-color: #fff;
+  padding: 1em;
+  left: 50%;
+  top: 50%;
+  margin-left: -14em;
+  margin-top: -5em;
+  box-shadow: 10px 14px 0 rgba(0, 0, 0, 0.27);
+}
+
+.panelHomeLogin .panelHomeLogin__Header {
+  text-align: center;
+  padding: 0 0 1em 0;
+}
+
+.panelHomeLogin .panelHomeLogin__Header .title {
+  font-weight: 400;
+}
+
+.panelHomeLogin .formPanelHome--Form fieldset {
+  margin: 0 0 0.5em 0;
+}
+
+.panelHomeLogin .formPanelHome--Form fieldset input[type='text'], .panelHomeLogin .formPanelHome--Form input[type='password'] {
+  width: 95%;
+  height: 30px;
+  padding: 0.5em 0.5em;
+  outline: medium none;
+  transition: all 0.5s linear;
+}
+
+.panelHomeLogin .formPanelHome--Form fieldset input[type='text']:hover, .panelHomeLogin .formPanelHome--Form input[type='password']:hover {
+  box-shadow: 0 0 12px #3498DB;
+  border: 1px solid #3498DB;
+  color: #3498DB;
+}
+
+.panelHomeLogin .formPanelHome--Form fieldset:nth-child(3) {
+  text-align: center;
+}
+
+.panelHomeLogin .formPanelHome--Form fieldset input[type='submit'] {
+  background-color: #3498db;
+  border: none;
+  padding: 0.8em 1em;
+  color: white;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 5px;
+}

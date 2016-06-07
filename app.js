@@ -5,10 +5,48 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongodb = require('mongodb');
+var mongoose = require('mongoose');
+var monk = require('monk');
+
+/*Login*/
+var passport = require('passport');
+var LocalStrategy  = require('passport-local').Strategy;  
+var database = monk('localhost:27017/administracion');
+
+/* To connect mongodb database */
+
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
+var panel = require('./routes/panel');
 var app = express();
+
+
+//To connect monk 
+app.use(function(req, res, next) {
+    req.db = database;
+    console.log('connectado a la bd');
+    next();
+});
+
+//To connect mongodb
+mongodb.connect('mongodb://localhost:27017/administracion', function(){
+  console.log('is connnection in mongodb');
+});
+
+
+//Requires passportjs
+require('./models/usuario');
+require('./models/passport')(passport);
+
+
+//Initialize passport module 
+app.use(passport.initialize());
+app.use(passport.session());
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +63,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
+
+app.use('/panel', panel);
+
+
+app.post('/login', passport.authenticate('local', {
+  successRedirect: '/panel',
+  failureRdirect: '/notfound'
+}));
+
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -32,7 +81,7 @@ app.use(function(req, res, next) {
   next(err);
 });
 
-// error handlers
+
 
 // development error handler
 // will print stacktrace
