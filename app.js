@@ -9,9 +9,12 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var monk = require('monk');
 
+var expressSession = require('express-session');
+
 /*Login*/
 var passport = require('passport');
-var LocalStrategy  = require('passport-local').Strategy;  
+var LocalStrategy  = require('passport-local').Strategy;
+
 var database = monk('localhost:27017/administracion');
 
 //Requires passportjs
@@ -26,7 +29,6 @@ var users = require('./routes/users');
 var panel = require('./routes/panel');
 var app = express();
 
-
 //To connect monk 
 app.use(function(req, res, next) {
     req.db = database;
@@ -34,12 +36,29 @@ app.use(function(req, res, next) {
     next();
 });
 
-//To connect mongodb
-mongodb.connect('mongodb://localhost:27017/administracion', function(){
-  console.log('is connnection in mongodb');
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  next();
 });
 
 
+//To connect mongodb
+mongoose.connect('mongodb://localhost:27017/administracion');
+
+//Solutions fix
+
+app.use(expressSession({
+  secret: 'edinsoncarranzasaldaña',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    maxAge: 360000000000
+  }
+
+}));
 
 
 
@@ -48,7 +67,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 
-
+function verificarUsuario(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
+  }
+  else {
+    res.redirect('/');
+  }
+}
 
 
 // view engine setup
@@ -63,11 +89,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
 app.use('/', routes);
-app.use('/users', users);
+app.use('/users', users); 
 
 
-app.use('/panel', panel);
+app.use('/panel', verificarUsuario, panel);
 
 
 app.post('/login', passport.authenticate('local', {

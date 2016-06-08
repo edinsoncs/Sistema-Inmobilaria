@@ -16,9 +16,35 @@ module.exports = function(passport) {
     	done(null, obj);
     });
 
+
     //Configuracion de login usuario local
 
-    passport.use(new local(function(email, password, done){
+
+    passport.use(new local({
+    	usernameField: 'email',
+    	passwordField: 'password'
+    }, function(username, password, done){
+    	process.nextTick(function(){
+    		usuario.findOne({
+    			'email': username,
+    			'password': password
+    		}, function(err, user) {
+    			if(err) {
+    				return done(err)
+    			}
+    			if(!user) {
+    				return done(null, false);
+    			}
+    			if(user.password != password) {
+    				return done(null, false);
+    			}
+    			return done(null, user);
+    		});
+    	});
+    }));
+
+
+    /*passport.use(new local(function(email, password, done){
 
     	console.log(email);
 
@@ -43,7 +69,7 @@ module.exports = function(passport) {
 
 
 
-    }));
+    }));*/
 
 
 }
