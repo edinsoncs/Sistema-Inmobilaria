@@ -29,6 +29,15 @@ main {
 			.formularioEdit{
 				.formularioFieldset {
 					margin: 0 0 0.5em 0;
+
+					&:last-child {
+						margin: 2em 0;
+						label {
+							&:before  {
+								content: "";
+							}
+						}
+					}
 				}
 				.formularioFieldset label {
 					display: block;

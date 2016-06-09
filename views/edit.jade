@@ -13,6 +13,11 @@ head
 
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
+  script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
 body
   header.header__Site
     .header__Site--Container
@@ -49,27 +54,34 @@ body
           h2.title
             | #{nombre}
       aside.main__Content--De
-        form.formularioEdit
+        form.formularioEdit(action="save", method="POST")
           fieldset.formularioFieldset
             label.formularioFieldset--Label
               | Nombre
-            input(type="text", value="#{nombre}")
+            input(type="text", value="#{nombre}", name="name")
           fieldset.formularioFieldset
             label.formularioFieldset--Label
               | Apellidos
-            input(type="text", value="#{apellidos}")
+            input(type="text", value="#{apellidos}", name="apellidos")
           fieldset.formularioFieldset
             label.formularioFieldset--Label
               | Empresa
-            input(type="text", value="#{empresa}")
+            input(type="text", value="#{empresa}", disabled)
           fieldset.formularioFieldset
             label.formularioFieldset--Label
               | Email
-            input(type="email", value="#{email}")
+            input(type="email", value="#{email}", name="email")
           fieldset.formularioFieldset
             label.formularioFieldset--Label
               | Dni
-            input(type="number", value="#{dni}")
+            input(type="number", value="#{dni}", name="dni")
+          fieldset.formularioFieldset
+            input(type="submit", style="display:none;", id="enviar")
+            label(for="enviar")
+              span.linkSave
+                | Actualizar
+  script(src='../javascripts/buttons.js')
+
 
 
           
