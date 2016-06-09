@@ -28,7 +28,9 @@ ul {
 	border-sizing: border-box;
 }
 
-
+* {
+	box-sizing: border-box;
+}
 $widthPrimary: 1220px;
 $centerMargin: 0 auto;
 $blanco: white;
@@ -88,5 +90,6 @@ body {
 }
 
 @import "header";
+@import "main";
 
 @import "panel";

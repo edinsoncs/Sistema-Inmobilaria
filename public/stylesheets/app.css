@@ -36,6 +36,10 @@ ul {
   border-sizing: border-box;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -115,7 +119,7 @@ body {
 }
 
 .header__Site .header__Site--Container .header__Site--De {
-  width: 35%;
+  width: 37.5%;
   display: flex;
 }
 
@@ -124,7 +128,7 @@ body {
   display: inline-block;
   color: white;
   margin: 0;
-  width: 120px;
+  width: 150px;
   text-align: center;
   line-height: 30px;
   padding: 0.6em;
@@ -161,6 +165,97 @@ body {
   border-radius: 50%;
 }
 
+.header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData {
+  position: relative;
+}
+
 .header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData span {
   color: white;
+}
+
+.header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData .header__ShowData--SubMenu {
+  position: absolute;
+  background-color: #D8D8D8;
+  width: 170px;
+  text-align: center;
+  top: 50%;
+  left: 50%;
+  margin-left: -7em;
+  margin-top: 1.6em;
+}
+
+.header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData .header__ShowData--SubMenu .ul .listSub {
+  list-style-type: none;
+  border-bottom: 1px solid white;
+}
+
+.header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData .header__ShowData--SubMenu .ul .listSub .link {
+  text-decoration: none;
+  color: #3c8dbc;
+}
+
+main .main__Content {
+  width: 1220px;
+  margin: 0 auto;
+  display: flex;
+  padding: 1em 0;
+}
+
+main .main__Content .main__Content--Iz {
+  width: 16%;
+  margin: 0 5em 0 0;
+}
+
+main .main__Content .main__Content--Iz .Iz--Figure {
+  width: 200px;
+}
+
+main .main__Content .main__Content--Iz .Iz--Figure img {
+  width: 100%;
+  display: block;
+}
+
+main .main__Content .main__Content--Iz .Iz--Header {
+  text-align: center;
+}
+
+main .main__Content .main__Content--Iz .Iz--Header .title {
+  font-weight: 400;
+  text-transform: capitalize;
+}
+
+main .main__Content .main__Content--De {
+  width: 40%;
+  padding: 1em 0 0 1em;
+  background-color: #F3F3F3;
+}
+
+main .main__Content .main__Content--De .formularioEdit .formularioFieldset {
+  margin: 0 0 0.5em 0;
+}
+
+main .main__Content .main__Content--De .formularioEdit .formularioFieldset label {
+  display: block;
+  margin: 0 0 .5em 0;
+}
+
+main .main__Content .main__Content--De .formularioEdit .formularioFieldset label:before {
+  content: "- ";
+  font-weight: 800;
+}
+
+main .main__Content .main__Content--De .formularioEdit .formularioFieldset input {
+  padding: 0.5em;
+  width: 97%;
+  border-radius: 3px;
+  outline: medium none;
+  border: none;
+  border: 1px solid #8F8B8B;
+  color: #8F8B8B;
+  box-shadow: inset 0 0 29px #E2E1E1;
+}
+
+main .main__Content .main__Content--De .formularioEdit .formularioFieldset input:hover {
+  box-shadow: 0 0 10px #2293D5;
+  border: 1px solid #2293D5;
 }

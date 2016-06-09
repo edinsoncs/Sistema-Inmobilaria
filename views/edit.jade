@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  meta(name="description", content="Administracion de inmobiliarias")
+  
+  title | #{title}
+  
+  link(rel="stylesheet", href="../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../stylesheets/icons.css")
+  link(rel="stylesheet", href="../stylesheets/app.css")
+
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+body
+  header.header__Site
+    .header__Site--Container
+      figure.header__Site--Iz
+        h1.title Zimba
+      nav.header__Site--De
+        ul.ul
+          li.list.selectItem
+            i(class="fa fa-home" aria-hidden="true")
+            | Inicio
+          li.list
+            i(class="fa fa-folder-open" aria-hidden="true")
+            | Alquileres
+        div.header__User
+          figure.header__UserFigure
+            img(src="../images/avatar.jpg", alt="#{nombre}")
+          div.header__ShowData
+            span
+              | #{nombre}
+            .header__ShowData--SubMenu
+              ul.ul
+                li.listSub
+                  a.link(href="panel/edit")
+                    |Editar mi perfil
+                li.listSub
+                  a.link(href="#")
+                    | Salir
+  main
+    section.main__Content
+      article.main__Content--Iz
+        figure.Iz--Figure
+          img(src="../images/avatar.jpg", alt="")
+        header.Iz--Header
+          h2.title
+            | #{nombre}
+      aside.main__Content--De
+        form.formularioEdit
+          fieldset.formularioFieldset
+            label.formularioFieldset--Label
+              | Nombre
+            input(type="text", value="#{nombre}")
+          fieldset.formularioFieldset
+            label.formularioFieldset--Label
+              | Apellidos
+            input(type="text", value="#{apellidos}")
+          fieldset.formularioFieldset
+            label.formularioFieldset--Label
+              | Empresa
+            input(type="text", value="#{empresa}")
+          fieldset.formularioFieldset
+            label.formularioFieldset--Label
+              | Email
+            input(type="email", value="#{email}")
+          fieldset.formularioFieldset
+            label.formularioFieldset--Label
+              | Dni
+            input(type="number", value="#{dni}")
+
+
+          
+
+  
