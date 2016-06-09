@@ -7,13 +7,16 @@ module.exports = function(passport) {
 
 	// Serializa al usuario para almacenarlo en la sesión
 	passport.serializeUser(function(user, done) {
-		done(null, user);
+		console.log('que tal');
+        done(null, user);
 	});
 
 	// Deserializa el objeto usuario almacenado en la sesión para
     // poder utilizarlo
-    passport.deserializeUser(function(obj, done){
-    	done(null, obj);
+    passport.deserializeUser(function(id, done) {
+      usuario.findById(id, function(err, user) {
+        done(err, user);
+      });
     });
 
 
