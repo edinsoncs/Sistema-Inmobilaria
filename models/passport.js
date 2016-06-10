@@ -12,8 +12,11 @@ module.exports = function(passport) {
 
 	// Deserializa el objeto usuario almacenado en la sesión para
     // poder utilizarlo
-    passport.deserializeUser(function(obj, done){
-    	done(null, obj);
+    passport.deserializeUser(function(id, done){
+    	usuario.findById(id, function(err, user){
+    		done(null, user);
+    	});
+
     });
 
 

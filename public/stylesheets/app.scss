@@ -21,6 +21,9 @@ ul {
 .absolute {
 	position: absolute;
 }
+.uNoneDisplay {
+	display: none;
+}
 .uNone {
 	text-decoration: none;
 }
@@ -34,6 +37,11 @@ ul {
 $widthPrimary: 1220px;
 $centerMargin: 0 auto;
 $blanco: white;
+$naranja: #F89406;
+.widthBase {
+	width: $widthPrimary;
+	margin: $centerMargin;
+}
 
 body {
 	font-family: 'Open Sans', sans-serif;

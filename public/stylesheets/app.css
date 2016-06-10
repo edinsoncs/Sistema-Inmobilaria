@@ -28,6 +28,10 @@ ul {
   position: absolute;
 }
 
+.uNoneDisplay {
+  display: none;
+}
+
 .uNone {
   text-decoration: none;
 }
@@ -38,6 +42,11 @@ ul {
 
 * {
   box-sizing: border-box;
+}
+
+.widthBase {
+  width: 1220px;
+  margin: 0 auto;
 }
 
 body {
@@ -119,7 +128,7 @@ body {
 }
 
 .header__Site .header__Site--Container .header__Site--De {
-  width: 37.5%;
+  width: 38.5%;
   display: flex;
 }
 
@@ -128,10 +137,15 @@ body {
   display: inline-block;
   color: white;
   margin: 0;
-  width: 150px;
+  width: 153px;
   text-align: center;
   line-height: 30px;
   padding: 0.6em;
+}
+
+.header__Site .header__Site--Container .header__Site--De .ul .list .tolink {
+  text-decoration: none;
+  color: white;
 }
 
 .header__Site .header__Site--Container .header__Site--De .ul .list i {
@@ -167,6 +181,7 @@ body {
 
 .header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData {
   position: relative;
+  cursor: pointer;
 }
 
 .header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData span {
@@ -192,6 +207,31 @@ body {
 .header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData .header__ShowData--SubMenu .ul .listSub .link {
   text-decoration: none;
   color: #3c8dbc;
+}
+
+.header__Welcome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #dedede;
+  padding: 0.5em;
+  margin: 2em auto;
+}
+
+.header__Welcome .header__Welcome--Iz .title {
+  background-color: #F89406;
+  border-radius: 5px;
+  color: white;
+  font-size: 1em;
+  font-weight: 400;
+  padding: 0.5em;
+  text-transform: uppercase;
+}
+
+.header__Welcome .header__Welcome--De .title {
+  font-weight: 400;
+  font-size: 1em;
+  color: #3C8DBC;
 }
 
 main .main__Content {

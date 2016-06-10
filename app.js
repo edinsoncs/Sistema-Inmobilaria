@@ -11,6 +11,8 @@ var monk = require('monk');
 
 var expressSession = require('express-session');
 
+var expressSessionPassportCleanup = require('express-session-passport-cleanup');
+
 /*Login*/
 var passport = require('passport');
 var LocalStrategy  = require('passport-local').Strategy;
@@ -53,13 +55,15 @@ mongoose.connect('mongodb://localhost:27017/administracion');
 app.use(expressSession({
   secret: 'edinsoncarranzasaldaña',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: {
     maxAge: 360000000000
   }
 
 }));
 
+
+app.use(expressSessionPassportCleanup);
 
 
 //Initialize passport module 

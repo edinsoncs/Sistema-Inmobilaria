@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 router.get('/', function(req, res, next){
 	res.render('panel', {
 		title: 'Panel de administración',
-		nombre: req.user.nombre
+		nombre: req.user.nombre,
+		empresa: req.user.empresa
 	});
 	console.log(req.user)
 
@@ -52,6 +53,15 @@ router.post('/save', function(req, res, next) {
 		else if(s == 'nombre') {
 			return req.body.name;
 		}
+		else if(s == 'apellidos') {
+			return req.body.apellidos;
+		}
+		else if(s == 'email') {
+			return req.body.email;
+		}
+		else if(s == 'dni') {
+			return req.body.dni;
+		}
 	}
 
 	var db = req.db;
@@ -59,12 +69,22 @@ router.post('/save', function(req, res, next) {
 
 	users.update({'_id': req.user._id}, {
 		$set:  {
-			'nombre': search('nombre')
+			'nombre': search('nombre'),
+			'apellidos': search('apellidos'),
+			'email': search('email'),
+			'dni': search('dni')
 		}
 	}).success(function(result){
-		res.json({inserted: true});
+		res.redirect('/panel/edit')
 	});
 
+});
+
+router.get('/propiedades', function(req, res, next) {
+	res.render('propiedades', {
+		title: 'Panel de administración',
+		nombre: req.user.nombre
+	});
 });
 
 

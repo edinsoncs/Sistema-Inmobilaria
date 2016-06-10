@@ -7,14 +7,18 @@ head
   
   title | #{title}
   
-  link(rel="stylesheet", href="stylesheets/normalize.min.css")
-  link(rel="stylesheet", href="stylesheets/icons.css")
-  link(rel="stylesheet", href="stylesheets/app.css")
+  link(rel="stylesheet", href="../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../stylesheets/icons.css")
+  link(rel="stylesheet", href="../stylesheets/app.css")
 
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
+  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+  
+
   script(src="https://code.jquery.com/jquery-3.0.0.min.js")
-  script(src="javascripts/app-dev1.js")
+  script(src="../javascripts/app-dev1.js")
+  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
 body
   header.header__Site
@@ -23,10 +27,11 @@ body
         h1.title Zimba
       nav.header__Site--De
         ul.ul
-          li.list.selectItem
-            i(class="fa fa-home" aria-hidden="true")
-            | Inicio
           li.list
+            a.tolink(href="../panel")
+              i(class="fa fa-home" aria-hidden="true")
+              | Inicio
+          li.list.selectItem
             a(href="panel/propiedades", class="tolink")
               i(class="fa fa-folder-open" aria-hidden="true")
               | Propiedades
@@ -35,7 +40,7 @@ body
             | Miembros
         div.header__User
           figure.header__UserFigure
-            img(src="images/avatar.jpg", alt="#{nombre}")
+            img(src="../images/avatar.jpg", alt="#{nombre}")
           div.header__ShowData.jsDownShow
             span
               | #{nombre}
@@ -59,5 +64,16 @@ body
       h2.title.jsAddDate
         | Loading...
 
-
-  
+  main.widthBase
+   table#table_id.display
+      thead
+        tr
+          th Column 1
+          th Column 2
+      tbody
+        tr
+          td Row 1 Data 1
+          td Row 1 Data 2
+        tr
+          td Row 2 Data 1
+          td Row 2 Data 2

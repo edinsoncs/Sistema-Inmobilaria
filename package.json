@@ -11,6 +11,7 @@
     "debug": "~2.2.0",
     "express": "~4.13.1",
     "express-session": "^1.13.0",
+    "express-session-passport-cleanup": "^1.0.3",
     "jade": "~1.11.0",
     "mongodb": "^1.4.40",
     "mongoose": "^4.4.20",
