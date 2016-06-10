@@ -9,7 +9,10 @@ var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var monk = require('monk');
 
+var url = require('url');
+
 var expressSession = require('express-session');
+var MongoStore = require('connect-mongo')(expressSession);
 
 var expressSessionPassportCleanup = require('express-session-passport-cleanup');
 
@@ -53,6 +56,7 @@ mongoose.connect('mongodb://localhost:27017/administracion');
 //Solutions fix
 
 app.use(expressSession({
+  store: new MongoStore({ url: 'mongodb://localhost:27017/administracion' }),
   secret: 'edinsoncarranzasaldaña',
   resave: false,
   saveUninitialized: false,
