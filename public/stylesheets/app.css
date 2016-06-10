@@ -1,4 +1,4 @@
-h1, h2, h3, h4, h5, h6, figure {
+h1, h2, h3, h4, h5, h6, figure, p {
   margin: 0;
 }
 
@@ -306,4 +306,36 @@ main .main__Content .main__Content--De .formularioEdit .formularioFieldset input
 main .main__Content .main__Content--De .formularioEdit .formularioFieldset input:hover {
   box-shadow: 0 0 10px #2293D5;
   border: 1px solid #2293D5;
+}
+
+main .ContainerPropiedades {
+  margin: 2em 0;
+  background-color: #dedede;
+}
+
+main .ContainerPropiedades .articlesPropiedades {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  border-bottom: 1px solid white;
+}
+
+main .ContainerPropiedades .articlesPropiedades:hover {
+  background-color: white;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Header .title {
+  font-weight: 700;
+  font-size: 0.9em;
+  color: #717273;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Description .description {
+  font-size: 0.9em;
+  color: #717273;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i {
+  color: #717273;
 }

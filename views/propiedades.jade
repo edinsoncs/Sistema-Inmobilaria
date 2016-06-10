@@ -20,6 +20,9 @@ head
   script(src="../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
 body
   header.header__Site
     .header__Site--Container
@@ -65,15 +68,69 @@ body
         | Loading...
 
   main.widthBase
-   table#table_id.display
-      thead
-        tr
-          th Column 1
-          th Column 2
-      tbody
-        tr
-          td Row 1 Data 1
-          td Row 1 Data 2
-        tr
-          td Row 2 Data 1
-          td Row 2 Data 2
+   header.Propiedades
+    a.link.propiedadesLink(href="#", class="")
+     | Nueva Propiedad
+   div.ContainerPropiedades
+    article.articlesPropiedades
+     header.articlesPropiedades--Header
+      h2.title
+       i(class="fa fa-home", aria-hidden="true")
+       | Propiedad Belgrano
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | Esta propiedad esta ubicado en algun lado de buenos aires
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | $4500
+     div.articlesPropiedades--Actions
+      i(class="fa fa-ellipsis-v", aria-hidden="true")
+    article.articlesPropiedades
+     header.articlesPropiedades--Header
+      h2.title
+       i(class="fa fa-home", aria-hidden="true")
+       | Propiedad Belgrano
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | Esta propiedad esta ubicado en algun lado de buenos aires
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | $4500
+     div.articlesPropiedades--Actions
+      i(class="fa fa-ellipsis-v", aria-hidden="true")
+    article.articlesPropiedades
+     header.articlesPropiedades--Header
+      h2.title
+       i(class="fa fa-home", aria-hidden="true")
+       | Propiedad Belgrano
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | Esta propiedad esta ubicado en algun lado de buenos aires
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | $4500
+     div.articlesPropiedades--Actions
+      i(class="fa fa-ellipsis-v", aria-hidden="true")
+    article.articlesPropiedades
+     header.articlesPropiedades--Header
+      h2.title
+       i(class="fa fa-home", aria-hidden="true")
+       | Propiedad Belgrano
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | Esta propiedad esta ubicado en algun lado de buenos aires
+     div.articlesPropiedades--Description
+      p.description
+       i(class="fa fa-street-view", aria-hidden="true")
+       | $4500
+     div.articlesPropiedades--Actions
+      i(class="fa fa-ellipsis-v", aria-hidden="true")
+
+  script(src='../javascripts/buttons.js')

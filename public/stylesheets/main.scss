@@ -64,4 +64,36 @@ main {
 			}
 		}
 	}
+	.ContainerPropiedades {
+		margin: 2em 0;
+		background-color: #dedede;
+		.articlesPropiedades {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			padding: 0.5em;
+			border-bottom: 1px solid white;
+			&:hover {
+				background-color: white;
+			}
+			.articlesPropiedades--Header {
+				.title {
+					font-weight: 700;
+					font-size: 0.9em;
+					color: #717273;
+				}
+			}
+			.articlesPropiedades--Description {
+				.description {
+					font-size: 0.9em;
+					color: #717273;
+				}
+			}
+			.articlesPropiedades--Actions {
+				i {
+					color: #717273;
+				}
+			}
+		}
+	}
 }
