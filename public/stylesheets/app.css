@@ -218,7 +218,7 @@ body {
   margin: 2em auto;
 }
 
-.header__Welcome .header__Welcome--Iz .title {
+.header__Welcome .header__Welcome--Iz .ul {
   background-color: #F89406;
   border-radius: 5px;
   color: white;
@@ -226,6 +226,21 @@ body {
   font-weight: 400;
   padding: 0.5em;
   text-transform: uppercase;
+}
+
+.header__Welcome .header__Welcome--Iz .ul .list {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 1em 0 0;
+}
+
+.header__Welcome .header__Welcome--Iz .ul .list a.link {
+  text-decoration: none;
+  color: white;
+}
+
+.header__Welcome .header__Welcome--Iz .ul .list a.actuality {
+  text-transform: capitalize;
 }
 
 .header__Welcome .header__Welcome--De .title {
@@ -338,4 +353,46 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Descriptio
 
 main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i {
   color: #717273;
+}
+
+.add .newPropiedad--Header {
+  margin: 0 0 0.5em 0;
+}
+
+.add .newPropiedad--Header .title {
+  margin: 0;
+  font-weight: 400;
+  color: #ddd;
+}
+
+.add .form--Container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add .newPropiedad--Form {
+  width: 50%;
+}
+
+.add .newPropiedad--Form .fieldset--Form {
+  border: none;
+  padding: 0;
+  margin: 0 0 0.5em 0;
+}
+
+.add .newPropiedad--Form .fieldset--Form input[type='text'], .add .newPropiedad--Form .fieldset--Form input[type='number'], .add .newPropiedad--Form .fieldset--Form input[type='date'], .add .newPropiedad--Form .fieldset--Form select, .add .newPropiedad--Form .fieldset--Form input[type='email'], .add .newPropiedad--Form .fieldset--Form input[type='file'] {
+  padding: 0.5em 1em;
+  width: 100%;
+  border-radius: 4px;
+  border: none;
+  border: 1px solid #dedede;
+  outline: medium none;
+}
+
+.add .newPropiedad--Form .fieldset--Form input[type='text']:focus, .add .newPropiedad--Form .fieldset--Form input[type='number']:focus, .add .newPropiedad--Form .fieldset--Form input[type='date']:focus, .add .newPropiedad--Form .fieldset--Form select:focus, .add .newPropiedad--Form .fieldset--Form input[type='email']:focus, .add .newPropiedad--Form .fieldset--Form input[type='file']:focus {
+  border-color: #66afe9;
+}
+
+.add .newPropiedad--Form .fieldset--Form input[type='submit'] {
+  border: none;
 }

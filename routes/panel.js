@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+var fs = require('fs');
+
+var multipart  = require('connect-multiparty');
+
+var multipartMiddleware  = multipart ();
+
+
 
 var bodyParser = require('body-parser');
 
@@ -83,9 +90,32 @@ router.post('/save', function(req, res, next) {
 router.get('/propiedades', function(req, res, next) {
 	res.render('propiedades', {
 		title: 'Panel de administración',
-		nombre: req.user.nombre
+		nombre: req.user.nombre,
+		empresa: req.user.empresa
 	});
 });
 
+
+router.get('/propiedades/add', function(req, res, next) {
+
+	res.render('add', {
+		title: 'Nueva propiedad',
+		nombre: req.user.nombre,
+		empresa: req.user.empresa
+	});
+
+});
+
+
+router.post('/addcreate', multipartMiddleware , function(req, res, next) {
+
+	var nameFile = req.files.img.path;
+
+	fs.readFile(nameFile, function(err, data) {
+		console.log(data);
+	});
+
+
+});
 
 module.exports = router;

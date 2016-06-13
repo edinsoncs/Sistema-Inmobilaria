@@ -60,16 +60,23 @@ body
                     | Salir
   section.header__Welcome.widthBase
     header.header__Welcome--Iz
-     h2.title
-      i(class="fa fa-briefcase", aria-hidden="true")
-      |   #{empresa} 
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="#")
+        | Propiedades
     aside.header__Welcome--De
       h2.title.jsAddDate
         | Loading...
 
   main.widthBase
    header.Propiedades
-    a.link.propiedadesLink(href="#", class="")
+    a.link.propiedadesLink(href="propiedades/add", class="")
      | Nueva Propiedad
    div.ContainerPropiedades
     article.articlesPropiedades

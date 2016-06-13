@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  meta(name="description", content="Administracion de inmobiliarias")
+  
+  title | #{title}
+  
+  link(rel="stylesheet", href="../../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../../stylesheets/icons.css")
+  link(rel="stylesheet", href="../../stylesheets/app.css")
+
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+  
+
+  script(src="https://code.jquery.com/jquery-3.0.0.min.js")
+  script(src="../../javascripts/app-dev1.js")
+  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+body
+  header.header__Site
+    .header__Site--Container
+      figure.header__Site--Iz
+        h1.title Zimba
+      nav.header__Site--De
+        ul.ul
+          li.list
+            a.tolink(href="../panel")
+              i(class="fa fa-home" aria-hidden="true")
+              | Inicio
+          li.list.selectItem
+            a(href="panel/propiedades", class="tolink")
+              i(class="fa fa-folder-open" aria-hidden="true")
+              | Propiedades
+          //li.list
+            i(class="fa fa-users" aria-hidden="true")
+            | Miembros
+        div.header__User
+          figure.header__UserFigure
+            img(src="../../images/avatar.jpg", alt="#{nombre}")
+          div.header__ShowData.jsDownShow
+            span
+              | #{nombre}
+            .header__ShowData--SubMenu
+              ul.ul.jsDown.uNoneDisplay
+                li.listSub
+                  a.link(href="panel")
+                    |Panel
+                li.listSub
+                  a.link(href="panel/edit")
+                    |Editar mi perfil
+                li.listSub
+                  a.link(href="#")
+                    | Salir
+  section.header__Welcome.widthBase
+    header.header__Welcome--Iz
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="../propiedades")
+        | Propiedades
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="#")
+        | Nueva Propiedad
+
+  main.widthBase.add
+    header.newPropiedad--Header
+      h2.title
+        | Crear Nueva Propiedad
+    form.newPropiedad--Form(action="../../panel/addcreate", method="POST", enctype="multipart/form-data")
+      fieldset.fieldset--Form
+        input(type="file", required, name="img")
+      fieldset.fieldset--Form
+        input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
+      fieldset.fieldset--Form
+        input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad")
+      fieldset.fieldset--Form
+        input(type="text", placeholder="Inquilino", required, name="nameinquilino")
+      div.form--Container
+        fieldset.fieldset--Form
+          input(type="number", placeholder="Dni Inquilino", required, name="dniinquilino")
+        fieldset.fieldset--Form
+          input(type="email", placeholder="Email Inquilino", required, name="emailinquilino")
+      fieldset.fieldset--Form
+        input(type="number", placeholder="Precio", required, name="pricepropiedad")
+      fieldset.fieldset--Form
+        input(type="text", placeholder="Dirección", required, name="direccionpropiedad")
+      fieldset.fieldset--Form
+        select#(name="barriopropiedad")
+          option(value="Abasto")
+            | Abasto
+          option(value="Agronomia")
+            | Agronomia
+          option(value="Almagro")
+            | Almagro
+          option(value="Balvanera")
+            | Balvanera
+          option(value="Barracas")
+            | Barracas
+          option(value="BarrioNorte")
+            | BarrioNorte
+          option(value="Belgrano")
+            | Belgrano
+          option(value="Boedo")
+            | Boedo
+          option(value="Caballito")
+            | Caballito
+          option(value="Chacarita")
+            | Chacarita
+          option(value="Coghlan")
+            | Coghlan
+          option(value="Colegiales")
+            | Colegiales
+          option(value="Congreso")
+            | Congreso
+          option(value="Constitucion")
+            | Constitucion
+          option(value="Flores")
+            | Flores
+          option(value="Floresta")
+            | Floresta
+          option(value="La Boca")
+            | La Boca
+          option(value="Liniers")
+            | Liniers
+          option(value="Mataderos")
+            | Mataderos
+          option(value="Micro Centro")
+            | Micro Centro
+          option(value="Monserrat")
+            | Monserrat
+          option(value="Monte Castro")
+            | Monte Castro
+          option(value="Nueva Pompeya")
+            | Nueva Pompeya
+          option(value="Nuñez")
+            | Nuñez
+          option(value="Palermo")
+            | Palermo
+          option(value="Palermo Viejo")
+            | Palermo Viejo
+          option(value="Parque Avellaneda")
+            | Parque Avellaneda
+          option(value="Parque Centenario")
+            | Parque Centenario
+          option(value="Parque Chacabuco")
+            | Parque Chacabuco
+          option(value="Parque Chas")
+            | Parque Chas
+          option(value="Parque Patricios")
+            | Parque Patricios
+          option(value="Paternal")
+            | Paternal
+          option(value="Puerto Madero")
+            | Puerto Madero
+          option(value="Recoleta")
+            | Recoleta
+          option(value="Retiro")
+            | Retiro
+          option(value="Saavedra")
+            | Saavedra
+          option(value="San Cristobal")
+            | San Cristobal
+          option(value="San Nicolas")
+            | San Nicolas
+          option(value="San Telmo")
+            | San Telmo
+          option(value="Velez Sarsfield")
+            | Velez Sarsfield
+          option(value="Versalles")
+            | Versalles
+          option(value="Villa Crespo")
+            | Villa Crespo
+          option(value="Villa del Parque")
+            | Villa del Parque
+          option(value="Villa Devoto")
+            | Villa Devoto
+          option(value="Villa General Mitre")
+            | Villa General Mitre
+          option(value="Villa Lugano")
+            | Villa Lugano
+          option(value="Villa Luro")
+            | Villa Luro
+          option(value="Villa Ortuzar")
+            | Villa Ortuzar
+          option(value="Villa Pueyrredon")
+            | Villa Pueyrredon
+          option(value="Villa Real")
+            | Villa Real
+          option(value="Villa Santa Rita")
+            | Villa Santa Rita
+          option(value="Villa Soldati")
+            | Villa Soldati
+          option(value="Villa Urquiza")
+            | Villa Urquiza
+      fieldset.fieldset--Form
+        input(type="date", placeholder="Fecha de ingreso", name="ingresoinquilino")
+      fieldset.fieldset--Form
+        input(type="submit", class="submit")  
+    
+
+  script(src='../../javascripts/buttons.js')

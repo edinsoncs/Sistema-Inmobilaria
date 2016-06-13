@@ -88,7 +88,10 @@
 	background-color: #dedede;
 	padding: 0.5em;
 	margin: 2em auto;
-	.header__Welcome--Iz .title {
+	.header__Welcome--Iz {
+
+	}
+	.header__Welcome--Iz .ul {
 		background-color: $naranja;
 		border-radius: 5px;
 		color: white;
@@ -96,6 +99,18 @@
 		font-weight: 400;
 		padding: 0.5em;
 		text-transform: uppercase;
+		.list {
+			list-style-type: none;
+			display: inline-block;
+			margin: 0 1em 0 0;
+			a.link {
+				text-decoration: none;
+				color: white;
+			}
+			a.actuality {
+				text-transform: capitalize;
+			}
+		}
 	}
 	.header__Welcome--De .title {
 		font-weight: 400;
