@@ -2,10 +2,8 @@ var express = require('express');
 var router = express.Router();
 
 var fs = require('fs');
-
 var multipart  = require('connect-multiparty');
-
-var multipartMiddleware  = multipart ();
+var multipartMiddleware  = multipart();
 
 
 

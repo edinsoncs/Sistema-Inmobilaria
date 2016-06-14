@@ -396,3 +396,22 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i 
 .add .newPropiedad--Form .fieldset--Form input[type='submit'] {
   border: none;
 }
+
+.add .newPropiedad--Form .fieldset--Form .fieldset--Form--Figure {
+  width: 250px;
+  display: block;
+  margin: 0 auto;
+  border: 7px solid #dedede;
+  border-radius: 4px;
+  background-size: cover;
+  display: block;
+  height: 150px;
+}
+
+.add .newPropiedad--Form .fieldset--Form .subirImg {
+  display: block;
+  text-align: center;
+  margin: 1em auto 1.3em auto;
+  width: 25%;
+  cursor: pointer;
+}

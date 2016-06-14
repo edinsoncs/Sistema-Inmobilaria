@@ -2,7 +2,7 @@ $(document).ready(function(){
 
 	$(".linkSave").flat('flat-t-cuatro');
 	$(".propiedadesLink").flat('flat-t-dos');
-
-	$(".submit").flat('flat-t-cuatro')
+	$(".submit").flat('flat-t-cuatro');
+	$(".subirImg").flat('flat-t-dos');
 
 });

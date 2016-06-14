@@ -132,6 +132,23 @@ main {
 			input[type='submit'] {
 				border: none;
 			}
+			.fieldset--Form--Figure {
+				width: 250px;
+				display: block;
+				margin: 0 auto;
+				border: 7px solid #dedede;
+    			border-radius: 4px;
+				background-size: cover;
+				display: block;
+				height: 150px;
+			}
+			.subirImg {
+					display: block;
+					text-align: center;
+					margin: 1em auto 1.3em auto;
+					width: 25%;
+					cursor: pointer;
+			}
 		}
 	}
 }

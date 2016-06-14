@@ -81,8 +81,13 @@ body
       h2.title
         | Crear Nueva Propiedad
     form.newPropiedad--Form(action="../../panel/addcreate", method="POST", enctype="multipart/form-data")
-      fieldset.fieldset--Form
-        input(type="file", required, name="img")
+      div.fieldset--Form
+        figure.fieldset--Form--Figure(style="background-image:url('http://images.depto9.com/2014/05/deco-departamentos-modernos-1b.jpg')")
+          
+        label(for="thisUploadImage", class="subirImg")
+            | Elegir Imagen
+      fieldset.fieldset--Form.uNoneDisplay
+        input(type="file", required, name="img", id="thisUploadImage")
       fieldset.fieldset--Form
         input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
       fieldset.fieldset--Form
@@ -94,10 +99,11 @@ body
           input(type="number", placeholder="Dni Inquilino", required, name="dniinquilino")
         fieldset.fieldset--Form
           input(type="email", placeholder="Email Inquilino", required, name="emailinquilino")
-      fieldset.fieldset--Form
-        input(type="number", placeholder="Precio", required, name="pricepropiedad")
-      fieldset.fieldset--Form
-        input(type="text", placeholder="Dirección", required, name="direccionpropiedad")
+      div.form--Container
+        fieldset.fieldset--Form
+          input(type="number", placeholder="$Precio", required, name="pricepropiedad")
+        fieldset.fieldset--Form
+          input(type="text", placeholder="Av. Dirección", required, name="direccionpropiedad")
       fieldset.fieldset--Form
         select#(name="barriopropiedad")
           option(value="Abasto")
@@ -211,5 +217,5 @@ body
       fieldset.fieldset--Form
         input(type="submit", class="submit")  
     
-
   script(src='../../javascripts/buttons.js')
+  script(src='../../javascripts/app.js')
