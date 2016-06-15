@@ -83,29 +83,53 @@ body
     form.newPropiedad--Form(action="../../panel/addcreate", method="POST", enctype="multipart/form-data")
       div.fieldset--Form
         figure.fieldset--Form--Figure(style="background-image:url('http://images.depto9.com/2014/05/deco-departamentos-modernos-1b.jpg')")
-          
         label(for="thisUploadImage", class="subirImg")
             | Elegir Imagen
-      fieldset.fieldset--Form.uNoneDisplay
-        input(type="file", required, name="img", id="thisUploadImage")
-      fieldset.fieldset--Form
-        input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
-      fieldset.fieldset--Form
+      div.fieldset--Steps
+       header.header--Steps
+        h2.title
+          | Propiedad
+       fieldset.fieldset--Form.uNoneDisplay
+         input(type="file", required, name="img", id="thisUploadImage")
+       fieldset.fieldset--Form
+         input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
+       fieldset.fieldset--Form
         input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad")
-      fieldset.fieldset--Form
-        input(type="text", placeholder="Inquilino", required, name="nameinquilino")
-      div.form--Container
-        fieldset.fieldset--Form
-          input(type="number", placeholder="Dni Inquilino", required, name="dniinquilino")
-        fieldset.fieldset--Form
-          input(type="email", placeholder="Email Inquilino", required, name="emailinquilino")
+      div.fieldset--Steps
+        header.header--Steps
+          h2.title
+            | Inquilino
+        div.form--Container
+         fieldset.fieldset--Form
+           input(type="text", placeholder="Nombre Inquilino", required, name="nameinquilino")
+         fieldset.fieldset--Form
+           input(type="tel", placeholder="Tel Inquilino", required)
+        div.form--Container
+          fieldset.fieldset--Form
+            input(type="number", placeholder="Dni Inquilino", required, name="dniinquilino")
+          fieldset.fieldset--Form
+            input(type="email", placeholder="Email Inquilino", required, name="emailinquilino")
+      div.fieldset--Steps
+        header.header--Steps
+          h2.title
+            | Garante
+        div.form--Container
+          fieldset.fieldset--Form
+            input(type="text", placeholder="Nombre Garante")
+          fieldset.fieldset--Form
+            input(type="text", placeholder="Tel Garante")
+        div.form--Container
+          fieldset.fieldset--Form
+            input(type="text", placeholder="Dni Garante")
+          fieldset.fieldset--Form
+            input(type="text", placeholder="Email Garante")
       div.form--Container
         fieldset.fieldset--Form
           input(type="number", placeholder="$Precio", required, name="pricepropiedad")
         fieldset.fieldset--Form
           input(type="text", placeholder="Av. Dirección", required, name="direccionpropiedad")
       fieldset.fieldset--Form
-        select#(name="barriopropiedad")
+        select(name="barriopropiedad")
           option(value="Abasto")
             | Abasto
           option(value="Agronomia")

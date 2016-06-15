@@ -79,65 +79,20 @@ body
     a.link.propiedadesLink(href="propiedades/add", class="")
      | Nueva Propiedad
    div.ContainerPropiedades
-    article.articlesPropiedades
-     header.articlesPropiedades--Header
-      h2.title
-       i(class="fa fa-home", aria-hidden="true")
-       | Propiedad Belgrano
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | Esta propiedad esta ubicado en algun lado de buenos aires
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | $4500
-     div.articlesPropiedades--Actions
-      i(class="fa fa-ellipsis-v", aria-hidden="true")
-    article.articlesPropiedades
-     header.articlesPropiedades--Header
-      h2.title
-       i(class="fa fa-home", aria-hidden="true")
-       | Propiedad Belgrano
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | Esta propiedad esta ubicado en algun lado de buenos aires
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | $4500
-     div.articlesPropiedades--Actions
-      i(class="fa fa-ellipsis-v", aria-hidden="true")
-    article.articlesPropiedades
-     header.articlesPropiedades--Header
-      h2.title
-       i(class="fa fa-home", aria-hidden="true")
-       | Propiedad Belgrano
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | Esta propiedad esta ubicado en algun lado de buenos aires
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | $4500
-     div.articlesPropiedades--Actions
-      i(class="fa fa-ellipsis-v", aria-hidden="true")
-    article.articlesPropiedades
-     header.articlesPropiedades--Header
-      h2.title
-       i(class="fa fa-home", aria-hidden="true")
-       | Propiedad Belgrano
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | Esta propiedad esta ubicado en algun lado de buenos aires
-     div.articlesPropiedades--Description
-      p.description
-       i(class="fa fa-street-view", aria-hidden="true")
-       | $4500
-     div.articlesPropiedades--Actions
-      i(class="fa fa-ellipsis-v", aria-hidden="true")
-
+    each prop in propiedades
+     article.articlesPropiedades
+      header.articlesPropiedades--Header
+       h2.title
+        i(class="fa fa-home", aria-hidden="true")
+        | #{prop.nombrePropiedad}
+      div.articlesPropiedades--Description
+       p.description
+        i(class="fa fa-street-view", aria-hidden="true")
+        | Esta propiedad esta ubicado en el barrio: #{prop.barrio}
+      div.articlesPropiedades--Description
+       p.description
+        i(class="fa fa-street-view", aria-hidden="true")
+        | $#{prop.precioPropiedad}
+      div.articlesPropiedades--Actions
+       i(class="fa fa-ellipsis-v", aria-hidden="true")
   script(src='../javascripts/buttons.js')

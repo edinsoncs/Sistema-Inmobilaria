@@ -15,4 +15,17 @@ $(document).ready(function(){
 		read.readAsDataURL(element.files[0]);
 	}
 
+
+	function success() {
+		
+		$(".newPropiedad--Form").submit(function(e){
+			e.preventDefault();
+
+			alert('hola');
+
+		});
+
+	}
+	sucess();
+
 });

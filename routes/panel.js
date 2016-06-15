@@ -4,6 +4,8 @@ var router = express.Router();
 var fs = require('fs');
 var multipart  = require('connect-multiparty');
 var multipartMiddleware  = multipart();
+var path = require('path');
+var url = require('url');
 
 
 
@@ -86,10 +88,13 @@ router.post('/save', function(req, res, next) {
 });
 
 router.get('/propiedades', function(req, res, next) {
+	var reverseProp = req.user.propiedades;
+	var reverse = reverseProp.reverse()
 	res.render('propiedades', {
 		title: 'Panel de administración',
 		nombre: req.user.nombre,
-		empresa: req.user.empresa
+		empresa: req.user.empresa,
+		propiedades: reverse
 	});
 });
 
@@ -106,11 +111,65 @@ router.get('/propiedades/add', function(req, res, next) {
 
 
 router.post('/addcreate', multipartMiddleware , function(req, res, next) {
+	var db = req.db;
+	var usuarios = db.get('usuarios');
+	var namePath = req.files.img.path;
 
-	var nameFile = req.files.img.path;
+	function idUser() {
+		return req.user._id;
+	}
 
-	fs.readFile(nameFile, function(err, data) {
-		console.log(data);
+	fs.readFile(namePath, function(err, data) {
+		
+		if(err) {
+			return err;
+		}
+		else {
+			var nameFile = req.files.img.name;
+			var saveFile = path.join(__dirname, '..', 'public', 'files/' + nameFile);
+
+			
+			fs.writeFile(saveFile, data, function(err){
+				if(err) {
+					return err;
+				}
+				else {
+
+					usuarios.findAndModify({
+						query: {
+							'_id': req.user._id
+						},
+						update: {
+							$push: {
+								'propiedades': {
+									'imagenPropiedad': nameFile,
+									'nombrePropiedad': req.body.nombrepropiedad,
+									'desPropiedad': req.body.despropiedad,
+									'nombreInquilino': req.body.nameinquilino,
+									'dniInquilino': req.body.dniinquilino,
+									'emailInquilino': req.body.emailinquilino,
+									'precioPropiedad': req.body.pricepropiedad,
+									'direccionPropiedad': req.body.direccionpropiedad,
+									'barrio': req.body.barriopropiedad,
+									'fechaIngresada': req.body.ingresoinquilino
+								}
+							}
+						},
+						new: true
+					}).success(function(done){
+						res.redirect('/panel/propiedades');
+					});
+
+
+				}
+			})
+
+
+			
+
+		}
+
+
 	});
 
 

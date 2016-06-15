@@ -340,10 +340,18 @@ main .ContainerPropiedades .articlesPropiedades:hover {
   background-color: white;
 }
 
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Header {
+  width: 20%;
+}
+
 main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Header .title {
   font-weight: 700;
   font-size: 0.9em;
   color: #717273;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Description {
+  width: 35%;
 }
 
 main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Description .description {
@@ -374,13 +382,23 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i 
   width: 50%;
 }
 
+.add .newPropiedad--Form .fieldset--Steps {
+  margin: 2em 0;
+}
+
+.add .newPropiedad--Form .fieldset--Steps .header--Steps .title {
+  font-weight: 400;
+  color: #3c8dbc;
+  margin: 0.5em 0;
+}
+
 .add .newPropiedad--Form .fieldset--Form {
   border: none;
   padding: 0;
   margin: 0 0 0.5em 0;
 }
 
-.add .newPropiedad--Form .fieldset--Form input[type='text'], .add .newPropiedad--Form .fieldset--Form input[type='number'], .add .newPropiedad--Form .fieldset--Form input[type='date'], .add .newPropiedad--Form .fieldset--Form select, .add .newPropiedad--Form .fieldset--Form input[type='email'], .add .newPropiedad--Form .fieldset--Form input[type='file'] {
+.add .newPropiedad--Form .fieldset--Form input[type='text'], .add .newPropiedad--Form .fieldset--Form input[type='number'], .add .newPropiedad--Form .fieldset--Form input[type='date'], .add .newPropiedad--Form .fieldset--Form select, .add .newPropiedad--Form .fieldset--Form input[type='email'], .add .newPropiedad--Form .fieldset--Form input[type='file'], .add .newPropiedad--Form .fieldset--Form input[type='tel'] {
   padding: 0.5em 1em;
   width: 100%;
   border-radius: 4px;
@@ -389,7 +407,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i 
   outline: medium none;
 }
 
-.add .newPropiedad--Form .fieldset--Form input[type='text']:focus, .add .newPropiedad--Form .fieldset--Form input[type='number']:focus, .add .newPropiedad--Form .fieldset--Form input[type='date']:focus, .add .newPropiedad--Form .fieldset--Form select:focus, .add .newPropiedad--Form .fieldset--Form input[type='email']:focus, .add .newPropiedad--Form .fieldset--Form input[type='file']:focus {
+.add .newPropiedad--Form .fieldset--Form input[type='text']:focus, .add .newPropiedad--Form .fieldset--Form input[type='number']:focus, .add .newPropiedad--Form .fieldset--Form input[type='date']:focus, .add .newPropiedad--Form .fieldset--Form select:focus, .add .newPropiedad--Form .fieldset--Form input[type='email']:focus, .add .newPropiedad--Form .fieldset--Form input[type='file']:focus, .add .newPropiedad--Form .fieldset--Form input[type='tel']:focus {
   border-color: #66afe9;
 }
 
