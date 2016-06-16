@@ -92,8 +92,33 @@ main {
 				}
 			}
 			.articlesPropiedades--Actions {
+				position: relative;
 				i {
 					color: #717273;
+					cursor: pointer;
+					width: 10px;
+					margin: 0 0.5em 0 0;
+				}
+				.articlePropiedades--Actions--Elements {
+					position: absolute;
+					background-color: #fff;
+					padding: 0.5em;
+					box-shadow: inset 0 0 20px #dedede;
+					top: 50%;
+				    margin-top: -2.5em;
+				    left: 50%;
+				    margin-left: 0.6em;
+				    display: none;
+				    width: 80px;
+				    text-align: left;
+					.ul--Elements .list {
+						list-style-type: none;
+						.link {
+							text-decoration: none;
+							color: #717273;
+							font-size: 0.8em;
+						}
+					}
 				}
 			}
 		}
@@ -160,6 +185,12 @@ main {
 					width: 25%;
 					cursor: pointer;
 			}
+		}
+		.tree {
+				input, select {
+					width: 95%!important;
+				}
+		
 		}
 	}
 }

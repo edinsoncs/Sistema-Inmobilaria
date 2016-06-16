@@ -15,17 +15,16 @@ $(document).ready(function(){
 		read.readAsDataURL(element.files[0]);
 	}
 
+	function itemOptions(element) {
 
-	function success() {
-		
-		$(".newPropiedad--Form").submit(function(e){
-			e.preventDefault();
-
-			alert('hola');
-
+		$(element).on('click', function(){
+			$(this).find('.jsShow').slideToggle('slow');
 		});
 
 	}
-	sucess();
+	itemOptions($(".jsClick"));
+
+
+
 
 });

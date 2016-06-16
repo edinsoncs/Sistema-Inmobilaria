@@ -10,18 +10,20 @@ head
   link(rel="stylesheet", href="../../stylesheets/normalize.min.css")
   link(rel="stylesheet", href="../../stylesheets/icons.css")
   link(rel="stylesheet", href="../../stylesheets/app.css")
+  link(rel="stylesheet", href="../../stylesheets/dcalendar.picker.css")
 
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
   
 
-  script(src="https://code.jquery.com/jquery-3.0.0.min.js")
+  script(src="../../javascripts/jquery-1.11.2.min.js")
   script(src="../../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+  script(src="../../javascripts/dcalendar.picker.js")
 
 body
   header.header__Site
@@ -81,7 +83,7 @@ body
       h2.title
         | Crear Nueva Propiedad
     form.newPropiedad--Form(action="../../panel/addcreate", method="POST", enctype="multipart/form-data")
-      div.fieldset--Form
+      //div.fieldset--Form
         figure.fieldset--Form--Figure(style="background-image:url('http://images.depto9.com/2014/05/deco-departamentos-modernos-1b.jpg')")
         label(for="thisUploadImage", class="subirImg")
             | Elegir Imagen
@@ -89,12 +91,125 @@ body
        header.header--Steps
         h2.title
           | Propiedad
-       fieldset.fieldset--Form.uNoneDisplay
+       //fieldset.fieldset--Form.uNoneDisplay
          input(type="file", required, name="img", id="thisUploadImage")
        fieldset.fieldset--Form
          input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
        fieldset.fieldset--Form
         input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad")
+       div.form--Container
+        fieldset.fieldset--Form.tree
+          input(type="number", placeholder="$Precio", required, name="pricepropiedad")
+        fieldset.fieldset--Form.tree
+          select(name="barriopropiedad")
+            option(value="Abasto")
+              | Abasto
+            option(value="Agronomia")
+              | Agronomia
+            option(value="Almagro")
+              | Almagro
+            option(value="Balvanera")
+              | Balvanera
+            option(value="Barracas")
+              | Barracas
+            option(value="BarrioNorte")
+              | BarrioNorte
+            option(value="Belgrano")
+              | Belgrano
+            option(value="Boedo")
+              | Boedo
+            option(value="Caballito")
+              | Caballito
+            option(value="Chacarita")
+              | Chacarita
+            option(value="Coghlan")
+              | Coghlan
+            option(value="Colegiales")
+              | Colegiales
+            option(value="Congreso")
+              | Congreso
+            option(value="Constitucion")
+              | Constitucion
+            option(value="Flores")
+              | Flores
+            option(value="Floresta")
+              | Floresta
+            option(value="La Boca")
+              | La Boca
+            option(value="Liniers")
+              | Liniers
+            option(value="Mataderos")
+              | Mataderos
+            option(value="Micro Centro")
+              | Micro Centro
+            option(value="Monserrat")
+              | Monserrat
+            option(value="Monte Castro")
+              | Monte Castro
+            option(value="Nueva Pompeya")
+              | Nueva Pompeya
+            option(value="Nuñez")
+              | Nuñez
+            option(value="Palermo")
+              | Palermo
+            option(value="Palermo Viejo")
+              | Palermo Viejo
+            option(value="Parque Avellaneda")
+              | Parque Avellaneda
+            option(value="Parque Centenario")
+              | Parque Centenario
+            option(value="Parque Chacabuco")
+              | Parque Chacabuco
+            option(value="Parque Chas")
+              | Parque Chas
+            option(value="Parque Patricios")
+              | Parque Patricios
+            option(value="Paternal")
+              | Paternal
+            option(value="Puerto Madero")
+              | Puerto Madero
+            option(value="Recoleta")
+              | Recoleta
+            option(value="Retiro")
+              | Retiro
+            option(value="Saavedra")
+              | Saavedra
+            option(value="San Cristobal")
+              | San Cristobal
+            option(value="San Nicolas")
+              | San Nicolas
+            option(value="San Telmo")
+              | San Telmo
+            option(value="Velez Sarsfield")
+              | Velez Sarsfield
+            option(value="Versalles")
+              | Versalles
+            option(value="Villa Crespo")
+              | Villa Crespo
+            option(value="Villa del Parque")
+              | Villa del Parque
+            option(value="Villa Devoto")
+              | Villa Devoto
+            option(value="Villa General Mitre")
+              | Villa General Mitre
+            option(value="Villa Lugano")
+              | Villa Lugano
+            option(value="Villa Luro")
+              | Villa Luro
+            option(value="Villa Ortuzar")
+              | Villa Ortuzar
+            option(value="Villa Pueyrredon")
+              | Villa Pueyrredon
+            option(value="Villa Real")
+              | Villa Real
+            option(value="Villa Santa Rita")
+              | Villa Santa Rita
+            option(value="Villa Soldati")
+              | Villa Soldati
+            option(value="Villa Urquiza")
+              | Villa Urquiza
+        fieldset.fieldset--Form.tree
+         input(type="text", placeholder="Fecha de ingreso", name="ingresoinquilino")
       div.fieldset--Steps
         header.header--Steps
           h2.title
@@ -103,7 +218,7 @@ body
          fieldset.fieldset--Form
            input(type="text", placeholder="Nombre Inquilino", required, name="nameinquilino")
          fieldset.fieldset--Form
-           input(type="tel", placeholder="Tel Inquilino", required)
+           input(type="tel", placeholder="Tel Inquilino", required, name="telinquilino")
         div.form--Container
           fieldset.fieldset--Form
             input(type="number", placeholder="Dni Inquilino", required, name="dniinquilino")
@@ -115,129 +230,22 @@ body
             | Garante
         div.form--Container
           fieldset.fieldset--Form
-            input(type="text", placeholder="Nombre Garante")
+            input(type="text", placeholder="Nombre Garante", name="garanteNombre")
           fieldset.fieldset--Form
-            input(type="text", placeholder="Tel Garante")
+            input(type="tel", placeholder="Tel Garante", name="garanteTel")
         div.form--Container
           fieldset.fieldset--Form
-            input(type="text", placeholder="Dni Garante")
+            input(type="text", placeholder="Dni Garante", name="garanteDni")
           fieldset.fieldset--Form
-            input(type="text", placeholder="Email Garante")
-      div.form--Container
+            input(type="text", placeholder="Email Garante", name="garanteEmail")
         fieldset.fieldset--Form
-          input(type="number", placeholder="$Precio", required, name="pricepropiedad")
+          input(type="file", name="garanteFile")
+      div.fieldset--Steps
+        header.header--Steps
+          h2.title
+            | Contrato
         fieldset.fieldset--Form
-          input(type="text", placeholder="Av. Dirección", required, name="direccionpropiedad")
-      fieldset.fieldset--Form
-        select(name="barriopropiedad")
-          option(value="Abasto")
-            | Abasto
-          option(value="Agronomia")
-            | Agronomia
-          option(value="Almagro")
-            | Almagro
-          option(value="Balvanera")
-            | Balvanera
-          option(value="Barracas")
-            | Barracas
-          option(value="BarrioNorte")
-            | BarrioNorte
-          option(value="Belgrano")
-            | Belgrano
-          option(value="Boedo")
-            | Boedo
-          option(value="Caballito")
-            | Caballito
-          option(value="Chacarita")
-            | Chacarita
-          option(value="Coghlan")
-            | Coghlan
-          option(value="Colegiales")
-            | Colegiales
-          option(value="Congreso")
-            | Congreso
-          option(value="Constitucion")
-            | Constitucion
-          option(value="Flores")
-            | Flores
-          option(value="Floresta")
-            | Floresta
-          option(value="La Boca")
-            | La Boca
-          option(value="Liniers")
-            | Liniers
-          option(value="Mataderos")
-            | Mataderos
-          option(value="Micro Centro")
-            | Micro Centro
-          option(value="Monserrat")
-            | Monserrat
-          option(value="Monte Castro")
-            | Monte Castro
-          option(value="Nueva Pompeya")
-            | Nueva Pompeya
-          option(value="Nuñez")
-            | Nuñez
-          option(value="Palermo")
-            | Palermo
-          option(value="Palermo Viejo")
-            | Palermo Viejo
-          option(value="Parque Avellaneda")
-            | Parque Avellaneda
-          option(value="Parque Centenario")
-            | Parque Centenario
-          option(value="Parque Chacabuco")
-            | Parque Chacabuco
-          option(value="Parque Chas")
-            | Parque Chas
-          option(value="Parque Patricios")
-            | Parque Patricios
-          option(value="Paternal")
-            | Paternal
-          option(value="Puerto Madero")
-            | Puerto Madero
-          option(value="Recoleta")
-            | Recoleta
-          option(value="Retiro")
-            | Retiro
-          option(value="Saavedra")
-            | Saavedra
-          option(value="San Cristobal")
-            | San Cristobal
-          option(value="San Nicolas")
-            | San Nicolas
-          option(value="San Telmo")
-            | San Telmo
-          option(value="Velez Sarsfield")
-            | Velez Sarsfield
-          option(value="Versalles")
-            | Versalles
-          option(value="Villa Crespo")
-            | Villa Crespo
-          option(value="Villa del Parque")
-            | Villa del Parque
-          option(value="Villa Devoto")
-            | Villa Devoto
-          option(value="Villa General Mitre")
-            | Villa General Mitre
-          option(value="Villa Lugano")
-            | Villa Lugano
-          option(value="Villa Luro")
-            | Villa Luro
-          option(value="Villa Ortuzar")
-            | Villa Ortuzar
-          option(value="Villa Pueyrredon")
-            | Villa Pueyrredon
-          option(value="Villa Real")
-            | Villa Real
-          option(value="Villa Santa Rita")
-            | Villa Santa Rita
-          option(value="Villa Soldati")
-            | Villa Soldati
-          option(value="Villa Urquiza")
-            | Villa Urquiza
-      fieldset.fieldset--Form
-        input(type="date", placeholder="Fecha de ingreso", name="ingresoinquilino")
+          input(type="file", name="contrato")
       fieldset.fieldset--Form
         input(type="submit", class="submit")  
     

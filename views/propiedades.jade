@@ -16,12 +16,13 @@ head
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
   
 
-  script(src="https://code.jquery.com/jquery-3.0.0.min.js")
+  script(src="../../javascripts/jquery-1.11.2.min.js")
   script(src="../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+  script(src="../../javascripts/dcalendar.picker.js")
 
 body
   header.header__Site
@@ -80,7 +81,7 @@ body
      | Nueva Propiedad
    div.ContainerPropiedades
     each prop in propiedades
-     article.articlesPropiedades
+     article.articlesPropiedades(data-id="#{prop.id}")
       header.articlesPropiedades--Header
        h2.title
         i(class="fa fa-home", aria-hidden="true")
@@ -93,6 +94,21 @@ body
        p.description
         i(class="fa fa-street-view", aria-hidden="true")
         | $#{prop.precioPropiedad}
-      div.articlesPropiedades--Actions
+      div.articlesPropiedades--Actions.jsClick
        i(class="fa fa-ellipsis-v", aria-hidden="true")
+       div.articlePropiedades--Actions--Elements.jsShow
+        ul.ul--Elements
+         li.list
+          a.link(href="propiedades/show/#{prop.id}")
+           i(class="fa fa-eye" aria-hidden="true")
+           | Ver
+         li.list
+          a.link(href="#")
+           i(class="fa fa-pencil-square", aria-hidden="true")
+           | Editar
+         li.list
+          a.link(href="#")
+           i(class="fa fa-trash-o", aria-hidden="true")
+           | Borrar
   script(src='../javascripts/buttons.js')
+  script(src='../javascripts/app.js')

@@ -359,8 +359,39 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Descriptio
   color: #717273;
 }
 
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions {
+  position: relative;
+}
+
 main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i {
   color: #717273;
+  cursor: pointer;
+  width: 10px;
+  margin: 0 0.5em 0 0;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .articlePropiedades--Actions--Elements {
+  position: absolute;
+  background-color: #fff;
+  padding: 0.5em;
+  box-shadow: inset 0 0 20px #dedede;
+  top: 50%;
+  margin-top: -2.5em;
+  left: 50%;
+  margin-left: 0.6em;
+  display: none;
+  width: 80px;
+  text-align: left;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .articlePropiedades--Actions--Elements .ul--Elements .list {
+  list-style-type: none;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .articlePropiedades--Actions--Elements .ul--Elements .list .link {
+  text-decoration: none;
+  color: #717273;
+  font-size: 0.8em;
 }
 
 .add .newPropiedad--Header {
@@ -432,4 +463,8 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions i 
   margin: 1em auto 1.3em auto;
   width: 25%;
   cursor: pointer;
+}
+
+.add .newPropiedad--Form .tree input, .add .newPropiedad--Form .tree select {
+  width: 95% !important;
 }
