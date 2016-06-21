@@ -15,7 +15,6 @@ head
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
-  
 
   script(src="../../../javascripts/jquery-1.11.2.min.js")
   script(src="../../../javascripts/app-dev1.js")
@@ -24,6 +23,7 @@ head
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
   script(src="../../../javascripts/dcalendar.picker.js")
+  script(src="../../../javascripts/simplecalendar.js")
 
 body
   header.header__Site
@@ -70,16 +70,131 @@ body
       li.list
        span.break /
       li.list
-       a.link.actuality(href="../propiedades")
+       a.link.actuality(href="../../propiedades")
         | Propiedades
       li.list
        span.break /
       li.list
        a.link.actuality(href="#")
-        | #{propiedad[0].nombrePropiedad}
-
+        | #{propiedad.nombrePropiedad}
+    aside.header__Welcome--De
+      h2.title.jsAddDate
+        | Loading...
   main.widthBase.view
+   div.view--NotifyBG
+   section.view--Notify
+    form.formNotify(action="../../notificaciones", method="POST")
+      input(type="hidden", value="#{propiedad.id}", name="isID")
+      fieldset.formNotify__Fieldset
+        input(type="email", value="#{propiedad.emailInquilino}", name="isMail", required)
+      fieldset.formNotify__Fieldset
+        input(type="text", placeholder="Asunto", name="isAsunt", required)
+      fieldset.formNotify__Fieldset
+        textarea(cols="30", rows="10", placeholder="mensaje de notificacion", name="isMessage", required)
+      fieldset.formNotify__Fieldset
+        input(type="submit", value="Notificar")
+   section.view--Calendar
+   section.view--Iz
+    header.view--Iz--Top
+     h2.title
+      | #{propiedad.nombrePropiedad}
+    div.view--Iz--Info
+      header.view--Iz--Info--Header
+        h2.title
+          | Precio
+      article.view--Iz--Articls
+        div.Articls--Iz
+          span.titleNames
+            i.fa.fa-money(aria-hidden="true")  
+            |  Mensual:
+            | $#{propiedad.precioPropiedad}
+        div.Articls--De
+         span.titleNames
+          i.fa.fa-calendar-plus-o(aria-hidden="true") 
+          |  Ingreso:
+          | #{propiedad.fechaIngresada}
+    div.view--Iz--Info
+     header.view--Iz--Info--Header
+      h2.title
+       | Datos Inquilino
+     article.view--Iz--Articls
+      div.Articls--Iz
+       span.titleNames
+        i.fa.fa-user(aria-hidden="true") 
+        |  Inquilino:
+        | #{propiedad.nombreInquilino}
+      div.Articls--De
+       span.titleNames
+        i.fa.fa-phone-square(aria-hidden="true") 
+        |  Teléfono:
+        | #{propiedad.telInquilino}
+     article.view--Iz--Articls
+      div.Articls--Iz
+       span.titleNames
+        i.fa.fa-file(aria-hidden="true") 
+        |  Dni:
+        | #{propiedad.dniInquilino}
+      div.Articls--De
+       span.titleNames
+        i.fa.fa-envelope(aria-hidden="true") 
+        |  Email:
+        | #{propiedad.emailInquilino}
+    div.view--Iz--Info
+      header.view--Iz--Info--Header
+        h2.title
+          | Datos Garante
+      article.view--Iz--Articls
+        div.Articls--Iz
+          span.titleNames
+            i.fa.fa-user(aria-hidden="true") 
+            |  Garante:
+            | #{propiedad.garanteNombre}
+        div.Articls--De
+          span.span.titleNames
+            i.fa.fa-phone-square(aria-hidden="true") 
+            |  Teléfono:
+            | #{propiedad.garanteTel}
+      article.view--Iz--Articls
+        div.Articls--Iz
+         span.titleNames
+          i.fa.fa-file(aria-hidden="true") 
+          |  Dni:
+          | #{propiedad.garanteDni}
+        div.Articls--De
+         span.titleNames
+          i.fa.fa-envelope(aria-hidden="true") 
+          |  Email:
+          | #{propiedad.garanteEmail}
+    div.view--Iz--Info
+      header.view--Iz--Info--Header
+        h2.title
+          | Garantia
+      article.view--Iz--Files
+        embed(src="../../../files/#{propiedad.garanteFile}#zoom=50&scrollbar=1&toolbar=1&navpanes=1", width="100%", height="500px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html", type="application/pdf", trusted="yes" application="yes" title="#{propiedad.nombrePropiedad}")
+    div.view--Iz--Info
+      header.view--Iz--Info--Header
+        h2.title
+          | Contrato
+      article.view--Iz--Files
+        embed(src="../../../files/#{propiedad.contrato}#zoom=50&scrollbar=1&toolbar=1&navpanes=1", width="100%", height="500px", pluginspage="http://www.adobe.com/products/acrobat/readstep2.html", type="application/pdf", trusted="yes", )
+   aside.view--De
+    div.view--De--Top
+      a.link.btn.btn--Notify
+        i.fa.fa-bell(aria-hidden="true")
+        |  Notificar
+      a.link.btn.btn--Calendar
+        i.fa.fa-calendar-check-o(aria-hidden="true") 
+        |  Calendario
+      a.link.btn.btn--Ticket
+        i.fa.fa-print(aria-hidden="true")
+        |  Imprimir
+    div.view--De--ShowNotify
+      header.header--ShowNotify
+        h2.title
+          | Notificaciones enviadas
+
+
     
     
-  script(src='../../javascripts/buttons.js')
-  script(src='../../javascripts/app.js')
+  script(src='../../../javascripts/buttons.js')
+  script(src='../../../javascripts/app.js')

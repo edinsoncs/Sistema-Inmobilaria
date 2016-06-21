@@ -8,7 +8,8 @@ var usuario = new Schema ({
 	'email': String,
 	'dni': Number,
 	'password': String,
-	'propiedades': Array
+	'propiedades': Array,
+	'notificaciones': Array
 }, {
 	collection: 'usuarios'
 });

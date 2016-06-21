@@ -1,6 +1,18 @@
 $(document).ready(function(){
 
-	
+	//
+	var noneItemOne = $(".view--NotifyBG");
+	var noneItemTwo = $(".view--Notify");
+	var elementPrimary = $(".view--NotifyBG");
+
+	//
+	var elementSecondary = $(".btn--Notify");
+
+	itemNone(elementPrimary, noneItemOne, noneItemTwo);
+
+	itemShow(elementSecondary, noneItemOne, noneItemTwo);
+
+
 	$("#thisUploadImage").change(function(e){
 			changeImage(this)
 	});
@@ -25,6 +37,23 @@ $(document).ready(function(){
 	itemOptions($(".jsClick"));
 
 
+
+
+
+	function itemNone(element, noneItem, noneItemTwo) {
+		$(element).click(function(){
+			$(noneItem).css('display','none');
+			$(noneItemTwo).fadeOut('slow');
+
+		});
+	}
+
+	function itemShow(elemenTwo, showItem, showItemTwo) {
+		$(elemenTwo).click(function(){
+			$(showItem).fadeIn('slow');
+			$(showItemTwo).fadeIn('slow');
+		});
+	}
 
 
 });

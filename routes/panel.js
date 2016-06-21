@@ -10,6 +10,9 @@ var async = require('async');
 
 var esid = require('randomid');
 
+var nodemailer = require('nodemailer');
+var smtpTransport = require('nodemailer-smtp-transport');
+
 
 
 var bodyParser = require('body-parser');
@@ -107,34 +110,25 @@ router.get('/propiedades/add', function(req, res, next) {
 
 router.get('/propiedades/show/:id', function(req, res, next) {
 
-	var db = req.db;
-	var user = db.get('usuarios');
-	console.log(req.params.id);
-	user.findOne({
-		'_id': req.user._id}, {
-		 'propiedades.$.id': req.params.id
-		}).success(function(re){
-			console.log(re);
-		});
+    var db = req.db;
+    var user = db.get('usuarios');
 
-	/*user.findOne({
-		query: {
-			'_id': req.user._id,
-			'propiedades': {
-				$elemMatch: {
-					'id': req.params.id
-				}
-			}
-		}
-	}).success(function(resultado){
-		console.log(resultado);
-		res.render('show', {
-			title: 'Nueva propiedad',
-	        nombre: req.user.nombre,
-	        empresa: req.user.empresa,
-	        propiedad: resultado.propiedades
-		})
-	})*/
+
+
+    user.findOne({ _id: req.user._id }, function(err, resultado) {
+        var prop = resultado.propiedades;
+        for (var i = 0; i < prop.length; i++) {
+            if (prop[i].id == req.params.id) {
+                res.render('show', {
+                    title: prop[i].nombrePropiedad,
+                    nombre: req.user.nombre,
+                    empresa: req.user.empresa,
+                    propiedad: prop[i]
+                });
+            }
+        }
+    });
+
 
 });
 
@@ -212,7 +206,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         update: {
             $push: {
                 'propiedades': {
-                	'id': esid(26),
+                    'id': esid(26),
                     'nombrePropiedad': req.body.nombrepropiedad,
                     'desPropiedad': req.body.despropiedad,
                     'precioPropiedad': req.body.pricepropiedad,
@@ -230,7 +224,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'garanteEmail': req.body.garanteEmail,
                     'garanteFile': idNameGarante,
 
-                    'contrato': idNameContrato
+                    'contrato': idNameContrato,
+                    'notificaciones': Array
                 }
             }
         },
@@ -240,6 +235,85 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     }).success(function(done) {
         res.redirect('/panel/propiedades');
     });
+
+
+});
+
+router.post('/notificaciones', function(req, res, next) {
+
+    var db = req.db;
+
+    var email = req.body.isMail;
+    var asunt = req.body.isAsunt;
+    var message = req.body.isMessage;
+    var idPropiedad = req.body.isID;
+
+    console.log(idPropiedad);
+
+    var empresa = req.user.empresa;
+    var emailUser = req.user.email;
+
+    var usuarios = db.get('usuarios');
+
+
+    var transporter = nodemailer.createTransport(smtpTransport({
+        host: "millenialab.com", // hostname
+        secure: true, // use SSL
+        port: 465, // port for secure SMTP
+        auth: {
+            user: 'edinson@millenialab.com',
+            pass: '25edinson25'
+        },
+        tls: {
+            rejectUnauthorized: false
+        }
+    }));
+
+
+    var mailOptions = {
+        from: emailUser,
+        to: email, // list of receivers
+        subject: asunt, // Subject line
+        text: message, // plaintext body
+        html: '<b>' + message + '</b>' // html body
+    };
+
+
+    transporter.sendMail(mailOptions, function(error, info) {
+        if (error) {
+            return console.log(error)
+        } else {
+            console.log('enviado');
+            activeSendNotify();
+        }
+    });
+
+    function activeSendNotify() {
+        usuarios.findAndModify({
+            query: {
+                '_id': req.user._id,
+                propiedades: {
+                    $elemMatch: {
+                        'id': idPropiedad
+                    }
+                }
+            },
+            update: {
+               $push: {
+               	'propiedades.$.notificaciones': {
+               		'fecha': new Date(),
+               		'email': email,
+               		'asunto': asunt
+               	}
+               }
+            },
+            new: true
+        }).success(function(fn) {
+            console.log('funcionoo');
+        });
+    }
+
+
 
 
 });

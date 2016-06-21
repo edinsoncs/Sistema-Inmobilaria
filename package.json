@@ -21,6 +21,8 @@
     "mongoose": "^4.4.20",
     "monk": "^1.0.1",
     "morgan": "~1.6.1",
+    "nodemailer": "^2.4.2",
+    "nodemailer-smtp-transport": "^2.5.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "randomid": "^1.0.0",

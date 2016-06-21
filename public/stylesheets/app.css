@@ -49,6 +49,13 @@ ul {
   margin: 0 auto;
 }
 
+.btn {
+  padding: 0.8em 1em;
+  background-color: #dedede;
+  color: white;
+  cursor: pointer;
+}
+
 body {
   font-family: 'Open Sans', sans-serif;
 }
@@ -467,4 +474,161 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
 
 .add .newPropiedad--Form .tree input, .add .newPropiedad--Form .tree select {
   width: 95% !important;
+}
+
+.view {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.view .view--Iz {
+  width: 40%;
+}
+
+.view .view--Iz .view--Iz--Top {
+  background-image: url("http://parabuenosaires.com/wp-content/uploads/2014/07/departamentos-en-venta-palermo-belgrano-puerto-madero-parabuenosaires.jpg");
+  background-size: cover;
+  margin: 0 auto;
+  padding: 2em 2em;
+  text-align: center;
+  width: 50%;
+  border: 4px solid #dedede;
+}
+
+.view .view--Iz .view--Iz--Top .title {
+  font-weight: 400;
+  color: white;
+  text-shadow: 0 0 10px black;
+  text-transform: capitalize;
+}
+
+.view .view--Iz .view--Iz--Info {
+  margin: 1em 0;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Info--Header {
+  margin: 1em 0 2em 0;
+  border-bottom: 1px solid #66afe9;
+  padding: 1em 0;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Info--Header .title {
+  font-weight: 400;
+  color: #66afe9;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Articls {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 1em 0;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz {
+  width: 40%;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De {
+  width: 50%;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames, .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames {
+  letter-spacing: 0.5px;
+  padding: 0.5em;
+  color: #3c8dbc;
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 30px;
+}
+
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames i, .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames i {
+  color: #66afe9;
+  font-size: 1.4em;
+}
+
+.view .view--De {
+  width: 45%;
+  border-left: 1px solid #dedede;
+  padding: 0 0 0 6.5em;
+}
+
+.view .view--De .view--De--Top {
+  margin: 0 0 2em 0;
+}
+
+.view .view--De .view--De--Top .btn--Notify {
+  border-radius: 4px;
+  background-color: #3c8dbc;
+  margin: 0 1.5em 0 0;
+}
+
+.view .view--De .view--De--Top .btn--Calendar {
+  background-color: #E52F62;
+  border-radius: 4px;
+  margin: 0 1.5em 0 0;
+}
+
+.view .view--De .view--De--Top .btn--Ticket {
+  background-color: #27ae60;
+  border-radius: 4px;
+}
+
+.view .view--De .view--De--ShowNotify .header--ShowNotify {
+  text-align: center;
+}
+
+.view .view--De .view--De--ShowNotify .header--ShowNotify .title {
+  font-weight: 400;
+  color: #3c8dbc;
+}
+
+.view .view--NotifyBG {
+  background-color: rgba(0, 0, 0, 0.49);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+}
+
+.view .view--Notify {
+  position: absolute;
+  left: 50%;
+  margin-left: -20em;
+  background-color: #f3f3f3;
+  padding: 1em;
+  width: 50%;
+  display: none;
+}
+
+.view .view--Notify .formNotify__Fieldset textarea {
+  resize: none;
+}
+
+.view .view--Notify .formNotify__Fieldset input, .view .view--Notify .formNotify__Fieldset textarea {
+  border-radius: 3px;
+  border: none;
+  margin: 0.7em 0;
+  padding: 0.6em;
+  width: 100%;
+  border: 1px solid #dedede;
+  outline: medium none;
+}
+
+.view .view--Notify .formNotify__Fieldset input[type='submit'] {
+  background-color: #1abc9c;
+  color: white;
+  outline: medium none;
+}
+
+.view .view--Calendar {
+  position: absolute;
+  left: 50%;
+  margin-left: -20em;
+  background-color: #f3f3f3;
+  padding: 1em;
+  width: 50%;
+  display: none;
 }

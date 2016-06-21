@@ -42,6 +42,12 @@ $naranja: #F89406;
 	width: $widthPrimary;
 	margin: $centerMargin;
 }
+.btn {
+	padding: 0.8em 1em;
+	background-color: #dedede;
+	color: white;
+	cursor: pointer;
+}
 
 body {
 	font-family: 'Open Sans', sans-serif;
@@ -99,5 +105,6 @@ body {
 
 @import "header";
 @import "main";
+@import "view";
 
 @import "panel";
