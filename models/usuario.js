@@ -9,7 +9,8 @@ var usuario = new Schema ({
 	'dni': Number,
 	'password': String,
 	'propiedades': Array,
-	'notificaciones': Array
+	'notificaciones': Array,
+	'pagos': Array
 }, {
 	collection: 'usuarios'
 });

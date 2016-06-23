@@ -39,6 +39,9 @@ $(document).ready(function(){
 
 
 
+	/**
+	  *[functions] {return data website}	
+	*/
 
 	function itemNone(element, noneItem, noneItemTwo) {
 		$(element).click(function(){
@@ -54,6 +57,9 @@ $(document).ready(function(){
 			$(showItemTwo).fadeIn('slow');
 		});
 	}
+
+
+	
 
 
 });

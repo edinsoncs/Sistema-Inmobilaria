@@ -532,7 +532,8 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
   width: 50%;
 }
 
-.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames, .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames {
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames,
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames {
   letter-spacing: 0.5px;
   padding: 0.5em;
   color: #3c8dbc;
@@ -542,7 +543,8 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
   line-height: 30px;
 }
 
-.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames i, .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames i {
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames i,
+.view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames i {
   color: #66afe9;
   font-size: 1.4em;
 }
@@ -574,6 +576,11 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
   border-radius: 4px;
 }
 
+.view .view--De .view--De--ShowNotify {
+  background-color: #f5f3f3;
+  padding: 0.5em;
+}
+
 .view .view--De .view--De--ShowNotify .header--ShowNotify {
   text-align: center;
 }
@@ -581,6 +588,83 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
 .view .view--De .view--De--ShowNotify .header--ShowNotify .title {
   font-weight: 400;
   color: #3c8dbc;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify {
+  margin: 0.5em 0;
+  max-height: 450px;
+  overflow-y: scroll;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify .list--ShowNotify {
+  list-style-type: none;
+  color: #6f6f6f;
+  padding: 0.5em 0.5em;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify .list--ShowNotify i {
+  color: #3c8dbc;
+  margin: 0 0.5em 0 0;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify::-webkit-scrollbar {
+  width: 12px;
+  padding: 0.5em;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify::-webkit-scrollbar-thumb {
+  background: #3c8dbc;
+  border-radius: 2px;
+}
+
+.view .view--De .view--De--ShowNotify .showMessageNotAll {
+  background-color: #dedede;
+  padding: 1em 0.8em;
+  text-align: center;
+}
+
+.view .view--De .view--De--ShowNotify .showMessageNotAll .title {
+  font-weight: 400;
+}
+
+.view .view--De .view--De--ShowPagos {
+  background-color: #f5f3f3;
+  padding: 0.5em;
+  margin: 1em 0 0 0;
+}
+
+.view .view--De .view--De--ShowPagos .header--ShowPagos {
+  text-align: center;
+}
+
+.view .view--De .view--De--ShowPagos .header--ShowPagos .title {
+  font-weight: 400;
+  color: #27ae60;
+}
+
+.view .view--De .view--De--ShowPagos .showMessageNotAll {
+  background-color: #dedede;
+  padding: 1em 0.8em;
+  text-align: center;
+}
+
+.view .view--De .view--De--ShowPagos .showMessageNotAll .title {
+  font-weight: 400;
+}
+
+.view .view--De .view--De--ShowPagos .container--ShowPagos .list--ShowPagos {
+  list-style-type: none;
+  color: #6f6f6f;
+  padding: 0.5em 0.5em;
+}
+
+.view .view--De .view--De--ShowPagos .container--ShowPagos .list--ShowPagos i {
+  color: #27ae60;
 }
 
 .view .view--NotifyBG {
@@ -607,7 +691,8 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
   resize: none;
 }
 
-.view .view--Notify .formNotify__Fieldset input, .view .view--Notify .formNotify__Fieldset textarea {
+.view .view--Notify .formNotify__Fieldset input,
+.view .view--Notify .formNotify__Fieldset textarea {
   border-radius: 3px;
   border: none;
   margin: 0.7em 0;
@@ -621,6 +706,56 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
   background-color: #1abc9c;
   color: white;
   outline: medium none;
+}
+
+.view .view--Pagos {
+  position: absolute;
+  left: 50%;
+  margin-left: -20em;
+  background-color: #f3f3f3;
+  padding: 1em;
+  width: 50%;
+}
+
+.view .view--Pagos .formPagos__Fieldset textarea {
+  resize: none;
+}
+
+.view .view--Pagos .formPagos__Fieldset input,
+.view .view--Pagos .formPagos__Fieldset textarea {
+  border-radius: 3px;
+  border: none;
+  margin: 0.7em 0;
+  padding: 0.6em;
+  width: 100%;
+  border: 1px solid #dedede;
+  outline: medium none;
+}
+
+.view .view--Pagos .formPagos__Fieldset input[type='submit'] {
+  background-color: #1abc9c;
+  color: white;
+  outline: medium none;
+}
+
+.view .view--Pagos .formPagos__Fieldset--Flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view .view--Pagos .formPagos__Fieldset--Flex label {
+  display: block;
+}
+
+.view .view--Pagos .formPagos__Fieldset--Flex div input, .view .view--Pagos .formPagos__Fieldset--Flex select {
+  border-radius: 3px;
+  border: none;
+  margin: 0.7em 0;
+  padding: 0.6em;
+  width: 100%;
+  border: 1px solid #dedede;
+  outline: medium none;
+  width: 88%;
 }
 
 .view .view--Calendar {

@@ -5,7 +5,7 @@ head
   meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
   meta(name="description", content="Administracion de inmobiliarias")
   
-  title | #{title}
+  title #{title}
   
   link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
   link(rel="stylesheet", href="../../../stylesheets/icons.css")
@@ -22,8 +22,12 @@ head
 
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
-  script(src="../../../javascripts/dcalendar.picker.js")
-  script(src="../../../javascripts/simplecalendar.js")
+
+
+
+
+  //functions create edinsoncs
+  script(src="../../../javascripts/thisFunctions.js")
 
 body
   header.header__Site
@@ -93,6 +97,60 @@ body
         textarea(cols="30", rows="10", placeholder="mensaje de notificacion", name="isMessage", required)
       fieldset.formNotify__Fieldset
         input(type="submit", value="Notificar")
+   section.view--Pagos
+    form.formPagos()
+      input(type="hidden", value="#{propiedad.id}", name="isID")
+      fieldset.formPagos__Fieldset
+        label.formPagos__Fieldset--Label
+          | Inquilino
+        input(type="text", value="#{propiedad.nombreInquilino}", name="isNameInquilino")
+      fieldset.formPagos__Fieldset
+        label.formPagos__Fieldset--Label
+          | Precio
+        input(type="text", value="#{propiedad.precioPropiedad}", name="isPrecioPropiedad")
+      div.formPagos__Fieldset--Flex
+        div.fieldset--Flex--Iz
+          label.Iz--Label
+            | Del
+          input(type="date", name="isDateEntry")
+        div.fieldset--Flex--Center
+          label.Center--Label
+            | Al
+          input(type="date", name="isDateExit")
+        div.fieldset--Flex--De
+          label.De--Label
+            | Mes
+          select(name="isMonthPayment")
+            option(value="Enero")
+              | Enero
+            option(value="Febrero")
+              | Febrero
+            option(value="Marzo")
+              | Marzo
+            option(value="Abril")
+              | Abril
+            option(value="Mayo")
+              | Mayo
+            option(value="Junio")
+              | Junio
+            option(value="Julio")
+              | Julio
+            option(value="Agosto")
+              | Agosto
+            option(value="Septiembre")
+              | Septiembre
+            option(value="Octubre")
+              | Octubre
+            option(value="Noviembre")
+              | Noviembre
+            option(value="Diciembre")
+              | Diciembre
+      fieldset.formPagos__Fieldset
+        label.Fieldset--Label
+          | Comentarios
+        textarea(name="", cols="10", rows="3")
+      fieldset.formPagos__Fieldset
+        input(type="submit", value="Cobrar")
    section.view--Calendar
    section.view--Iz
     header.view--Iz--Top
@@ -186,12 +244,49 @@ body
         i.fa.fa-calendar-check-o(aria-hidden="true") 
         |  Calendario
       a.link.btn.btn--Ticket
-        i.fa.fa-print(aria-hidden="true")
-        |  Imprimir
+        i.fa.fa-usd(aria-hidden="true")
+        |  Pagos
     div.view--De--ShowNotify
-      header.header--ShowNotify
+      if propiedad.notificaciones
+        header.header--ShowNotify
+          h2.title
+            | Notificaciones enviadas
+        ul.container--ShowNotify
+           each nt in notify
+            li.list--ShowNotify
+             i.fa.fa-bell(aria-hidden="true")
+             span.ShowNotify--Int
+              | #{nt.asunto}
+             span.ShowNotify--Int
+             strong
+               |  #{nt.fecha}
+      else
+         div.showMessageNotAll
+          header.showMessageNotAll--Header
+            h2.title
+              | Esta propiedad no </br>tiene notificaciones
+    div.view--De--ShowPagos
+      header.header--ShowPagos
         h2.title
-          | Notificaciones enviadas
+          | Pagos emitidos
+      ul.container--ShowPagos
+        li.list--ShowPagos
+          i.fa.fa-usd(aria-hidden="true")
+          span.ShowPagos--Int
+            |  Se pago del mes de 
+            strong.ShowPagos--Mes
+              | Junio
+            |  del 2016
+
+
+      //div.showMessageNotAll
+          header.showMessageNotAll--Header
+            h2.title
+              | Esta propiedad no </br>tiene pagos      
+      
+
+
+
 
 
     

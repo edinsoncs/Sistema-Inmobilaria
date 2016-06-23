@@ -119,11 +119,19 @@ router.get('/propiedades/show/:id', function(req, res, next) {
         var prop = resultado.propiedades;
         for (var i = 0; i < prop.length; i++) {
             if (prop[i].id == req.params.id) {
+                
+
+                if(prop[i].notificaciones) {
+                	var notificacionesReverse = prop[i].notificaciones;
+                	var reverseNotify = notificacionesReverse.reverse();
+                }
+
                 res.render('show', {
                     title: prop[i].nombrePropiedad,
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
-                    propiedad: prop[i]
+                    propiedad: prop[i],
+                    notify: reverseNotify
                 });
             }
         }
@@ -301,7 +309,7 @@ router.post('/notificaciones', function(req, res, next) {
             update: {
                $push: {
                	'propiedades.$.notificaciones': {
-               		'fecha': new Date(),
+               		'fecha': dataFecha(new Date()),
                		'email': email,
                		'asunto': asunt
                	}
@@ -309,8 +317,27 @@ router.post('/notificaciones', function(req, res, next) {
             },
             new: true
         }).success(function(fn) {
-            console.log('funcionoo');
+           res.redirect('propiedades/show/' + idPropiedad);
         });
+    }
+
+    function dataFecha(data) {
+    	
+    	var dia = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+    	var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+					"Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+    	var day = data.getDate();
+    	var dayStatus = data.getDay();
+    	var mes = data.getMonth();
+    	var year = data.getFullYear();
+
+    	
+    	for(var i = 0; i < dia.length; i++) {
+			return dia[dayStatus] +" "+ day + " del " + year;    		
+    	}
+
+
     }
 
 
