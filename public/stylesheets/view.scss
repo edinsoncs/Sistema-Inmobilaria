@@ -201,6 +201,7 @@
         background-color: #f3f3f3;
         padding: 1em;
         width: 50%;
+        display: none;
         .formPagos__Fieldset {
             textarea {
                 resize: none;
@@ -226,7 +227,7 @@
         	justify-content: space-between;
         	label {
         		display: block;
-        		
+
         	}
         	div input, select {
         		border-radius: 3px;

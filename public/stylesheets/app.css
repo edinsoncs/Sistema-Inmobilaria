@@ -715,6 +715,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .a
   background-color: #f3f3f3;
   padding: 1em;
   width: 50%;
+  display: none;
 }
 
 .view .view--Pagos .formPagos__Fieldset textarea {

@@ -9,9 +9,18 @@ $(document).ready(function(){
 	var elementSecondary = $(".btn--Notify");
 
 	itemNone(elementPrimary, noneItemOne, noneItemTwo);
-
 	itemShow(elementSecondary, noneItemOne, noneItemTwo);
 
+
+	//
+
+	var pagoElement = $(".btn--Ticket");
+	var showItem = $(".view--Pagos");
+	var showItemBG = $(".view--NotifyBG");
+
+	//
+
+	pagoNone(pagoElement, showItem, showItemBG);
 
 	$("#thisUploadImage").change(function(e){
 			changeImage(this)
@@ -55,6 +64,17 @@ $(document).ready(function(){
 		$(elemenTwo).click(function(){
 			$(showItem).fadeIn('slow');
 			$(showItemTwo).fadeIn('slow');
+		});
+	}
+
+	function pagoNone(pagoElement, pagoItem, pagoItemTwo) {
+		$(pagoElement).click(function(){
+			$(pagoItem).fadeIn('slow');
+			$(pagoItemTwo).fadeIn('slow');
+		});
+		$(pagoItemTwo).click(function(){
+			$(pagoItem).fadeOut('slow');
+			$(pagoItemTwo).fadeOut('slow');
 		});
 	}
 
