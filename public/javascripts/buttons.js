@@ -6,7 +6,9 @@ $(document).ready(function(){
 	$(".submit").flat('flat-t-cuatro');
 	$(".subirImg").flat('flat-t-dos');
 
-	
+	$('input[name="ingresoinquilino"], input[name="finInquilino"]').dcalendarpicker({
+		 format: 'dd-mm-yyyy'
+	});
 
 
 });

@@ -90,25 +90,23 @@ body
        p.description
         i(class="fa fa-street-view", aria-hidden="true")
         | Esta propiedad esta ubicado en el barrio: #{prop.barrio}
-      div.articlesPropiedades--Description
+      div.articlesPropiedades--Cant
        p.description
         i(class="fa fa-street-view", aria-hidden="true")
         | $#{prop.precioPropiedad}
       div.articlesPropiedades--Actions.jsClick
-       i(class="fa fa-ellipsis-v", aria-hidden="true")
-       div.articlePropiedades--Actions--Elements.jsShow
-        ul.ul--Elements
-         li.list
-          a.link(href="propiedades/show/#{prop.id}")
-           i(class="fa fa-eye" aria-hidden="true")
-           | Ver
-         li.list
-          a.link(href="#")
-           i(class="fa fa-pencil-square", aria-hidden="true")
-           | Editar
-         li.list
-          a.link(href="#")
-           i(class="fa fa-trash-o", aria-hidden="true")
-           | Borrar
+       div.Actions--Buttons
+        a.linkBtn(href="propiedades/show/#{prop.id}")
+         i(class="fa fa-eye" aria-hidden="true")
+         |Ver
+       div.Actions--Buttons
+        a.linkBtn
+         i(class="fa fa-pencil-square", aria-hidden="true")
+         | Editar
+       div.Actions--Buttons
+        a.linkBtn.jsDelete
+         i(class="fa fa-trash-o", aria-hidden="true")
+         | Borrar
+     
   script(src='../javascripts/buttons.js')
   script(src='../javascripts/app.js')

@@ -1,0 +1,16 @@
+.NotifyContainer {
+    position: fixed;
+    right: 0;
+    top: 0;
+    width: 340px;
+    background-color: #5CB811;
+    padding: 1em;
+    margin-top: 116px;
+    .NotifyContainer--Title {
+    	.title {
+    		font-weight: 400px;
+    		color: white;
+    		font-size: 1em;
+    	}
+    }
+}

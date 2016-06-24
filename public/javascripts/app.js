@@ -22,6 +22,15 @@ $(document).ready(function(){
 
 	pagoNone(pagoElement, showItem, showItemBG);
 
+
+	//
+	var deletePropiedad = $(".jsDelete");
+
+
+	//
+	isDeletePropiedad(deletePropiedad);
+
+
 	$("#thisUploadImage").change(function(e){
 			changeImage(this)
 	});
@@ -79,7 +88,48 @@ $(document).ready(function(){
 	}
 
 
-	
+	function isDeletePropiedad(itemselect) {
+		$(itemselect).on('click', function(){
+			var deletePropiedadID = $(this).parent().parent().parent();
+			var find = $(deletePropiedadID).attr('data-id');
+			console.log(find)
+			
+			$.ajax({
+				url: "deletepropiedad",
+				type: "POST",
+				dataType: "json",
+				contentType: "application/json",
+				data: JSON.stringify({
+					id: find
+				}),
+				success: function(data) {
+					templateNotify('Se Removio La Propiedad')
+					setTimeout(function(){
+						window.location.href ="/panel/propiedades";
+					}, 1000);
+					//
+				},
+				error: function(err) {
+					alert('paaso un error');
+				}
+			});
+
+
+		});
+	} 
+
+
+	function templateNotify(removeName) {
+
+		var template = "<div class='NotifyContainer'>"+
+							"<header class='NotifyContainer--Title'><h2 class='title'><i class='fa fa-exclamation' aria-hidden='true'></i>"+
+								removeName
+							+"</h2></header>"
+						+"</div>";
+
+		$("body").append(template).fadeIn('slow');
+	}
+
 
 
 });

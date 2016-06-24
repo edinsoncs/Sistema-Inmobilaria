@@ -220,6 +220,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'precioPropiedad': req.body.pricepropiedad,
                     'barrio': req.body.barriopropiedad,
                     'fechaIngresada': req.body.ingresoinquilino,
+                    'fechaSalida': req.body.finInquilino,
 
                     'nombreInquilino': req.body.nameinquilino,
                     'telInquilino': req.body.telinquilino,
@@ -231,9 +232,18 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'garanteDni': req.body.garanteDni,
                     'garanteEmail': req.body.garanteEmail,
                     'garanteFile': idNameGarante,
+                    'garanteDomicilio': req.body.garanteDomicilio,
+
+                   	'propietarioNombre': req.body.propietarioNombre,
+                   	'propietarioTel': req.body.propietarioTel,
+                   	'propietarioDni': req.body.propietarioDni,
+                   	'propietarioTel': req.body.propitarioTel,
+                   	'propietarioDomicilio': req.body.propietarioDomicilio,
 
                     'contrato': idNameContrato,
-                    'notificaciones': Array
+                    'periodosPrecios': Array,
+                    'notificaciones': Array,
+                    'cuentaCorriente': Array
                 }
             }
         },
@@ -342,6 +352,27 @@ router.post('/notificaciones', function(req, res, next) {
 
 
 
+
+});
+
+
+router.post('/deletepropiedad', function(req, res, next) {
+	var db = req.db;
+	var user = db.get('usuarios');
+
+	var idDeletePropiedad = req.body.id;
+
+	//$Pull - Mongodb
+
+	user.update(
+		{'_id': req.user._id},
+		{$pull: {
+			'propiedades': {
+				'id': idDeletePropiedad
+			}
+		}}).success(function(){
+			res.json({removed: true});
+		});
 
 });
 
