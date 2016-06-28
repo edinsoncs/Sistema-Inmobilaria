@@ -26,6 +26,7 @@ head
 
   //functions create edinsoncs
   script(src="../../../javascripts/thisF.unctions.js")
+  script(src="../../../javascripts/dcalendar.picker.js")
 
 body
   header.header__Site
@@ -96,7 +97,7 @@ body
       fieldset.formNotify__Fieldset
         input(type="submit", value="Notificar")
    section.view--Pagos
-    form.formPagos()
+    form.formPagos(action="../../pagos", method="POST")
       input(type="hidden", value="#{propiedad.id}", name="isID")
       fieldset.formPagos__Fieldset
         label.formPagos__Fieldset--Label
@@ -105,20 +106,11 @@ body
       fieldset.formPagos__Fieldset
         label.formPagos__Fieldset--Label
           | Precio
-        input(type="text", value="#{propiedad.precioPropiedad}", name="isPrecioPropiedad")
-      div.formPagos__Fieldset--Flex
-        div.fieldset--Flex--Iz
-          label.Iz--Label
-            | Del
-          input(type="date", name="isDateEntry")
-        div.fieldset--Flex--Center
-          label.Center--Label
-            | Al
-          input(type="date", name="isDateExit")
-        div.fieldset--Flex--De
-          label.De--Label
-            | Mes
-          select(name="isMonthPayment")
+        input(type="text", value="#{propiedad.precioMensual}", name="isPrecioPropiedad")
+      fieldset.formPagos__Fieldset
+        label.De--Label
+          | Mes
+        select(name="isMonthPayment")
             option(value="Enero")
               | Enero
             option(value="Febrero")
@@ -143,10 +135,21 @@ body
               | Noviembre
             option(value="Diciembre")
               | Diciembre
+      div.formPagos__Fieldset--Flex
+        div.fieldset--Flex--Iz
+          label.Iz--Label(for="efectivo", class="cursorPointer")
+            | Effectivo
+          input(type="checkbox", value="efectivo" name="typePayment", id="efectivo", class="uNoneDisplay")
+          div.circleCheckbox
+        div.fieldset--Flex--Center
+          label.Center--Label(for="deposito", class="cursorPointer")
+            | Deposito
+          input(type="checkbox", value="deposito" name="typePayment", id="deposito", class="uNoneDisplay")
+          div.circleCheckbox
       fieldset.formPagos__Fieldset
         label.Fieldset--Label
           | Comentarios
-        textarea(name="", cols="10", rows="2")
+        textarea(name="comentarios", cols="10", rows="1.5")
       fieldset.formPagos__Fieldset
         input(type="submit", value="Cobrar")
    section.view--Calendar
@@ -154,21 +157,28 @@ body
     header.view--Iz--Top
      h2.title
       | #{propiedad.nombrePropiedad}
+     div.showPrint
+      i.fa.fa-print(title="Imprimir")
     div.view--Iz--Info
       header.view--Iz--Info--Header
         h2.title
-          | Precio
+          | Contrato Mensual
       article.view--Iz--Articls
         div.Articls--Iz
           span.titleNames
             i.fa.fa-money(aria-hidden="true")  
             |  Mensual:
-            | $#{propiedad.precioPropiedad}
+            strong 
+             | $#{propiedad.precioMensual}
         div.Articls--De
          span.titleNames
           i.fa.fa-calendar-plus-o(aria-hidden="true") 
           |  Ingreso:
-          | #{propiedad.fechaIngresada}
+          | #{propiedad.contratoInicia}
+         span.titleNames
+          i.fa.fa-calendar-plus-o(aria-hidden="true") 
+          |  Finaliza:
+          | #{propiedad.contratoFinaliza}
     div.view--Iz--Info
      header.view--Iz--Info--Header
       h2.title
@@ -221,6 +231,47 @@ body
           i.fa.fa-envelope(aria-hidden="true") 
           |  Email:
           | #{propiedad.garanteEmail}
+      article.view--showOne--Details
+        div.showOne
+          span.titlesNames
+           i.fa.fa-map-marker(aria-hidden="true") 
+           |  Domicilio:
+           | #{propiedad.garanteDomicilio}
+    
+    div.view--Iz--Info
+      header.view--Iz--Info--Header
+        h2.title
+          | Datos Propietario
+      article.view--Iz--Articls
+        div.Articls--Iz
+          span.titleNames
+            i.fa.fa-user(aria-hidden="true") 
+            |  Propietario:
+            | #{propiedad.propietarioNombre}
+        div.Articls--De
+          span.span.titleNames
+            i.fa.fa-phone-square(aria-hidden="true") 
+            |  Teléfono:
+            | #{propiedad.propietarioTel}
+      article.view--Iz--Articls
+        div.Articls--Iz
+         span.titleNames
+          i.fa.fa-file(aria-hidden="true") 
+          |  Dni:
+          | #{propiedad.propietarioDni}
+        div.Articls--De
+         span.titleNames
+          i.fa.fa-envelope(aria-hidden="true") 
+          |  Email:
+          | #{propiedad.propietarioEmail}
+      article.view--showOne--Details
+        div.showOne
+          span.titlesNames
+           i.fa.fa-map-marker(aria-hidden="true") 
+           |  Domicilio:
+           | #{propiedad.propietarioDomicilio}
+
+
     div.view--Iz--Info
       header.view--Iz--Info--Header
         h2.title
@@ -243,7 +294,7 @@ body
         |  Calendario
       a.link.btn.btn--Ticket
         i.fa.fa-usd(aria-hidden="true")
-        |  Pagos
+        |  Cobros
     div.view--De--ShowNotify
       if propiedad.notificaciones
         header.header--ShowNotify
@@ -264,24 +315,60 @@ body
             h2.title
               | Esta propiedad no </br>tiene notificaciones
     div.view--De--ShowPagos
-      header.header--ShowPagos
-        h2.title
-          | Pagos emitidos
-      ul.container--ShowPagos
-        li.list--ShowPagos
-          i.fa.fa-usd(aria-hidden="true")
-          span.ShowPagos--Int
-            |  Se pago del mes de 
-            strong.ShowPagos--Mes
-              | Junio
-            |  del 2016
+      if propiedad.pagos
+        header.header--ShowPagos
+          h2.title
+            | Pagos emitidos
+        ul.container--ShowPagos
+         
+           each p in isPagos
+            li.list--ShowPagos
+              i.fa.fa-usd(aria-hidden="true")
+              span.ShowPagos--Int
+                |  Se pago del mes de 
+                strong.ShowPagos--Mes
+                 | #{p.mesSaldado}
+                 - var date = p.fecha
+                |  del #{date.getFullYear()}
+              strong.ShowPagos--Int
+                |  $#{p.importe}
+        
+       else
 
-
-      //div.showMessageNotAll
+        div.showMessageNotAll
           header.showMessageNotAll--Header
             h2.title
               | Esta propiedad no </br>tiene pagos      
-      
+    div.view--De--ShowCuentaCorriente
+      if cuentaC
+        header.header--ShowPagos
+          h2.title
+            | Cuenta Corriente
+        ul.container--ShowPagos
+           
+            li.list--ShowPagos
+              span.ShowPagos--Int
+                |  Se pago 
+                strong.ShowPagos--Mes
+                 if cuentaC.length > 1
+                   | #{cuentaC.length} meses 
+                   - var total = 0
+                   - var arr = []
+                   | y se obtuvo $
+                   each dineroTotal in cuentaC
+                    - var number = total += Number(dineroTotal.importe)
+                    - arr.push(number)
+                    - var reco = Number(cuentaC.length) - 1
+                     | #{arr[reco]}
+                 else
+                   | #{cuentaC.length} mes
+             
+      else
+        div.showMessageNotAll
+          header.showMessageNotAll--Header
+            h2.title
+              | Esta propiedad no </br>tiene cuenta corriente 
+
 
 
 
@@ -291,3 +378,4 @@ body
     
 
   script(src='../../../javascripts/app.js')
+  script(src='../../../javascripts/buttons.js')

@@ -120,10 +120,20 @@ router.get('/propiedades/show/:id', function(req, res, next) {
         for (var i = 0; i < prop.length; i++) {
             if (prop[i].id == req.params.id) {
                 
-
                 if(prop[i].notificaciones) {
                 	var notificacionesReverse = prop[i].notificaciones;
                 	var reverseNotify = notificacionesReverse.reverse();
+                }
+
+                if(prop[i].pagos) {
+                	var pagosReverse = prop[i].pagos;
+                	var pagosShow = pagosReverse.reverse();
+                }
+
+                if(prop[i].cuentaCorriente) {
+                	var cuentaCorrienteReverse = prop[i].cuentaCorriente;
+                	var cuentaShow = cuentaCorrienteReverse.reverse();
+
                 }
 
                 res.render('show', {
@@ -131,7 +141,9 @@ router.get('/propiedades/show/:id', function(req, res, next) {
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
-                    notify: reverseNotify
+                    notify: reverseNotify,
+                    isPagos: pagosShow,
+                    cuentaC: cuentaShow
                 });
             }
         }
@@ -217,10 +229,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'id': esid(26),
                     'nombrePropiedad': req.body.nombrepropiedad,
                     'desPropiedad': req.body.despropiedad,
-                    'precioPropiedad': req.body.pricepropiedad,
                     'barrio': req.body.barriopropiedad,
-                    'fechaIngresada': req.body.ingresoinquilino,
-                    'fechaSalida': req.body.finInquilino,
+                   
 
                     'nombreInquilino': req.body.nameinquilino,
                     'telInquilino': req.body.telinquilino,
@@ -237,12 +247,16 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                    	'propietarioNombre': req.body.propietarioNombre,
                    	'propietarioTel': req.body.propietarioTel,
                    	'propietarioDni': req.body.propietarioDni,
-                   	'propietarioTel': req.body.propitarioTel,
+                   	'propietarioEmail': req.body.propitarioEmail,
                    	'propietarioDomicilio': req.body.propietarioDomicilio,
 
+                   	'contratoInicia': req.body.contratoInicio,
+                   	'contratoFinaliza': req.body.contratoFin,
+                   	'precioMensual':  req.body.precioMensual,
                     'contrato': idNameContrato,
                     'periodosPrecios': Array,
                     'notificaciones': Array,
+                    'pagos': Array,
                     'cuentaCorriente': Array
                 }
             }
@@ -349,8 +363,67 @@ router.post('/notificaciones', function(req, res, next) {
 
 
     }
+});
 
+router.post('/pagos', function(req, res, next){
+	var db = req.db;
+	var user = db.get('usuarios');
 
+	var idPropiedad = req.body.isID;
+
+	console.log(idPropiedad);
+
+	user.findAndModify({
+		query: {
+			'_id': req.user._id,
+			propiedades: {
+				$elemMatch: {
+					'id': idPropiedad
+				}
+			}
+		},
+		update: {
+			$push: {
+				'propiedades.$.pagos':  {
+					'fecha': new Date(),
+					'inquilino': req.body.isNameInquilino,
+					'importe': req.body.isPrecioPropiedad,
+					'mesSaldado': req.body.isMonthPayment,
+					'tipoDePago': req.body.typePayment,
+					'comentarios': req.body.comentarios
+				}
+			}
+		},
+		new: true
+	}).success(function(data){
+		
+	});
+
+	user.findAndModify({
+		query: {
+			'_id': req.user._id,
+			propiedades: {
+				$elemMatch: {
+					'id': idPropiedad
+				}
+			}
+		},
+		update: {
+			$push: {
+				'propiedades.$.cuentaCorriente':  {
+					'fecha': new Date(),
+					'inquilino': req.body.isNameInquilino,
+					'importe': req.body.isPrecioPropiedad,
+					'mesSaldado': req.body.isMonthPayment,
+					'tipoDePago': req.body.typePayment,
+					'comentarios': req.body.comentarios
+				}
+			}
+		},
+		new: true
+	}).success(function(data){
+		console.log('funcciona')
+	});
 
 
 });

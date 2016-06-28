@@ -36,6 +36,10 @@ ul {
   text-decoration: none;
 }
 
+.cursorPointer {
+  cursor: pointer;
+}
+
 * {
   border-sizing: border-box;
 }
@@ -452,6 +456,10 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   margin: 0.5em 0;
 }
 
+.add .newPropiedad--Form .fieldset--Steps .header--Steps .title i {
+  margin: 0 0.5em 0 0;
+}
+
 .add .newPropiedad--Form .fieldset--Form {
   border: none;
   padding: 0;
@@ -505,7 +513,9 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .view .view--Iz {
-  width: 40%;
+  width: 55%;
+  background-color: #f5f3f3;
+  padding: 1em;
 }
 
 .view .view--Iz .view--Iz--Top {
@@ -516,6 +526,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   text-align: center;
   width: 50%;
   border: 4px solid #dedede;
+  position: relative;
 }
 
 .view .view--Iz .view--Iz--Top .title {
@@ -525,25 +536,52 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   text-transform: capitalize;
 }
 
+.view .view--Iz .view--Iz--Top .showPrint {
+  background-color: #e52f62;
+  color: #fff;
+  margin: 2em auto;
+  padding: 0.8em 0;
+  width: 17%;
+  border-radius: 4px;
+  box-shadow: 0 4px 0 #a9173f;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -1.5em;
+  margin-right: -5em;
+}
+
+.view .view--Iz .view--Iz--Top .showPrint:hover {
+  background-color: black;
+  box-shadow: 0 4px 0 #000;
+}
+
+.view .view--Iz .view--Iz--Top .showPrint i {
+  font-size: 1.2em;
+}
+
 .view .view--Iz .view--Iz--Info {
   margin: 1em 0;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Info--Header {
   margin: 1em 0 2em 0;
-  border-bottom: 1px solid #66afe9;
-  padding: 1em 0;
+  border-bottom: 1px solid #bdb8b8;
+  padding: 0.5em 0;
+  background-color: #dedede;
+  text-align: center;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Info--Header .title {
   font-weight: 400;
-  color: #66afe9;
+  color: #5f5c5c;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Articls {
   display: flex;
   justify-content: space-between;
-  margin: 0 0 1em 0;
+  margin: 0 0 0.5em 0;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz {
@@ -567,6 +605,26 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames i,
 .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames i {
+  color: #66afe9;
+  font-size: 1.4em;
+}
+
+.view .view--Iz .view--Iz--Info .view--showOne--Details {
+  margin: 0 0.5em;
+}
+
+.view .view--Iz .view--Iz--Info .view--showOne--Details .showOne .titlesNames {
+  letter-spacing: 0.5px;
+  padding: 0.5em 0;
+  color: #3c8dbc;
+  display: block;
+  width: 100%;
+  font-size: 0.9rem;
+  line-height: 30px;
+  color: #3c8dbc;
+}
+
+.view .view--Iz .view--Iz--Info .view--showOne--Details .showOne .titlesNames i {
   color: #66afe9;
   font-size: 1.4em;
 }
@@ -645,13 +703,13 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .view .view--De .view--De--ShowNotify .showMessageNotAll {
-  background-color: #dedede;
   padding: 1em 0.8em;
   text-align: center;
 }
 
 .view .view--De .view--De--ShowNotify .showMessageNotAll .title {
   font-weight: 400;
+  font-size: 1.2em;
 }
 
 .view .view--De .view--De--ShowPagos {
@@ -670,13 +728,13 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .view .view--De .view--De--ShowPagos .showMessageNotAll {
-  background-color: #dedede;
   padding: 1em 0.8em;
   text-align: center;
 }
 
 .view .view--De .view--De--ShowPagos .showMessageNotAll .title {
   font-weight: 400;
+  font-size: 1.2em;
 }
 
 .view .view--De .view--De--ShowPagos .container--ShowPagos .list--ShowPagos {
@@ -689,6 +747,41 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   color: #27ae60;
 }
 
+.view .view--De .view--De--ShowCuentaCorriente {
+  background-color: #f5f3f3;
+  padding: 0.5em;
+  margin: 1em 0 0 0;
+}
+
+.view .view--De .view--De--ShowCuentaCorriente .header--ShowPagos {
+  text-align: center;
+}
+
+.view .view--De .view--De--ShowCuentaCorriente .header--ShowPagos .title {
+  font-weight: 400;
+  color: #f89406;
+}
+
+.view .view--De .view--De--ShowCuentaCorriente .showMessageNotAll {
+  padding: 1em 0.8em;
+  text-align: center;
+}
+
+.view .view--De .view--De--ShowCuentaCorriente .showMessageNotAll .title {
+  font-weight: 400;
+  font-size: 1.2em;
+}
+
+.view .view--De .view--De--ShowCuentaCorriente .container--ShowPagos .list--ShowPagos {
+  list-style-type: none;
+  color: #6f6f6f;
+  padding: 0.5em 0.5em;
+}
+
+.view .view--De .view--De--ShowCuentaCorriente .container--ShowPagos .list--ShowPagos i {
+  color: #f89406;
+}
+
 .view .view--NotifyBG {
   background-color: rgba(0, 0, 0, 0.49);
   position: fixed;
@@ -696,6 +789,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 899;
   display: none;
 }
 
@@ -707,6 +801,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   padding: 1em;
   width: 50%;
   display: none;
+  z-index: 901;
 }
 
 .view .view--Notify .formNotify__Fieldset textarea {
@@ -738,6 +833,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   padding: 1em;
   width: 50%;
   display: none;
+  z-index: 900;
 }
 
 .view .view--Pagos .formPagos__Fieldset textarea {
@@ -745,6 +841,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .view .view--Pagos .formPagos__Fieldset input,
+.view .view--Pagos .formPagos__Fieldset select,
 .view .view--Pagos .formPagos__Fieldset textarea {
   border-radius: 3px;
   border: none;
@@ -766,11 +863,19 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   justify-content: space-between;
 }
 
+.view .view--Pagos .formPagos__Fieldset--Flex .fieldset--Flex--Iz,
+.view .view--Pagos .formPagos__Fieldset--Flex .fieldset--Flex--Center {
+  text-align: center;
+}
+
 .view .view--Pagos .formPagos__Fieldset--Flex label {
   display: block;
 }
 
-.view .view--Pagos .formPagos__Fieldset--Flex div input, .view .view--Pagos .formPagos__Fieldset--Flex select {
+.view .view--Pagos .formPagos__Fieldset--Flex div,
+.view .view--Pagos .formPagos__Fieldset--Flex fieldset,
+.view .view--Pagos .formPagos__Fieldset--Flex input,
+.view .view--Pagos .formPagos__Fieldset--Flex select {
   border-radius: 3px;
   border: none;
   margin: 0.7em 0;
@@ -779,6 +884,31 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   border: 1px solid #dedede;
   outline: medium none;
   width: 88%;
+}
+
+.view .view--Pagos .formPagos__Fieldset--Flex div input[type="checkbox"] {
+  background-color: red;
+}
+
+.view .view--Pagos .formPagos__Fieldset--Flex div input[type="checkbox"]:checked + .circleCheckbox {
+  opacity: 1;
+  animation: check 1s infinite;
+}
+
+@keyframes check {
+  20% {
+    box-shadow: 0 0 2px black;
+  }
+}
+
+.view .view--Pagos .formPagos__Fieldset--Flex div .circleCheckbox {
+  width: 20px;
+  height: 20px;
+  background-color: #fdfdfd;
+  border: 5px solid #607D8B;
+  border-radius: 50%;
+  opacity: 0.2;
+  margin: 0 auto;
 }
 
 .view .view--Calendar {

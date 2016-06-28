@@ -90,6 +90,7 @@ body
       div.fieldset--Steps
        header.header--Steps
         h2.title
+          i.fa.fa-home
           | Propiedad
        //fieldset.fieldset--Form.uNoneDisplay
          input(type="file", required, name="img", id="thisUploadImage")
@@ -97,12 +98,7 @@ body
          input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
        fieldset.fieldset--Form
         input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad")
-       div.form--Container
-        fieldset.fieldset--Form.tree
-         input(type="text", placeholder="Fecha de ingreso", name="ingresoinquilino")
-        fieldset.fieldset--Form.tree
-         input(type="text", placeholder="Fecha de contrato", name="finInquilino")
-        fieldset.fieldset--Form.tree
+       fieldset.fieldset--Form
           select(name="barriopropiedad")
             option(value="Abasto")
               | Abasto
@@ -210,14 +206,13 @@ body
               | Villa Soldati
             option(value="Villa Urquiza")
               | Villa Urquiza
-       div.form--Container
-         fieldset.fieldset--Form.tree
-          input(type="number", placeholder="$Precio Contrato", required, name="pricepropiedad")
+      
 
         
       div.fieldset--Steps
         header.header--Steps
           h2.title
+            i.fa.fa-user
             | Inquilino
         div.form--Container
          fieldset.fieldset--Form
@@ -233,6 +228,7 @@ body
       div.fieldset--Steps
         header.header--Steps
           h2.title
+            i.fa.fa-male
             | Garante
         div.form--Container
           fieldset.fieldset--Form
@@ -252,6 +248,7 @@ body
       div.fieldset--Steps
         header.header--Steps
           h2.title
+            i.fa.fa-briefcase
             | Propietario
         div.form--Container
           fieldset.fieldset--Form
@@ -262,7 +259,7 @@ body
           fieldset.fieldset--Form
             input(type="text", placeholder="Dni Propietario", name="propietarioDni")
           fieldset.fieldset--Form
-            input(type="text", placeholder="Email Propietario", name="propitarioTel")
+            input(type="text", placeholder="Email Propietario", name="propitarioEmail")
         fieldset.fieldset--Form
           input(type="text", name="propietarioDomicilio", placeholder="Domicilio Propietario")
       
@@ -272,7 +269,15 @@ body
       div.fieldset--Steps
         header.header--Steps
           h2.title
+            i.fa.fa-book
             | Contrato
+        div.form--Container
+          fieldset.fieldset--Form.tree
+            input(type="text", placeholder="Contrato Inicia", name="contratoInicio")
+          fieldset.fieldset--Form.tree
+            input(type="text", placeholder="Contrato Finalizado", name="contratoFin")
+          fieldset.fieldset--Form.tree
+            input(type="text", placeholder="Precio Mensual", name="precioMensual")
         fieldset.fieldset--Form
           input(type="file", name="contrato")
       fieldset.fieldset--Form

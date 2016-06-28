@@ -3,7 +3,9 @@
     justify-content: space-between;
     position: relative;
     .view--Iz {
-        width: 40%;
+        width: 55%;
+        background-color: #f5f3f3;
+        padding: 1em;
         .view--Iz--Top {
             background-image: url('http://parabuenosaires.com/wp-content/uploads/2014/07/departamentos-en-venta-palermo-belgrano-puerto-madero-parabuenosaires.jpg');
             background-size: cover;
@@ -12,28 +14,53 @@
             text-align: center;
             width: 50%;
             border: 4px solid #dedede;
+            position: relative;
             .title {
                 font-weight: 400;
                 color: white;
                 text-shadow: 0 0 10px black;
                 text-transform: capitalize;
             }
+            .showPrint {
+                background-color: #e52f62;
+                color: #fff;
+                margin: 2em auto;
+                padding: 0.8em 0;
+                width: 17%;
+                border-radius: 4px;
+                box-shadow: 0 4px 0 #a9173f;
+                cursor: pointer;
+                position: absolute;
+                top: 50%;
+                right: 0;
+                margin-top: -1.5em;
+                margin-right: -5em;
+                &:hover {
+                    background-color: black;
+                    box-shadow: 0 4px 0 #000;
+                }
+                i {
+                    font-size: 1.2em;
+                }
+            }
         }
         .view--Iz--Info {
             margin: 1em 0;
             .view--Iz--Info--Header {
                 margin: 1em 0 2em 0;
-                border-bottom: 1px solid #66afe9;
-                padding: 1em 0;
+                border-bottom: 1px solid #bdb8b8;
+                padding: 0.5em 0;
+                background-color: #dedede;
+                text-align: center;
                 .title {
                     font-weight: 400;
-                    color: #66afe9;
+                    color: #5f5c5c;
                 }
             }
             .view--Iz--Articls {
                 display: flex;
                 justify-content: space-between;
-                margin: 0 0 1em 0;
+                margin: 0 0 0.5em 0;
                 .Articls--Iz {
                     width: 40%;
                 }
@@ -54,6 +81,25 @@
                     .titleNames i {
                         color: #66afe9;
                         font-size: 1.4em;
+                    }
+                }
+            }
+            .view--showOne--Details {
+                margin: 0 0.5em;
+                .showOne {
+                    .titlesNames {
+                        letter-spacing: 0.5px;
+                        padding: 0.5em 0;
+                        color: #3c8dbc;
+                        display: block;
+                        width: 100%;
+                        font-size: 0.9rem;
+                        line-height: 30px;
+                        i {
+                            color: #66afe9;
+                            font-size: 1.4em;
+                        }
+                        color: #3c8dbc;
                     }
                 }
             }
@@ -117,11 +163,12 @@
                 border-radius: 2px;
             }
             .showMessageNotAll {
-                background-color: #dedede;
+                //background-color: #dedede;
                 padding: 1em 0.8em;
                 text-align: center;
                 .title {
                     font-weight: 400;
+                    font-size: 1.2em;
                 }
             }
         }
@@ -137,22 +184,54 @@
                 }
             }
             .showMessageNotAll {
-                background-color: #dedede;
+                //background-color: #dedede;
                 padding: 1em 0.8em;
                 text-align: center;
                 .title {
                     font-weight: 400;
+                    font-size: 1.2em;
                 }
             }
             .container--ShowPagos {
-            	.list--ShowPagos {
-            		list-style-type: none;
-            		color: #6f6f6f;
-            		padding: 0.5em 0.5em;
-            		i {
-            			color: #27ae60;
-            		}
-            	}
+                .list--ShowPagos {
+                    list-style-type: none;
+                    color: #6f6f6f;
+                    padding: 0.5em 0.5em;
+                    i {
+                        color: #27ae60;
+                    }
+                }
+            }
+        }
+        .view--De--ShowCuentaCorriente {
+            background-color: #f5f3f3;
+            padding: 0.5em;
+            margin: 1em 0 0 0;
+            .header--ShowPagos {
+                text-align: center;
+                .title {
+                    font-weight: 400;
+                    color: #f89406;
+                }
+            }
+             .showMessageNotAll {
+                //background-color: #dedede;
+                padding: 1em 0.8em;
+                text-align: center;
+                .title {
+                    font-weight: 400;
+                    font-size: 1.2em;
+                }
+            }
+            .container--ShowPagos {
+                .list--ShowPagos {
+                    list-style-type: none;
+                    color: #6f6f6f;
+                    padding: 0.5em 0.5em;
+                    i {
+                        color: #f89406;
+                    }
+                }
             }
         }
     }
@@ -163,6 +242,7 @@
         bottom: 0;
         left: 0;
         right: 0;
+        z-index: 899;
         display: none;
     }
     .view--Notify {
@@ -173,6 +253,7 @@
         padding: 1em;
         width: 50%;
         display: none;
+        z-index: 901;
         .formNotify__Fieldset {
             textarea {
                 resize: none;
@@ -195,18 +276,20 @@
         }
     }
     .view--Pagos {
-    	position: absolute;
+        position: absolute;
         left: 50%;
         margin-left: -20em;
         background-color: #f3f3f3;
         padding: 1em;
         width: 50%;
         display: none;
+        z-index: 900;
         .formPagos__Fieldset {
             textarea {
                 resize: none;
             }
             input,
+            select,
             textarea {
                 border-radius: 3px;
                 border: none;
@@ -223,14 +306,20 @@
             }
         }
         .formPagos__Fieldset--Flex {
-        	display: flex;
-        	justify-content: space-between;
-        	label {
-        		display: block;
-
-        	}
-        	div input, select {
-        		border-radius: 3px;
+            display: flex;
+            justify-content: space-between;
+            .fieldset--Flex--Iz,
+            .fieldset--Flex--Center {
+                text-align: center;
+            }
+            label {
+                display: block;
+            }
+            div,
+            fieldset,
+            input,
+            select {
+                border-radius: 3px;
                 border: none;
                 margin: 0.7em 0;
                 padding: 0.6em;
@@ -238,9 +327,29 @@
                 border: 1px solid #dedede;
                 outline: medium none;
                 width: 88%;
-        	}
+            }
+            div input[type="checkbox"] {
+                background-color: red;
+                &:checked + .circleCheckbox {
+                    opacity: 1;
+                    animation: check 1s infinite;
+                }
+                @keyframes check {
+                    20% {
+                        box-shadow: 0 0 2px black;
+                    }
+                }
+            }
+            div .circleCheckbox {
+                width: 20px;
+                height: 20px;
+                background-color: #fdfdfd;
+                border: 5px solid #607D8B;
+                border-radius: 50%;
+                opacity: 0.2;
+                margin: 0 auto;
+            }
         }
-        
     }
     .view--Calendar {
         position: absolute;

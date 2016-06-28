@@ -31,6 +31,11 @@ $(document).ready(function(){
 	isDeletePropiedad(deletePropiedad);
 
 
+	//
+	var inputChecked = $("input[type='checkbox']");
+	cheked(inputChecked);
+
+
 	$("#thisUploadImage").change(function(e){
 			changeImage(this)
 	});
@@ -128,6 +133,19 @@ $(document).ready(function(){
 						+"</div>";
 
 		$("body").append(template).fadeIn('slow');
+	}
+
+
+	function cheked(inputCheck) {
+		$(inputCheck).on('click', function(){
+			if($(this).is(":checked")) {
+				var elemt = "input:checkbox[name='" + $(this).attr("name") + "']";				
+				$(elemt).prop('checked', false);
+				$(this).prop('checked', true);
+			} else {
+				$(this).prop('checked', false);
+			}
+		});
 	}
 
 
