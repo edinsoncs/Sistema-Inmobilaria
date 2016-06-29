@@ -10,7 +10,14 @@ var usuario = new Schema ({
 	'password': String,
 	'propiedades': Array,
 	'notificaciones': Array,
-	'pagos': Array
+	'pagos': Array,
+	'emailTemplate': {
+		'nombreEmpresa': String,
+		'imagenLogo': String,
+		'direccionEmpresa': String,
+		'TelefonoEmpresa': String,
+		'emailEmpresa': String
+	}
 }, {
 	collection: 'usuarios'
 });

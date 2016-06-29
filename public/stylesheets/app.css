@@ -155,7 +155,7 @@ body {
 }
 
 .header__Site .header__Site--Container .header__Site--De {
-  width: 38.5%;
+  width: 50.5%;
   display: flex;
 }
 
@@ -240,9 +240,18 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #dedede;
+  background-color: #f2f2f2;
   padding: 0.5em;
   margin: 2em auto;
+}
+
+.header__Welcome .header__Welcome--Iz .title {
+  font-weight: 400;
+  background-color: #F89406;
+  padding: 0.5em;
+  font-size: 1em;
+  color: white;
+  border-radius: 4px;
 }
 
 .header__Welcome .header__Welcome--Iz .ul {
@@ -514,7 +523,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .view .view--Iz {
   width: 55%;
-  background-color: #f5f3f3;
+  background-color: #f2f2f2;
   padding: 1em;
 }
 
@@ -631,7 +640,6 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .view .view--De {
   width: 45%;
-  border-left: 1px solid #dedede;
   padding: 0 0 0 6.5em;
 }
 
@@ -657,17 +665,21 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .view .view--De .view--De--ShowNotify {
-  background-color: #f5f3f3;
-  padding: 0.5em;
+  background-color: #fff;
+  border: 1px solid #3c8dbc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .view .view--De .view--De--ShowNotify .header--ShowNotify {
   text-align: center;
+  background-color: #3c8dbc;
+  padding: 0.5em 0;
 }
 
 .view .view--De .view--De--ShowNotify .header--ShowNotify .title {
   font-weight: 400;
-  color: #3c8dbc;
+  color: #fff;
 }
 
 .view .view--De .view--De--ShowNotify .container--ShowNotify {
@@ -679,12 +691,17 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .view .view--De .view--De--ShowNotify .container--ShowNotify .list--ShowNotify {
   list-style-type: none;
   color: #6f6f6f;
-  padding: 0.5em 0.5em;
+  padding: 0.8em 0.5em;
+  border-bottom: 1px solid #dddddc;
 }
 
 .view .view--De .view--De--ShowNotify .container--ShowNotify .list--ShowNotify i {
   color: #3c8dbc;
   margin: 0 0.5em 0 0;
+}
+
+.view .view--De .view--De--ShowNotify .container--ShowNotify .list--ShowNotify:last-child {
+  border-bottom: 1px solid transparent;
 }
 
 .view .view--De .view--De--ShowNotify .container--ShowNotify::-webkit-scrollbar {
@@ -702,6 +719,27 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   border-radius: 2px;
 }
 
+.view .view--De .view--De--ShowNotify .container--LinkVerMas {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5em 1em;
+  background-color: white;
+}
+
+.view .view--De .view--De--ShowNotify .container--LinkVerMas .link {
+  text-decoration: none;
+  color: #3c8dbc;
+}
+
+.view .view--De .view--De--ShowNotify .container--LinkVerMas:hover {
+  background-color: #3c8dbc;
+}
+
+.view .view--De .view--De--ShowNotify .container--LinkVerMas:hover .link {
+  color: white;
+  text-decoration: underline;
+}
+
 .view .view--De .view--De--ShowNotify .showMessageNotAll {
   padding: 1em 0.8em;
   text-align: center;
@@ -712,19 +750,52 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   font-size: 1.2em;
 }
 
+.view .view--De .view--De--ShowDeudas {
+  margin: 1em 0;
+  border: 1px solid #1A4C6D;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.view .view--De .view--De--ShowDeudas .showDeudas--Header {
+  background-color: #1A4C6D;
+  text-align: center;
+  padding: 0.5em 0;
+}
+
+.view .view--De .view--De--ShowDeudas .showDeudas--Header .title {
+  font-weight: 400;
+  color: #fff;
+  font-size: 1.5em;
+}
+
+.view .view--De .view--De--ShowDeudas .showDeudas--Container {
+  text-align: center;
+  padding: 0.5em 0;
+  margin: 1em 0;
+}
+
+.view .view--De .view--De--ShowDeudas .showDeudas--Container .title {
+  font-size: 2em;
+  font-weight: 400;
+}
+
 .view .view--De .view--De--ShowPagos {
-  background-color: #f5f3f3;
-  padding: 0.5em;
+  border: 1px solid #27ae60;
   margin: 1em 0 0 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .view .view--De .view--De--ShowPagos .header--ShowPagos {
   text-align: center;
+  background-color: #27ae60;
 }
 
 .view .view--De .view--De--ShowPagos .header--ShowPagos .title {
   font-weight: 400;
-  color: #27ae60;
+  color: #fff;
+  padding: 0.5em 0;
 }
 
 .view .view--De .view--De--ShowPagos .showMessageNotAll {
@@ -740,26 +811,54 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .view .view--De .view--De--ShowPagos .container--ShowPagos .list--ShowPagos {
   list-style-type: none;
   color: #6f6f6f;
-  padding: 0.5em 0.5em;
+  padding: 0.8em 0.5em;
+  border-bottom: 1px solid #dddddc;
 }
 
 .view .view--De .view--De--ShowPagos .container--ShowPagos .list--ShowPagos i {
   color: #27ae60;
 }
 
+.view .view--De .view--De--ShowPagos .show--SumDetails {
+  text-align: center;
+  margin: 0 auto;
+  padding: 0.5em 1em;
+  background: white;
+}
+
+.view .view--De .view--De--ShowPagos .show--SumDetails .link {
+  color: #27ae60;
+  text-decoration: none;
+}
+
+.view .view--De .view--De--ShowPagos .show--SumDetails .link:hover {
+  text-decoration: underline;
+}
+
+.view .view--De .view--De--ShowPagos .show--SumDetails:hover {
+  background: #27ae60;
+}
+
+.view .view--De .view--De--ShowPagos .show--SumDetails:hover .link {
+  color: white;
+}
+
 .view .view--De .view--De--ShowCuentaCorriente {
-  background-color: #f5f3f3;
-  padding: 0.5em;
+  border: 1px solid #f89406;
   margin: 1em 0 0 0;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
 }
 
 .view .view--De .view--De--ShowCuentaCorriente .header--ShowPagos {
   text-align: center;
+  background-color: #f89406;
+  padding: 0.5em 0;
 }
 
 .view .view--De .view--De--ShowCuentaCorriente .header--ShowPagos .title {
   font-weight: 400;
-  color: #f89406;
+  color: #fff;
 }
 
 .view .view--De .view--De--ShowCuentaCorriente .showMessageNotAll {
@@ -775,7 +874,8 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .view .view--De .view--De--ShowCuentaCorriente .container--ShowPagos .list--ShowPagos {
   list-style-type: none;
   color: #6f6f6f;
-  padding: 0.5em 0.5em;
+  padding: 0.8em 0.5em;
+  text-align: center;
 }
 
 .view .view--De .view--De--ShowCuentaCorriente .container--ShowPagos .list--ShowPagos i {
@@ -919,4 +1019,286 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   padding: 1em;
   width: 50%;
   display: none;
+}
+
+.payments .newPayments--Header .title {
+  margin: 0;
+  font-weight: 400;
+}
+
+.payments .payments--Container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.payments .payments--Container .payments--Articles {
+  width: 250px;
+  border: 1px solid #27ae60;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 1em 0 1em 0;
+}
+
+.payments .payments--Container .payments--Articles .payments--Articles--Header {
+  text-align: center;
+  padding: 0.5em 0;
+  background-color: #27ae60;
+}
+
+.payments .payments--Container .payments--Articles .payments--Articles--Header .title {
+  font-weight: 400;
+  color: white;
+  font-size: 1.4em;
+}
+
+.payments .payments--Container .payments--Articles .payments--Articles--Cantidad {
+  text-align: center;
+  padding: 1em 0;
+}
+
+.payments .payments--Container .payments--Articles .payments--Articles--Cantidad .cantidad {
+  font-weight: 400;
+}
+
+.notify .newNotify--Header .title {
+  margin: 0;
+  font-weight: 400;
+}
+
+.notify .notify--Container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.notify .notify--Container .notify--Articles {
+  width: 250px;
+  border: 1px solid #3c8dbc;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 1em 0 1em 0;
+}
+
+.notify .notify--Container .notify--Articles .notify--Articles--Header {
+  text-align: center;
+  padding: 0.5em 0;
+  background-color: #3c8dbc;
+}
+
+.notify .notify--Container .notify--Articles .notify--Articles--Header .title {
+  font-weight: 400;
+  color: white;
+  font-size: 1.4em;
+}
+
+.notify .notify--Container .notify--Articles .notify--Articles--Cantidad {
+  padding: 1em;
+}
+
+.notify .notify--Container .notify--Articles .notify--Articles--Cantidad .cantidad {
+  font-weight: 400;
+}
+
+.config .config--Base {
+  margin: 1em 0;
+}
+
+.config .config--Base .config--Header .title {
+  font-weight: 400;
+}
+
+.config .config--Modulos .Modulos {
+  width: 320px;
+  border: 1px solid #21bdee;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+.config .config--Modulos .Modulos .Modulos--Header {
+  background-color: #21bdee;
+  text-align: center;
+  padding: 0.5em 0;
+}
+
+.config .config--Modulos .Modulos .Modulos--Header .title {
+  font-weight: 400;
+  color: white;
+}
+
+.config .config--Modulos .Modulos .Modulos--Figure {
+  text-align: center;
+  margin: 1em 0;
+}
+
+.config .config--Modulos .Modulos .Modulos--Figure i {
+  color: #21bdee;
+  font-size: 4em;
+}
+
+.config .config--Modulos .Modulos .Modulos--Description {
+  padding: 1em 1em;
+}
+
+.config .config--Modulos .Modulos .Modulos--Description .description {
+  color: #737373;
+}
+
+.config .config--Modulos .Modulos .Modulos--Link {
+  text-align: center;
+  margin: 0 0 1em 0;
+}
+
+.config .config--Modulos .Modulos .Modulos--Link .link {
+  background-color: #21bdee;
+  box-shadow: 0 4px 0 #117ea0;
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  outline: medium none;
+}
+
+.config .config--Email {
+  display: flex;
+  justify-content: space-between;
+}
+
+.config .config--Email .config--Email--Form {
+  width: 35%;
+  padding: 1em;
+  border: 2px solid #3c8dbc;
+  box-shadow: 0 0 2px #3c8dbc;
+}
+
+.config .config--Email .config--Email--Form .Form--Fieldset .label {
+  display: block;
+  margin: 0.4em 0;
+  color: #2b2929;
+}
+
+.config .config--Email .config--Email--Form .Form--Fieldset input {
+  background-color: #f5f5f5;
+  border: 1px solid #dddddc;
+  border: none;
+  outline: medium none;
+  padding: 0.5em 0.2em;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.config .config--Email .config--Email--Form .Form--Fieldset:last-child input {
+  background-color: #3c8dbc;
+  color: white;
+  margin: 1em 0;
+  padding: 1em 0;
+}
+
+.config .config--Email .config--Email--Demo {
+  width: 40%;
+}
+
+.config .config--Email .config--Email--Demo .Email--Header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .logo {
+  width: 80px;
+  height: 80px;
+  background-color: #dedede;
+  border-radius: 50%;
+  animation: logo 2s infinite;
+}
+
+@keyframes logo {
+  50% {
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .descriptionLines {
+  width: 320px;
+  background-color: #dedede;
+  height: 4px;
+  display: block;
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .descriptionLines:nth-child(2) {
+  margin: 1em 0;
+  animation: lineOne 3s infinite;
+}
+
+@keyframes lineOne {
+  50% {
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .descriptionLines:nth-child(3) {
+  margin: 1em 0;
+  animation: lineTwo 4s infinite;
+}
+
+@keyframes lineTwo {
+  50% {
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .descriptionLines:nth-child(4) {
+  margin: 1em 0;
+  animation: lineTree 5s infinite;
+}
+
+@keyframes lineTree {
+  50% {
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.config .config--Email .config--Email--Demo .Email--ShowMessage {
+  width: 100%;
+  margin: 2em 0;
+  background-color: rgba(222, 222, 222, 0.43);
+  height: 250px;
+  border-radius: 4px;
+  animation: messages 4s infinite;
+}
+
+@keyframes messages {
+  50% {
+  }
+  70% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 0.5;
+  }
+}
+
+.config .config--Email .config--Email--Demo .Email--Footer {
+  width: 100%;
+  height: 100px;
+  background-color: rgba(222, 222, 222, 0.43);
 }

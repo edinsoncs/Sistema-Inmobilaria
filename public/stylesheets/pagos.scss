@@ -1,0 +1,38 @@
+.payments {
+	.newPayments--Header {
+		.title {
+			margin: 0;
+			font-weight: 400;
+		}
+	}
+	.payments--Container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		.payments--Articles {
+			width: 250px;
+			border: 1px solid #27ae60;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			margin: 1em 0 1em 0;
+			.payments--Articles--Header {
+				text-align: center;
+				padding: 0.5em 0;
+				background-color: #27ae60;
+				
+				.title {
+					font-weight: 400;
+					color: white;
+					font-size: 1.4em;
+				}
+			}
+			.payments--Articles--Cantidad {
+				text-align: center;
+				padding: 1em 0;
+				.cantidad {
+					font-weight: 400;
+				}
+			}
+		}
+	}
+}

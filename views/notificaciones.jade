@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  meta(name="description", content="Administracion de inmobiliarias")
+  
+  title #{title}
+  
+  link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../../../stylesheets/icons.css")
+  link(rel="stylesheet", href="../../../stylesheets/app.css")
+  link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+
+  script(src="../../../javascripts/jquery-1.11.2.min.js")
+  script(src="../../../javascripts/app-dev1.js")
+  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+
+  //functions create edinsoncs
+  script(src="../../../javascripts/thisF.unctions.js")
+  script(src="../../../javascripts/dcalendar.picker.js")
+
+body
+  header.header__Site
+    .header__Site--Container
+      figure.header__Site--Iz
+        h1.title Zimba
+      nav.header__Site--De
+        ul.ul
+          li.list
+            a.tolink(href="../panel")
+              i(class="fa fa-home" aria-hidden="true")
+              | Inicio
+          li.list.selectItem
+            a(href="panel/propiedades", class="tolink")
+              i(class="fa fa-folder-open" aria-hidden="true")
+              | Propiedades
+          //li.list
+            i(class="fa fa-users" aria-hidden="true")
+            | Miembros
+        div.header__User
+          figure.header__UserFigure
+            img(src="../../../images/avatar.jpg", alt="#{nombre}")
+          div.header__ShowData.jsDownShow
+            span
+              | #{nombre}
+            .header__ShowData--SubMenu
+              ul.ul.jsDown.uNoneDisplay
+                li.listSub
+                  a.link(href="panel")
+                    |Panel
+                li.listSub
+                  a.link(href="panel/edit")
+                    |Editar mi perfil
+                li.listSub
+                  a.link(href="#")
+                    | Salir
+  section.header__Welcome.widthBase
+    header.header__Welcome--Iz
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="../../propiedades")
+        | Propiedades
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="../show/#{propiedadID}")
+        | #{title}
+    aside.header__Welcome--De
+      h2.title.jsAddDate
+        | Loading...
+  main.widthBase.notify
+    header.newNotify--Header
+      h2.title
+        | Notificaciones Enviadas
+    section.notify--Container
+      each prop in notify
+        article.notify--Articles
+          header.notify--Articles--Header
+            h2.title
+              | #{prop.fecha}
+          div.notify--Articles--Cantidad
+            span.mensaje
+              | Asunto:
+              strong.dataNotify
+                |  #{prop.asunto}
+            br
+            span.mensaje
+              | Mensaje: 
+              strong.dataNotify
+                | #{prop.mensaje}
+  
+
+
+
+    
+    
+
+  script(src='../../../javascripts/app.js')
+  script(src='../../../javascripts/buttons.js')

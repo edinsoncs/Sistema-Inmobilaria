@@ -1,0 +1,37 @@
+.notify {
+	.newNotify--Header {
+		.title {
+			margin: 0;
+			font-weight: 400;
+		}
+	}
+	.notify--Container {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		.notify--Articles {
+			width: 250px;
+			border: 1px solid #3c8dbc;
+			border-top-left-radius: 4px;
+			border-top-right-radius: 4px;
+			margin: 1em 0 1em 0;
+			.notify--Articles--Header {
+				text-align: center;
+				padding: 0.5em 0;
+				background-color: #3c8dbc;
+				
+				.title {
+					font-weight: 400;
+					color: white;
+					font-size: 1.4em;
+				}
+			}
+			.notify--Articles--Cantidad {
+				padding: 1em;
+				.cantidad {
+					font-weight: 400;
+				}
+			}
+		}
+	}
+}

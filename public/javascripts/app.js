@@ -30,6 +30,7 @@ $(document).ready(function(){
 	//
 	isDeletePropiedad(deletePropiedad);
 
+	//
 
 	//
 	var inputChecked = $("input[type='checkbox']");
@@ -89,6 +90,12 @@ $(document).ready(function(){
 		$(pagoItemTwo).click(function(){
 			$(pagoItem).fadeOut('slow');
 			$(pagoItemTwo).fadeOut('slow');
+		});
+	}
+
+	function calendar(elementClick, elementShow) {
+		$(elementClick).on('click', function(){
+
 		});
 	}
 

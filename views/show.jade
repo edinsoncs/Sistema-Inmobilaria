@@ -309,11 +309,22 @@ body
              span.ShowNotify--Int
              strong
                |  #{nt.fecha}
+        div.container--LinkVerMas
+          a.link(href="../notificaciones/#{propiedad.id}")
+            | Ver Completo
       else
          div.showMessageNotAll
           header.showMessageNotAll--Header
             h2.title
               | Esta propiedad no </br>tiene notificaciones
+    
+    div.view--De--ShowDeudas
+      header.showDeudas--Header
+        h2.title
+          | Saldo
+      div.showDeudas--Container
+        h3.title
+          | #{propiedad.precioMensual}
     div.view--De--ShowPagos
       if propiedad.pagos
         header.header--ShowPagos
@@ -332,7 +343,10 @@ body
                 |  del #{date.getFullYear()}
               strong.ShowPagos--Int
                 |  $#{p.importe}
-        
+        div.show--SumDetails
+          a.link(href="../payments/#{propiedad.id}")
+           | Ver Completo 
+
        else
 
         div.showMessageNotAll
@@ -343,7 +357,7 @@ body
       if cuentaC
         header.header--ShowPagos
           h2.title
-            | Cuenta Corriente
+            | Pagos en total
         ul.container--ShowPagos
            
             li.list--ShowPagos
@@ -361,20 +375,13 @@ body
                     - var reco = Number(cuentaC.length) - 1
                      | #{arr[reco]}
                  else
-                   | #{cuentaC.length} mes
+                   | #{cuentaC.length} mes y se obtuvo $#{cuentaC[0].importe}
              
       else
         div.showMessageNotAll
           header.showMessageNotAll--Header
             h2.title
-              | Esta propiedad no </br>tiene cuenta corriente 
-
-
-
-
-
-
-    
+              | Esta propiedad no </br>tiene pagos total
     
 
   script(src='../../../javascripts/app.js')

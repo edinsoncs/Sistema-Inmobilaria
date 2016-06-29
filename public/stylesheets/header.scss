@@ -11,7 +11,7 @@
 			color: white;
 		}
 		.header__Site--De {
-			width: 38.5%;
+			width: 50.5%;
 			display: flex;
 			.ul .list {
 				list-style-type: none;
@@ -85,11 +85,18 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	background-color: #dedede;
+	background-color: #f2f2f2;
 	padding: 0.5em;
 	margin: 2em auto;
 	.header__Welcome--Iz {
-
+		.title {
+			font-weight: 400;
+			background-color: #F89406;
+			padding: 0.5em;
+			font-size: 1em;
+			color: white;
+			border-radius: 4px;
+		}		
 	}
 	.header__Welcome--Iz .ul {
 		background-color: $naranja;

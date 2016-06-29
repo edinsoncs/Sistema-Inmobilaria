@@ -119,20 +119,20 @@ router.get('/propiedades/show/:id', function(req, res, next) {
         var prop = resultado.propiedades;
         for (var i = 0; i < prop.length; i++) {
             if (prop[i].id == req.params.id) {
-                
-                if(prop[i].notificaciones) {
-                	var notificacionesReverse = prop[i].notificaciones;
-                	var reverseNotify = notificacionesReverse.reverse();
+
+                if (prop[i].notificaciones) {
+                    var notificacionesReverse = prop[i].notificaciones;
+                    var reverseNotify = notificacionesReverse.reverse();
                 }
 
-                if(prop[i].pagos) {
-                	var pagosReverse = prop[i].pagos;
-                	var pagosShow = pagosReverse.reverse();
+                if (prop[i].pagos) {
+                    var pagosReverse = prop[i].pagos;
+                    var pagosShow = pagosReverse.reverse();
                 }
 
-                if(prop[i].cuentaCorriente) {
-                	var cuentaCorrienteReverse = prop[i].cuentaCorriente;
-                	var cuentaShow = cuentaCorrienteReverse.reverse();
+                if (prop[i].pagosTotal) {
+                    var cuentaTotalReverse = prop[i].pagosTotal;
+                    var cuentaShow = cuentaTotalReverse.reverse();
 
                 }
 
@@ -150,6 +150,90 @@ router.get('/propiedades/show/:id', function(req, res, next) {
     });
 
 
+});
+
+
+
+router.get('/propiedades/payments/:idpropiedad', function(req, res, next) {
+
+    function showPropiedad() {
+        return req.params.idpropiedad;
+    }
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    user.findOne({ '_id': req.user._id }, function(err, result) {
+        if (err) {
+            return err;
+        } else {
+            var propiedades = result.propiedades;
+            for (var i = 0; i < propiedades.length; i++) {
+                if (propiedades[i].id == showPropiedad()) {
+                    var payments_Show = propiedades[i].pagos;
+                    res.render('payments', {
+                        title: propiedades[i].nombrePropiedad,
+                        nombre: req.user.nombre,
+                        empresa: req.user.empresa,
+                        propiedadID: propiedades[i].id,
+                        paymentsData: payments_Show.reverse()
+                    });
+                }
+            }
+        }
+    });
+
+
+});
+
+
+router.get('/propiedades/notificaciones/:idpropiedad', function(req, res, next) {
+
+    function showPropiedad() {
+        return req.params.idpropiedad;
+    }
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    user.findOne({ '_id': req.user._id }, function(err, result) {
+        if (err) {
+            return err;
+        } else {
+            var propiedades = result.propiedades;
+            for (var i = 0; i < propiedades.length; i++) {
+                if (propiedades[i].id == showPropiedad()) {
+                    var notificaciones = propiedades[i].notificaciones;
+                    res.render('notificaciones', {
+                        title: propiedades[i].nombrePropiedad,
+                        nombre: req.user.nombre,
+                        empresa: req.user.empresa,
+                        propiedadID: propiedades[i].id,
+                        notify: notificaciones.reverse()
+                    });
+                }
+            }
+        }
+    });
+
+
+});
+
+
+router.get('/config', function(req, res, next) {
+    res.render('config', {
+        title: 'Config Zimba',
+        nombre: req.user.nombre,
+        empresa: req.user.empresa
+    });
+});
+
+router.get('/config/email', function(req, res, next){
+	res.render('email', {
+        title: 'Config Email Zimba',
+        nombre: req.user.nombre,
+        empresa: req.user.empresa
+    });
 });
 
 
@@ -230,7 +314,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'nombrePropiedad': req.body.nombrepropiedad,
                     'desPropiedad': req.body.despropiedad,
                     'barrio': req.body.barriopropiedad,
-                   
+
 
                     'nombreInquilino': req.body.nameinquilino,
                     'telInquilino': req.body.telinquilino,
@@ -244,19 +328,20 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'garanteFile': idNameGarante,
                     'garanteDomicilio': req.body.garanteDomicilio,
 
-                   	'propietarioNombre': req.body.propietarioNombre,
-                   	'propietarioTel': req.body.propietarioTel,
-                   	'propietarioDni': req.body.propietarioDni,
-                   	'propietarioEmail': req.body.propitarioEmail,
-                   	'propietarioDomicilio': req.body.propietarioDomicilio,
+                    'propietarioNombre': req.body.propietarioNombre,
+                    'propietarioTel': req.body.propietarioTel,
+                    'propietarioDni': req.body.propietarioDni,
+                    'propietarioEmail': req.body.propitarioEmail,
+                    'propietarioDomicilio': req.body.propietarioDomicilio,
 
-                   	'contratoInicia': req.body.contratoInicio,
-                   	'contratoFinaliza': req.body.contratoFin,
-                   	'precioMensual':  req.body.precioMensual,
+                    'contratoInicia': req.body.contratoInicio,
+                    'contratoFinaliza': req.body.contratoFin,
+                    'precioMensual': req.body.precioMensual,
                     'contrato': idNameContrato,
                     'periodosPrecios': Array,
                     'notificaciones': Array,
                     'pagos': Array,
+                    'pagosTotal': Array,
                     'cuentaCorriente': Array
                 }
             }
@@ -280,7 +365,7 @@ router.post('/notificaciones', function(req, res, next) {
     var message = req.body.isMessage;
     var idPropiedad = req.body.isID;
 
-    console.log(idPropiedad);
+    console.log(message);
 
     var empresa = req.user.empresa;
     var emailUser = req.user.email;
@@ -331,121 +416,123 @@ router.post('/notificaciones', function(req, res, next) {
                 }
             },
             update: {
-               $push: {
-               	'propiedades.$.notificaciones': {
-               		'fecha': dataFecha(new Date()),
-               		'email': email,
-               		'asunto': asunt
-               	}
-               }
+                $push: {
+                    'propiedades.$.notificaciones': {
+                        'fecha': dataFecha(new Date()),
+                        'email': email,
+                        'asunto': asunt,
+                        'mensaje': message
+                    }
+                }
             },
             new: true
         }).success(function(fn) {
-           res.redirect('propiedades/show/' + idPropiedad);
+            res.redirect('propiedades/show/' + idPropiedad);
         });
     }
 
     function dataFecha(data) {
-    	
-    	var dia = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
-    	var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
-					"Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
-    	var day = data.getDate();
-    	var dayStatus = data.getDay();
-    	var mes = data.getMonth();
-    	var year = data.getFullYear();
+        var dia = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
 
-    	
-    	for(var i = 0; i < dia.length; i++) {
-			return dia[dayStatus] +" "+ day + " del " + year;    		
-    	}
+        var day = data.getDate();
+        var dayStatus = data.getDay();
+        var mes = data.getMonth();
+        var year = data.getFullYear();
+
+
+        for (var i = 0; i < dia.length; i++) {
+            return dia[dayStatus] + " " + day + " del " + year;
+        }
 
 
     }
 });
 
-router.post('/pagos', function(req, res, next){
-	var db = req.db;
-	var user = db.get('usuarios');
+router.post('/pagos', function(req, res, next) {
+    var db = req.db;
+    var user = db.get('usuarios');
 
-	var idPropiedad = req.body.isID;
+    var idPropiedad = req.body.isID;
 
-	console.log(idPropiedad);
+    user.findAndModify({
+        query: {
+            '_id': req.user._id,
+            propiedades: {
+                $elemMatch: {
+                    'id': idPropiedad
+                }
+            }
+        },
+        update: {
+            $push: {
+                'propiedades.$.pagos': {
+                    'fecha': new Date(),
+                    'inquilino': req.body.isNameInquilino,
+                    'importe': req.body.isPrecioPropiedad,
+                    'mesSaldado': req.body.isMonthPayment,
+                    'tipoDePago': req.body.typePayment,
+                    'comentarios': req.body.comentarios
+                }
+            }
+        },
+        new: true
+    }).success(function(data) {
 
-	user.findAndModify({
-		query: {
-			'_id': req.user._id,
-			propiedades: {
-				$elemMatch: {
-					'id': idPropiedad
-				}
-			}
-		},
-		update: {
-			$push: {
-				'propiedades.$.pagos':  {
-					'fecha': new Date(),
-					'inquilino': req.body.isNameInquilino,
-					'importe': req.body.isPrecioPropiedad,
-					'mesSaldado': req.body.isMonthPayment,
-					'tipoDePago': req.body.typePayment,
-					'comentarios': req.body.comentarios
-				}
-			}
-		},
-		new: true
-	}).success(function(data){
-		
-	});
+    });
 
-	user.findAndModify({
-		query: {
-			'_id': req.user._id,
-			propiedades: {
-				$elemMatch: {
-					'id': idPropiedad
-				}
-			}
-		},
-		update: {
-			$push: {
-				'propiedades.$.cuentaCorriente':  {
-					'fecha': new Date(),
-					'inquilino': req.body.isNameInquilino,
-					'importe': req.body.isPrecioPropiedad,
-					'mesSaldado': req.body.isMonthPayment,
-					'tipoDePago': req.body.typePayment,
-					'comentarios': req.body.comentarios
-				}
-			}
-		},
-		new: true
-	}).success(function(data){
-		console.log('funcciona')
-	});
+    user.findAndModify({
+        query: {
+            '_id': req.user._id,
+            propiedades: {
+                $elemMatch: {
+                    'id': idPropiedad
+                }
+            }
+        },
+        update: {
+            $push: {
+                'propiedades.$.pagosTotal': {
+                    'fecha': new Date(),
+                    'inquilino': req.body.isNameInquilino,
+                    'importe': req.body.isPrecioPropiedad,
+                    'mesSaldado': req.body.isMonthPayment,
+                    'tipoDePago': req.body.typePayment,
+                    'comentarios': req.body.comentarios
+                }
+            }
+        },
+        new: true
+    }).success(function(data) {
+
+        res.redirect('propiedades/show/' + idPropiedad);
+
+    });
 
 
 });
 
 
 router.post('/deletepropiedad', function(req, res, next) {
-	var db = req.db;
-	var user = db.get('usuarios');
+    var db = req.db;
+    var user = db.get('usuarios');
 
-	var idDeletePropiedad = req.body.id;
+    var idDeletePropiedad = req.body.id;
 
-	//$Pull - Mongodb
+    //$Pull - Mongodb
 
-	user.update(
-		{'_id': req.user._id},
-		{$pull: {
-			'propiedades': {
-				'id': idDeletePropiedad
-			}
-		}}).success(function(){
-			res.json({removed: true});
-		});
+    user.update({ '_id': req.user._id }, {
+        $pull: {
+            'propiedades': {
+                'id': idDeletePropiedad
+            }
+        }
+    }).success(function() {
+        res.json({ removed: true });
+    });
 
 });
 

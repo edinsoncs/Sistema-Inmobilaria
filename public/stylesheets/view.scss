@@ -4,7 +4,7 @@
     position: relative;
     .view--Iz {
         width: 55%;
-        background-color: #f5f3f3;
+        background-color: #f2f2f2;
         padding: 1em;
         .view--Iz--Top {
             background-image: url('http://parabuenosaires.com/wp-content/uploads/2014/07/departamentos-en-venta-palermo-belgrano-puerto-madero-parabuenosaires.jpg');
@@ -107,7 +107,6 @@
     }
     .view--De {
         width: 45%;
-        border-left: 1px solid #dedede;
         padding: 0 0 0 6.5em;
         .view--De--Top {
             margin: 0 0 2em 0;
@@ -127,13 +126,18 @@
             border-radius: 4px;
         }
         .view--De--ShowNotify {
-            background-color: #f5f3f3;
-            padding: 0.5em;
+            background-color: #fff;
+            //padding: 0.5em;
+            border: 1px solid #3c8dbc;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
             .header--ShowNotify {
                 text-align: center;
+                background-color: #3c8dbc;
+                padding: 0.5em 0;
                 .title {
                     font-weight: 400;
-                    color: #3c8dbc;
+                    color: #fff;
                 }
             }
             .container--ShowNotify {
@@ -143,10 +147,14 @@
                 .list--ShowNotify {
                     list-style-type: none;
                     color: #6f6f6f;
-                    padding: 0.5em 0.5em;
+                    padding: 0.8em 0.5em;
+                    border-bottom: 1px solid #dddddc;
                     i {
                         color: #3c8dbc;
                         margin: 0 0.5em 0 0;
+                    }
+                    &:last-child {
+                        border-bottom: 1px solid transparent;
                     }
                 }
             }
@@ -162,6 +170,23 @@
                 background: #3c8dbc;
                 border-radius: 2px;
             }
+            .container--LinkVerMas {
+            	text-align: center;
+			    margin: 0 auto;
+			    padding: 0.5em 1em;
+			    background-color: white;
+			    .link {
+			    	text-decoration: none;
+			    	color: #3c8dbc;
+			    }
+			    &:hover {
+					background-color: #3c8dbc;
+					.link {
+						color: white;
+						text-decoration: underline;
+					}
+			    }
+            }
             .showMessageNotAll {
                 //background-color: #dedede;
                 padding: 1em 0.8em;
@@ -172,15 +197,46 @@
                 }
             }
         }
+		
+		.view--De--ShowDeudas {
+			margin: 1em 0;
+            //padding: 0.5em;
+            border: 1px solid #1A4C6D;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            .showDeudas--Header {
+            	background-color: #1A4C6D;
+            	text-align: center;
+            	padding: 0.5em 0;
+            	.title {
+            		font-weight: 400;
+            		color: #fff;
+            		font-size: 1.5em;
+            	}
+            }
+            .showDeudas--Container {
+            	text-align: center;
+            	padding: 0.5em 0;
+            	margin: 1em 0;
+            	.title {
+            		font-size: 2em;
+            		font-weight: 400;
+            	}
+            }
+		}
+
         .view--De--ShowPagos {
-            background-color: #f5f3f3;
-            padding: 0.5em;
+            border: 1px solid #27ae60;
             margin: 1em 0 0 0;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
             .header--ShowPagos {
                 text-align: center;
+                background-color: #27ae60;
                 .title {
                     font-weight: 400;
-                    color: #27ae60;
+                    color: #fff;
+                    padding: 0.5em 0;
                 }
             }
             .showMessageNotAll {
@@ -196,25 +252,48 @@
                 .list--ShowPagos {
                     list-style-type: none;
                     color: #6f6f6f;
-                    padding: 0.5em 0.5em;
+                    padding: 0.8em 0.5em;
+                    border-bottom: 1px solid #dddddc;
                     i {
                         color: #27ae60;
                     }
                 }
             }
-        }
-        .view--De--ShowCuentaCorriente {
-            background-color: #f5f3f3;
-            padding: 0.5em;
-            margin: 1em 0 0 0;
-            .header--ShowPagos {
+            .show--SumDetails {
                 text-align: center;
-                .title {
-                    font-weight: 400;
-                    color: #f89406;
+                margin: 0 auto;
+                padding: 0.5em 1em;
+                background: white;
+                .link {
+                    color: #27ae60;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+                &:hover {
+                    background: #27ae60;
+                    .link {
+                        color: white;
+                    }
                 }
             }
-             .showMessageNotAll {
+        }
+        .view--De--ShowCuentaCorriente {
+            border: 1px solid #f89406;
+            margin: 1em 0 0 0;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            .header--ShowPagos {
+                text-align: center;
+                background-color: #f89406;
+                padding: 0.5em 0;
+                .title {
+                    font-weight: 400;
+                    color: #fff;
+                }
+            }
+            .showMessageNotAll {
                 //background-color: #dedede;
                 padding: 1em 0.8em;
                 text-align: center;
@@ -227,7 +306,8 @@
                 .list--ShowPagos {
                     list-style-type: none;
                     color: #6f6f6f;
-                    padding: 0.5em 0.5em;
+                    padding: 0.8em 0.5em;
+                    text-align: center;
                     i {
                         color: #f89406;
                     }
