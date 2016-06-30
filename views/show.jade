@@ -25,7 +25,7 @@ head
 
 
   //functions create edinsoncs
-  script(src="../../../javascripts/thisF.unctions.js")
+
   script(src="../../../javascripts/dcalendar.picker.js")
 
 body
@@ -36,16 +36,17 @@ body
       nav.header__Site--De
         ul.ul
           li.list
-            a.tolink(href="../panel")
+            a.tolink(href="../../../panel")
               i(class="fa fa-home" aria-hidden="true")
               | Inicio
           li.list.selectItem
-            a(href="panel/propiedades", class="tolink")
+            a(href="../../../panel/propiedades", class="tolink")
               i(class="fa fa-folder-open" aria-hidden="true")
               | Propiedades
-          //li.list
-            i(class="fa fa-users" aria-hidden="true")
-            | Miembros
+          li.list
+           a.tolink(href="../../../panel/config") 
+            i(class="fa fa-cog" aria-hidden="true")
+            | Config
         div.header__User
           figure.header__UserFigure
             img(src="../../../images/avatar.jpg", alt="#{nombre}")
@@ -271,7 +272,7 @@ body
            |  Domicilio:
            | #{propiedad.propietarioDomicilio}
 
-
+    
     div.view--Iz--Info
       header.view--Iz--Info--Header
         h2.title
@@ -295,6 +296,22 @@ body
       a.link.btn.btn--Ticket
         i.fa.fa-usd(aria-hidden="true")
         |  Cobros
+    div.view--De--ShowDeudas
+      header.showDeudas--Header
+        h2.title
+          | Deuda
+      div.showDeudas--Container
+       if propiedad.estadoPago
+         h3.title
+           | Pagado
+       else
+        h3.title
+          | $#{propiedad.cuentaCorriente}
+        span.month
+          - var data = new Date();
+          - var Mes = data.getMonth();
+          - var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+          | #{meses[Mes]}
     div.view--De--ShowNotify
       if propiedad.notificaciones
         header.header--ShowNotify
@@ -318,13 +335,6 @@ body
             h2.title
               | Esta propiedad no </br>tiene notificaciones
     
-    div.view--De--ShowDeudas
-      header.showDeudas--Header
-        h2.title
-          | Saldo
-      div.showDeudas--Container
-        h3.title
-          | #{propiedad.precioMensual}
     div.view--De--ShowPagos
       if propiedad.pagos
         header.header--ShowPagos

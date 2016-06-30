@@ -27,6 +27,7 @@ head
   //functions create edinsoncs
   script(src="../../../javascripts/thisF.unctions.js")
   script(src="../../../javascripts/dcalendar.picker.js")
+  script(src="../../../javascripts/buttons.js")
 
 body
   header.header__Site
@@ -36,15 +37,15 @@ body
       nav.header__Site--De
         ul.ul
           li.list
-            a.tolink(href="../panel")
+            a.tolink(href="../../../panel")
               i(class="fa fa-home" aria-hidden="true")
               | Inicio
           li.list
-            a(href="panel/propiedades", class="tolink")
+            a(href="../../../panel/propiedades", class="tolink")
               i(class="fa fa-folder-open" aria-hidden="true")
               | Propiedades
           li.list.selectItem
-            a(href="panel/config", class="tolink")
+            a(href="../../../panel/config", class="tolink")
               i(class="fa fa-cog" aria-hidden="true")
               | Config
         div.header__User
@@ -68,38 +69,71 @@ body
    section.config--Base
     header.config--Header
      h2.title
-      | Configuracion de modulos / Email
+      i(class="fa fa-cog" aria-hidden="true") 
+      |  Configuracion de modulos / Email
    section.config--Email
-    form.config--Email--Form
+    form.config--Email--Form(action="../savethisemail", method="POST", enctype="multipart/form-data" )
      fieldset.Form--Fieldset
       label.label
        | Logo
-      input(type="file")
+      input(type="file", name="logomail")
      fieldset.Form--Fieldset
       label.label
        | Nombre Empresa
-      input(type="text")
+      input(type="text", name="nombreEmpresa")
      fieldset.Form--Fieldset
       label.label
        | Dirección Empresa
-      input(type="text")
+      input(type="text", name="direccionEmpresa")
      fieldset.Form--Fieldset
       label.label
        | Teléfono Empresa
-      input(type="text")
+      input(type="text", name="telEmpresa")
      fieldset.Form--Fieldset
       label.label
        | Email Empresa
-      input(type="text")
+      input(type="text", name="emailEmpresa")
      fieldset.Form--Fieldset
-      input(type="submit", value="Guardar")
+      input(type="submit", value="Guardar", class="saveEmail")
     aside.config--Email--Demo
-     header.Email--Header
-      div.logo
-      div.description
-       div.descriptionLines
-       div.descriptionLines
-       div.descriptionLines
-       div.descriptionLines
-     div.Email--ShowMessage
-     div.Email--Footer
+     if emailTemplate
+      header.Email--Header
+       div.logo(style="background-image: url('../../emails/#{emailTemplate.imagenLogo}');")
+       div.description
+        div.descriptionLines
+        div.descriptionLines
+        div.descriptionLines
+        div.descriptionLines
+         header.descriptionLines--Header
+          h2.title
+           | #{emailTemplate.nombreEmpresa}
+
+      div.Email--ShowMessage
+      div.Email--Footer
+       div.Email--Footer--Show
+        span.title
+         
+         | #{emailTemplate.direccionEmpresa}
+        span.separed
+        
+        span.title
+        
+         | #{emailTemplate.TelefonoEmpresa}
+        span.separed
+         
+        span.title
+        
+         | #{emailTemplate.emailEmpresa}
+
+     else
+      header.Email--Header
+       div.logo
+       div.description
+        div.descriptionLines
+        div.descriptionLines
+        div.descriptionLines
+        div.descriptionLines
+      div.Email--ShowMessage
+      div.Email--Footer
+
+

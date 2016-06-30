@@ -17,13 +17,94 @@ var smtpTransport = require('nodemailer-smtp-transport');
 
 var bodyParser = require('body-parser');
 
+
+
+
 router.get('/', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
     res.render('panel', {
         title: 'Panel de administración',
         nombre: req.user.nombre,
         empresa: req.user.empresa
     });
-    console.log(req.user)
+
+    //Looking in  propiedades
+    var date = new Date();
+    var dia = date.getDate();
+
+    user.findOne({ '_id': req.user._id }, function(err, doc) {
+        if (err) {
+            return err;
+        } else {
+            var propiedadesCant = doc.propiedades;
+            var arrStatusPropiedades = [];
+
+            for (var i = 0; i < propiedadesCant.length; i++) {
+
+                var esProp = propiedadesCant[i].contratoInicia;
+                var limiptFormat = itemReplace(esProp)
+                var initializeArr = limiptFormat.split(' , ');
+
+
+                var propiedadID = propiedadesCant[i].id;
+                var propiedadFechaInicia = initializeArr[0][0] + initializeArr[0][1];
+
+                var menosDias = Number(propiedadFechaInicia) - 7;  
+
+
+                if(propiedadFechaInicia > 7) { //Correcto la propiedad es mayo
+
+                	if(menosDias == dia) { // 23 == 23
+
+	                	//Aqui te quedastes
+	                	var idProperty = propiedadesCant[i].id;
+
+	               		user.findAndModify({
+	               			query: {
+	               				'_id': req.user._id,
+	               				propiedades: {
+	               					$elemMatch: {
+	               						'id': idProperty
+	               					}
+	               				}
+	               			},																										
+	               			update: {
+	               				$set: {
+	               					'propiedades.$.estadoPago': false
+	               				}
+	               			},
+	               			new: true
+	               		}).success(function(data){
+	               			console.log('propiedad falta pagar');
+	               		});
+	                	
+	                } else {
+	                	//console.log('no hay ningun dia que coincida');
+	                }
+                } else {
+                	//console.log(propiedadFechaInicia);
+                }
+
+	                
+
+                //console.log('Propiedad ID: ' + propiedadID);
+                //console.log('Vence cada ' + propiedadFechaInicia);
+            }
+            //var n = doc.propiedades[0].contratoInicia;
+        }
+    });
+
+    function itemReplace(text) {
+        var go = text.replace('-', ',');
+        var goReplace = go.replace('-', ',');
+        return goReplace
+    }
+
+
+
 
 });
 
@@ -228,11 +309,12 @@ router.get('/config', function(req, res, next) {
     });
 });
 
-router.get('/config/email', function(req, res, next){
-	res.render('email', {
+router.get('/config/email', function(req, res, next) {
+    res.render('email', {
         title: 'Config Email Zimba',
         nombre: req.user.nombre,
-        empresa: req.user.empresa
+        empresa: req.user.empresa,
+        emailTemplate: req.user.emailTemplate
     });
 });
 
@@ -341,8 +423,11 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'periodosPrecios': Array,
                     'notificaciones': Array,
                     'pagos': Array,
+                    'estadoPago': false,
                     'pagosTotal': Array,
-                    'cuentaCorriente': Array
+                    'cuentaCorriente': req.body.precioMensual
+
+
                 }
             }
         },
@@ -352,6 +437,52 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     }).success(function(done) {
         res.redirect('/panel/propiedades');
     });
+
+
+});
+
+
+router.post('/savethisemail', multipartMiddleware, function(req, res, next) {
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    var isLogo = req.files.logomail;
+    var nombreEmpresa = req.body.nombreEmpresa
+    var direccion = req.body.direccionEmpresa;
+    var telefono = req.body.telEmpresa;
+    var email = req.body.emailEmpresa;
+
+
+    fs.readFile(isLogo.path, function(err, dataBuffer) {
+        if (err) {
+            return err;
+        } else {
+            var nameLogo = esid(6) + isLogo.name;
+            var saveEmail = path.join(__dirname, '..', 'public', 'emails/' + nameLogo)
+            fs.writeFile(saveEmail, dataBuffer, function(err, result) {
+                user.findAndModify({
+                    query: {
+                        '_id': req.user._id
+                    },
+                    update: {
+                        $set: {
+                            'emailTemplate': {
+                                'nombreEmpresa': nombreEmpresa,
+                                'imagenLogo': nameLogo,
+                                'direccionEmpresa': direccion,
+                                'TelefonoEmpresa': telefono,
+                                'emailEmpresa': email
+                            }
+                        }
+                    },
+                    new: true
+                }).success(function(done) {
+                    res.redirect('../panel/config/email');
+                });
+            });
+        }
+    });
+
 
 
 });
@@ -367,8 +498,8 @@ router.post('/notificaciones', function(req, res, next) {
 
     console.log(message);
 
-    var empresa = req.user.empresa;
-    var emailUser = req.user.email;
+    var empresa = req.user.emailTemplate.nombreEmpresa;
+    var emailUser = req.user.emailTemplate.emailEmpresa;
 
     var usuarios = db.get('usuarios');
 
@@ -387,12 +518,39 @@ router.post('/notificaciones', function(req, res, next) {
     }));
 
 
+    function templateEmail(mensajeEnviado) {
+        var theme = "<table width='650px'>" +
+            "<tr>" +
+            "<td>" +
+            "<h1 style='font-weight: 400;border-bottom: 1px solid black;padding: 0 0 0.5em 0;margin: 0;'>Zimba Propiedades</h1>" +
+            "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>" +
+            "<img src='" + req.user.emailTemplate.imagenLogo + "' alt='' width='150px;'>" +
+            "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>" +
+            "<p class='descriptionMessage'>" +
+            mensajeEnviado +
+            "</p>" +
+            "</td>" +
+            "</tr>" +
+            "<tr>" +
+            "<td>" +
+            "</td>" +
+            "</tr>" +
+            "</table>";
+        return theme;
+    }
+
     var mailOptions = {
         from: emailUser,
         to: email, // list of receivers
         subject: asunt, // Subject line
         text: message, // plaintext body
-        html: '<b>' + message + '</b>' // html body
+        html: templateEmail(message) // html body
     };
 
 
@@ -494,6 +652,22 @@ router.post('/pagos', function(req, res, next) {
             }
         },
         update: {
+            $set: {
+                'propiedades.$.estadoPago': true
+            }
+        }
+    });
+
+    user.findAndModify({
+        query: {
+            '_id': req.user._id,
+            propiedades: {
+                $elemMatch: {
+                    'id': idPropiedad
+                }
+            }
+        },
+        update: {
             $push: {
                 'propiedades.$.pagosTotal': {
                     'fecha': new Date(),
@@ -507,9 +681,7 @@ router.post('/pagos', function(req, res, next) {
         },
         new: true
     }).success(function(data) {
-
         res.redirect('propiedades/show/' + idPropiedad);
-
     });
 
 

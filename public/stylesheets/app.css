@@ -1106,6 +1106,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .config .config--Base .config--Header .title {
   font-weight: 400;
+  color: #525050;
 }
 
 .config .config--Modulos .Modulos {
@@ -1167,8 +1168,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .config .config--Email .config--Email--Form {
   width: 35%;
   padding: 1em;
-  border: 2px solid #3c8dbc;
-  box-shadow: 0 0 2px #3c8dbc;
+  border: 2px solid #21bdee;
 }
 
 .config .config--Email .config--Email--Form .Form--Fieldset .label {
@@ -1177,18 +1177,26 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   color: #2b2929;
 }
 
-.config .config--Email .config--Email--Form .Form--Fieldset input {
-  background-color: #f5f5f5;
-  border: 1px solid #dddddc;
+.config .config--Email .config--Email--Form .Form--Fieldset input[type='select'] {
+  padding: 0.5em 0.2em;
+}
+
+.config .config--Email .config--Email--Form .Form--Fieldset input[type='text'] {
+  background-color: #fff;
+  border-radius: 4px;
   border: none;
+  border: 1px solid #dedede;
   outline: medium none;
   padding: 0.5em 0.2em;
   width: 100%;
-  border-radius: 4px;
+}
+
+.config .config--Email .config--Email--Form .Form--Fieldset input[type='submit'] {
+  border: none;
 }
 
 .config .config--Email .config--Email--Form .Form--Fieldset:last-child input {
-  background-color: #3c8dbc;
+  background-color: #21bdee;
   color: white;
   margin: 1em 0;
   padding: 1em 0;
@@ -1204,11 +1212,14 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .config .config--Email .config--Email--Demo .Email--Header .logo {
-  width: 80px;
-  height: 80px;
+  width: 90px;
+  height: 90px;
   background-color: #dedede;
+  background-size: contain;
+  background-repeat: no-repeat;
   border-radius: 50%;
   animation: logo 2s infinite;
+  background-position: center;
 }
 
 @keyframes logo {
@@ -1227,6 +1238,14 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   background-color: #dedede;
   height: 4px;
   display: block;
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .descriptionLines .descriptionLines--Header {
+  padding: 1em 0 0 0;
+}
+
+.config .config--Email .config--Email--Demo .Email--Header .descriptionLines .descriptionLines--Header .title {
+  font-weight: 400;
 }
 
 .config .config--Email .config--Email--Demo .Email--Header .descriptionLines:nth-child(2) {
@@ -1301,4 +1320,23 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   width: 100%;
   height: 100px;
   background-color: rgba(222, 222, 222, 0.43);
+}
+
+.config .config--Email .config--Email--Demo .Email--Footer .Email--Footer--Show {
+  text-align: center;
+  padding: 5em 0 0 0;
+  font-size: 0.9rem;
+}
+
+.config .config--Email .config--Email--Demo .Email--Footer .Email--Footer--Show .title {
+  text-transform: capitalize;
+  color: #5a5959;
+}
+
+.config .config--Email .config--Email--Demo .Email--Footer .Email--Footer--Show .title i {
+  margin: 0 0.5em 0 0;
+}
+
+.config .config--Email .config--Email--Demo .Email--Footer .Email--Footer--Show .separed {
+  margin: 0 0.3em;
 }

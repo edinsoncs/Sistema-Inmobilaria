@@ -5,6 +5,7 @@ $(document).ready(function(){
 	$(".propiedadesLink").flat('flat-t-dos');
 	$(".submit").flat('flat-t-cuatro');
 	$(".subirImg").flat('flat-t-dos');
+	$(".saveEmail").flat('flattres');
 
 	$('input[name="ingresoinquilino"], input[name="finInquilino"], input[name="contratoInicio"], input[name="contratoFin"], input[name="isDateEntry"], input[name="isDateExit"]').dcalendarpicker({
 		 format: 'dd-mm-yyyy'

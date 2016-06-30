@@ -4,6 +4,7 @@
         .config--Header {
             .title {
                 font-weight: 400;
+                color: #525050;
             }
         }
     }
@@ -57,26 +58,31 @@
         .config--Email--Form {
             width: 35%;
             padding: 1em;
-            border: 2px solid #3c8dbc;
-            box-shadow: 0 0 2px #3c8dbc;
+            border: 2px solid #21bdee;
             .Form--Fieldset {
                 .label {
                     display: block;
                     margin: 0.4em 0;
                     color: #2b2929;
                 }
-                input {
-                    background-color: #f5f5f5;
-                    border: 1px solid #dddddc;
+                input[type='select'] {
+                	padding: 0.5em 0.2em;
+                }
+                input[type='text'] {
+                    background-color: #fff;
+                    border-radius: 4px;
                     border: none;
+                    border: 1px solid #dedede;
                     outline: medium none;
                     padding: 0.5em 0.2em;
                     width: 100%;
-                    border-radius: 4px;
+                }
+                input[type='submit'] {
+                    border: none;
                 }
                 &:last-child {
                     input {
-                        background-color: #3c8dbc;
+                        background-color: #21bdee;
                         color: white;
                         margin: 1em 0;
                         padding: 1em 0;
@@ -90,11 +96,14 @@
                 display: flex;
                 justify-content: space-between;
                 .logo {
-                    width: 80px;
-                    height: 80px;
+                    width: 90px;
+                    height: 90px;
                     background-color: #dedede;
+                    background-size: contain;
+                    background-repeat: no-repeat;
                     border-radius: 50%;
                     animation: logo 2s infinite;
+                    background-position: center;
                 }
                 @keyframes logo {
                     50% {}
@@ -110,6 +119,12 @@
                     background-color: #dedede;
                     height: 4px;
                     display: block;
+                    .descriptionLines--Header {
+                    	padding: 1em 0 0 0;
+                    	.title  {
+                    		font-weight: 400;
+                    	}
+                    }
                     &:nth-child(2) {
                         margin: 1em 0;
                         animation: lineOne 3s infinite;
@@ -172,6 +187,21 @@
                 width: 100%;
                 height: 100px;
                 background-color: rgba(222, 222, 222, 0.43);
+                .Email--Footer--Show {
+                    text-align: center;
+                    padding: 5em 0 0 0;
+                    font-size: 0.9rem;
+                    .title {
+                        text-transform: capitalize;
+                        color: #5a5959;
+                        i {
+                            margin: 0 0.5em 0 0;
+                        }
+                    }
+                    .separed {
+                        margin: 0 0.3em;
+                    }
+                }
             }
         }
     }
