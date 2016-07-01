@@ -1,5 +1,5 @@
 .header__Site {
-	background-color: #3c8dbc;
+	background-color: #344c59;
 	.header__Site--Container {
 		width: $widthPrimary;
 		margin: $centerMargin;
@@ -21,7 +21,7 @@
 				width: 153px;
 				text-align: center;
 				line-height: 30px;
-				padding: 0.6em;
+				padding: 0.7em 0.6em;
 				.tolink {
 					text-decoration: none;
 					color: white;
@@ -31,13 +31,13 @@
 					margin: 0 0.5em 0 0;
 				}
 				&:hover {
-					background: #34789F;
+					background: #436070;
 					box-shadow: inset 0 0 4px rgb(47, 110, 146);
 				}
 			}
 			.selectItem {
-					background: #34789F;
-					box-shadow: inset 0 0 4px rgb(47, 110, 146);
+					background: #51768b;
+					box-shadow: inset 0 0 4px #446070;
 			}
 			.header__User {
 				margin: 0 0 0 1em;

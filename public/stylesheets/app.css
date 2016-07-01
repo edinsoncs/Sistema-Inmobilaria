@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700);
 h1, h2, h3, h4, h5, h6, figure, p {
   margin: 0;
 }
@@ -62,6 +63,7 @@ ul {
 
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: #f7f7f7;
 }
 
 .NotifyContainer {
@@ -78,6 +80,22 @@ body {
   font-weight: 400px;
   color: white;
   font-size: 1em;
+}
+
+table {
+  background-color: white;
+  border: 1px solid #ddd;
+}
+
+table thead > tr > th {
+  border: 1px solid #ddd;
+  padding: 0.8em;
+  color: #34789f;
+}
+
+table tbody > tr > td {
+  border: 1px solid #ddd;
+  padding: 0.5em;
 }
 
 .bgHome {
@@ -138,7 +156,7 @@ body {
 }
 
 .header__Site {
-  background-color: #3c8dbc;
+  background-color: #344c59;
 }
 
 .header__Site .header__Site--Container {
@@ -167,7 +185,7 @@ body {
   width: 153px;
   text-align: center;
   line-height: 30px;
-  padding: 0.6em;
+  padding: 0.7em 0.6em;
 }
 
 .header__Site .header__Site--Container .header__Site--De .ul .list .tolink {
@@ -181,13 +199,13 @@ body {
 }
 
 .header__Site .header__Site--Container .header__Site--De .ul .list:hover {
-  background: #34789F;
+  background: #436070;
   box-shadow: inset 0 0 4px #2f6e92;
 }
 
 .header__Site .header__Site--Container .header__Site--De .selectItem {
-  background: #34789F;
-  box-shadow: inset 0 0 4px #2f6e92;
+  background: #51768b;
+  box-shadow: inset 0 0 4px #446070;
 }
 
 .header__Site .header__Site--Container .header__Site--De .header__User {
@@ -443,7 +461,11 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .add .newPropiedad--Header .title {
   margin: 0;
   font-weight: 400;
-  color: #ddd;
+  color: #3c8dbc;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.3em;
+  padding: 0.5em;
+  background-color: white;
 }
 
 .add .form--Container {
@@ -452,11 +474,20 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 .add .newPropiedad--Form {
-  width: 50%;
+  width: 100%;
+  border: 1px solid #E6E9ED;
+  background-color: #fff;
+  padding: 0 1em;
+}
+
+.add .newPropiedad--Form .fieldset--StepsContainer {
+  display: flex;
+  justify-content: space-between;
 }
 
 .add .newPropiedad--Form .fieldset--Steps {
   margin: 2em 0;
+  width: 40%;
 }
 
 .add .newPropiedad--Form .fieldset--Steps .header--Steps .title {
@@ -518,73 +549,121 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .view {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   position: relative;
 }
 
 .view .view--Iz {
-  width: 55%;
-  background-color: #f2f2f2;
-  padding: 1em;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .view .view--Iz .view--Iz--Top {
-  background-image: url("http://parabuenosaires.com/wp-content/uploads/2014/07/departamentos-en-venta-palermo-belgrano-puerto-madero-parabuenosaires.jpg");
-  background-size: cover;
-  margin: 0 auto;
-  padding: 2em 2em;
-  text-align: center;
-  width: 50%;
-  border: 4px solid #dedede;
+  text-align: left;
+  width: 100%;
   position: relative;
+  margin: 0.5em 0;
 }
 
 .view .view--Iz .view--Iz--Top .title {
   font-weight: 400;
-  color: white;
-  text-shadow: 0 0 10px black;
+  color: #34789f;
   text-transform: capitalize;
+  font-family: 'Roboto', sans-serif;
 }
 
-.view .view--Iz .view--Iz--Top .showPrint {
-  background-color: #e52f62;
+.view .view--Iz .view--Iz--Top .itemsProperty {
   color: #fff;
   margin: 2em auto;
   padding: 0.8em 0;
-  width: 17%;
-  border-radius: 4px;
-  box-shadow: 0 4px 0 #a9173f;
-  cursor: pointer;
+  width: 40%;
+  text-align: right;
   position: absolute;
   top: 50%;
   right: 0;
   margin-top: -1.5em;
-  margin-right: -5em;
+  margin-right: 0;
 }
 
-.view .view--Iz .view--Iz--Top .showPrint:hover {
-  background-color: black;
-  box-shadow: 0 4px 0 #000;
+.view .view--Iz .view--Iz--Top .itemsProperty .list {
+  display: inline-block;
+  margin: 0 1em;
 }
 
-.view .view--Iz .view--Iz--Top .showPrint i {
+.view .view--Iz .view--Iz--Top .itemsProperty .list .link {
+  text-decoration: none;
+}
+
+.view .view--Iz .view--Iz--Top .itemsProperty .list .btn--Print {
+  background-color: #e74c3c;
+}
+
+.view .view--Iz .view--Iz--Top .itemsProperty .list .btn--Notify {
+  background-color: #34495e;
+}
+
+.view .view--Iz .view--Iz--Top .itemsProperty .list .btn--Ticket {
+  background-color: #27ae60;
+}
+
+.view .view--Iz .view--Iz--Top .itemsProperty .list:last-child {
+  margin: 0 0 0 1em;
+}
+
+.view .view--Iz .view--Iz--Top .itemsProperty i {
   font-size: 1.2em;
 }
 
+.view .view--Iz .view--Iz--SubMenu {
+  width: 100%;
+  display: block;
+}
+
+.view .view--Iz .view--Iz--SubMenu .subMenu--Ul .list {
+  display: inline-block;
+  margin: 1em 1em 1em 0;
+}
+
+.view .view--Iz .view--Iz--SubMenu .subMenu--Ul .list .link {
+  text-decoration: none;
+  color: #344c59;
+}
+
+.view .view--Iz .view--Iz--SubMenu .subMenu--Ul .list .link:hover {
+  text-decoration: underline;
+}
+
+.view .view--Iz .view--Iz--Flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.view .view--Iz .view--Iz--Flex .itemUno,
+.view .view--Iz .view--Iz--Flex .itemDos {
+  width: 40%;
+}
+
 .view .view--Iz .view--Iz--Info {
-  margin: 1em 0;
+  margin: 0.8em 0;
+  width: 49%;
+  background-color: white;
+  border: 1px solid #E6E9ED;
+  padding: 0.5em 1em;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Info--Header {
   margin: 1em 0 2em 0;
-  border-bottom: 1px solid #bdb8b8;
   padding: 0.5em 0;
-  background-color: #dedede;
-  text-align: center;
+  text-align: left;
+  font-family: 'Roboto', sans-serif;
+  font-size: 0.9em;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Info--Header .title {
   font-weight: 400;
-  color: #5f5c5c;
+  color: #9E9E9E;
 }
 
 .view .view--Iz .view--Iz--Info .view--Iz--Articls {
@@ -608,7 +687,7 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   color: #3c8dbc;
   display: block;
   width: 100%;
-  font-size: 0.9rem;
+  font-size: 16px;
   line-height: 30px;
 }
 
@@ -640,11 +719,13 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .view .view--De {
   width: 45%;
-  padding: 0 0 0 6.5em;
+  display: none;
+  padding: 2em 1em;
 }
 
 .view .view--De .view--De--Top {
   margin: 0 0 2em 0;
+  text-align: center;
 }
 
 .view .view--De .view--De--Top .btn--Notify {
@@ -833,14 +914,6 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .view .view--De .view--De--ShowPagos .show--SumDetails .link:hover {
   text-decoration: underline;
-}
-
-.view .view--De .view--De--ShowPagos .show--SumDetails:hover {
-  background: #27ae60;
-}
-
-.view .view--De .view--De--ShowPagos .show--SumDetails:hover .link {
-  color: white;
 }
 
 .view .view--De .view--De--ShowCuentaCorriente {
@@ -1339,4 +1412,43 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 
 .config .config--Email .config--Email--Demo .Email--Footer .Email--Footer--Show .separed {
   margin: 0 0.3em;
+}
+
+@media print {
+  .header__Site, .header__Welcome--Iz, .view--Iz--Top, .header__Welcome--De {
+    display: none;
+  }
+}
+
+.uCursor {
+  cursor: pointer;
+}
+
+.dataMensaje {
+  width: 250px;
+  background-color: black;
+  height: auto;
+  position: absolute;
+  border-radius: 5px;
+  padding: 0.5em;
+  display: none;
+}
+
+.dataMensaje span {
+  color: white;
+}
+
+.dataMensaje .dataMensaje--Close {
+  position: absolute;
+  right: 0;
+  margin-right: 0.3em;
+  cursor: pointer;
+  background-color: white;
+  padding: 0.2em 0.5em;
+  border-radius: 50%;
+}
+
+.dataMensaje .dataMensaje--Close span {
+  color: black;
+  font-size: 0.8em;
 }

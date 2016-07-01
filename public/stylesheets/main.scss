@@ -143,7 +143,12 @@ main {
 		.title {
 			margin: 0;
 			font-weight: 400;
-			color:#ddd;
+			color: #3c8dbc;
+			font-family: 'Roboto', sans-serif;
+			font-size: 1.3em;
+			padding: 0.5em;
+			background-color: white;
+			
 		}
 	}
 	.form--Container {
@@ -151,9 +156,17 @@ main {
 		justify-content: space-between;
 	}
 	.newPropiedad--Form {
-		width: 50%;
+		width: 100%;
+		border: 1px solid #E6E9ED;
+		background-color: #fff;
+		padding: 0 1em;
+		.fieldset--StepsContainer {
+			display: flex;
+			justify-content: space-between;
+		}
 		.fieldset--Steps {
 			margin: 2em 0;
+			width: 40%;
 			.header--Steps {
 				.title {
 					i  {
@@ -164,6 +177,7 @@ main {
 					margin: 0.5em 0;
 				}
 			}
+
 		}
 		.fieldset--Form {
 			border: none;

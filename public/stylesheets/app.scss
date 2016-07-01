@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700);
+
 h1, h2, h3, h4, h5, h6,figure, p {
 	margin: 0;
 }
@@ -54,12 +56,26 @@ $naranja: #F89406;
 
 body {
 	font-family: 'Open Sans', sans-serif;
+	background-color: #f7f7f7;
 }
 
 @import "notify";
 
 
-
+table {
+	background-color: white;
+	border: 1px solid #ddd;
+	thead>tr>th {
+		border: 1px solid #ddd;
+		padding: 0.8em;
+		color: #34789f;
+	}
+	tbody>tr> td  {
+		border: 1px solid #ddd;
+		padding: 0.5em;
+		
+	}
+}
 
 .bgHome {
 	background: #3498DB;
@@ -118,5 +134,6 @@ body {
 @import "pagos";
 @import "notificaciones";
 @import "config";
-
+@import "print";
 @import "panel";
+@import "utils";

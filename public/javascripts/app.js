@@ -155,6 +155,25 @@ $(document).ready(function(){
 		});
 	}
 
+	function printPropiedadDashboard() {
+		$(".btn--Print").on('click', function(){
+			window.print()
+		});
+	}
+	printPropiedadDashboard();
+
+	function showComments() {
+		$(".jsShowComments").on('click', function(){
+			var search = $(".dataMensaje");
+			var element = $(this).siblings(search);
+			$(element).fadeIn('slow');
+		});
+		$(".jsCloseComments").on('click', function(){
+			$(this).parent().fadeOut('fast');
+		});
+
+	}
+	showComments();
 
 
 });

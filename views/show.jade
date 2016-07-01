@@ -158,8 +158,34 @@ body
     header.view--Iz--Top
      h2.title
       | #{propiedad.nombrePropiedad}
-     div.showPrint
-      i.fa.fa-print(title="Imprimir")
+     ul.itemsProperty
+      li.list
+        a.link.btn.btn--Print(href="#")
+          i.fa.fa-print(title="Imprimir")
+          |  Imprimir
+      li.list
+        a.link.btn.btn--Notify(href="#")
+          i.fa.fa-bell(aria-hidden="true")
+          |  Notificar
+      li.list
+        a.link.btn.btn--Ticket(href="#")
+          i.fa.fa-usd(aria-hidden="true")
+          |  Cobrar
+    div.view--Iz--SubMenu
+      ul.subMenu--Ul
+        li.list
+          a(class="link", href="")
+           | Notificaciones
+        li.list
+          a.link(href="", class="link")
+            | Pagos
+        li.list
+          a.link(href="", class="link")
+            | Calendario
+        li.list
+          a.link(href="", class="link")
+            | 
+          
     div.view--Iz--Info
       header.view--Iz--Info--Header
         h2.title
@@ -274,17 +300,17 @@ body
 
     
     div.view--Iz--Info
-      header.view--Iz--Info--Header
-        h2.title
-          | Garantia
-      article.view--Iz--Files
-        embed(src="../../../files/#{propiedad.garanteFile}#zoom=50&scrollbar=1&toolbar=1&navpanes=1", width="100%", height="500px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html", type="application/pdf", trusted="yes" application="yes" title="#{propiedad.nombrePropiedad}")
+        header.view--Iz--Info--Header
+          h2.title
+            | Garantia
+        article.view--Iz--Files
+          embed(src="../../../files/#{propiedad.garanteFile}#zoom=50&scrollbar=1&toolbar=1&navpanes=1", width="100%", height="500px" pluginspage="http://www.adobe.com/products/acrobat/readstep2.html", type="application/pdf", trusted="yes" application="yes" title="#{propiedad.nombrePropiedad}")
     div.view--Iz--Info
-      header.view--Iz--Info--Header
-        h2.title
-          | Contrato
-      article.view--Iz--Files
-        embed(src="../../../files/#{propiedad.contrato}#zoom=50&scrollbar=1&toolbar=1&navpanes=1", width="100%", height="500px", pluginspage="http://www.adobe.com/products/acrobat/readstep2.html", type="application/pdf", trusted="yes", )
+        header.view--Iz--Info--Header
+          h2.title
+            | Contrato
+        article.view--Iz--Files
+          embed(src="../../../files/#{propiedad.contrato}#zoom=50&scrollbar=1&toolbar=1&navpanes=1", width="100%", height="500px", pluginspage="http://www.adobe.com/products/acrobat/readstep2.html", type="application/pdf", trusted="yes", )
    aside.view--De
     div.view--De--Top
       a.link.btn.btn--Notify
@@ -299,19 +325,11 @@ body
     div.view--De--ShowDeudas
       header.showDeudas--Header
         h2.title
-          | Deuda
+          | Cuenta Corriente
       div.showDeudas--Container
-       if propiedad.estadoPago
-         h3.title
-           | Pagado
-       else
-        h3.title
-          | $#{propiedad.cuentaCorriente}
-        span.month
-          - var data = new Date();
-          - var Mes = data.getMonth();
-          - var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-          | #{meses[Mes]}
+       h3.title
+        | $#{propiedad.cuentaCorriente}
+      
     div.view--De--ShowNotify
       if propiedad.notificaciones
         header.header--ShowNotify

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  meta(name="description", content="Administracion de inmobiliarias")
+  
+  title #{title}
+  
+  link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../../../stylesheets/icons.css")
+  link(rel="stylesheet", href="../../../stylesheets/app.css")
+  link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+
+  script(src="../../../javascripts/jquery-1.11.2.min.js")
+  script(src="../../../javascripts/app-dev1.js")
+  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+
+  //functions create edinsoncs
+
+  script(src="../../../javascripts/dcalendar.picker.js")
+
+body
+  header.header__Site
+    .header__Site--Container
+      figure.header__Site--Iz
+        h1.title Zimba
+      nav.header__Site--De
+        ul.ul
+          li.list
+            a.tolink(href="../../../panel")
+              i(class="fa fa-home" aria-hidden="true")
+              | Inicio
+          li.list.selectItem
+            a(href="../../../panel/propiedades", class="tolink")
+              i(class="fa fa-folder-open" aria-hidden="true")
+              | Propiedades
+          li.list
+           a.tolink(href="../../../panel/config") 
+            i(class="fa fa-cog" aria-hidden="true")
+            | Config
+        div.header__User
+          figure.header__UserFigure
+            img(src="../../../images/avatar.jpg", alt="#{nombre}")
+          div.header__ShowData.jsDownShow
+            span
+              | #{nombre}
+            .header__ShowData--SubMenu
+              ul.ul.jsDown.uNoneDisplay
+                li.listSub
+                  a.link(href="panel")
+                    |Panel
+                li.listSub
+                  a.link(href="panel/edit")
+                    |Editar mi perfil
+                li.listSub
+                  a.link(href="#")
+                    | Salir
+  section.header__Welcome.widthBase
+    header.header__Welcome--Iz
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="../../propiedades")
+        | Propiedades
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="#")
+        | #{propiedad.nombrePropiedad}
+    aside.header__Welcome--De
+      h2.title.jsAddDate
+        | Loading...
+  main.widthBase.view
+   div.view--NotifyBG
+   section.view--Notify
+    form.formNotify(action="../../notificaciones", method="POST")
+      input(type="hidden", value="#{propiedad.id}", name="isID")
+      fieldset.formNotify__Fieldset
+        input(type="email", value="#{propiedad.emailInquilino}", name="isMail", required)
+      fieldset.formNotify__Fieldset
+        input(type="text", placeholder="Asunto", name="isAsunt", required)
+      fieldset.formNotify__Fieldset
+        textarea(cols="30", rows="10", placeholder="mensaje de notificacion", name="isMessage", required)
+      fieldset.formNotify__Fieldset
+        input(type="submit", value="Notificar")
+   section.view--Pagos
+    form.formPagos(action="../../pagos", method="POST")
+      input(type="hidden", value="#{propiedad.id}", name="isID")
+      fieldset.formPagos__Fieldset
+        label.formPagos__Fieldset--Label
+          | Inquilino
+        input(type="text", value="#{propiedad.nombreInquilino}", name="isNameInquilino")
+      fieldset.formPagos__Fieldset
+        label.formPagos__Fieldset--Label
+          | Precio
+        input(type="text", value="#{propiedad.precioMensual}", name="isPrecioPropiedad")
+      fieldset.formPagos__Fieldset
+        label.De--Label
+          | Mes
+        select(name="isMonthPayment")
+            option(value="Enero")
+              | Enero
+            option(value="Febrero")
+              | Febrero
+            option(value="Marzo")
+              | Marzo
+            option(value="Abril")
+              | Abril
+            option(value="Mayo")
+              | Mayo
+            option(value="Junio")
+              | Junio
+            option(value="Julio")
+              | Julio
+            option(value="Agosto")
+              | Agosto
+            option(value="Septiembre")
+              | Septiembre
+            option(value="Octubre")
+              | Octubre
+            option(value="Noviembre")
+              | Noviembre
+            option(value="Diciembre")
+              | Diciembre
+      div.formPagos__Fieldset--Flex
+        div.fieldset--Flex--Iz
+          label.Iz--Label(for="efectivo", class="cursorPointer")
+            | Effectivo
+          input(type="checkbox", value="efectivo" name="typePayment", id="efectivo", class="uNoneDisplay")
+          div.circleCheckbox
+        div.fieldset--Flex--Center
+          label.Center--Label(for="deposito", class="cursorPointer")
+            | Deposito
+          input(type="checkbox", value="deposito" name="typePayment", id="deposito", class="uNoneDisplay")
+          div.circleCheckbox
+      fieldset.formPagos__Fieldset
+        label.Fieldset--Label
+          | Comentarios
+        textarea(name="comentarios", cols="10", rows="1.5")
+      fieldset.formPagos__Fieldset
+        input(type="submit", value="Cobrar")
+   section.view--Calendar
+   section.view--Iz
+    header.view--Iz--Top
+     h2.title
+      | #{propiedad.nombrePropiedad}
+     ul.itemsProperty
+      li.list
+        a.link.btn.btn--Print(href="#")
+          i.fa.fa-print(title="Imprimir")
+          |  Imprimir
+      li.list
+        a.link.btn.btn--Notify(href="#")
+          i.fa.fa-bell(aria-hidden="true")
+          |  Notificar
+      li.list
+        a.link.btn.btn--Ticket(href="#")
+          i.fa.fa-usd(aria-hidden="true")
+          |  Cobrar
+    div.view--Iz--SubMenu
+      ul.subMenu--Ul
+        li.list
+          a(class="link", href="")
+           | Notificaciones
+        li.list
+          a.link(href="", class="link")
+            | Pagos
+        li.list
+          a.link(href="", class="link")
+            | Calendario
+        li.list
+          a.link(href="", class="link")
+            | 
+          
+    section.view--NotifyContainer
+      table(width="1220px", align="center")
+        thead
+          tr
+            th Correo
+            th Asunto
+            th Mensaje
+            th Fecha
+        tbody(align="center")
+         each cantNotify in notify
+          tr
+            td #{cantNotify.email}
+            td #{cantNotify.asunto}
+            td #{cantNotify.mensaje}
+            td #{cantNotify.fecha}
+
+  script(src='../../../javascripts/app.js')
+  script(src='../../../javascripts/buttons.js')
+  script(src='../../../javascripts/sorttable.js')

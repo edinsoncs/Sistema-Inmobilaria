@@ -32,7 +32,7 @@ router.get('/', function(req, res, next) {
     });
 
     //Looking in  propiedades
-    var date = new Date();
+    /*var date = new Date();
     var dia = date.getDate();
 
     user.findOne({ '_id': req.user._id }, function(err, doc) {
@@ -101,7 +101,7 @@ router.get('/', function(req, res, next) {
         var go = text.replace('-', ',');
         var goReplace = go.replace('-', ',');
         return goReplace
-    }
+    }*/
 
 
 
@@ -232,6 +232,69 @@ router.get('/propiedades/show/:id', function(req, res, next) {
 
 
 });
+
+router.get('/propiedades/notify/:id', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+
+
+    user.findOne({ _id: req.user._id }, function(err, resultado) {
+        var prop = resultado.propiedades;
+        for (var i = 0; i < prop.length; i++) {
+            if (prop[i].id == req.params.id) {
+
+                if (prop[i].notificaciones) {
+                    var notificacionesReverse = prop[i].notificaciones;
+                    var reverseNotify = notificacionesReverse.reverse();
+                }
+
+                res.render('notify', {
+                    title: prop[i].nombrePropiedad,
+                    nombre: req.user.nombre,
+                    empresa: req.user.empresa,
+                    propiedad: prop[i],
+                    notify: reverseNotify
+                });
+            }
+        }
+    });
+
+
+});
+
+router.get('/propiedades/pagos/:id', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+
+
+    user.findOne({ _id: req.user._id }, function(err, resultado) {
+        var prop = resultado.propiedades;
+        for (var i = 0; i < prop.length; i++) {
+            if (prop[i].id == req.params.id) {
+
+                if (prop[i].pagos) {
+                    var pagosReverse = prop[i].pagos;
+                    var pagosShow = pagosReverse.reverse();
+                }
+
+                res.render('pagos', {
+                    title: prop[i].nombrePropiedad,
+                    nombre: req.user.nombre,
+                    empresa: req.user.empresa,
+                    propiedad: prop[i],
+                    isPagos: pagosShow,
+                });
+            }
+        }
+    });
+
+
+});
+
 
 
 

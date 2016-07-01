@@ -1,0 +1,25 @@
+.uCursor {
+	cursor: pointer;
+}
+.dataMensaje {
+	width: 250px;
+	background-color: black;
+	height: auto;
+	position: absolute;
+	border-radius: 5px;
+	padding: 0.5em;
+	display: none;
+	span {
+		color: white;
+	}
+	.dataMensaje--Close {
+		position: absolute;
+		right: 0;
+		margin-right: 0.3em;
+		cursor: pointer;
+		background-color: white;
+		padding: 0.2em 0.5em;
+		border-radius: 50%;
+		span {color: black;font-size:0.8em;}
+	}
+}
