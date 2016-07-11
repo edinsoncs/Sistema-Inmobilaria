@@ -175,5 +175,30 @@ $(document).ready(function(){
 	}
 	showComments();
 
+	function calendarEvent(){
+
+		var elements = $(".calendarioEventos div");
+	
+		for(var i = 0; i < elements.length; i++) {
+			var month = $(elements[i]).attr('data-month');
+			var dia = $(elements[i]).attr('data-dia');
+			var year = $(elements[i]).attr('data-year');
+
+			var thisTitle = $(elements[i]).attr('data-title');
+			var thisDescription = $(elements[i]).attr('data-description');
+
+			console.log(month);
+
+			$('#calendario').eCalendar({
+		          events: [
+		              {title: thisTitle, description: thisDescription, datetime: new Date(year, month, dia, 16)}
+		          ]
+		     });
+		}
+
+		
+
+	}
+	calendarEvent();
 
 });

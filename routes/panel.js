@@ -238,8 +238,6 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
     var db = req.db;
     var user = db.get('usuarios');
 
-
-
     user.findOne({ _id: req.user._id }, function(err, resultado) {
         var prop = resultado.propiedades;
         for (var i = 0; i < prop.length; i++) {
@@ -260,7 +258,6 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
             }
         }
     });
-
 
 });
 
@@ -292,6 +289,34 @@ router.get('/propiedades/pagos/:id', function(req, res, next) {
         }
     });
 
+
+});
+
+router.get('/propiedades/calendario/:id', function(req, res, next) {
+
+	var db = req.db;
+	var user = db.get('usuarios');
+
+	user.findOne({_id: req.user._id}, function(err, resultado) {
+		if(err) {
+			return err;
+		}
+		else {
+			var prop = resultado.propiedades;
+			for(var i = 0; i < prop.length; i++) {
+
+
+				res.render('calendario', {
+					title: prop[i].nombrePropiedad,
+                    nombre: req.user.nombre,
+                    empresa: req.user.empresa,
+                    propiedad: prop[i],
+                    ca: prop[i].calendarioNotify
+				});
+
+			}
+		}
+	});
 
 });
 
@@ -488,8 +513,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'pagos': Array,
                     'estadoPago': false,
                     'pagosTotal': Array,
-                    'cuentaCorriente': req.body.precioMensual
-
+                    'cuentaCorriente': req.body.precioMensual,
+                    'calendarioNotify': Array
 
                 }
             }
@@ -627,6 +652,11 @@ router.post('/notificaciones', function(req, res, next) {
     });
 
     function activeSendNotify() {
+    	var d = new Date();
+    	var dia = d.getDate();
+    	var month = d.getMonth();
+    	var year = d.getFullYear();
+
         usuarios.findAndModify({
             query: {
                 '_id': req.user._id,
@@ -649,6 +679,29 @@ router.post('/notificaciones', function(req, res, next) {
             new: true
         }).success(function(fn) {
             res.redirect('propiedades/show/' + idPropiedad);
+        });
+
+        usuarios.findAndModify({
+            query: {
+                '_id': req.user._id,
+                propiedades: {
+                    $elemMatch: {
+                        'id': idPropiedad
+                    }
+                }
+            },
+            update: {
+                $push: {
+                    'propiedades.$.calendarioNotify': {
+                        'dia': dia,
+                        'month': month,
+                        'year': year,
+                        'title': asunt,
+                        'description': message
+                    }
+                }
+            },
+            new: true
         });
     }
 

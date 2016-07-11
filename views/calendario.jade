@@ -16,16 +16,20 @@ head
 
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
 
+  //Calendar
+  link(rel="stylesheet", href="../../../stylesheets/jquery.e-calendar.css")
+
   script(src="../../../javascripts/jquery-1.11.2.min.js")
   script(src="../../../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
+  //Calendary
+  script(src="../../../javascripts/jquery.e-calendar.js")
+
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
 
-
   //functions create edinsoncs
-
   script(src="../../../javascripts/dcalendar.picker.js")
 
 body
@@ -186,36 +190,12 @@ body
           a.link(href="", class="link")
             | 
           
-    section.view--NotifyContainer
+    div.calendarioEventos
+      each event in ca
+       div(id="events", data-month="#{event.month}", data-dia="#{event.dia}", data-year="#{event.year}", data-title="#{event.title}", data-decription="#{event.description}")
+    div(id="calendario")
 
-      table(width="1220px", align="center")
-        thead
-          tr
-            th Inquilino
-            th Tipo de pago
-            th Mes saldado
-            th Importe
-            th Fecha
-            th Comentarios
-        tbody(align="center")
-         each p in isPagos
-          tr
-            td #{p.inquilino}
-            td #{p.tipoDePago}
-            td #{p.mesSaldado}
-            td #{p.importe}
-            - var data = p.fecha
-            td #{data.getDate()} - #{Number(data.getMonth()) + 1} - #{data.getFullYear()}
-            td
-              span.uCursor.jsShowComments ver
-              div.dataMensaje
-               div.dataMensaje--Close.jsCloseComments
-                span &#10006;
-               span #{p.comentarios}
-
-
-  script(src='../../../javascripts/app.js')
   script(src='../../../javascripts/buttons.js')
   script(src='../../../javascripts/sorttable.js')
-  
-
+  script(src='../../../javascripts/app.js')
+    
