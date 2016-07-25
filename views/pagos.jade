@@ -187,7 +187,7 @@ body
             | 
           
     section.view--NotifyContainer
-
+     if (isPagos)
       table(width="1220px", align="center")
         thead
           tr
@@ -212,6 +212,13 @@ body
                div.dataMensaje--Close.jsCloseComments
                 span &#10006;
                span #{p.comentarios}
+     else
+      table(width="1220px", align="center")
+        tbody(align="center")
+          tr
+            td Esta propiedad 
+             strong #{propiedad.nombrePropiedad} 
+             | no tiene pagos
 
 
   script(src='../../../javascripts/app.js')

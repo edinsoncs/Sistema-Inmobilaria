@@ -79,7 +79,9 @@
                 $.ajax({url: settings.url,
                     async: false,
                     success: function (result) {
+                        //console.log(result);
                         settings.events = result;
+                        console.log(settings);
                     }
                 });
             }
@@ -136,6 +138,7 @@
                     }
                     for (var j = 0; j < settings.events.length; j++) {
                         var d = settings.events[j].datetime;
+
                         if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
                             cDay.addClass('c-event').attr('data-event-day', d.getDate());
                             cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);

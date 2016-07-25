@@ -14,10 +14,14 @@ var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 
+var moment = require('moment');
+
+var dateFormat = require('dateformat');
+var now = new Date();
+
+
 
 var bodyParser = require('body-parser');
-
-
 
 
 router.get('/', function(req, res, next) {
@@ -248,16 +252,10 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
                     var reverseNotify = notificacionesReverse.reverse();
                 }
 
-                res.render('notify', {
-                    title: prop[i].nombrePropiedad,
-                    nombre: req.user.nombre,
-                    empresa: req.user.empresa,
-                    propiedad: prop[i],
-                    notify: reverseNotify
-                });
-            }
-        }
-    });
+                res.render('notify', {                     title:
+prop[i].nombrePropiedad,                     nombre: req.user.nombre,
+empresa: req.user.empresa,                     propiedad: prop[i],
+notify: reverseNotify                 });             }         }     });
 
 });
 
@@ -317,6 +315,25 @@ router.get('/propiedades/calendario/:id', function(req, res, next) {
 			}
 		}
 	});
+
+});
+
+router.get('/propiedades/calendariojson/:id', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    user.findOne({_id: req.user._id}, function(err, resultado) {
+        if(err) {
+            return err;
+        }
+        else {
+            var prop = resultado.propiedades;
+            for(var i = 0; i < prop.length; i++) {
+                res.json(prop[i].calendarioNotify);
+            }
+        }
+    });
 
 });
 
@@ -657,6 +674,8 @@ router.post('/notificaciones', function(req, res, next) {
     	var month = d.getMonth();
     	var year = d.getFullYear();
 
+        var date = 1290297600000;
+
         usuarios.findAndModify({
             query: {
                 '_id': req.user._id,
@@ -693,11 +712,9 @@ router.post('/notificaciones', function(req, res, next) {
             update: {
                 $push: {
                     'propiedades.$.calendarioNotify': {
-                        'dia': dia,
-                        'month': month,
-                        'year': year,
                         'title': asunt,
-                        'description': message
+                        'description': message,
+                        'datetime':  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT")
                     }
                 }
             },

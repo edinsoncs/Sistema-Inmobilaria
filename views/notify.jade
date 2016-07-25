@@ -187,6 +187,7 @@ body
             | 
           
     section.view--NotifyContainer
+     if (notify)
       table(width="1220px", align="center")
         thead
           tr
@@ -201,6 +202,13 @@ body
             td #{cantNotify.asunto}
             td #{cantNotify.mensaje}
             td #{cantNotify.fecha}
+     else
+      table(width="1220px", align="center")
+        tbody(align="center")
+          tr
+            td Esta propiedad 
+             strong #{propiedad.nombrePropiedad} 
+             | no tiene notificaciones
 
   script(src='../../../javascripts/app.js')
   script(src='../../../javascripts/buttons.js')
