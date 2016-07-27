@@ -181,7 +181,7 @@ body
           a(class="link", href="../notify/#{propiedad.id}")
            | Notificaciones
         li.list
-          a.link(href="", class="link")
+          a.link(href="../pagos/#{propiedad.id}", class="link")
             | Pagos
         li.list
           a.link(href="", class="link")
@@ -191,8 +191,11 @@ body
             | 
           
     div.calendarioEventos
-      each event in ca
-       div(id="events", data-month="#{event.month}", data-dia="#{event.dia}", data-year="#{event.year}", data-title="#{event.title}", data-decription="#{event.description}")
+      if ca
+        each event in ca
+         div(id="events", data-month="#{event.month}", data-dia="#{event.dia}", data-year="#{event.year}", data-title="#{event.title}", data-decription="#{event.description}", data-hora="#{event.hora}", data-minute="#{event.minutes}")
+      else
+
     div(id="calendario")
 
   script(src='../../../javascripts/buttons.js')

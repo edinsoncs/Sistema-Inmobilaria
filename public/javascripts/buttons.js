@@ -12,7 +12,7 @@ $(document).ready(function(){
 	});
 
 
-	$("table").addSortWidget();
+	//$("table").addSortWidget();
 
 
 });

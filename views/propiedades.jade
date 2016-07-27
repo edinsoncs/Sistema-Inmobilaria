@@ -16,13 +16,19 @@ head
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
   
 
-  script(src="../../javascripts/jquery-1.11.2.min.js")
-  script(src="../javascripts/app-dev1.js")
+  script(src="../../../javascripts/jquery-1.11.2.min.js")
+  script(src="../../../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
-  script(src="../../javascripts/dcalendar.picker.js")
+
+  //Calendary
+  script(src="../../../javascripts/jquery.e-calendar.js")
+
+  //functions create edinsoncs
+
+  script(src="../../../javascripts/dcalendar.picker.js")
 
 body
   header.header__Site
@@ -101,7 +107,7 @@ body
          i(class="fa fa-eye" aria-hidden="true")
          |Ver
        div.Actions--Buttons
-        a.linkBtn
+        a.linkBtn(href="propiedades/editpropiedad/#{prop.id}")
          i(class="fa fa-pencil-square", aria-hidden="true")
          | Editar
        div.Actions--Buttons

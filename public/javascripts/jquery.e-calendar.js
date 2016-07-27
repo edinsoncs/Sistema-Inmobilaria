@@ -79,9 +79,7 @@
                 $.ajax({url: settings.url,
                     async: false,
                     success: function (result) {
-                        //console.log(result);
                         settings.events = result;
-                        console.log(settings);
                     }
                 });
             }
@@ -138,7 +136,6 @@
                     }
                     for (var j = 0; j < settings.events.length; j++) {
                         var d = settings.events[j].datetime;
-
                         if (d.getDate() == day && d.getMonth() == dMonth && d.getFullYear() == dYear) {
                             cDay.addClass('c-event').attr('data-event-day', d.getDate());
                             cDay.on('mouseover', mouseOverEvent).on('mouseleave', mouseLeaveEvent);
@@ -181,10 +178,10 @@
 
     // plugin defaults
     $.fn.eCalendar.defaults = {
-        weekDays: ['Dom', 'Lun', 'Mar', 'Mie', 'Juev', 'Vier', 'Sab'],
-        months: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+        weekDays: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        months: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
         textArrows: {previous: '<', next: '>'},
-        eventTitle: 'Eventos',
+        eventTitle: 'Alertas Enviadas',
         url: '',
         events: [
             {title: 'Evento de Abertura', description: 'Abertura das Olimpíadas Rio 2016', datetime: new Date(2016, new Date().getMonth(), 12, 17)},

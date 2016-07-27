@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  meta(name="description", content="Administracion de inmobiliarias")
+  
+  title #{title}
+  
+  link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../../../stylesheets/icons.css")
+  link(rel="stylesheet", href="../../../stylesheets/app.css")
+  link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+  
+
+  script(src="../../../javascripts/jquery-1.11.2.min.js")
+  script(src="../../../javascripts/app-dev1.js")
+  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+  script(src="../../../javascripts/dcalendar.picker.js")
+
+body
+  header.header__Site
+    .header__Site--Container
+      figure.header__Site--Iz
+        h1.title Zimba
+      nav.header__Site--De
+        ul.ul
+          li.list
+            a.tolink(href="../../../panel")
+              i(class="fa fa-home" aria-hidden="true")
+              | Inicio
+          li.list.selectItem
+            a(href="../../../panel/propiedades", class="tolink")
+              i(class="fa fa-folder-open" aria-hidden="true")
+              | Propiedades
+          li.list
+           a.tolink(href="../../../panel/config") 
+            i(class="fa fa-cog" aria-hidden="true")
+            | Config
+        div.header__User
+          figure.header__UserFigure
+            img(src="../../../images/avatar.jpg", alt="#{nombre}")
+          div.header__ShowData.jsDownShow
+            span
+              | #{nombre}
+            .header__ShowData--SubMenu
+              ul.ul.jsDown.uNoneDisplay
+                li.listSub
+                  a.link(href="panel")
+                    |Panel
+                li.listSub
+                  a.link(href="panel/edit")
+                    |Editar mi perfil
+                li.listSub
+                  a.link(href="#")
+                    | Salir
+  section.header__Welcome.widthBase
+    header.header__Welcome--Iz
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="../propiedades")
+        | Propiedades
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="#")
+        | #{propiedad.nombrePropiedad}
+
+  main.widthBase.add
+    header.newPropiedad--Header
+      h2.title
+        | Editar Propiedad
+    form.newPropiedad--Form(action="../../../panel/addcreate", method="POST", enctype="multipart/form-data")
+      
+      section.fieldset--StepsContainer
+        div.fieldset--Steps
+         header.header--Steps
+          h2.title
+            i.fa.fa-home
+            | Propiedad
+         //fieldset.fieldset--Form.uNoneDisplay
+           input(type="file", required, name="img", id="thisUploadImage")
+         fieldset.fieldset--Form
+           input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad", value="#{propiedad.nombrePropiedad}")
+         fieldset.fieldset--Form
+          input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad", value="#{propiedad.desPropiedad}")
+         fieldset.fieldset--Form
+            select(name="barriopropiedad")
+               if (propiedad.barrio === 'Abasto')
+                option(value="Abasto")
+                    | Abasto
+               else
+                option(value="Abasto")
+                  | Abasto
+
+               if (propiedad.barrio === 'Agronomia')
+                option(value="Agronomia", selected)
+                  | Agronomia
+               else
+                option(value="Agronomia")
+                  | Agronomia
+
+               if (propiedad.barrio === 'Almagro')
+                option(value="Almagro", selected)
+                  | Almagro
+               else
+                option(value="Almagro")
+                  | Almagro
+
+               if (propiedad.barrio === 'Balvanera') 
+                option(value="Balvanera", selected)
+                  | Balvanera
+               else
+                option(value="Balvanera")
+                  | Balvanera
+                
+               if (propiedad.barrio === 'Barracas')
+                option(value="Barracas", selected)
+                  | Barracas
+               else
+                option(value="Barracas")
+                  | Barracas
+
+               if (propiedad.barrio === 'BarrioNorte')
+                option(value="BarrioNorte", selected)
+                  | BarrioNorte
+               else
+                option(value="BarrioNorte")
+                  | BarrioNorte
+              
+               if (propiedad.barrio === 'Belgrano') 
+                option(value="Belgrano", selected)
+                  | Belgrano
+               else
+                option(value="Belgrano")
+                  | Belgrano
+               
+               if (propiedad.barrio === 'Boedo')
+                option(value="Boedo", selected)
+                  | Boedo
+               else
+                option(value="Boedo")
+                  | Boedo
+               if (propiedad.barrio === 'Caballito')
+                option(value="Caballito", selected)
+                  | Caballito
+               else
+                option(value="Caballito")
+                  | Caballito
+
+               if (propiedad.barrio === 'Chacarita')
+                option(value="Chacarita", selected)
+                  | Chacarita
+               else
+                option(value="Chacarita")
+                  | Chacarita
+               
+               if (propiedad.barrio === 'Coghlan')
+                option(value="Coghlan", selected)
+                  | Coghlan
+               else
+                option(value="Coghlan")
+                  | Coghlan
+
+               if (propiedad.barrio === 'Colegiales')
+                option(value="Colegiales", selected)
+                  | Colegiales
+               else
+                option(value="Colegiales")
+                  | Colegiales
+
+               if (propiedad.barrio === 'Congreso') 
+                option(value="Congreso", selected)
+                  | Congreso
+               else
+                option(value="Congreso")
+                  | Congreso
+
+               if (propiedad.barrio === 'Constitucion')
+                option(value="Constitucion", selected)
+                  | Constitucion
+               else
+                option(value="Constitucion")
+                  | Constitucion
+
+               if (propiedad.barrio === 'Flores')
+                option(value="Flores", selected)
+                  | Flores
+               else
+                option(value="Flores")
+                  | Flores
+
+               if (propiedad.barrio === 'Floresta')
+                option(value="Floresta", selected)
+                  | Floresta
+               else
+                option(value="Floresta")
+                  | Floresta
+
+               if (propiedad.barrio === 'La Boca')
+                option(value="La Boca", selected)
+                  | La Boca
+               else
+                option(value="La Boca")
+                  | La Boca
+
+               if (propiedad.barrio === 'Liniers')
+                option(value="Liniers", selected)
+                  | Liniers
+               else
+                option(value="Liniers")
+                  | Liniers
+                    
+               if (propiedad.barrio === 'Mataderos')             
+                option(value="Mataderos", selected)
+                  | Mataderos
+               else
+                option(value="Mataderos")
+                  | Mataderos
+
+               if (propiedad.barrio === 'Micro Centro')
+                option(value="Micro Centro", selected)
+                  | Micro Centro
+               else
+                option(value="Micro Centro")
+                  | Micro Centro
+
+               if (propiedad.barrio === 'Monserrat')
+                option(value="Monserrat", selected)
+                  | Monserrat
+               else
+                option(value="Monserrat")
+                  | Monserrat
+
+               if (propiedad.barrio === 'Monte Castro')
+                option(value="Monte Castro", selected)
+                  | Monte Castro
+               else
+                option(value="Monte Castro")
+                  | Monte Castro
+
+               if (propiedad.barrio === 'Nueva Pompeya')
+                option(value="Nueva Pompeya", selected)
+                  | Nueva Pompeya
+               else
+                option(value="Nueva Pompeya")
+                  | Nueva Pompeya
+
+               if (propiedad.barrio === 'Nuñez')
+                option(value="Nuñez", selected)
+                  | Nuñez
+               else
+                option(value="Nuñez")
+                  | Nuñez
+
+               if (propiedad.barrio === 'Palermo')
+                option(value="Palermo", selected)
+                  | Palermo
+               else
+                option(value="Palermo")
+                  | Palermo
+
+               if (propiedad.barrio === 'Palermo Viejo')
+                option(value="Palermo Viejo", selected)
+                  | Palermo Viejo
+               else
+                option(value="Palermo Viejo")
+                  | Palermo Viejo
+
+               if (propiedad.barrio === 'Parque Avellaneda')
+                option(value="Parque Avellaneda", selected)
+                  | Parque Avellaneda
+               else 
+                option(value="Parque Avellaneda")
+                  | Parque Avellaneda
+
+               if (propiedad.barrio === 'Parque Centenario')
+                option(value="Parque Centenario", selected)
+                  | Parque Centenario
+               else
+                option(value="Parque Centenario")
+                  | Parque Centenario
+
+               if (propiedad.barrio === 'Parque Chacabuco')
+                option(value="Parque Chacabuco", selected)
+                  | Parque Chacabuco
+               else
+                option(value="Parque Chacabuco")
+                  | Parque Chacabuco
+
+               if (propiedad.barrio === 'Parque Chas')
+                option(value="Parque Chas", selected)
+                  | Parque Chas
+               else
+                option(value="Parque Chas")
+                 | Parque Chas
+
+               if (propiedad.barrio === 'Parque Patricios')
+                option(value="Parque Patricios", selected)
+                  | Parque Patricios
+               else
+                option(value="Parque Patricios")
+                  | Parque Patricios
+
+               if (propiedad.barrio === 'Paternal')
+                option(value="Paternal", selected)
+                  | Paternal
+               else
+                option(value="Paternal")
+                  | Paternal
+
+               if (propiedad.barrio === 'Puerto Madero')
+                option(value="Puerto Madero", selected)
+                  | Puerto Madero
+               else
+                option(value="Puerto Madero")
+                  | Puerto Madero
+
+               if (propiedad.barrio === 'Recoleta')
+                option(value="Recoleta", selected)
+                  | Recoleta
+               else
+                option(value="Recoleta")
+                  | Recoleta 
+
+               if (propiedad.barrio === 'Retiro')
+                option(value="Retiro", selected)
+                  | Retiro
+               else
+                option(value="Retiro")
+                  | Retiro
+
+               if (propiedad.barrio === 'Saavedra')
+                option(value="Saavedra", selected)
+                  | Saavedra
+               else
+                option(value="Saavedra")
+                  | Saavedra
+
+               if (propiedad.barrio === 'San Cristobal')
+                option(value="San Cristobal", selected)
+                  | San Cristobal
+               else
+                option(value="San Cristobal")
+                  | San Cristobal
+
+               if (propiedad.barrio === 'San Nicolas')
+                option(value="San Nicolas", selected)
+                  | San Nicolas
+               else
+                option(value="San Nicolas")
+                  | San Nicolas
+
+               if (propiedad.barrio === 'San Telmo')
+                option(value="San Telmo", selected)
+                  | San Telmo
+               else
+                option(value="San Telmo")
+                  | San Telmo
+
+               if (propiedad.barrio === 'Velez Sarsfield')
+                option(value="Velez Sarsfield", selected)
+                  | Velez Sarsfield
+               else
+                option(value="Velez Sarsfield")
+                  | Velez Sarsfield
+
+               if (propiedad.barrio === 'Versalles')
+                option(value="Versalles", selected)
+                  | Versalles
+               else
+                option(value="Versalles")
+                  | Versalles
+
+               if (propiedad.barrio === 'Villa Crespo')
+                option(value="Villa Crespo", selected)
+                  | Villa Crespo
+               else
+                option(value="Villa Crespo")
+                  | Villa Crespo
+
+               if (propiedad.barrio === 'Villa del Parque')
+                option(value="Villa del Parque", selected)
+                  | Villa del Parque
+               else
+                option(value="Villa del Parque")
+                  | Villa del Parque
+
+               if (propiedad.barrio === 'Villa Devoto')
+                option(value="Villa Devoto", selected)
+                  | Villa Devoto
+               else
+                option(value="Villa Devoto")
+                  | Villa Devoto
+
+               if (propiedad.barrio === 'Villa General Mitre')
+                option(value="Villa General Mitre", selected)
+                  | Villa General Mitre
+               else
+                option(value="Villa General Mitre")
+                  | Villa General Mitre
+  
+               if (propiedad.barrio === 'Villa Lugano')
+                option(value="Villa Lugano", selected)
+                  | Villa Lugano
+               else
+                option(value="Villa Lugano")
+                  | Villa Lugano
+
+               if (propiedad.barrio === 'Villa Luro')
+                option(value="Villa Luro", selected)
+                  | Villa Luro
+               else
+                option(value="Villa Luro")
+                  | Villa Luro
+
+               if (propiedad.barrio === 'Villa Ortuzar')
+                option(value="Villa Ortuzar", selected)
+                  | Villa Ortuzar
+               else
+                option(value="Villa Ortuzar")
+                  | Villa Ortuzar
+
+               if (propiedad.barrio === 'Villa Pueyrredon')
+                option(value="Villa Pueyrredon", selected)
+                  | Villa Pueyrredon
+               else
+                option(value="Villa Pueyrredon")
+                  | Villa Pueyrredon
+
+               if (propiedad.barrio === 'Villa Real')
+                option(value="Villa Real", selected)
+                  | Villa Real
+               else
+                option(value="Villa Real")
+                  | Villa Real
+
+               if (propiedad.barrio === 'Villa Santa Rita')
+                option(value="Villa Santa Rita", selected)
+                  | Villa Santa Rita
+               else
+                option(value="Villa Santa Rita")
+                  | Villa Santa Rita
+
+               if (propiedad.barrio === 'Villa Soldati')
+                option(value="Villa Soldati", selected)
+                  | Villa Soldati
+               else
+                option(value="Villa Soldati")
+                  | Villa Soldati
+
+               if (propiedad.barrio === 'Villa Urquiza')
+                option(value="Villa Urquiza", selected)
+                  | Villa Urquiza
+               else
+                option(value="Villa Urquiza")
+                  | Villa Urquiza
+        div.fieldset--Steps
+          header.header--Steps
+            h2.title
+              i.fa.fa-user
+              | Inquilino
+          div.form--Container
+           fieldset.fieldset--Form
+             input(type="text", placeholder="Nombre Inquilino", required, name="nameinquilino", value="#{propiedad.nombreInquilino}")
+           fieldset.fieldset--Form
+             input(type="tel", placeholder="Tel Inquilino", required, name="telinquilino", value="#{propiedad.telInquilino}")
+          div.form--Container
+            fieldset.fieldset--Form
+              input(type="number", placeholder="Dni Inquilino", required, name="dniinquilino", value="#{propiedad.dniInquilino}")
+            fieldset.fieldset--Form
+              input(type="email", placeholder="Email Inquilino", required, name="emailinquilino", value="#{propiedad.emailInquilino}")
+
+      section.fieldset--StepsContainer
+        div.fieldset--Steps
+          header.header--Steps
+            h2.title
+              i.fa.fa-male
+              | Garante
+          div.form--Container
+            fieldset.fieldset--Form
+              input(type="text", placeholder="Nombre Garante", name="garanteNombre", value="#{propiedad.garanteNombre}")
+            fieldset.fieldset--Form
+              input(type="tel", placeholder="Tel Garante", name="garanteTel", value="#{propiedad.garanteTel}")
+          div.form--Container
+            fieldset.fieldset--Form
+              input(type="text", placeholder="Dni Garante", name="garanteDni", value="#{propiedad.garanteDni}")
+            fieldset.fieldset--Form
+              input(type="text", placeholder="Email Garante", name="garanteEmail", value="#{propiedad.garanteEmail}")
+          fieldset.fieldset--Form
+            input(type="text", name="garanteDomicilio", placeholder="Domicilio Garante", value="#{propiedad.garanteDomicilio}")
+          fieldset.fieldset--Form
+            input(type="file", name="garanteFile")
+        div.fieldset--Steps
+          header.header--Steps
+            h2.title
+              i.fa.fa-briefcase
+              | Propietario
+          div.form--Container
+            fieldset.fieldset--Form
+              input(type="text", placeholder="Nombre Propietario", name="propietarioNombre", value="#{propiedad.propietarioNombre}")
+            fieldset.fieldset--Form
+              input(type="tel", placeholder="Tel Propietario", name="propietarioTel", value="#{propiedad.propietarioTel}")
+          div.form--Container
+            fieldset.fieldset--Form
+              input(type="text", placeholder="Dni Propietario", name="propietarioDni", value="#{propiedad.propietarioDni}")
+            fieldset.fieldset--Form
+              input(type="text", placeholder="Email Propietario", name="propitarioEmail", value="#{propiedad.propietarioEmail}")
+          fieldset.fieldset--Form
+            input(type="text", name="propietarioDomicilio", placeholder="Domicilio Propietario", value="#{propiedad.propietarioDomicilio}")
+        
+      div.fieldset--Steps
+        header.header--Steps
+          h2.title
+            i.fa.fa-book
+            | Contrato
+        div.form--Container
+          fieldset.fieldset--Form.tree
+            input(type="text", placeholder="Contrato Inicia", name="contratoInicio", value="#{propiedad.contratoInicia}")
+          fieldset.fieldset--Form.tree
+            input(type="text", placeholder="Contrato Finalizado", name="contratoFin", value="#{propiedad.contratoFinaliza}")
+          fieldset.fieldset--Form.tree
+            input(type="text", placeholder="Precio Mensual", name="precioMensual", value="#{propiedad.precioMensual}")
+        fieldset.fieldset--Form
+          input(type="file", name="contrato")
+      fieldset.fieldset--Form
+        input(type="submit", class="submit", value="Crear Propiedad")  
+    
+      
+
+  script(src='../../../javascripts/buttons.js')
+  script(src='../../../javascripts/app.js')

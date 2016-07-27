@@ -61,38 +61,38 @@ router.get('/', function(req, res, next) {
 
                 if(propiedadFechaInicia > 7) { //Correcto la propiedad es mayo
 
-                	if(menosDias == dia) { // 23 == 23
+                    if(menosDias == dia) { // 23 == 23
 
-	                	//Aqui te quedastes
-	                	var idProperty = propiedadesCant[i].id;
+                        //Aqui te quedastes
+                        var idProperty = propiedadesCant[i].id;
 
-	               		user.findAndModify({
-	               			query: {
-	               				'_id': req.user._id,
-	               				propiedades: {
-	               					$elemMatch: {
-	               						'id': idProperty
-	               					}
-	               				}
-	               			},																										
-	               			update: {
-	               				$set: {
-	               					'propiedades.$.estadoPago': false
-	               				}
-	               			},
-	               			new: true
-	               		}).success(function(data){
-	               			console.log('propiedad falta pagar');
-	               		});
-	                	
-	                } else {
-	                	//console.log('no hay ningun dia que coincida');
-	                }
+                        user.findAndModify({
+                            query: {
+                                '_id': req.user._id,
+                                propiedades: {
+                                    $elemMatch: {
+                                        'id': idProperty
+                                    }
+                                }
+                            },                                                                                                      
+                            update: {
+                                $set: {
+                                    'propiedades.$.estadoPago': false
+                                }
+                            },
+                            new: true
+                        }).success(function(data){
+                            console.log('propiedad falta pagar');
+                        });
+                        
+                    } else {
+                        //console.log('no hay ningun dia que coincida');
+                    }
                 } else {
-                	//console.log(propiedadFechaInicia);
+                    //console.log(propiedadFechaInicia);
                 }
 
-	                
+                    
 
                 //console.log('Propiedad ID: ' + propiedadID);
                 //console.log('Vence cada ' + propiedadFechaInicia);
@@ -252,10 +252,16 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
                     var reverseNotify = notificacionesReverse.reverse();
                 }
 
-                res.render('notify', {                     title:
-prop[i].nombrePropiedad,                     nombre: req.user.nombre,
-empresa: req.user.empresa,                     propiedad: prop[i],
-notify: reverseNotify                 });             }         }     });
+                res.render('notify', {
+                    title: prop[i].nombrePropiedad,
+                    nombre: req.user.nombre,
+                    empresa: req.user.empresa,
+                    propiedad: prop[i],
+                    notify: reverseNotify
+                });
+            }
+        }
+    });
 
 });
 
@@ -292,29 +298,28 @@ router.get('/propiedades/pagos/:id', function(req, res, next) {
 
 router.get('/propiedades/calendario/:id', function(req, res, next) {
 
-	var db = req.db;
-	var user = db.get('usuarios');
+    var db = req.db;
+    var user = db.get('usuarios');
 
-	user.findOne({_id: req.user._id}, function(err, resultado) {
-		if(err) {
-			return err;
-		}
-		else {
-			var prop = resultado.propiedades;
-			for(var i = 0; i < prop.length; i++) {
+    user.findOne({ _id: req.user._id }, function(err, resultado) {
+        if (err) {
+            return err;
+        } else {
+            var prop = resultado.propiedades;
+            for (var i = 0; i < prop.length; i++) {
 
 
-				res.render('calendario', {
-					title: prop[i].nombrePropiedad,
+                res.render('calendario', {
+                    title: prop[i].nombrePropiedad,
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
                     ca: prop[i].calendarioNotify
-				});
+                });
 
-			}
-		}
-	});
+            }
+        }
+    });
 
 });
 
@@ -323,13 +328,12 @@ router.get('/propiedades/calendariojson/:id', function(req, res, next) {
     var db = req.db;
     var user = db.get('usuarios');
 
-    user.findOne({_id: req.user._id}, function(err, resultado) {
-        if(err) {
+    user.findOne({ _id: req.user._id }, function(err, resultado) {
+        if (err) {
             return err;
-        }
-        else {
+        } else {
             var prop = resultado.propiedades;
-            for(var i = 0; i < prop.length; i++) {
+            for (var i = 0; i < prop.length; i++) {
                 res.json(prop[i].calendarioNotify);
             }
         }
@@ -669,10 +673,14 @@ router.post('/notificaciones', function(req, res, next) {
     });
 
     function activeSendNotify() {
-    	var d = new Date();
-    	var dia = d.getDate();
-    	var month = d.getMonth();
-    	var year = d.getFullYear();
+        var d = new Date();
+        var dia = d.getDate();
+        var month = d.getMonth();
+        var year = d.getFullYear();
+        var hora = d.getHours();
+        var minutes = d.getMinutes();
+
+        var getHOUR = hora + ":" + minutes;
 
         var date = 1290297600000;
 
@@ -712,9 +720,14 @@ router.post('/notificaciones', function(req, res, next) {
             update: {
                 $push: {
                     'propiedades.$.calendarioNotify': {
+                        'month': month,
+                        'dia': dia,
+                        'year': year,
                         'title': asunt,
+                        'hora': hora,
+                        'minutes': minutes,
                         'description': message,
-                        'datetime':  dateFormat(now, "dddd, mmmm dS, yyyy, h:MM:ss TT")
+                        'datetime': dateFormat(now, "isoDateTime")
                     }
                 }
             },
@@ -748,6 +761,13 @@ router.post('/pagos', function(req, res, next) {
     var user = db.get('usuarios');
 
     var idPropiedad = req.body.isID;
+
+    var d = new Date();
+    var dia = d.getDate();
+    var month = d.getMonth();
+    var year = d.getFullYear();
+    var hora = d.getHours();
+    var minutes = d.getMinutes();
 
     user.findAndModify({
         query: {
@@ -791,6 +811,35 @@ router.post('/pagos', function(req, res, next) {
         }
     });
 
+    //Notify Payments
+
+    user.findAndModify({
+        query: {
+            '_id': req.user._id,
+            propiedades: {
+                $elemMatch: {
+                    'id': idPropiedad
+                }
+            }
+        },
+        update: {
+            $push: {
+                'propiedades.$.calendarioNotify': {
+                    'month': month,
+                    'dia': dia,
+                    'year': year,
+                    'title': 'Pago: ' + req.body.typePayment,
+                    'hora': hora,
+                    'minutes': minutes,
+                    'description': 'la propiedad de: ' + req.body.isNameInquilino,
+                    'datetime': dateFormat(now, "isoDateTime")
+                }
+            }
+        }
+    });
+
+
+
     user.findAndModify({
         query: {
             '_id': req.user._id,
@@ -820,6 +869,40 @@ router.post('/pagos', function(req, res, next) {
 
 });
 
+
+
+router.get('/propiedades/editpropiedad/:id', function(req, res, next){
+
+        var db = req.db;
+        var user = db.get('usuarios');
+
+        var idPropiedad = req.params.id;
+
+        user.findOne({'_id': req.user._id}, function(err, doc){
+            if(err){
+                return err;
+            }
+            else {
+                console.log(doc)
+                
+                for(var i = 0 ; i < doc.propiedades.length; i++) {
+                    
+                    if(doc.propiedades[i].id == idPropiedad) {
+
+                        res.render('editpropiedad', {
+                            title: doc.propiedades[i].nombrePropiedad,
+                            nombre: req.user.nombre,
+                            empresa: req.user.empresa,
+                            propiedad: doc.propiedades[i]
+                        });
+                    
+                    }                    
+                }
+            }
+        });
+
+
+});
 
 router.post('/deletepropiedad', function(req, res, next) {
     var db = req.db;
