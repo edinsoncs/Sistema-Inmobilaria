@@ -8,6 +8,8 @@ var path = require('path');
 var url = require('url');
 var async = require('async');
 
+var flash = require('connect-flash');
+
 var esid = require('randomid');
 
 var nodemailer = require('nodemailer');
@@ -871,36 +873,203 @@ router.post('/pagos', function(req, res, next) {
 
 
 
-router.get('/propiedades/editpropiedad/:id', function(req, res, next){
+router.get('/propiedades/editpropiedad/:id', function(req, res, next) {
 
-        var db = req.db;
-        var user = db.get('usuarios');
+    var db = req.db;
+    var user = db.get('usuarios');
 
-        var idPropiedad = req.params.id;
+    var idPropiedad = req.params.id;
 
-        user.findOne({'_id': req.user._id}, function(err, doc){
-            if(err){
-                return err;
-            }
-            else {
-                console.log(doc)
-                
-                for(var i = 0 ; i < doc.propiedades.length; i++) {
-                    
-                    if(doc.propiedades[i].id == idPropiedad) {
+    user.findOne({ '_id': req.user._id }, function(err, doc) {
+        if (err) {
+            return err;
+        } else {
+            console.log(doc)
 
-                        res.render('editpropiedad', {
-                            title: doc.propiedades[i].nombrePropiedad,
-                            nombre: req.user.nombre,
-                            empresa: req.user.empresa,
-                            propiedad: doc.propiedades[i]
-                        });
-                    
-                    }                    
+            for (var i = 0; i < doc.propiedades.length; i++) {
+
+                if (doc.propiedades[i].id == idPropiedad) {
+
+                    res.render('editpropiedad', {
+                        title: doc.propiedades[i].nombrePropiedad,
+                        nombre: req.user.nombre,
+                        empresa: req.user.empresa,
+                        propiedad: doc.propiedades[i]
+
+                    });
+
                 }
             }
-        });
+        }
+    });
 
+
+});
+
+router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    var validation = req.files.garanteFile.name;
+    var validationTwo = req.files.contrato.name
+
+    if(validation.length > 1) {
+        
+        var newName =  esid(6) + validation;
+        var newNameOther = esid(6) + validationTwo;
+
+        fs.readFile(req.files.garanteFile.path, function(err, data){
+            try {
+
+                var directorio = path.join(__dirname, '..', 'public', 'files/' + newName);
+
+                fs.writeFile(directorio, data, function(err){
+                    try {
+
+                        user.findAndModify({
+                            query: {
+                                '_id': req.user._id,
+                                propiedades: {
+                                    $elemMatch: {
+                                        'id': req.body.idpropiedad
+                                    }
+                                }
+                            },
+                            update: {
+                                $set: {
+                                    'propiedades.$.garanteFile': newName
+                                }
+                            },
+                            new: false,
+                            upsert: false
+                        }).success(function(){
+                            
+                            if(validation.length > 1 && validationTwo.length > 1) {
+                                res.redirect('./propiedades/show/'+req.body.idpropiedad);
+                            } else {
+                                res.redirect('./propiedades/show/'+req.body.idpropiedad);
+                            }
+
+                        });
+
+                    }
+                    catch(err) {
+                        return err;
+                    }
+                })
+
+            }
+            catch(err) {
+                return err;
+            }
+        })
+
+        
+        if(validationTwo.length > 1) {
+
+            setTimeout(function(){
+                fs.readFile(req.files.contrato.path, function(err, data) {
+                    try {
+                        
+                        var directorio = path.join(__dirname, '..', 'public', 'files/' + newNameOther);
+                        
+                        fs.writeFile(directorio, data, function(err){
+                            try {
+                                user.findAndModify({
+                                    query: {
+                                        '_id': req.user._id,
+                                        propiedades: {
+                                            $elemMatch: {
+                                                'id': req.body.idpropiedad
+                                            }
+                                        }
+                                    },
+                                    update: {
+                                        $set: {
+                                            'propiedades.$.contrato': newNameOther
+                                        }
+                                    },
+                                    new: false,
+                                    upsert: false
+                                }).success(function(d) {
+                                    
+                                    res.redirect('./propiedades/show/'+req.body.idpropiedad);
+                                });
+
+                            }
+                            catch(err){
+                                return err;
+                            }
+                        });
+
+                    
+                    }
+                    catch(err) {
+                        return err;
+                    }
+
+                });
+
+            }, 1000);
+            
+        
+        }
+
+
+    }
+    else {
+
+        user.findAndModify({
+            query: {
+                '_id': req.user._id,
+                propiedades: {
+                    $elemMatch: {
+                        'id': req.body.idpropiedad
+                    }
+                }
+            },
+            update: {
+                $set: {
+                    'propiedades.$': {
+                        'id': req.body.idpropiedad,
+                        'nombrePropiedad': req.body.nombrepropiedad,
+                        'desPropiedad': req.body.despropiedad,
+                        'barrio': req.body.barriopropiedad,
+
+
+                        'nombreInquilino': req.body.nameinquilino,
+                        'telInquilino': req.body.telinquilino,
+                        'dniInquilino': req.body.dniinquilino,
+                        'emailInquilino': req.body.emailinquilino,
+
+                        'garanteNombre': req.body.garanteNombre,
+                        'garanteTel': req.body.garanteTel,
+                        'garanteDni': req.body.garanteDni,
+                        'garanteEmail': req.body.garanteEmail,
+                        'garanteFile': req.body.isgarantefile,
+                        'garanteDomicilio': req.body.garanteDomicilio,
+
+                        'propietarioNombre': req.body.propietarioNombre,
+                        'propietarioTel': req.body.propietarioTel,
+                        'propietarioDni': req.body.propietarioDni,
+                        'propietarioEmail': req.body.propitarioEmail,
+                        'propietarioDomicilio': req.body.propietarioDomicilio,
+
+                        'contratoInicia': req.body.contratoInicio,
+                        'contratoFinaliza': req.body.contratoFin,
+                        'precioMensual': req.body.precioMensual,
+                        'contrato': req.body.iscontrato,
+                        'cuentaCorriente': req.body.precioMensual
+                    }
+                }
+            },
+            new: false,
+            upsert: false
+        }).success(function(d) {
+            
+            res.redirect('./propiedades/show/'+req.body.idpropiedad);
+        });
+    }
 
 });
 

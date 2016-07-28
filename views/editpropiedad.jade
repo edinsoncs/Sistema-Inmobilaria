@@ -80,11 +80,16 @@ body
         | #{propiedad.nombrePropiedad}
 
   main.widthBase.add
+    div.alertPropiedad
+     if (local)
+      span.txtPropiedad
+       | #{local.messages}
     header.newPropiedad--Header
       h2.title
         | Editar Propiedad
-    form.newPropiedad--Form(action="../../../panel/addcreate", method="POST", enctype="multipart/form-data")
+    form.newPropiedad--Form(action="../../../panel/editpropiedad", method="post", enctype="multipart/form-data")
       
+
       section.fieldset--StepsContainer
         div.fieldset--Steps
          header.header--Steps
@@ -94,6 +99,7 @@ body
          //fieldset.fieldset--Form.uNoneDisplay
            input(type="file", required, name="img", id="thisUploadImage")
          fieldset.fieldset--Form
+           input(type="hidden", name="idpropiedad", value="#{propiedad.id}")
            input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad", value="#{propiedad.nombrePropiedad}")
          fieldset.fieldset--Form
           input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad", value="#{propiedad.desPropiedad}")
@@ -503,7 +509,8 @@ body
           fieldset.fieldset--Form
             input(type="text", name="garanteDomicilio", placeholder="Domicilio Garante", value="#{propiedad.garanteDomicilio}")
           fieldset.fieldset--Form
-            input(type="file", name="garanteFile")
+            input(type="hidden", name="isgarantefile", value="#{propiedad.garanteFile}")
+            input(type="file", name="garanteFile", value="#{propiedad.garanteFile}")
         div.fieldset--Steps
           header.header--Steps
             h2.title
@@ -535,6 +542,7 @@ body
           fieldset.fieldset--Form.tree
             input(type="text", placeholder="Precio Mensual", name="precioMensual", value="#{propiedad.precioMensual}")
         fieldset.fieldset--Form
+          input(type="hidden", name="iscontrato", value="#{propiedad.contrato}")
           input(type="file", name="contrato")
       fieldset.fieldset--Form
         input(type="submit", class="submit", value="Crear Propiedad")  

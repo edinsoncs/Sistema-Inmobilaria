@@ -7,6 +7,7 @@
   },
   "dependencies": {
     "body-parser": "~1.13.2",
+    "connect-flash": "^0.1.1",
     "connect-mongo": "^1.2.0",
     "connect-mongo-store": "^0.1.8",
     "connect-mongostore": "^0.1.4",

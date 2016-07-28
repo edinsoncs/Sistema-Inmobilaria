@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var flash = require('connect-flash');
+
 var mongodb = require('mongodb');
 var mongoose = require('mongoose');
 var monk = require('monk');
@@ -56,7 +58,7 @@ mongoose.connect('mongodb://localhost:27017/administracion');
 //Solutions fix
 
 app.use(expressSession({
-  store: new MongoStore({ url: 'mongodb://localhost:27017/administracion' }),
+  //store: new MongoStore({ url: 'mongodb://localhost:27017/administracion' }),
   secret: 'edinsoncarranzasaldaña',
   resave: false,
   saveUninitialized: false,
@@ -66,6 +68,8 @@ app.use(expressSession({
 
 }));
 
+
+app.use(flash());
 
 app.use(expressSessionPassportCleanup);
 
