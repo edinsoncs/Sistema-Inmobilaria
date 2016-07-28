@@ -34,7 +34,8 @@ router.get('/', function(req, res, next) {
     res.render('panel', {
         title: 'Panel de administración',
         nombre: req.user.nombre,
-        empresa: req.user.empresa
+        empresa: req.user.empresa,
+        menu: 'Inicio'
     });
 
     //Looking in  propiedades
@@ -180,7 +181,8 @@ router.get('/propiedades', function(req, res, next) {
         title: 'Panel de administración',
         nombre: req.user.nombre,
         empresa: req.user.empresa,
-        propiedades: reverse
+        propiedades: reverse,
+        menu: 'Propiedades'
     });
 });
 
@@ -190,7 +192,8 @@ router.get('/propiedades/add', function(req, res, next) {
     res.render('add', {
         title: 'Nueva propiedad',
         nombre: req.user.nombre,
-        empresa: req.user.empresa
+        empresa: req.user.empresa,
+        menu: 'Propiedades'
     });
 
 });
@@ -230,7 +233,8 @@ router.get('/propiedades/show/:id', function(req, res, next) {
                     propiedad: prop[i],
                     notify: reverseNotify,
                     isPagos: pagosShow,
-                    cuentaC: cuentaShow
+                    cuentaC: cuentaShow,
+                    menu: 'Propiedades'
                 });
             }
         }
@@ -259,7 +263,8 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
-                    notify: reverseNotify
+                    notify: reverseNotify,
+                    menu: 'Propiedades'
                 });
             }
         }
@@ -290,6 +295,7 @@ router.get('/propiedades/pagos/:id', function(req, res, next) {
                     empresa: req.user.empresa,
                     propiedad: prop[i],
                     isPagos: pagosShow,
+                    menu: 'Propiedades'
                 });
             }
         }
@@ -316,7 +322,8 @@ router.get('/propiedades/calendario/:id', function(req, res, next) {
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
-                    ca: prop[i].calendarioNotify
+                    ca: prop[i].calendarioNotify,
+                    menu: 'Propiedades'
                 });
 
             }
@@ -368,7 +375,8 @@ router.get('/propiedades/payments/:idpropiedad', function(req, res, next) {
                         nombre: req.user.nombre,
                         empresa: req.user.empresa,
                         propiedadID: propiedades[i].id,
-                        paymentsData: payments_Show.reverse()
+                        paymentsData: payments_Show.reverse(),
+                        menu: 'Propiedades'
                     });
                 }
             }
@@ -401,7 +409,8 @@ router.get('/propiedades/notificaciones/:idpropiedad', function(req, res, next) 
                         nombre: req.user.nombre,
                         empresa: req.user.empresa,
                         propiedadID: propiedades[i].id,
-                        notify: notificaciones.reverse()
+                        notify: notificaciones.reverse(),
+                        menu: 'Propiedades'
                     });
                 }
             }
@@ -416,7 +425,8 @@ router.get('/config', function(req, res, next) {
     res.render('config', {
         title: 'Config Zimba',
         nombre: req.user.nombre,
-        empresa: req.user.empresa
+        empresa: req.user.empresa,
+        menu: 'Config'
     });
 });
 
@@ -425,7 +435,8 @@ router.get('/config/email', function(req, res, next) {
         title: 'Config Email Zimba',
         nombre: req.user.nombre,
         empresa: req.user.empresa,
-        emailTemplate: req.user.emailTemplate
+        emailTemplate: req.user.emailTemplate,
+        menu: 'Config'
     });
 });
 
@@ -894,7 +905,8 @@ router.get('/propiedades/editpropiedad/:id', function(req, res, next) {
                         title: doc.propiedades[i].nombrePropiedad,
                         nombre: req.user.nombre,
                         empresa: req.user.empresa,
-                        propiedad: doc.propiedades[i]
+                        propiedad: doc.propiedades[i],
+                        menu: 'Propiedades'
 
                     });
 

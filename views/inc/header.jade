@@ -1,0 +1,52 @@
+header.header__Site
+    .header__Site--Container
+      figure.header__Site--Iz
+        h1.title Zimba
+      nav.header__Site--De
+        ul.ul
+         if menu === 'Inicio' 
+          li.list.selectItem
+            i(class="fa fa-home" aria-hidden="true")
+            | Inicio
+         else
+          li.list
+            i(class="fa fa-home" aria-hidden="true")
+            | Inicio
+         if menu === 'Propiedades' 
+          li.list.selectItem
+            a(href="panel/propiedades", class="tolink")
+              i(class="fa fa-folder-open" aria-hidden="true")
+              | Propiedades
+         else
+          li.list
+            a(href="panel/propiedades", class="tolink")
+              i(class="fa fa-folder-open" aria-hidden="true")
+              | Propiedades
+         if menu === 'Config' 
+          li.list.selectItem
+            a(href="panel/config", class="tolink")
+              i(class="fa fa-cog" aria-hidden="true")
+              | Config
+         else
+          li.list
+            a(href="panel/config", class="tolink")
+              i(class="fa fa-cog" aria-hidden="true")
+              | Config
+
+        div.header__User
+          figure.header__UserFigure
+            img(src="images/avatar.jpg", alt="#{nombre}")
+          div.header__ShowData.jsDownShow
+            span
+              | #{nombre}
+            .header__ShowData--SubMenu
+              ul.ul.jsDown.uNoneDisplay
+                li.listSub
+                  a.link(href="panel")
+                    |Panel
+                li.listSub
+                  a.link(href="panel/edit")
+                    |Editar mi perfil
+                li.listSub
+                  a.link(href="#")
+                    | Salir
