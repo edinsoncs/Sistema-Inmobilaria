@@ -26,41 +26,7 @@ head
   script(src="../../../javascripts/dcalendar.picker.js")
 
 body
-  header.header__Site
-    .header__Site--Container
-      figure.header__Site--Iz
-        h1.title Zimba
-      nav.header__Site--De
-        ul.ul
-          li.list
-            a.tolink(href="../../../panel")
-              i(class="fa fa-home" aria-hidden="true")
-              | Inicio
-          li.list.selectItem
-            a(href="../../../panel/propiedades", class="tolink")
-              i(class="fa fa-folder-open" aria-hidden="true")
-              | Propiedades
-          li.list
-           a.tolink(href="../../../panel/config") 
-            i(class="fa fa-cog" aria-hidden="true")
-            | Config
-        div.header__User
-          figure.header__UserFigure
-            img(src="../../../images/avatar.jpg", alt="#{nombre}")
-          div.header__ShowData.jsDownShow
-            span
-              | #{nombre}
-            .header__ShowData--SubMenu
-              ul.ul.jsDown.uNoneDisplay
-                li.listSub
-                  a.link(href="panel")
-                    |Panel
-                li.listSub
-                  a.link(href="panel/edit")
-                    |Editar mi perfil
-                li.listSub
-                  a.link(href="#")
-                    | Salir
+  include inc/header
   section.header__Welcome.widthBase
     header.header__Welcome--Iz
      ul.ul
@@ -545,7 +511,7 @@ body
           input(type="hidden", name="iscontrato", value="#{propiedad.contrato}")
           input(type="file", name="contrato")
       fieldset.fieldset--Form
-        input(type="submit", class="submit", value="Crear Propiedad")  
+        input(type="submit", class="submit", value="Actualizar")  
     
       
 

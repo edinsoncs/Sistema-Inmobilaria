@@ -1,225 +1,284 @@
 main {
-	.main__Content {
-		width: 1220px;
-		margin: $centerMargin;
-		display: flex;
-		padding: 1em 0;
-		.main__Content--Iz {
-			width: 16%;
-			margin: 0 5em 0 0;
-			.Iz--Figure {
-				width: 200px;
-			}
-			.Iz--Figure img {
-				width: 100%;
-				display: block;
-			}
-			.Iz--Header {
-				text-align: center;
-				.title {
-					font-weight: 400;
-					text-transform: capitalize;
-				}
-			}
-		}
-		.main__Content--De {
-			width: 40%;
-			padding: 1em 0 0 1em;
-			background-color: #F3F3F3;
-			.formularioEdit{
-				.formularioFieldset {
-					margin: 0 0 0.5em 0;
+    .show__Welcome--Data {
+        display: flex;
+        justify-content: space-between;
+        margin: 0 0 2em 0;
+        .data__Services {
+            .data__Services--Cont {
+                width: 250px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 200px;
+                background-color: white;
+                border: 1px solid #dedede;
+	            
+	            .Show {
+	                font-size: 5em;
+	                font-weight: 400;
+	                color: #aeaeae;
+	            }
 
-					&:last-child {
-						margin: 2em 0;
-						label {
-							&:before  {
-								content: "";
-							}
-						}
-					}
-				}
-				.formularioFieldset label {
-					display: block;
-					margin: 0 0 .5em 0;
-					&:before {
-						content: "- ";
-						font-weight: 800;
-					}
-				}
-				.formularioFieldset input {
-					padding: 0.5em;
-					width: 97%;
-					border-radius: 3px;
-					outline: medium none;
-					border: none;
-					border: 1px solid #8F8B8B;
-					color: #8F8B8B;
-					box-shadow: inset 0 0 29px #E2E1E1;
-					&:hover {
-						box-shadow: 0 0 10px #2293D5;
-						border: 1px solid #2293D5;
-					}
-				}
-			}
-		}
-	}
-	.ContainerPropiedades {
-		margin: 2em 0;
-		//background-color: #dedede;
-		.articlesPropiedades {
-			display: flex;
-			align-items: center;
-			justify-content: space-between;
-			background: linear-gradient(#eaeaea,#e6e6e6);
-			padding: 0.8em 0.5em;
-			box-shadow: inset 0 0 31px #dad6d6;
-			border-bottom: 2px solid #dad7d7;
-			&:hover {
-				background-color: white;
-			}
-			.articlesPropiedades--Header {
-				width: 20%;
-				.title {
-					font-weight: 700;
-					font-size: 0.9em;
-					color: #717273;
-				}
-			}
-			.articlesPropiedades--Description {
-				width: 35%;
-				.description {
-					font-size: 0.9em;
-					color: #717273;
-				}
-			}
-			.articlesPropiedades--Cant {
-				width: 15%;
-				.description {
-					font-size: 0.9em;
-					color: #717273;
-				}
-			}
-			.articlesPropiedades--Actions {
-				display: flex;
-				justify-content: space-between;
-				width:22%;
-				.Actions--Buttons {
-					.linkBtn {
-						i {
-							margin: 0 0.4em 0 0;
-						}
-						background-color: #dedede;
-						padding: 0.5em 0.8em;
-						border-radius: 4px;
-						color: white;
-						cursor: pointer;
-						text-decoration: none;
-					}
-				}
-				.Actions--Buttons:first-child {
-					.linkBtn {
-						background-color: #3498db;
-					}
-				}
-				.Actions--Buttons:nth-child(2) {
-					.linkBtn {
-						background-color: #27ae60;
-					}
-				}
-				.Actions--Buttons:last-child {
-					.linkBtn {
-						background-color: #e74c3c;
-					}
-				}
-			}
-		}
-	}
+            }
+            .data__Services--Show {
+            	text-align: center;
+            	padding: 0.5em 1em;
+            	background-color: #4CAF50;
+            	color: white;
+            }
+        }
+    }
+    .show__Welcome--Options {
+    	.Options__Container {
+    		width: 48%;
+    		background-color: white;
+    		height: 500px;
+    		.options__Container--Header {
+    			background-color: #3498DB;
+    			padding: 0.2em 1em;
+    			.title {
+    				font-weight: 400;
+    				color: white;
+    			}
+    		}
+    	}
+    	.options__Container--Ul {
+    		.listPayment {
+    			list-style-type: none;
+    			padding: 0.5em;
+    			color: #8d8d8d;
+    			border-bottom: 1px solid #f0eaea;
+    			font-family: 'Lato', sans-serif;
+    			.namePropiedad {
+    				text-transform: uppercase;
+    			}
+    		}
+    	}
+    }
+    .main__Content {
+        width: 1220px;
+        margin: $centerMargin;
+        display: flex;
+        padding: 1em 0;
+        .main__Content--Iz {
+            width: 16%;
+            margin: 0 5em 0 0;
+            .Iz--Figure {
+                width: 200px;
+            }
+            .Iz--Figure img {
+                width: 100%;
+                display: block;
+            }
+            .Iz--Header {
+                text-align: center;
+                .title {
+                    font-weight: 400;
+                    text-transform: capitalize;
+                }
+            }
+        }
+        .main__Content--De {
+            width: 40%;
+            padding: 1em 0 0 1em;
+            background-color: #F3F3F3;
+            .formularioEdit {
+                .formularioFieldset {
+                    margin: 0 0 0.5em 0;
+                    &:last-child {
+                        margin: 2em 0;
+                        label {
+                            &:before {
+                                content: "";
+                            }
+                        }
+                    }
+                }
+                .formularioFieldset label {
+                    display: block;
+                    margin: 0 0 .5em 0;
+                    &:before {
+                        content: "- ";
+                        font-weight: 800;
+                    }
+                }
+                .formularioFieldset input {
+                    padding: 0.5em;
+                    width: 97%;
+                    border-radius: 3px;
+                    outline: medium none;
+                    border: none;
+                    border: 1px solid #8F8B8B;
+                    color: #8F8B8B;
+                    box-shadow: inset 0 0 29px #E2E1E1;
+                    &:hover {
+                        box-shadow: 0 0 10px #2293D5;
+                        border: 1px solid #2293D5;
+                    }
+                }
+            }
+        }
+    }
+    .ContainerPropiedades {
+        margin: 2em 0;
+        //background-color: #dedede;
+        .articlesPropiedades {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: linear-gradient(#eaeaea, #e6e6e6);
+            padding: 0.8em 0.5em;
+            box-shadow: inset 0 0 31px #dad6d6;
+            border-bottom: 2px solid #dad7d7;
+            &:hover {
+                background-color: white;
+            }
+            .articlesPropiedades--Header {
+                width: 20%;
+                .title {
+                    font-weight: 700;
+                    font-size: 0.9em;
+                    color: #717273;
+                }
+            }
+            .articlesPropiedades--Description {
+                width: 35%;
+                .description {
+                    font-size: 0.9em;
+                    color: #717273;
+                }
+            }
+            .articlesPropiedades--Cant {
+                width: 15%;
+                .description {
+                    font-size: 0.9em;
+                    color: #717273;
+                }
+            }
+            .articlesPropiedades--Actions {
+                display: flex;
+                justify-content: space-between;
+                width: 22%;
+                .Actions--Buttons {
+                    .linkBtn {
+                        i {
+                            margin: 0 0.4em 0 0;
+                        }
+                        background-color: #dedede;
+                        padding: 0.5em 0.8em;
+                        border-radius: 4px;
+                        color: white;
+                        cursor: pointer;
+                        text-decoration: none;
+                    }
+                }
+                .Actions--Buttons:first-child {
+                    .linkBtn {
+                        background-color: #3498db;
+                    }
+                }
+                .Actions--Buttons:nth-child(2) {
+                    .linkBtn {
+                        background-color: #27ae60;
+                    }
+                }
+                .Actions--Buttons:last-child {
+                    .linkBtn {
+                        background-color: #e74c3c;
+                    }
+                }
+            }
+        }
+    }
 }
 
 .add {
-	.newPropiedad--Header {
-		margin: 0 0 0.5em 0;
-		.title {
-			margin: 0;
-			font-weight: 400;
-			color: #3c8dbc;
-			font-family: 'Roboto', sans-serif;
-			font-size: 1.3em;
-			padding: 0.5em;
-			background-color: white;
-			
-		}
-	}
-	.form--Container {
-		display: flex;
-		justify-content: space-between;
-	}
-	.newPropiedad--Form {
-		width: 100%;
-		border: 1px solid #E6E9ED;
-		background-color: #fff;
-		padding: 0 1em;
-		.fieldset--StepsContainer {
-			display: flex;
-			justify-content: space-between;
-		}
-		.fieldset--Steps {
-			margin: 2em 0;
-			width: 40%;
-			.header--Steps {
-				.title {
-					i  {
-						margin: 0 0.5em 0 0;
-					}
-					font-weight: 400;
-					color: #3c8dbc;
-					margin: 0.5em 0;
-				}
-			}
-
-		}
-		.fieldset--Form {
-			border: none;
-			padding: 0;
-			margin: 0 0 0.5em 0;
-			input[type='text'], input[type='number'], input[type='date'], select, input[type='email'], input[type='file'], input[type='tel'] {
-				padding: 0.5em 1em;
-				width: 100%;
-				border-radius: 4px;
-				border: none;
-				border: 1px solid #dedede;
-				outline: medium none;
-				&:focus {
-					border-color: #66afe9;
-				}
-			}
-			input[type='submit'] {
-				border: none;
-			}
-			.fieldset--Form--Figure {
-				width: 250px;
-				display: block;
-				margin: 0 auto;
-				border: 7px solid #dedede;
-    			border-radius: 4px;
-				background-size: cover;
-				display: block;
-				height: 150px;
-			}
-			.subirImg {
-					display: block;
-					text-align: center;
-					margin: 1em auto 1.3em auto;
-					width: 25%;
-					cursor: pointer;
-			}
-		}
-		.tree {
-				input, select {
-					width: 95%!important;
-				}
-		
-		}
-	}
+    .newPropiedad--Header {
+        margin: 0 0 0.5em 0;
+        .title {
+            margin: 0;
+            font-weight: 400;
+            color: #3c8dbc;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.3em;
+            padding: 0.5em;
+            background-color: white;
+        }
+    }
+    .form--Container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .newPropiedad--Form {
+        width: 100%;
+        border: 1px solid #E6E9ED;
+        background-color: #fff;
+        padding: 0 1em;
+        .fieldset--StepsContainer {
+            display: flex;
+            justify-content: space-between;
+        }
+        .fieldset--Steps {
+            margin: 2em 0;
+            width: 40%;
+            .header--Steps {
+                .title {
+                    i {
+                        margin: 0 0.5em 0 0;
+                    }
+                    font-weight: 400;
+                    color: #3c8dbc;
+                    margin: 0.5em 0;
+                }
+            }
+        }
+        .fieldset--Form {
+            border: none;
+            padding: 0;
+            margin: 0 0 0.5em 0;
+            input[type='text'],
+            input[type='number'],
+            input[type='date'],
+            select,
+            input[type='email'],
+            input[type='file'],
+            input[type='tel'] {
+                padding: 0.5em 1em;
+                width: 100%;
+                border-radius: 4px;
+                border: none;
+                border: 1px solid #dedede;
+                outline: medium none;
+                &:focus {
+                    border-color: #66afe9;
+                }
+            }
+            input[type='submit'] {
+                border: none;
+            }
+            .fieldset--Form--Figure {
+                width: 250px;
+                display: block;
+                margin: 0 auto;
+                border: 7px solid #dedede;
+                border-radius: 4px;
+                background-size: cover;
+                display: block;
+                height: 150px;
+            }
+            .subirImg {
+                display: block;
+                text-align: center;
+                margin: 1em auto 1.3em auto;
+                width: 25%;
+                cursor: pointer;
+            }
+        }
+        .tree {
+            input,
+            select {
+                width: 95%!important;
+            }
+        }
+    }
 }

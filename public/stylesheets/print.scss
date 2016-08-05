@@ -1,6 +1,17 @@
 @media print {
-	.header__Site, .header__Welcome--Iz, .view--Iz--Top, .header__Welcome--De {
+	.header__Site, .header__Welcome--Iz, .view--Iz--Top, .header__Welcome--De, .view--Iz--SubMenu {
 		display: none;
 	}
-	
+	.view--NotyContainer--Download {
+		display: none;
+	}
+	.view--Iz--SubMenu {
+		display: none;
+	}
+	.subMenu--Ul {
+		display: none;
+	}
+	.view--NotifyContainer {
+		display: none;
+	}
 }

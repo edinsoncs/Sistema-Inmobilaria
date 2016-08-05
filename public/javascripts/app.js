@@ -108,7 +108,7 @@ $(document).ready(function() {
            
 
             $.ajax({
-                url: "deletepropiedad",
+                url: "./panel/deletepropiedad",
                 type: "POST",
                 dataType: "json",
                 contentType: "application/json",
@@ -218,5 +218,18 @@ $(document).ready(function() {
 
     }
     calendarEvent();
+
+
+    function dowloadXLS() {
+    	$(".linkDownload").click(function(){
+    		var table = $(this).parent().parent();
+    		var down = $(table).find('#dataDown');
+
+    		$(".uNone").css('display', ' none;')
+
+    		 window.open('data:application/vnd.ms-excel,' + $(down).html());
+    	});
+    }
+    dowloadXLS();
 
 });

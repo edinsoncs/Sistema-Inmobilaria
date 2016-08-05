@@ -11,15 +11,14 @@ var async = require('async');
 var flash = require('connect-flash');
 
 var esid = require('randomid');
-
 var nodemailer = require('nodemailer');
 var smtpTransport = require('nodemailer-smtp-transport');
 
 
 var moment = require('moment');
-
 var dateFormat = require('dateformat');
 var now = new Date();
+
 
 
 
@@ -31,12 +30,28 @@ router.get('/', function(req, res, next) {
     var db = req.db;
     var user = db.get('usuarios');
 
-    res.render('panel', {
-        title: 'Panel de administración',
-        nombre: req.user.nombre,
-        empresa: req.user.empresa,
-        menu: 'Inicio'
-    });
+    if (req.user.propiedades) {
+       
+
+        res.render('panelservicios', {
+            title: 'Panel de administración',
+            nombre: req.user.nombre,
+            empresa: req.user.empresa,
+            menu: 'Inicio',
+            serv: req.user.propiedades
+        });
+
+    } else {
+        console.log('estoy aqui mm');
+        res.render('panel', {
+            title: 'Panel de administración',
+            nombre: req.user.nombre,
+            empresa: req.user.empresa,
+            menu: 'Inicio'
+        });
+    }
+
+
 
     //Looking in  propiedades
     /*var date = new Date();
@@ -109,7 +124,6 @@ router.get('/', function(req, res, next) {
         var goReplace = go.replace('-', ',');
         return goReplace
     }*/
-
 
 
 
@@ -618,8 +632,6 @@ router.post('/notificaciones', function(req, res, next) {
     var message = req.body.isMessage;
     var idPropiedad = req.body.isID;
 
-    console.log(message);
-
     var empresa = req.user.emailTemplate.nombreEmpresa;
     var emailUser = req.user.emailTemplate.emailEmpresa;
 
@@ -627,12 +639,12 @@ router.post('/notificaciones', function(req, res, next) {
 
 
     var transporter = nodemailer.createTransport(smtpTransport({
-        host: "millenialab.com", // hostname
+        host: "viaintimedia.com", // hostname
         secure: true, // use SSL
         port: 465, // port for secure SMTP
         auth: {
-            user: 'edinson@millenialab.com',
-            pass: '25edinson25'
+            user: 'info@viaintimedia.com',
+            pass: 'via123'
         },
         tls: {
             rejectUnauthorized: false
@@ -680,7 +692,6 @@ router.post('/notificaciones', function(req, res, next) {
         if (error) {
             return console.log(error)
         } else {
-            console.log('enviado');
             activeSendNotify();
         }
     });
@@ -925,17 +936,18 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
     var validation = req.files.garanteFile.name;
     var validationTwo = req.files.contrato.name
 
-    if(validation.length > 1) {
-        
-        var newName =  esid(6) + validation;
+    if (validation.length > 1 && validationTwo.length > 1) {
+
+
+        var newName = esid(6) + validation;
         var newNameOther = esid(6) + validationTwo;
 
-        fs.readFile(req.files.garanteFile.path, function(err, data){
+        fs.readFile(req.files.garanteFile.path, function(err, data) {
             try {
 
                 var directorio = path.join(__dirname, '..', 'public', 'files/' + newName);
 
-                fs.writeFile(directorio, data, function(err){
+                fs.writeFile(directorio, data, function(err) {
                     try {
 
                         user.findAndModify({
@@ -954,82 +966,157 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
                             },
                             new: false,
                             upsert: false
-                        }).success(function(){
-                            
-                            if(validation.length > 1 && validationTwo.length > 1) {
-                                res.redirect('./propiedades/show/'+req.body.idpropiedad);
-                            } else {
-                                res.redirect('./propiedades/show/'+req.body.idpropiedad);
-                            }
+                        }).success(function() {
 
                         });
 
-                    }
-                    catch(err) {
+                    } catch (err) {
                         return err;
                     }
                 })
 
-            }
-            catch(err) {
+            } catch (err) {
                 return err;
             }
-        })
+        });
 
-        
-        if(validationTwo.length > 1) {
+        setTimeout(function() {
 
-            setTimeout(function(){
-                fs.readFile(req.files.contrato.path, function(err, data) {
+            fs.readFile(req.files.contrato.path, function(err, data) {
+                try {
+
+                    var directorio = path.join(__dirname, '..', 'public', 'files/' + newNameOther);
+
+                    fs.writeFile(directorio, data, function(err) {
+                        try {
+                            user.findAndModify({
+                                query: {
+                                    '_id': req.user._id,
+                                    propiedades: {
+                                        $elemMatch: {
+                                            'id': req.body.idpropiedad
+                                        }
+                                    }
+                                },
+                                update: {
+                                    $set: {
+                                        'propiedades.$.contrato': newNameOther
+                                    }
+                                },
+                                new: false,
+                                upsert: false
+                            }).success(function(d) {
+                                res.redirect('./propiedades/show/' + req.body.idpropiedad);
+                            });
+
+                        } catch (err) {
+                            return err;
+                        }
+                    });
+
+
+                } catch (err) {
+                    return err;
+                }
+
+            });
+
+        }, 1000);
+
+
+    } else if (validation.length > 1) {
+
+        var newName = esid(6) + validation;
+        var newNameOther = esid(6) + validationTwo;
+
+        fs.readFile(req.files.garanteFile.path, function(err, data) {
+            try {
+
+                var directorio = path.join(__dirname, '..', 'public', 'files/' + newName);
+
+                fs.writeFile(directorio, data, function(err) {
                     try {
-                        
-                        var directorio = path.join(__dirname, '..', 'public', 'files/' + newNameOther);
-                        
-                        fs.writeFile(directorio, data, function(err){
-                            try {
-                                user.findAndModify({
-                                    query: {
-                                        '_id': req.user._id,
-                                        propiedades: {
-                                            $elemMatch: {
-                                                'id': req.body.idpropiedad
-                                            }
-                                        }
-                                    },
-                                    update: {
-                                        $set: {
-                                            'propiedades.$.contrato': newNameOther
-                                        }
-                                    },
-                                    new: false,
-                                    upsert: false
-                                }).success(function(d) {
-                                    
-                                    res.redirect('./propiedades/show/'+req.body.idpropiedad);
-                                });
 
+                        user.findAndModify({
+                            query: {
+                                '_id': req.user._id,
+                                propiedades: {
+                                    $elemMatch: {
+                                        'id': req.body.idpropiedad
+                                    }
+                                }
+                            },
+                            update: {
+                                $set: {
+                                    'propiedades.$.garanteFile': newName
+                                }
+                            },
+                            new: false,
+                            upsert: false
+                        }).success(function() {
+
+                            if (validation.length > 1 && validationTwo.length > 1) {
+                                res.redirect('./propiedades/show/' + req.body.idpropiedad);
+                            } else {
+                                res.redirect('./propiedades/show/' + req.body.idpropiedad);
                             }
-                            catch(err){
-                                return err;
-                            }
+
                         });
 
-                    
-                    }
-                    catch(err) {
+                    } catch (err) {
                         return err;
                     }
+                })
 
+            } catch (err) {
+                return err;
+            }
+        });
+    } else if (validationTwo.length > 1) {
+
+        var newNameOther = esid(6) + validationTwo;
+
+        fs.readFile(req.files.contrato.path, function(err, data) {
+            try {
+
+                var directorio = path.join(__dirname, '..', 'public', 'files/' + newNameOther);
+
+                fs.writeFile(directorio, data, function(err) {
+                    try {
+                        user.findAndModify({
+                            query: {
+                                '_id': req.user._id,
+                                propiedades: {
+                                    $elemMatch: {
+                                        'id': req.body.idpropiedad
+                                    }
+                                }
+                            },
+                            update: {
+                                $set: {
+                                    'propiedades.$.contrato': newNameOther
+                                }
+                            },
+                            new: false,
+                            upsert: false
+                        }).success(function(d) {
+
+                            res.redirect('./propiedades/show/' + req.body.idpropiedad);
+                        });
+
+                    } catch (err) {
+                        return err;
+                    }
                 });
 
-            }, 1000);
-            
-        
-        }
 
+            } catch (err) {
+                return err;
+            }
 
-    }
-    else {
+        });
+
+    } else {
 
         user.findAndModify({
             query: {
@@ -1078,8 +1165,8 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
             new: false,
             upsert: false
         }).success(function(d) {
-            
-            res.redirect('./propiedades/show/'+req.body.idpropiedad);
+
+            res.redirect('./propiedades/show/' + req.body.idpropiedad);
         });
     }
 
@@ -1104,5 +1191,10 @@ router.post('/deletepropiedad', function(req, res, next) {
     });
 
 });
+
+
+
+
+
 
 module.exports = router;

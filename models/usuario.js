@@ -8,6 +8,7 @@ var usuario = new Schema ({
 	'email': String,
 	'dni': Number,
 	'password': String,
+	'senotifiy': [Boolean],
 	'propiedades': Array,
 	'notificaciones': Array,
 	'pagos': Array,

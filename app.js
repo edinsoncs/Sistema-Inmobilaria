@@ -24,6 +24,10 @@ var LocalStrategy  = require('passport-local').Strategy;
 
 var database = monk('localhost:27017/administracion');
 
+var cron = require('node-cron');
+var tiempo = require('./models/cron.js');
+
+
 //Requires passportjs
 require('./models/usuario');
 require('./models/passport')(passport);
@@ -34,6 +38,7 @@ require('./models/passport')(passport);
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var panel = require('./routes/panel');
+var verify = require('./routes/verify');
 var app = express();
 
 //To connect monk 
@@ -89,6 +94,8 @@ function verificarUsuario(req, res, next) {
 }
 
 
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -108,15 +115,13 @@ app.use('/users', users);
 
 
 app.use('/panel', verificarUsuario, panel);
+app.use('/cron', verify);
 
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/panel',
   failureRedirect: '/notfound'
 }));
-
-
-
 
 
 // catch 404 and forward to error handler
@@ -149,6 +154,11 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+tiempo.active(cron);
+
+
 
 
 module.exports = app;

@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);
 h1, h2, h3, h4, h5, h6, figure, p {
   margin: 0;
 }
@@ -173,7 +174,7 @@ table tbody > tr > td {
 }
 
 .header__Site .header__Site--Container .header__Site--De {
-  width: 50.5%;
+  width: 73.5%;
   display: flex;
 }
 
@@ -242,6 +243,7 @@ table tbody > tr > td {
   left: 50%;
   margin-left: -7em;
   margin-top: 1.6em;
+  z-index: 999;
 }
 
 .header__Site .header__Site--Container .header__Site--De .header__User .header__ShowData .header__ShowData--SubMenu .ul .listSub {
@@ -258,7 +260,7 @@ table tbody > tr > td {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #f2f2f2;
+  background-color: #e6e6e6;
   padding: 0.5em;
   margin: 2em auto;
 }
@@ -301,6 +303,63 @@ table tbody > tr > td {
   font-weight: 400;
   font-size: 1em;
   color: #3C8DBC;
+}
+
+main .show__Welcome--Data {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0 2em 0;
+}
+
+main .show__Welcome--Data .data__Services .data__Services--Cont {
+  width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  background-color: white;
+  border: 1px solid #dedede;
+}
+
+main .show__Welcome--Data .data__Services .data__Services--Cont .Show {
+  font-size: 5em;
+  font-weight: 400;
+  color: #aeaeae;
+}
+
+main .show__Welcome--Data .data__Services .data__Services--Show {
+  text-align: center;
+  padding: 0.5em 1em;
+  background-color: #4CAF50;
+  color: white;
+}
+
+main .show__Welcome--Options .Options__Container {
+  width: 48%;
+  background-color: white;
+  height: 500px;
+}
+
+main .show__Welcome--Options .Options__Container .options__Container--Header {
+  background-color: #3498DB;
+  padding: 0.2em 1em;
+}
+
+main .show__Welcome--Options .Options__Container .options__Container--Header .title {
+  font-weight: 400;
+  color: white;
+}
+
+main .show__Welcome--Options .options__Container--Ul .listPayment {
+  list-style-type: none;
+  padding: 0.5em;
+  color: #8d8d8d;
+  border-bottom: 1px solid #f0eaea;
+  font-family: 'Lato', sans-serif;
+}
+
+main .show__Welcome--Options .options__Container--Ul .listPayment .namePropiedad {
+  text-transform: uppercase;
 }
 
 main .main__Content {
@@ -506,7 +565,13 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   margin: 0 0 0.5em 0;
 }
 
-.add .newPropiedad--Form .fieldset--Form input[type='text'], .add .newPropiedad--Form .fieldset--Form input[type='number'], .add .newPropiedad--Form .fieldset--Form input[type='date'], .add .newPropiedad--Form .fieldset--Form select, .add .newPropiedad--Form .fieldset--Form input[type='email'], .add .newPropiedad--Form .fieldset--Form input[type='file'], .add .newPropiedad--Form .fieldset--Form input[type='tel'] {
+.add .newPropiedad--Form .fieldset--Form input[type='text'],
+.add .newPropiedad--Form .fieldset--Form input[type='number'],
+.add .newPropiedad--Form .fieldset--Form input[type='date'],
+.add .newPropiedad--Form .fieldset--Form select,
+.add .newPropiedad--Form .fieldset--Form input[type='email'],
+.add .newPropiedad--Form .fieldset--Form input[type='file'],
+.add .newPropiedad--Form .fieldset--Form input[type='tel'] {
   padding: 0.5em 1em;
   width: 100%;
   border-radius: 4px;
@@ -515,7 +580,13 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   outline: medium none;
 }
 
-.add .newPropiedad--Form .fieldset--Form input[type='text']:focus, .add .newPropiedad--Form .fieldset--Form input[type='number']:focus, .add .newPropiedad--Form .fieldset--Form input[type='date']:focus, .add .newPropiedad--Form .fieldset--Form select:focus, .add .newPropiedad--Form .fieldset--Form input[type='email']:focus, .add .newPropiedad--Form .fieldset--Form input[type='file']:focus, .add .newPropiedad--Form .fieldset--Form input[type='tel']:focus {
+.add .newPropiedad--Form .fieldset--Form input[type='text']:focus,
+.add .newPropiedad--Form .fieldset--Form input[type='number']:focus,
+.add .newPropiedad--Form .fieldset--Form input[type='date']:focus,
+.add .newPropiedad--Form .fieldset--Form select:focus,
+.add .newPropiedad--Form .fieldset--Form input[type='email']:focus,
+.add .newPropiedad--Form .fieldset--Form input[type='file']:focus,
+.add .newPropiedad--Form .fieldset--Form input[type='tel']:focus {
   border-color: #66afe9;
 }
 
@@ -542,7 +613,8 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   cursor: pointer;
 }
 
-.add .newPropiedad--Form .tree input, .add .newPropiedad--Form .tree select {
+.add .newPropiedad--Form .tree input,
+.add .newPropiedad--Form .tree select {
   width: 95% !important;
 }
 
@@ -1415,7 +1487,19 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 @media print {
-  .header__Site, .header__Welcome--Iz, .view--Iz--Top, .header__Welcome--De {
+  .header__Site, .header__Welcome--Iz, .view--Iz--Top, .header__Welcome--De, .view--Iz--SubMenu {
+    display: none;
+  }
+  .view--NotyContainer--Download {
+    display: none;
+  }
+  .view--Iz--SubMenu {
+    display: none;
+  }
+  .subMenu--Ul {
+    display: none;
+  }
+  .view--NotifyContainer {
     display: none;
   }
 }
@@ -1451,4 +1535,24 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 .dataMensaje .dataMensaje--Close span {
   color: black;
   font-size: 0.8em;
+}
+
+.linkDownload {
+  background-color: #3FC380;
+  padding: 0.7em 1em;
+  border-radius: 5px;
+  color: white;
+  display: block;
+  text-decoration: none;
+  margin: 0 0 1em 0;
+  width: 180px;
+}
+
+.linkDownload i {
+  margin: 0 0.5em 0 0;
+}
+
+#dataDown table {
+  width: 1220px;
+  margin: 0 auto;
 }

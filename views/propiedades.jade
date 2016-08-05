@@ -52,7 +52,7 @@ body
 
   main.widthBase
    header.Propiedades
-    a.link.propiedadesLink(href="propiedades/add", class="")
+    a.link.propiedadesLink(href="./panel/propiedades/add", class="")
      | Nueva Propiedad
    div.ContainerPropiedades
     each prop in propiedades
@@ -75,7 +75,7 @@ body
          i(class="fa fa-eye" aria-hidden="true")
          |Ver
        div.Actions--Buttons
-        a.linkBtn(href="propiedades/editpropiedad/#{prop.id}")
+        a.linkBtn(href="panel/propiedades/editpropiedad/#{prop.id}")
          i(class="fa fa-pencil-square", aria-hidden="true")
          | Editar
        div.Actions--Buttons
