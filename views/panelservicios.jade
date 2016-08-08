@@ -1,27 +1,83 @@
 <!DOCTYPE html>
 html(lang="es")
-head
-  meta(charset="UTF-8")
-  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
-  meta(name="description", content="Administracion de inmobiliarias")
-  
-  base(href="http://localhost:3000/")
+  head
+      meta(charset="UTF-8")
+      meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+      meta(name="description", content="Administracion de inmobiliarias")
+      
+      base(href="http://localhost:3000/")
 
-  title #{title}
-  
-  link(rel="stylesheet", href="stylesheets/normalize.min.css")
-  link(rel="stylesheet", href="stylesheets/icons.css")
-  link(rel="stylesheet", href="stylesheets/app.css")
+      title #{title}
+      
+      link(rel="stylesheet", href="stylesheets/normalize.min.css")
+      link(rel="stylesheet", href="stylesheets/icons.css")
+      link(rel="stylesheet", href="stylesheets/app.css")
 
-  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+      link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
-  script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
-  script(src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js")
-  script(src="javascripts/app-dev1.js")
+      //CDN
+      link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css")
 
-  script(src="javascripts/jquery.counterup.min.js")
+      script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js")
+      script(src="http://cdnjs.cloudflare.com/ajax/libs/waypoints/2.0.3/waypoints.min.js")
+      script(src="javascripts/app-dev1.js")
+      script(src="javascripts/animatedModal.js") 
+      script(src="javascripts/jquery.counterup.min.js")
 
 body
+  #animatedModal
+      .close-animatedModal
+        figure.animateClose
+          img(src="images/closebt.svg", alt="")
+      .modal-content
+        header.modal-content--Header
+          h2.title
+            | Listado de Clientes
+        .modal-content--View
+           each client in serv
+            article.view--Clients
+              figure.view--Clients--Image
+                img(src="images/businessman.svg", alt="", width="90px")  
+              .view--Clients--Name
+                p.Name
+                  | #{client.nombreInquilino}
+                p.Name
+                  | #{client.telInquilino}
+                p.Name
+                  | #{client.emailInquilino} 
+
+        header.modal-content--Header
+          h2.title
+            | Listado de Propietarios
+        .modal-content--View
+          each client in serv
+            article.view--Clients
+              figure.view--Clients--Image
+                img(src="images/judge.svg", alt="", width="120px")  
+              .view--Clients--Name
+                p.Name
+                  | #{client.propietarioNombre}
+                p.Name
+                  | #{client.propietarioTel}
+                p.Name
+                  | #{client.propietarioEmail}
+
+        header.modal-content--Header
+          h2.title
+            | Listado de Garantes
+        .modal-content--View
+          each client in serv
+            article.view--Clients
+              figure.view--Clients--Image
+                img(src="images/man.svg", alt="", width="120px")  
+              .view--Clients--Name
+                p.Name
+                  | #{client.garanteNombre}
+                p.Name
+                  | #{client.garanteTel}
+                p.Name
+                  | #{client.garanteEmail}
+       
   include inc/header
 
   section.header__Welcome.widthBase
@@ -59,7 +115,8 @@ body
            | #{serv.length}
         .data__Services--Show
           span.show
-           | Clientes Contratados
+           a#demo01(href="#animatedModal")
+            | Clientes Contratados
 
 
       article.data__Services
@@ -96,4 +153,6 @@ body
       time: 1000 // the speed time in ms
       });
       });
+  script.
+    $("#demo01").animatedModal();
   

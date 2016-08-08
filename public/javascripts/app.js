@@ -64,7 +64,7 @@ $(document).ready(function() {
 
 
     /**
-     *[functions] {return data website}	
+     *[functions] {return data website} 
      */
 
     function itemNone(element, noneItem, noneItemTwo) {
@@ -105,7 +105,7 @@ $(document).ready(function() {
             var deletePropiedadID = $(this).parent().parent().parent();
             var find = $(deletePropiedadID).attr('data-id');
 
-           
+
 
             $.ajax({
                 url: "./panel/deletepropiedad",
@@ -177,21 +177,21 @@ $(document).ready(function() {
     function calendarEvent() {
 
         var elements = $(".calendarioEventos div");
-			
+
         //@thisURL FORMAT ID
         var thisURL = window.location.pathname;
         var formatURL = thisURL.replace("/panel/propiedades/calendario/", "");
 
-       	/*if(thisURL == "/panel/propiedades/calendario/"+formatURL) {
-       		$('#calendario').eCalendar({
+        /*if(thisURL == "/panel/propiedades/calendario/"+formatURL) {
+            $('#calendario').eCalendar({
                 url: 'http://localhost:3000/panel/propiedades/calendariojson/'+ formatURL
             });
-       	}
-       	else {
-       		return false
-       	}*/
+        }
+        else {
+            return false
+        }*/
 
-       	var isArray = [];
+        var isArray = [];
 
         for (var i = 0; i < elements.length; i++) {
             var month = $(elements[i]).attr('data-month');
@@ -204,16 +204,16 @@ $(document).ready(function() {
             var hora = $(elements[i]).attr('data-hora');
             var minutes = $(elements[i]).attr('data-minute');
             var obj = {
-            		title: thisTitle,
-            		description: thisDescription,
-            		datetime: new Date(year, month, dia, hora, minutes)
+                title: thisTitle,
+                description: thisDescription,
+                datetime: new Date(year, month, dia, hora, minutes)
             }
 
             isArray.push(obj);
         }
 
         $('#calendario').eCalendar({
-                events: isArray
+            events: isArray
         });
 
     }
@@ -221,15 +221,60 @@ $(document).ready(function() {
 
 
     function dowloadXLS() {
-    	$(".linkDownload").click(function(){
-    		var table = $(this).parent().parent();
-    		var down = $(table).find('#dataDown');
+        $(".linkDownload").click(function() {
+            var table = $(this).parent().parent();
+            var down = $(table).find('#dataDown');
 
-    		$(".uNone").css('display', ' none;')
+            $(".uNone").css('display', ' none;')
 
-    		 window.open('data:application/vnd.ms-excel,' + $(down).html());
-    	});
+            window.open('data:application/vnd.ms-excel,' + $(down).html());
+        });
     }
     dowloadXLS();
+
+    function dialogs(type) {
+        var _new = "<fieldset class='fieldset--Form tree'>"+
+                    "<input type='date' name='contratoInicio'>"+
+                    "</fieldset>"+
+                    "<fieldset class='fieldset--Form tree'>"+
+                    "<input type='date' name='contratoFin'>"+
+                    "</fieldset>"+
+                    "<fieldset class='fieldset--Form tree'>"+
+                    "<input type='text' name='contratoFin' placeholder='$'>"+
+                    "</fieldset>";
+
+
+        if (type == 'click') {
+            $(".jsDialogActive").click(function() {
+                var input = $(this).parent();
+
+                $.confirm({
+                    title: 'Confirmación!',
+                    content: 'Al aceptar usted esta creando un nuevo contrato de entrada y salida mas el monto mensual a pagar, esta seguro de proceder?',
+                    confirm: function() {
+                        disableBtn(input);
+                        $(".appendNew").append(_new);
+                        $.alert('Confirmed!');
+                    },
+                    cancel: function() {
+                        $.alert('La cancelación a sido exitosa!')
+                    }
+                });
+            
+                function disableBtn(element){
+                    var _input = $(element).find('input');
+                    $(_input).attr('disabled','true');
+
+                    $("input[name='contratoInicio']").attr('name', 'historyInicia');
+                    $("input[name='contratoFin']").attr('name', 'historyFin');
+                    $("input[name='precioMensual']").attr('name','historyMes')
+                }
+
+            });
+        }
+    }
+
+    dialogs('click');
+
 
 });

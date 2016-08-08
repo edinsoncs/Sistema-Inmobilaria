@@ -21,6 +21,10 @@ head
   script(src="../../../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
+  //Calendary
+  script(src="../../../javascripts/jquery.e-calendar.js")
+
+
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
   script(src="../../../javascripts/dcalendar.picker.js")
@@ -507,6 +511,10 @@ body
             input(type="text", placeholder="Contrato Finalizado", name="contratoFin", value="#{propiedad.contratoFinaliza}")
           fieldset.fieldset--Form.tree
             input(type="text", placeholder="Precio Mensual", name="precioMensual", value="#{propiedad.precioMensual}")
+          a.u--AddMore.jsDialogActive 
+           | Nuevo
+        div.form--Container.appendNew
+
         fieldset.fieldset--Form
           input(type="hidden", name="iscontrato", value="#{propiedad.contrato}")
           input(type="file", name="contrato")
@@ -515,5 +523,6 @@ body
     
       
 
-  script(src='../../../javascripts/buttons.js')
+  script(src='../../../javascripts/jquery-confirm.js')
   script(src='../../../javascripts/app.js')
+  script(src='../../../javascripts/buttons.js')

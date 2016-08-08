@@ -42,7 +42,7 @@ router.get('/', function(req, res, next) {
         });
 
     } else {
-        console.log('estoy aqui mm');
+       
         res.render('panel', {
             title: 'Panel de administración',
             nombre: req.user.nombre,
@@ -469,6 +469,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     var idNameGarante = esid(6) + req.files.garanteFile.name;
     var idNameContrato = esid(6) + req.files.contrato.name;
 
+    var historialArr = [];
+
 
     function idUser() {
         return req.user._id;
@@ -521,6 +523,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
 
 
+
+
     usuarios.findAndModify({
         query: {
             '_id': req.user._id
@@ -552,9 +556,12 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'propietarioEmail': req.body.propitarioEmail,
                     'propietarioDomicilio': req.body.propietarioDomicilio,
 
+                    'historialContrato': contrato(req.body),
+
                     'contratoInicia': req.body.contratoInicio,
                     'contratoFinaliza': req.body.contratoFin,
                     'precioMensual': req.body.precioMensual,
+
                     'contrato': idNameContrato,
                     'periodosPrecios': Array,
                     'notificaciones': Array,
@@ -573,6 +580,24 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     }).success(function(done) {
         res.redirect('/panel/propiedades');
     });
+
+
+    function contrato(body) {
+        var inicia = body.contratoInicio;
+        var finaliza = body.contratoFin;
+        var mensual = body.precioMensual;
+
+        var obj = {
+                    'inicia': inicia,
+                    'finaliza': finaliza,
+                    'mensual': mensual
+                  };
+
+        historialArr.push(obj);
+
+       return historialArr;
+    }
+
 
 
 });

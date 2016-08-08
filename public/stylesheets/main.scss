@@ -25,6 +25,12 @@ main {
             	padding: 0.5em 1em;
             	background-color: #4CAF50;
             	color: white;
+            	.show {
+            		a {
+            			text-decoration: none;
+            			color: white;
+            		}
+            	}
             }
         }
     }
@@ -281,4 +287,46 @@ main {
             }
         }
     }
+}
+
+.animateClose {
+	text-align: center;
+	padding: 1em 0;
+	img {
+		cursor: pointer;
+	}
+}
+
+//Modals
+.modal-content {
+	width: 1220px;
+	margin: 0 auto;
+	.modal-content--Header {
+		margin: 0 0 1em 0;
+		.title {
+			color: white;
+			font-weight: 400;
+		}
+	}
+	.modal-content--View {
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		.view--Clients {
+			margin: 0 1em 1em 0;
+			background-color: white;
+			padding: 1em;
+			border-radius: 4px;
+			box-shadow:0 11px 10px #318d8a;
+			.view--Clients--Image {
+				text-align: center;
+			}
+			.view--Clients--Name {
+				text-align: center;
+				.Name:nth-child(1), .Name:nth-child(2) {
+					text-transform: capitalize;
+				}
+			}
+		}
+	}
 }

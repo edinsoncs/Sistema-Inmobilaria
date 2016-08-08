@@ -4,7 +4,6 @@ head
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
   meta(name="description", content="Administracion de inmobiliarias")
-  
   base(href="http://localhost:3000/")
 
   title #{title}
@@ -13,12 +12,24 @@ head
   link(rel="stylesheet", href="stylesheets/icons.css")
   link(rel="stylesheet", href="stylesheets/app.css")
 
+  //CDN
+  link(rel="stylesheet", href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css")
+
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
   script(src="https://code.jquery.com/jquery-3.0.0.min.js")
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+  script(src="javascripts/animatedModal.min.js") 
   script(src="javascripts/app-dev1.js")
 
 body
+  a#demo01(href="#animatedModal") sdasdasdsasddasdasdas
+  #animatedModal
+      // THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal"
+      .close-animatedModal
+        | CLOSE MODAL
+      .modal-content
+        // Your modal content goes here
   include inc/header
 
   section.header__Welcome.widthBase
