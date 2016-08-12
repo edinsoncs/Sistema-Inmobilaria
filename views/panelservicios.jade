@@ -5,7 +5,7 @@ html(lang="es")
       meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
       meta(name="description", content="Administracion de inmobiliarias")
       
-      base(href="http://localhost:3000/")
+      base(href="http://localhost/")
 
       title #{title}
       
@@ -97,15 +97,18 @@ body
           h2.title
             | Guia
         div.Welcome--ShowDetails
-          <iframe width="100%" height="380" src="https://www.youtube.com/embed/_s7rwesgVRQ" frameborder="0" allowfullscreen></iframe>
+          video(autoplay lopp class='showVideo', width='100%', height='380px')
+            source(src='video/video.mp4', type='video/mp4')
+            source(src='video/video.webm', type='video/webm')
+       
       article.Welcome--De
         header.Welcome--Header
           h2.title
             | Estado de la cuenta
         div.Welcome--User
           figure.user--Figure
-            img(src="http://localhost:3000/images/avatar.jpg", alt="")
-          div.user--Data
+            img(src="http://localhost/images/avatar.jpg", alt="")
+          //div.user--Data
             ul.ul
               li.list
                 | #{user.nombre}
@@ -115,6 +118,12 @@ body
                 | #{user.empresa}
               li.list
                 | #{user.dni}
+          div.user--DetailsAccount
+            span.showDetails
+              | La cuenta de: 
+              strong #{user.account.type} meses
+            strong.showActive
+              | Activo
               
     section.show__Welcome--Data
       article.data__Services
@@ -152,7 +161,7 @@ body
           span.show
            | Agenda
     section.show__Welcome--Options
-     if serv.pagos
+      
       article.Options__Container
         header.options__Container--Header
           h2.title
@@ -168,12 +177,21 @@ body
               span.listPayment--Title
                 | Se pago del mes: 
                 strong #{n.mesSaldado} 
-             
+          
+          else 
+            figure.figure
+              img(src="images/check.svg", alt="", width="200px")
+            heder.header
+              h2.title No existe ningun pago   
       aside.OptionsAside__Container
-     else
-      //
-      
-            
+        header.options__Container--Header
+          h2.title
+            | Comunicados
+        div.options__Container--Show
+          p.description
+            | Bienvenidos a zimba, sistema inmobiliario, actualmente usted dispone de todas las funcionalidades de zimba, agregar distintas propiedades, editar sus propiedades, cargar servicios de propiedades
+          p.description
+            | Cualquier incoveniente no deje en comunicarse con nosotros, estaremos para brindarle el mejor servicio
 
     
   script.

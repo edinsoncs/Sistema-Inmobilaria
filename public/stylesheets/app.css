@@ -311,6 +311,10 @@ main .show__Welcome--Data {
   margin: 0 0 2em 0;
 }
 
+main .show__Welcome--Data .data__Services:hover {
+  box-shadow: 0 0 10px #dedede;
+}
+
 main .show__Welcome--Data .data__Services .data__Services--Cont {
   width: 250px;
   display: flex;
@@ -351,10 +355,16 @@ main .show__Welcome--Details .Welcome--Iz {
   padding: 1em;
   border: 1px solid #dedede;
   width: 60%;
+  transition: all 0.5s linear;
+}
+
+main .show__Welcome--Details .Welcome--Iz:hover {
+  box-shadow: 0 0 15px #dedede;
 }
 
 main .show__Welcome--Details .Welcome--Iz .Welcome--Header {
   text-align: center;
+  margin: 0 0 1em 0;
 }
 
 main .show__Welcome--Details .Welcome--Iz .Welcome--Header .title {
@@ -366,6 +376,11 @@ main .show__Welcome--Details .Welcome--De {
   padding: 1em;
   width: 38%;
   border: 1px solid #dedede;
+  transition: all 0.5s linear;
+}
+
+main .show__Welcome--Details .Welcome--De:hover {
+  box-shadow: 0 0 15px #dedede;
 }
 
 main .show__Welcome--Details .Welcome--De .Welcome--Header {
@@ -391,8 +406,40 @@ main .show__Welcome--Details .Welcome--De .Welcome--User .user--Figure img {
   border: 1px solid #dedede;
 }
 
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--Data {
+  padding: 1em 0;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--Data .ul {
+  width: 50%;
+  margin: 0 auto;
+}
+
 main .show__Welcome--Details .Welcome--De .Welcome--User .user--Data .ul .list {
   list-style-type: none;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--DetailsAccount {
+  margin: 1em 0;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--DetailsAccount .showDetails {
+  display: block;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--DetailsAccount .showActive {
+  display: block;
+  background-color: #2196F3;
+  width: 20%;
+  margin: 1em auto;
+  padding: 0.5em 0;
+  border-radius: 4px;
+  color: white;
+}
+
+main .show__Welcome--Options {
+  display: flex;
+  justify-content: space-between;
 }
 
 main .show__Welcome--Options .Options__Container {
@@ -421,6 +468,47 @@ main .show__Welcome--Options .options__Container--Ul .listPayment {
 
 main .show__Welcome--Options .options__Container--Ul .listPayment .namePropiedad {
   text-transform: uppercase;
+}
+
+main .show__Welcome--Options .options__Container--Ul .figure {
+  margin: 4em 0;
+}
+
+main .show__Welcome--Options .options__Container--Ul .figure img {
+  display: block;
+  margin: 0 auto;
+}
+
+main .show__Welcome--Options .options__Container--Ul .header {
+  text-align: center;
+}
+
+main .show__Welcome--Options .options__Container--Ul .header .title {
+  font-weight: 400;
+}
+
+main .show__Welcome--Options .OptionsAside__Container {
+  width: 45%;
+  background-color: white;
+}
+
+main .show__Welcome--Options .OptionsAside__Container .options__Container--Header {
+  background-color: #F44336;
+  padding: 0.2em 1em;
+}
+
+main .show__Welcome--Options .OptionsAside__Container .options__Container--Header .title {
+  font-weight: 400;
+  color: white;
+}
+
+main .show__Welcome--Options .OptionsAside__Container .options__Container--Show {
+  padding: 1em;
+}
+
+main .show__Welcome--Options .OptionsAside__Container .options__Container--Show .description {
+  color: #727272;
+  margin: 0 0 1em 0;
 }
 
 main .main__Content {

@@ -12,19 +12,14 @@ var usuario = new Schema ({
 	'propiedades': Array,
 	'notificaciones': Array,
 	'pagos': Array,
-	'cuenta': {
-		'type': String,
-		'state': Boolean,
-		'dia': Number,
-		'fecha': String
-	},
 	'emailTemplate': {
 		'nombreEmpresa': String,
 		'imagenLogo': String,
 		'direccionEmpresa': String,
 		'TelefonoEmpresa': String,
 		'emailEmpresa': String
-	}
+	},					                                               
+	'account': Object
 }, {
 	collection: 'usuarios'
 });

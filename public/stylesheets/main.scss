@@ -4,6 +4,9 @@ main {
         justify-content: space-between;
         margin: 0 0 2em 0;
         .data__Services {
+        	&:hover {
+        		box-shadow: 0 0 10px #dedede;
+        	}
             .data__Services--Cont {
                 width: 250px;
                 display: flex;
@@ -42,8 +45,13 @@ main {
             padding: 1em;
             border: 1px solid #dedede;
             width: 60%;
+            transition: all 0.5s linear;
+            &:hover {
+            	box-shadow: 0 0 15px #dedede;
+            }
             .Welcome--Header {
                 text-align: center;
+                margin: 0 0 1em 0;
                 .title {
                     font-weight: 400;
                 }
@@ -55,6 +63,10 @@ main {
         	padding: 1em;
         	width: 38%;
         	border: 1px solid #dedede;
+        	transition: all 0.5s linear;
+            &:hover {
+            	box-shadow: 0 0 15px #dedede;
+            }
         	.Welcome--Header {
         		text-align: center;
         		.title {
@@ -73,16 +85,37 @@ main {
             		}
             	}
             	.user--Data {
+            		padding: 1em 0;
             		.ul {
+            			
+            			width: 50%;
+            			margin: 0 auto;
             			.list {
             				list-style-type: none;
             			}
+            		}
+            	}
+            	.user--DetailsAccount {
+            		margin: 1em 0;
+            		.showDetails {
+            			display: block;
+            		}
+            		.showActive {
+            			display: block;
+            			background-color: #2196F3;
+            			width: 20%;
+            			margin: 1em auto;
+            			padding: 0.5em 0;
+            			border-radius: 4px;
+            			color: white;
             		}
             	}
             }
         }
     }
     .show__Welcome--Options {
+        display: flex;
+        justify-content: space-between;
         .Options__Container {
             width: 48%;
             background-color: white;
@@ -107,6 +140,40 @@ main {
                     text-transform: uppercase;
                 }
             }
+            .figure {
+                margin: 4em 0;
+                img {
+                    display: block;
+                    margin: 0 auto;
+                }
+            }
+            .header {
+               text-align: center;
+               .title {
+                font-weight: 400;
+               }
+            }
+
+        }
+        .OptionsAside__Container {
+            width: 45%;
+            background-color: white;
+            .options__Container--Header {
+                background-color: #F44336;
+                padding: 0.2em 1em;
+                .title {
+                    font-weight: 400;
+                    color: white;
+                }
+            }
+            .options__Container--Show {
+                padding: 1em;
+                .description {
+                    color: #727272;
+                    margin: 0 0 1em 0;
+                }
+            }
+
         }
     }
     .main__Content {

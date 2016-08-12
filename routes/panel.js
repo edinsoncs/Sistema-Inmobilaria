@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 
     var db = req.db;
     var user = db.get('usuarios');
-
+      console.log(req.user);
     if (req.user.propiedades) {
 
 
