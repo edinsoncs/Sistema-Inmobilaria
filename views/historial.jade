@@ -16,23 +16,24 @@ head
 
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
 
+  //Calendar
+  link(rel="stylesheet", href="../../../stylesheets/jquery.e-calendar.css")
+
   script(src="../../../javascripts/jquery-1.11.2.min.js")
   script(src="../../../javascripts/app-dev1.js")
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
-  //Library create edinsoncs flatui buttons
-  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
-
   //Calendary
   script(src="../../../javascripts/jquery.e-calendar.js")
 
-  //functions create edinsoncs
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
 
+  //functions create edinsoncs
   script(src="../../../javascripts/dcalendar.picker.js")
 
 body
-  header.header__Site
-    include inc/header
+  include inc/header
   section.header__Welcome.widthBase
     header.header__Welcome--Iz
      ul.ul
@@ -143,7 +144,7 @@ body
     div.view--Iz--SubMenu
       ul.subMenu--Ul
         li.list
-          a(class="link", href="")
+          a(class="link", href="../notify/#{propiedad.id}")
            | Notificaciones
         li.list
           a.link(href="../pagos/#{propiedad.id}", class="link")
@@ -152,38 +153,38 @@ body
           a.link(href="../calendario/#{propiedad.id}", class="link")
             | Calendario
         li.list
-          a.link(href="../historial/#{propiedad.id}", class="link")
+          a.link(href="", class="link")
             | Historial de contratos
-          
+    
     section.view--NotifyContainer
      header.view--NotyContainer--Download
       a.linkDownload(href="#")
        i(class="fa fa-file-excel-o" aria-hidden="true")
        | Descargar Excel
-     if (notify)
+     if (ca)
       div#dataDown 
        table(width="1220px", align="center", id="dataDown")
         thead
           tr
-            th Correo
-            th Asunto
-            th Mensaje
-            th Fecha
+            th Inicia
+            th Finaliza
+            th Precio Mensual
         tbody(align="center")
-         each cantNotify in notify
+         each his in ca
           tr
-            td #{cantNotify.email}
-            td #{cantNotify.asunto}
-            td #{cantNotify.mensaje}
-            td #{cantNotify.fecha}
+            td #{his.inicia}
+            td #{his.finaliza}
+            td #{his.mensual}
      else
        table(width="1220px", align="center", id="dataDown")
         tbody(align="center")
           tr
             td Esta propiedad 
              strong #{propiedad.nombrePropiedad} 
-             | no tiene notificaciones
+             | no tiene nuevos contratos       
+   
 
-  script(src='../../../javascripts/app.js')
   script(src='../../../javascripts/buttons.js')
   script(src='../../../javascripts/sorttable.js')
+  script(src='../../../javascripts/app.js')
+    

@@ -174,50 +174,7 @@ $(document).ready(function() {
     }
     showComments();
 
-    function calendarEvent() {
 
-        var elements = $(".calendarioEventos div");
-
-        //@thisURL FORMAT ID
-        var thisURL = window.location.pathname;
-        var formatURL = thisURL.replace("/panel/propiedades/calendario/", "");
-
-        /*if(thisURL == "/panel/propiedades/calendario/"+formatURL) {
-            $('#calendario').eCalendar({
-                url: 'http://localhost:3000/panel/propiedades/calendariojson/'+ formatURL
-            });
-        }
-        else {
-            return false
-        }*/
-
-        var isArray = [];
-
-        for (var i = 0; i < elements.length; i++) {
-            var month = $(elements[i]).attr('data-month');
-            var dia = $(elements[i]).attr('data-dia');
-            var year = $(elements[i]).attr('data-year');
-
-            var thisTitle = $(elements[i]).attr('data-title');
-            var thisDescription = $(elements[i]).attr('data-decription');
-
-            var hora = $(elements[i]).attr('data-hora');
-            var minutes = $(elements[i]).attr('data-minute');
-            var obj = {
-                title: thisTitle,
-                description: thisDescription,
-                datetime: new Date(year, month, dia, hora, minutes)
-            }
-
-            isArray.push(obj);
-        }
-
-        $('#calendario').eCalendar({
-            events: isArray
-        });
-
-    }
-    calendarEvent();
 
 
     function dowloadXLS() {
@@ -233,15 +190,16 @@ $(document).ready(function() {
     dowloadXLS();
 
     function dialogs(type) {
-        var _new = "<fieldset class='fieldset--Form tree'>"+
-                    "<input type='date' name='contratoInicio'>"+
-                    "</fieldset>"+
-                    "<fieldset class='fieldset--Form tree'>"+
-                    "<input type='date' name='contratoFin'>"+
-                    "</fieldset>"+
-                    "<fieldset class='fieldset--Form tree'>"+
-                    "<input type='text' name='contratoFin' placeholder='$'>"+
-                    "</fieldset>";
+        var _new = "<fieldset class='fieldset--Form tree'>" +
+            "<input type='hidden' name='newContrato'>" +
+            "<input type='text' name='contratoInicio'>" +
+            "</fieldset>" +
+            "<fieldset class='fieldset--Form tree'>" +
+            "<input type='text' name='contratoFin'>" +
+            "</fieldset>" +
+            "<fieldset class='fieldset--Form tree'>" +
+            "<input type='text' name='precioMensual' placeholder='$'>" +
+            "</fieldset>";
 
 
         if (type == 'click') {
@@ -253,21 +211,26 @@ $(document).ready(function() {
                     content: 'Al aceptar usted esta creando un nuevo contrato de entrada y salida mas el monto mensual a pagar, esta seguro de proceder?',
                     confirm: function() {
                         disableBtn(input);
+
                         $(".appendNew").append(_new);
-                        $.alert('Confirmed!');
+
+
+                        $("input[name='contratoInicio'], input[name='contratoFin']").dcalendarpicker({
+                            format: 'dd-mm-yyyy'
+                        });
                     },
                     cancel: function() {
                         $.alert('La cancelación a sido exitosa!')
                     }
                 });
-            
-                function disableBtn(element){
+
+                function disableBtn(element) {
                     var _input = $(element).find('input');
-                    $(_input).attr('disabled','true');
+                    $(_input).attr('disabled', 'true');
 
                     $("input[name='contratoInicio']").attr('name', 'historyInicia');
                     $("input[name='contratoFin']").attr('name', 'historyFin');
-                    $("input[name='precioMensual']").attr('name','historyMes')
+                    $("input[name='precioMensual']").attr('name', 'historyMes')
                 }
 
             });
@@ -275,6 +238,75 @@ $(document).ready(function() {
     }
 
     dialogs('click');
+
+    $(".jsClickZoom").click(function() {
+        var img = $(this).siblings('.Options--Iz');
+        var imgshow = $(img).find('a');
+
+
+        var modalBox = "<section class='modalbox--Show'>" +
+            "<figure class='modalbox--Show---Figure'>" +
+            thisimg(imgshow) +
+            "<div class='modalbox--Close'><button class='itemClose'>Cerrar</button></div>" +
+            "</figure>" +
+            "</section>";
+
+        var closeBox = $(".itemClose");
+        var remove = $(".modalbox--Show");
+
+        insertAppend(modalBox, remove);
+
+    });
+
+    function thisimg(img, close) {
+        var n = $(img).attr('href');
+
+        var searching = n.search('jpg');
+        var searchingOther = n.search('png');
+
+        if (searching > 0 || searchingOther > 0) {
+            var img = "<img src='" + n + "' alt='' class='img'>";
+            return img;
+        } else {
+            var pdf = "<object data='" + n + "' type='application/pdf', width='100%' height='450px'></object>"
+            return pdf
+        }
+
+    }
+
+    function insertAppend(html, remove) {
+        $("body").append(html);
+
+        $(".itemClose").click(function() {
+            $(".modalbox--Show").remove();
+        });
+    }
+
+    $(".jsClickDelete").click(function() {
+        var id = $(this).parent().parent();
+        var id_show = $(id).attr('data-id');
+
+        $.ajax({
+            url: '../../deletemultimediaservice',
+            type: 'POST',
+            dataType: "json",
+            contentType: "application/json",
+            data: JSON.stringify({
+                idremove: id_show
+            }),
+            success: function() {
+                alert('removing progress success');
+            },
+            error: function(err) {
+                console.log(err);
+            }
+        });
+
+    });
+
+
+
+
 
 
 });

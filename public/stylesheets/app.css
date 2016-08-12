@@ -339,6 +339,62 @@ main .show__Welcome--Data .data__Services .data__Services--Show .show a {
   color: white;
 }
 
+main .show__Welcome--Details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 0 1em 0;
+}
+
+main .show__Welcome--Details .Welcome--Iz {
+  background-color: white;
+  padding: 1em;
+  border: 1px solid #dedede;
+  width: 60%;
+}
+
+main .show__Welcome--Details .Welcome--Iz .Welcome--Header {
+  text-align: center;
+}
+
+main .show__Welcome--Details .Welcome--Iz .Welcome--Header .title {
+  font-weight: 400;
+}
+
+main .show__Welcome--Details .Welcome--De {
+  background-color: white;
+  padding: 1em;
+  width: 38%;
+  border: 1px solid #dedede;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--Header {
+  text-align: center;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--Header .title {
+  font-weight: 400;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User {
+  text-align: center;
+  margin: 1em 0;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--Figure {
+  text-align: center;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--Figure img {
+  display: block;
+  margin: 0 auto;
+  border: 1px solid #dedede;
+}
+
+main .show__Welcome--Details .Welcome--De .Welcome--User .user--Data .ul .list {
+  list-style-type: none;
+}
+
 main .show__Welcome--Options .Options__Container {
   width: 48%;
   background-color: white;
@@ -668,8 +724,71 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
   text-align: center;
 }
 
-.modal-content .modal-content--View .view--Clients .view--Clients--Name .Name:nth-child(1), .modal-content .modal-content--View .view--Clients .view--Clients--Name .Name:nth-child(2) {
+.modal-content .modal-content--View .view--Clients .view--Clients--Name .Name:nth-child(1),
+.modal-content .modal-content--View .view--Clients .view--Clients--Name .Name:nth-child(2) {
   text-transform: capitalize;
+}
+
+.container--Services {
+  width: 100%;
+}
+
+.container--Services .container--Services--Ul .list {
+  list-style: none;
+  margin: 1em 0;
+}
+
+.container--Services .container--Services--Ul .list .link {
+  text-decoration: none;
+  color: white;
+  background-color: #3498db;
+  padding: 0.5em 1em;
+}
+
+.container--Services .container--Services--View {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  padding: 1em 0;
+  margin: 2em 0;
+}
+
+.container--Services .container--Services--View .view--Service {
+  background-color: white;
+  padding: 1em;
+  height: auto;
+  border: 1px solid #d9d5d5;
+}
+
+.container--Services .container--Services--View .view--Service .header {
+  text-align: center;
+}
+
+.container--Services .container--Services--View .view--Service .header h2 {
+  font-weight: 400;
+  margin: 0.5em 0;
+  font-size: 0.9em;
+}
+
+.container--Services .container--Services--View .view--Service .figure img {
+  width: 150px;
+  height: 80px;
+}
+
+.container--Services .container--Services--View .view--Service .view--Services--Options {
+  display: flex;
+  justify-content: space-around;
+}
+
+.container--Services .container--Services--View .view--Service .view--Services--Options div i {
+  color: #3498db;
+  cursor: pointer;
+}
+
+.container--Services form {
+  margin: 2em 0;
+  height: 450px;
 }
 
 .view {
@@ -2223,4 +2342,44 @@ body.jconfirm-noscroll {
   border-radius: 0px;
   margin: 0;
   border-left: solid 1px #ddd;
+}
+
+.dz-remove {
+  text-decoration: none;
+  color: black;
+  font-weight: 700;
+}
+
+.modalbox--Show {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.37);
+}
+
+.modalbox--Show .modalbox--Show---Figure {
+  width: 650px;
+  margin: 10em auto;
+  box-shadow: 0 0 2px white;
+}
+
+.modalbox--Show .modalbox--Show---Figure .img {
+  width: 100%;
+  border-radius: 4px;
+  display: block;
+}
+
+.modalbox--Show .modalbox--Show---Figure .modalbox--Close {
+  background-color: white;
+  text-align: center;
+  padding: 0.2em 0;
+}
+
+.modalbox--Show .modalbox--Show---Figure .modalbox--Close .itemClose {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0.4em 1em;
+  outline: medium none;
 }

@@ -39,6 +39,10 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var panel = require('./routes/panel');
 var verify = require('./routes/verify');
+
+var services = require('./routes/services');
+
+
 var app = express();
 
 //To connect monk 
@@ -116,6 +120,8 @@ app.use('/users', users);
 
 app.use('/panel', verificarUsuario, panel);
 app.use('/cron', verify);
+
+app.use('/services', services);
 
 
 app.post('/login', passport.authenticate('local', {

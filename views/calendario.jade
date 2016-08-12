@@ -153,8 +153,8 @@ body
           a.link(href="", class="link")
             | Calendario
         li.list
-          a.link(href="", class="link")
-            | 
+          a.link(href="../historial/#{propiedad.id}", class="link")
+            | Historial de contratos
           
     div.calendarioEventos
       if ca
@@ -167,4 +167,5 @@ body
   script(src='../../../javascripts/buttons.js')
   script(src='../../../javascripts/sorttable.js')
   script(src='../../../javascripts/app.js')
+  script(src='../../../javascripts/calendar-app.js')
     

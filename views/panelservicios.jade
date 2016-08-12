@@ -91,6 +91,31 @@ body
         | Loading...
 
   main.widthBase
+    section.show__Welcome--Details
+      article.Welcome--Iz
+        header.Welcome--Header
+          h2.title
+            | Guia
+        div.Welcome--ShowDetails
+          <iframe width="100%" height="380" src="https://www.youtube.com/embed/_s7rwesgVRQ" frameborder="0" allowfullscreen></iframe>
+      article.Welcome--De
+        header.Welcome--Header
+          h2.title
+            | Estado de la cuenta
+        div.Welcome--User
+          figure.user--Figure
+            img(src="http://localhost:3000/images/avatar.jpg", alt="")
+          div.user--Data
+            ul.ul
+              li.list
+                | #{user.nombre}
+              li.list
+                | #{user.apellidos}
+              li.list
+                | #{user.empresa}
+              li.list
+                | #{user.dni}
+              
     section.show__Welcome--Data
       article.data__Services
         .data__Services--Cont
@@ -127,6 +152,7 @@ body
           span.show
            | Agenda
     section.show__Welcome--Options
+     if serv.pagos
       article.Options__Container
         header.options__Container--Header
           h2.title
@@ -144,6 +170,10 @@ body
                 strong #{n.mesSaldado} 
              
       aside.OptionsAside__Container
+     else
+      //
+      
+            
 
     
   script.

@@ -12,54 +12,102 @@ main {
                 height: 200px;
                 background-color: white;
                 border: 1px solid #dedede;
-	            
-	            .Show {
-	                font-size: 5em;
-	                font-weight: 400;
-	                color: #aeaeae;
-	            }
-
+                .Show {
+                    font-size: 5em;
+                    font-weight: 400;
+                    color: #aeaeae;
+                }
             }
             .data__Services--Show {
+                text-align: center;
+                padding: 0.5em 1em;
+                background-color: #4CAF50;
+                color: white;
+                .show {
+                    a {
+                        text-decoration: none;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    .show__Welcome--Details {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin: 0 0 1em 0;
+        .Welcome--Iz {
+            background-color: white;
+            padding: 1em;
+            border: 1px solid #dedede;
+            width: 60%;
+            .Welcome--Header {
+                text-align: center;
+                .title {
+                    font-weight: 400;
+                }
+            }
+
+        }
+        .Welcome--De {
+        	background-color: white;
+        	padding: 1em;
+        	width: 38%;
+        	border: 1px solid #dedede;
+        	.Welcome--Header {
+        		text-align: center;
+        		.title {
+        			font-weight: 400;
+        		}
+        	}
+        	.Welcome--User {
             	text-align: center;
-            	padding: 0.5em 1em;
-            	background-color: #4CAF50;
-            	color: white;
-            	.show {
-            		a {
-            			text-decoration: none;
-            			color: white;
+            	margin: 1em 0;
+            	.user--Figure {
+            		text-align: center;
+            		img {
+            			display: block;
+            			margin: 0 auto;
+            			border: 1px solid #dedede;
+            		}
+            	}
+            	.user--Data {
+            		.ul {
+            			.list {
+            				list-style-type: none;
+            			}
             		}
             	}
             }
         }
     }
     .show__Welcome--Options {
-    	.Options__Container {
-    		width: 48%;
-    		background-color: white;
-    		height: 500px;
-    		.options__Container--Header {
-    			background-color: #3498DB;
-    			padding: 0.2em 1em;
-    			.title {
-    				font-weight: 400;
-    				color: white;
-    			}
-    		}
-    	}
-    	.options__Container--Ul {
-    		.listPayment {
-    			list-style-type: none;
-    			padding: 0.5em;
-    			color: #8d8d8d;
-    			border-bottom: 1px solid #f0eaea;
-    			font-family: 'Lato', sans-serif;
-    			.namePropiedad {
-    				text-transform: uppercase;
-    			}
-    		}
-    	}
+        .Options__Container {
+            width: 48%;
+            background-color: white;
+            height: 500px;
+            .options__Container--Header {
+                background-color: #3498DB;
+                padding: 0.2em 1em;
+                .title {
+                    font-weight: 400;
+                    color: white;
+                }
+            }
+        }
+        .options__Container--Ul {
+            .listPayment {
+                list-style-type: none;
+                padding: 0.5em;
+                color: #8d8d8d;
+                border-bottom: 1px solid #f0eaea;
+                font-family: 'Lato', sans-serif;
+                .namePropiedad {
+                    text-transform: uppercase;
+                }
+            }
+        }
     }
     .main__Content {
         width: 1220px;
@@ -290,43 +338,99 @@ main {
 }
 
 .animateClose {
-	text-align: center;
-	padding: 1em 0;
-	img {
-		cursor: pointer;
-	}
+    text-align: center;
+    padding: 1em 0;
+    img {
+        cursor: pointer;
+    }
 }
 
 //Modals
 .modal-content {
-	width: 1220px;
-	margin: 0 auto;
-	.modal-content--Header {
-		margin: 0 0 1em 0;
-		.title {
-			color: white;
-			font-weight: 400;
-		}
-	}
-	.modal-content--View {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		.view--Clients {
-			margin: 0 1em 1em 0;
-			background-color: white;
-			padding: 1em;
-			border-radius: 4px;
-			box-shadow:0 11px 10px #318d8a;
-			.view--Clients--Image {
-				text-align: center;
-			}
-			.view--Clients--Name {
-				text-align: center;
-				.Name:nth-child(1), .Name:nth-child(2) {
-					text-transform: capitalize;
-				}
-			}
-		}
-	}
+    width: 1220px;
+    margin: 0 auto;
+    .modal-content--Header {
+        margin: 0 0 1em 0;
+        .title {
+            color: white;
+            font-weight: 400;
+        }
+    }
+    .modal-content--View {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .view--Clients {
+            margin: 0 1em 1em 0;
+            background-color: white;
+            padding: 1em;
+            border-radius: 4px;
+            box-shadow: 0 11px 10px #318d8a;
+            .view--Clients--Image {
+                text-align: center;
+            }
+            .view--Clients--Name {
+                text-align: center;
+                .Name:nth-child(1),
+                .Name:nth-child(2) {
+                    text-transform: capitalize;
+                }
+            }
+        }
+    }
+}
+
+//Services multitple archives in css
+.container--Services {
+    width: 100%;
+    .container--Services--Ul {
+        .list {
+            list-style: none;
+            margin: 1em 0;
+            .link {
+                text-decoration: none;
+                color: white;
+                background-color: rgb(52, 152, 219);
+                padding: 0.5em 1em;
+            }
+        }
+    }
+    .container--Services--View {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        padding: 1em 0;
+        margin: 2em 0;
+        .view--Service {
+            background-color: white;
+            padding: 1em;
+            height: auto;
+            border: 1px solid #d9d5d5;
+            .header {
+                text-align: center;
+                h2 {
+                    font-weight: 400;
+                    margin: 0.5em 0;
+                    font-size: 0.9em;
+                }
+            }
+            .figure img {
+                width: 150px;
+                height: 80px;
+            }
+            .view--Services--Options {
+                display: flex;
+                justify-content: space-around;
+                div i {
+                    color: #3498db;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    form {
+        margin: 2em 0;
+        height: 450px;
+    }
 }
