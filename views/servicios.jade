@@ -5,6 +5,8 @@ head
   meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
   meta(name="description", content="Administracion de inmobiliarias")
 
+  base(href="http://localhost/")
+
   title #{title}
   
   link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
@@ -142,27 +144,27 @@ body
     div.view--Iz--SubMenu
       ul.subMenu--Ul
         li.list
-          a(class="link", href="../notify/#{propiedad.id}")
+          a(class="link", href="panel/propiedades/notify/#{propiedad.id}")
            | Notificaciones
         li.list
-          a.link(href="../pagos/#{propiedad.id}", class="link")
+          a.link(href="panel/propiedades/pagos/#{propiedad.id}", class="link")
             | Pagos
         li.list
-          a.link(href="../calendario/#{propiedad.id}", class="link")
+          a.link(href="panel/propiedades/calendario/#{propiedad.id}", class="link")
             | Calendario
         li.list
-          a.link(href="../historial/#{propiedad.id}", class="link")
+          a.link(href="panel/propiedades/historial/#{propiedad.id}", class="link")
             | Historial de contratos
         li.list
-          a.link(href="../servicios/#{propiedad.id}")
+          a.link(href="panel/propiedades/servicios/#{propiedad.id}")
             | Servicios
           
     section.container--Services
       ul.container--Services--Ul
         li.list
-          a.link.viewServices(href="../verservicios/#{propiedad.id}")
+          a.link.viewServices(href="panel/propiedades/verservicios/#{propiedad.id}")
             | Ver Servicios
-      form(action="../../../services", method="post", id="isdrop" class="dropzone", enctype="multipart/form-data", multiple)
+      form(action="./services", method="post", id="isdrop" class="dropzone", enctype="multipart/form-data", multiple)
         input(type="hidden", name="idpropiedad", value="#{propiedad.id}")
 
     

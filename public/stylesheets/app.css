@@ -221,6 +221,7 @@ table tbody > tr > td {
 
 .header__Site .header__Site--Container .header__Site--De .header__User .header__UserFigure img {
   width: 45px;
+  height: 45px;
   display: block;
   border-radius: 50%;
 }
@@ -516,15 +517,57 @@ main .main__Content {
   margin: 0 auto;
   display: flex;
   padding: 1em 0;
+  align-items: flex-start;
+  margin-top: 2em;
 }
 
 main .main__Content .main__Content--Iz {
-  width: 16%;
+  width: 20%;
   margin: 0 5em 0 0;
+  background-color: white;
+  padding: 1em;
+  align-items: flex-start;
+  border: 1px solid #dedede;
+}
+
+main .main__Content .main__Content--Iz .formUploadImage {
+  text-align: center;
+}
+
+main .main__Content .main__Content--Iz .formUploadImage input[type='submit'] {
+  border: none;
+  margin: 1em 0;
+  padding: 0.5em 1em;
+  background-color: #3498db;
+  outline: medium none;
+  color: white;
 }
 
 main .main__Content .main__Content--Iz .Iz--Figure {
   width: 200px;
+  position: relative;
+}
+
+main .main__Content .main__Content--Iz .Iz--Figure .Iz--Change {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: none;
+}
+
+main .main__Content .main__Content--Iz .Iz--Figure:hover .Iz--Change {
+  display: block;
+  text-align: center;
+}
+
+main .main__Content .main__Content--Iz .Iz--Figure:hover .Iz--Change i {
+  color: white;
+  font-size: 2em;
+  margin: 2.5em 0;
+  cursor: pointer;
 }
 
 main .main__Content .main__Content--Iz .Iz--Figure img {
@@ -541,10 +584,15 @@ main .main__Content .main__Content--Iz .Iz--Header .title {
   text-transform: capitalize;
 }
 
+main .main__Content .main__Content--Iz:hover {
+  box-shadow: 0 0 10px #dedede;
+}
+
 main .main__Content .main__Content--De {
-  width: 40%;
+  width: 100%;
   padding: 1em 0 0 1em;
-  background-color: #F3F3F3;
+  background-color: #fff;
+  border: 1px solid #dedede;
 }
 
 main .main__Content .main__Content--De .formularioEdit .formularioFieldset {
@@ -583,6 +631,10 @@ main .main__Content .main__Content--De .formularioEdit .formularioFieldset input
 main .main__Content .main__Content--De .formularioEdit .formularioFieldset input:hover {
   box-shadow: 0 0 10px #2293D5;
   border: 1px solid #2293D5;
+}
+
+main .main__Content .main__Content--De:hover {
+  box-shadow: 0 0 10px #dedede;
 }
 
 main .ContainerPropiedades {
@@ -659,6 +711,37 @@ main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .A
 }
 
 main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions .Actions--Buttons:last-child .linkBtn {
+  background-color: #e74c3c;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles {
+  display: flex;
+  justify-content: space-between;
+  width: 22%;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles .Actions--Buttons .linkBtn {
+  background-color: #dedede;
+  padding: 0.5em 0.8em;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles .Actions--Buttons .linkBtn i {
+  margin: 0 0.4em 0 0;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles .Actions--Buttons:first-child .linkBtn {
+  background-color: #3498db;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles .Actions--Buttons:nth-child(2) .linkBtn {
+  background-color: #27ae60;
+}
+
+main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles .Actions--Buttons:last-child .linkBtn {
   background-color: #e74c3c;
 }
 
@@ -2470,4 +2553,12 @@ body.jconfirm-noscroll {
   background-color: white;
   padding: 0.4em 1em;
   outline: medium none;
+}
+
+.uNone {
+  display: none;
+}
+
+.uMargin {
+  margin: 0 0 1.5em 0 !important;
 }

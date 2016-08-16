@@ -5,6 +5,8 @@ head
   meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
   meta(name="description", content="Administracion de inmobiliarias")
 
+  base(href="http://localhost/")
+
   title #{title}
   
   link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
@@ -52,73 +54,7 @@ body
         | Loading...
   main.widthBase.view
    div.view--NotifyBG
-   section.view--Notify
-    form.formNotify(action="./panel/notificaciones", method="POST")
-      input(type="hidden", value="#{propiedad.id}", name="isID")
-      fieldset.formNotify__Fieldset
-        input(type="email", value="#{propiedad.emailInquilino}", name="isMail", required)
-      fieldset.formNotify__Fieldset
-        input(type="text", placeholder="Asunto", name="isAsunt", required)
-      fieldset.formNotify__Fieldset
-        textarea(cols="30", rows="10", placeholder="mensaje de notificacion", name="isMessage", required)
-      fieldset.formNotify__Fieldset
-        input(type="submit", value="Notificar")
-   section.view--Pagos
-    form.formPagos(action="../../pagos", method="POST")
-      input(type="hidden", value="#{propiedad.id}", name="isID")
-      fieldset.formPagos__Fieldset
-        label.formPagos__Fieldset--Label
-          | Inquilino
-        input(type="text", value="#{propiedad.nombreInquilino}", name="isNameInquilino")
-      fieldset.formPagos__Fieldset
-        label.formPagos__Fieldset--Label
-          | Precio
-        input(type="text", value="#{propiedad.precioMensual}", name="isPrecioPropiedad")
-      fieldset.formPagos__Fieldset
-        label.De--Label
-          | Mes
-        select(name="isMonthPayment")
-            option(value="Enero")
-              | Enero
-            option(value="Febrero")
-              | Febrero
-            option(value="Marzo")
-              | Marzo
-            option(value="Abril")
-              | Abril
-            option(value="Mayo")
-              | Mayo
-            option(value="Junio")
-              | Junio
-            option(value="Julio")
-              | Julio
-            option(value="Agosto")
-              | Agosto
-            option(value="Septiembre")
-              | Septiembre
-            option(value="Octubre")
-              | Octubre
-            option(value="Noviembre")
-              | Noviembre
-            option(value="Diciembre")
-              | Diciembre
-      div.formPagos__Fieldset--Flex
-        div.fieldset--Flex--Iz
-          label.Iz--Label(for="efectivo", class="cursorPointer")
-            | Effectivo
-          input(type="checkbox", value="efectivo" name="typePayment", id="efectivo", class="uNoneDisplay")
-          div.circleCheckbox
-        div.fieldset--Flex--Center
-          label.Center--Label(for="deposito", class="cursorPointer")
-            | Deposito
-          input(type="checkbox", value="deposito" name="typePayment", id="deposito", class="uNoneDisplay")
-          div.circleCheckbox
-      fieldset.formPagos__Fieldset
-        label.Fieldset--Label
-          | Comentarios
-        textarea(name="comentarios", cols="10", rows="1.5")
-      fieldset.formPagos__Fieldset
-        input(type="submit", value="Cobrar")
+   include inc/paymentandcobrar
    section.view--Calendar
    section.view--Iz
     header.view--Iz--Top
@@ -140,19 +76,19 @@ body
     div.view--Iz--SubMenu
       ul.subMenu--Ul
         li.list
-          a(class="link", href="../notify/#{propiedad.id}")
+          a(class="link", href="panel/propiedades/notify/#{propiedad.id}")
            | Notificaciones
         li.list
-          a.link(href="../pagos/#{propiedad.id}", class="link")
+          a.link(href="panel/propiedades/pagos/#{propiedad.id}", class="link")
             | Pagos
         li.list
-          a.link(href="../calendario/#{propiedad.id}", class="link")
+          a.link(href="panel/propiedades/calendario/#{propiedad.id}", class="link")
             | Calendario
         li.list
-          a.link(href="../historial/#{propiedad.id}", class="link")
+          a.link(href="panel/propiedades/historial/#{propiedad.id}", class="link")
             | Historial de contratos
         li.list
-          a.link(href="../servicios/#{propiedad.id}")
+          a.link(href="panel/propiedades/servicios/#{propiedad.id}")
             | Servicios
           
     div.view--Iz--Info

@@ -1,63 +1,56 @@
 <!DOCTYPE html>
 html(lang="es")
-head
-  meta(charset="UTF-8")
-  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
-  meta(name="description", content="Administracion de inmobiliarias")
-  
-  title | #{title}
-  
-  link(rel="stylesheet", href="../stylesheets/normalize.min.css")
-  link(rel="stylesheet", href="../stylesheets/icons.css")
-  link(rel="stylesheet", href="../stylesheets/app.css")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
 
-  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+    base(href="http://localhost/")
+    
+    title #{title}
+    
+    link(rel="stylesheet", href="../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../stylesheets/icons.css")
+    link(rel="stylesheet", href="../stylesheets/app.css")
 
-  script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
-  //Library create edinsoncs flatui buttons
-  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+    script(src="https://code.jquery.com/jquery-1.12.4.min.js")
+
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
 
 body
-  header.header__Site
-    .header__Site--Container
-      figure.header__Site--Iz
-        h1.title Zimba
-      nav.header__Site--De
-        ul.ul
-          li.list.selectItem
-            i(class="fa fa-home" aria-hidden="true")
-            | Inicio
-          li.list
-            i(class="fa fa-folder-open" aria-hidden="true")
-            | Alquileres
-        div.header__User
-          figure.header__UserFigure
-            img(src="../images/avatar.jpg", alt="#{nombre}")
-          div.header__ShowData
-            span
-              | #{nombre}
-            .header__ShowData--SubMenu
-              ul.ul
-                li.listSub
-                  a.link(href="../panel")
-                    |Panel
-                li.listSub
-                  a.link(href="panel/edit")
-                    |Editar mi perfil
-                li.listSub
-                  a.link(href="#")
-                    | Salir
+  
+  include inc/header
   main
+    //div.main__Content--Success
+     if (messages.info)
+      header.Success--Header
+        h2.title
+          | #{messages}
     section.main__Content
       article.main__Content--Iz
+       form.formUploadImage(action="panel/savefotopersonal", method="POST", enctype="multipart/form-data")
+        input(type="file" class="uNone" id="img" name="fotosubida")
         figure.Iz--Figure
-          img(src="../images/avatar.jpg", alt="")
+         if foto 
+          img(src="../fotoprofile/#{foto}", alt="",)
+          div.Iz--Change
+           label(for="img") 
+            i.fa.fa-upload
+         else
+          img(src="http://landestate.com.ar/wp-content/uploads/2014/09/6262664_orig.png")
+          div.Iz--Change
+           label(for="img") 
+            i.fa.fa-upload
         header.Iz--Header
           h2.title
             | #{nombre}
+        div.Iz--Submit
+          input(type="submit", value="Subir")
       aside.main__Content--De
-        form.formularioEdit(action="save", method="POST")
+        form.formularioEdit(action="panel/save", method="POST")
           fieldset.formularioFieldset
             label.formularioFieldset--Label
               | Nombre

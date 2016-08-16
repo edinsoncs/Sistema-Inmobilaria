@@ -4,6 +4,8 @@ head
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
   meta(name="description", content="Administracion de inmobiliarias")
+
+  base(href="http://localhost/")
   
   title #{title}
   
@@ -26,41 +28,7 @@ head
   script(src="../../javascripts/dcalendar.picker.js")
 
 body
-  header.header__Site
-    .header__Site--Container
-      figure.header__Site--Iz
-        h1.title Zimba
-      nav.header__Site--De
-        ul.ul
-          li.list
-            a.tolink(href="../../panel")
-              i(class="fa fa-home" aria-hidden="true")
-              | Inicio
-          li.list.selectItem
-            a(href="../../panel/propiedades", class="tolink")
-              i(class="fa fa-folder-open" aria-hidden="true")
-              | Propiedades
-          li.list
-           a.tolink(href="../../panel/config") 
-            i(class="fa fa-cog" aria-hidden="true")
-            | Config
-        div.header__User
-          figure.header__UserFigure
-            img(src="../../images/avatar.jpg", alt="#{nombre}")
-          div.header__ShowData.jsDownShow
-            span
-              | #{nombre}
-            .header__ShowData--SubMenu
-              ul.ul.jsDown.uNoneDisplay
-                li.listSub
-                  a.link(href="panel")
-                    |Panel
-                li.listSub
-                  a.link(href="panel/edit")
-                    |Editar mi perfil
-                li.listSub
-                  a.link(href="#")
-                    | Salir
+  include inc/header
   section.header__Welcome.widthBase
     header.header__Welcome--Iz
      ul.ul
@@ -83,7 +51,7 @@ body
     header.newPropiedad--Header
       h2.title
         | Crear Nueva Propiedad
-    form.newPropiedad--Form(action="../../panel/addcreate", method="POST", enctype="multipart/form-data")
+    form.newPropiedad--Form(action="panel/addcreate", method="POST", enctype="multipart/form-data")
       
       section.fieldset--StepsContainer
         div.fieldset--Steps

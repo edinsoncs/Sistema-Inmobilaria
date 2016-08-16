@@ -7,6 +7,7 @@ var usuario = new Schema ({
 	'empresa': String,
 	'email': String,
 	'dni': Number,
+	'foto': String,
 	'password': String,
 	'senotifiy': [Boolean],
 	'propiedades': Array,
@@ -18,7 +19,8 @@ var usuario = new Schema ({
 		'direccionEmpresa': String,
 		'TelefonoEmpresa': String,
 		'emailEmpresa': String
-	},					                                               
+	},					      
+	'propiedadesDisponibles': Array,                                         
 	'account': Object
 }, {
 	collection: 'usuarios'

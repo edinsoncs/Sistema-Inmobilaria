@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+html(lang="es")
+head
+  meta(charset="UTF-8")
+  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+  meta(name="description", content="Administracion de inmobiliarias")
+  
+  base(href="http://localhost/")
+
+  title | #{title}
+  
+  link(rel="stylesheet", href="../stylesheets/normalize.min.css")
+  link(rel="stylesheet", href="../stylesheets/icons.css")
+  link(rel="stylesheet", href="../stylesheets/app.css")
+
+  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+  
+
+  script(src="../../../javascripts/jquery-1.11.2.min.js")
+  script(src="../../../javascripts/app-dev1.js")
+  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+  //Library create edinsoncs flatui buttons
+  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+  //Calendary
+  script(src="../../../javascripts/jquery.e-calendar.js")
+
+  //functions create edinsoncs
+
+  script(src="../../../javascripts/dcalendar.picker.js")
+
+body
+  include inc/header
+  section.header__Welcome.widthBase
+    header.header__Welcome--Iz
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="#")
+        | Propiedades
+    aside.header__Welcome--De
+      h2.title.jsAddDate
+        | Loading...
+
+  main.widthBase
+   header.Propiedades
+    a.link.propiedadesLink(href="./panel/disponibles/add", class="")
+     | Nueva Propiedad
+   div.ContainerPropiedades
+    each prop in dispo
+     article.articlesPropiedades(data-id="#{prop.id}")
+      header.articlesPropiedades--Header
+       h2.title
+        i(class="fa fa-home", aria-hidden="true")
+        | #{prop.nombre}
+      div.articlesPropiedades--Description
+       p.description
+        i(class="fa fa-street-view", aria-hidden="true")
+        | Esta propiedad esta ubicado en el barrio: #{prop.barrio}
+      div.articlesPropiedades--Cant
+       p.description
+        i(class="fa fa-street-view", aria-hidden="true")
+        | Propietario: #{prop.propietario}
+      div.articlesPropiedades--Actions--Disponibles.jsClick
+       div.Actions--Buttons
+        a.linkBtn(href="panel/disponibles/show/#{prop.id}")
+         i(class="fa fa-eye" aria-hidden="true")
+         | Ver
+       div.Actions--Buttons
+        a.linkBtn(href="panel/disponibles/editpropiedad/#{prop.id}")
+         i(class="fa fa-pencil-square", aria-hidden="true")
+         | Editar
+       div.Actions--Buttons
+        a.linkBtn.jsDeleteDisponible
+         i(class="fa fa-trash-o", aria-hidden="true")
+         | Borrar
+   
+  script(src='../javascripts/buttons.js')
+  script(src='../javascripts/app.js')

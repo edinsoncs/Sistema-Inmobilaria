@@ -25,10 +25,12 @@ $(document).ready(function() {
 
     //
     var deletePropiedad = $(".jsDelete");
+    var isDisponible = $(".jsDeleteDisponible");
 
 
     //
     isDeletePropiedad(deletePropiedad);
+    isDeletePropiedadDisponible(isDisponible);
 
     //
 
@@ -129,6 +131,32 @@ $(document).ready(function() {
 
 
         });
+    }
+
+    function isDeletePropiedadDisponible(itemSelect) {
+       $(itemSelect).click(function(){
+            var deletePropiedadID = $(this).parent().parent().parent();
+            var find = $(deletePropiedadID).attr('data-id');
+
+            $.ajax({
+                url: "./panel/deletedisponible",
+                type: "POST",
+                dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify({
+                    id: find
+                }),
+                success: function(data) {
+                    templateNotify('Se Removio La Propiedad');
+                    setTimeout(function() {
+                        window.location.href = "/panel/disponibles";
+                    }, 1000);
+                }, error: function(err) {
+                    console.log(err);
+                }
+            });
+
+       });
     }
 
 

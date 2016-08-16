@@ -29,7 +29,7 @@ router.get('/', function(req, res, next) {
 
     var db = req.db;
     var user = db.get('usuarios');
-      console.log(req.user);
+    console.log(req.user);
     if (req.user.propiedades) {
 
 
@@ -40,7 +40,8 @@ router.get('/', function(req, res, next) {
             nombre: req.user.nombre,
             empresa: req.user.empresa,
             menu: 'Inicio',
-            serv: req.user.propiedades
+            serv: req.user.propiedades,
+            foto: req.user.foto
         });
 
     } else {
@@ -131,6 +132,22 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/disponibles', function(req, res, next) {
+
+    res.render('disponibles', {
+        title: 'Panel de administración',
+        user: req.user,
+        cuenta: req.user.cuenta,
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        menu: 'Disponibles',
+        serv: req.user.propiedades,
+        dispo: req.user.propiedadesDisponibles,
+        foto: req.user.foto
+    });
+
+});
+
 router.get('/edit', function(req, res, next) {
 
     function sendData(data) {
@@ -140,8 +157,10 @@ router.get('/edit', function(req, res, next) {
             return req.user.email;
         } else if (data == 'apellidos') {
             return req.user.apellidos;
-        } else if (data = 'dni') {
+        } else if (data == 'dni') {
             return req.user.dni;
+        } else if (data == 'foto') {
+            return req.user.foto;
         }
     }
 
@@ -151,14 +170,16 @@ router.get('/edit', function(req, res, next) {
         apellidos: sendData('apellidos'),
         empresa: sendData('empresa'),
         email: sendData('email'),
-        dni: sendData('dni')
+        dni: sendData('dni'),
+        foto: sendData('foto')
     });
     console.log('editando user');
+    console.log(req.user.foto);
 });
 
 
 router.post('/save', function(req, res, next) {
-    console.log(req.body);
+
 
     function search(s) {
         if (s == 'dni') {
@@ -172,6 +193,7 @@ router.post('/save', function(req, res, next) {
         } else if (s == 'dni') {
             return req.body.dni;
         }
+
     }
 
     var db = req.db;
@@ -184,9 +206,66 @@ router.post('/save', function(req, res, next) {
             'email': search('email'),
             'dni': search('dni')
         }
-    }).success(function(result) {
-        res.redirect('/panel/edit')
+    }, function(err, doc) {
+        try {
+            req.flash('info', 'Se actualizo correctamente');
+            res.redirect('/panel/edit')
+        } catch (err) {
+            return err;
+        }
     });
+
+});
+
+
+router.post('/savefotopersonal', multipartMiddleware, function(req, res, next) {
+
+
+    var db = req.db;
+    var users = db.get('usuarios');
+
+    fs.readFile(req.files.fotosubida.path, function(err, data) {
+        try {
+            var name = esid(4) + req.files.fotosubida.name;
+            var newDirectory = path.join(__dirname, '..', 'public', 'fotoprofile/' + name);
+
+            fs.writeFile(newDirectory, data, function(err) {
+                if (err) {
+                    return err;
+                } else {
+                    users.update({ '_id': req.user._id }, {
+                        $set: {
+                            'foto': name
+                        }
+                    }, function(err, doc) {
+                        try {
+                            req.flash('info', 'Se actualizo correctamente');
+                            res.redirect('/panel/edit')
+                        } catch (err) {
+                            return err;
+                        }
+                    });
+
+                }
+            });
+
+        } catch (err) {
+            return err;
+        }
+    })
+
+    /*users.update({ '_id': req.user._id }, {
+        $set: {
+            'foto': 
+        }
+    }, function(err, doc){
+        try {
+             req.flash('info', 'Se actualizo correctamente');
+             res.redirect('/panel/edit')
+        } catch(err) {
+            return err;
+        }
+    });*/
 
 });
 
@@ -197,6 +276,7 @@ router.get('/propiedades', function(req, res, next) {
         title: 'Panel de administración',
         nombre: req.user.nombre,
         empresa: req.user.empresa,
+        foto: req.user.foto,
         propiedades: reverse,
         menu: 'Propiedades'
     });
@@ -210,6 +290,18 @@ router.get('/propiedades/add', function(req, res, next) {
         nombre: req.user.nombre,
         empresa: req.user.empresa,
         menu: 'Propiedades'
+    });
+
+});
+
+
+router.get('/disponibles/add', function(req, res, next) {
+
+    res.render('add_disponibles', {
+        title: 'Nueva propiedad',
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        menu: 'Disponibles'
     });
 
 });
@@ -250,6 +342,7 @@ router.get('/propiedades/show/:id', function(req, res, next) {
                     notify: reverseNotify,
                     isPagos: pagosShow,
                     cuentaC: cuentaShow,
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
             }
@@ -258,6 +351,36 @@ router.get('/propiedades/show/:id', function(req, res, next) {
 
 
 });
+
+router.get('/disponibles/show/:id', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+
+
+    user.findOne({ _id: req.user._id }, function(err, resultado) {
+        var prop = resultado.propiedadesDisponibles;
+        
+        for (var i = 0; i < prop.length; i++) {
+            if (prop[i].id == req.params.id) {
+
+                res.render('showdisponibles', {
+                    title: prop[i].nombrePropiedad,
+                    nombre: req.user.nombre,
+                    empresa: req.user.empresa,
+                    propiedad: prop[i],
+                    menu: 'Disponibles'
+                });
+            }
+        }
+
+    });
+
+
+});
+
+
 
 router.get('/propiedades/notify/:id', function(req, res, next) {
 
@@ -691,6 +814,62 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
 });
 
+router.post('/newpoperti', function(req, res, next){
+
+    var db = req.db;
+    var usuario = db.get('usuarios');
+
+    console.log('hola');
+
+    console.log(req.body);
+
+    usuario.findAndModify({
+        query: {
+            '_id': req.user.id
+        },
+        update: {
+             $push: {   
+                'propiedadesDisponibles': {
+                    'id': esid(6),
+                    'nombre': req.body.nombrepropiedad,
+                    'description': req.body.despropiedad,
+                    'barrio': req.body.barriopropiedad,
+                    'propietario': req.body.propietarioNombre,
+                    'telpropietario': req.body.propietarioTel,
+                    'dnipropietario': req.body.propietarioDni,
+                    'emailpropietario': req.body.propitarioEmail,
+                    'domiciliopropietario': req.body.propietarioDomicilio,
+                    'fecha': dataFecha(new Date())
+                }
+            }
+        },
+        new: true
+    }).success(function(data){
+       res.redirect('/panel/disponibles')
+    });
+
+
+
+    function dataFecha(data) {
+
+        var dia = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        var day = data.getDate();
+        var dayStatus = data.getDay();
+        var mes = data.getMonth();
+        var year = data.getFullYear();
+
+
+        for (var i = 0; i < dia.length; i++) {
+            return dia[dayStatus] + " " + day + " del " + year;
+        }
+
+    }
+});
+
 
 router.post('/savethisemail', multipartMiddleware, function(req, res, next) {
     var db = req.db;
@@ -1042,6 +1221,36 @@ router.get('/propiedades/editpropiedad/:id', function(req, res, next) {
 
 });
 
+
+router.get('/disponibles/editpropiedad/:id', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    var idPropiedad = req.params.id;
+
+    user.findOne({ '_id': req.user._id }, function(err, doc) {
+        if (err) {
+            return err;
+        } else {
+            for (var i = 0; i < doc.propiedadesDisponibles.length; i++) {
+                if (doc.propiedadesDisponibles[i].id == idPropiedad) {
+                    res.render('editpropiedad_disponibles', {
+                        title: doc.propiedadesDisponibles[i].nombre,
+                        nombre: req.user.nombre,
+                        empresa: req.user.empresa,
+                        propiedad: doc.propiedadesDisponibles[i],
+                        menu: 'Disponibles'
+
+                    });
+                }
+            }
+        }
+    });
+
+
+});
+
 router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
     var db = req.db;
     var user = db.get('usuarios');
@@ -1055,12 +1264,12 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
     //Create object
     var obj = new Object();
     if (req.body.newContrato !== undefined) {
-       
+
         obj.inicia = req.body.contratoInicio;
         obj.finaliza = req.body.contratoFin;
         obj.mensual = req.body.precioMensual;
 
-       
+
 
         //Create function insert in array contrats lasted
         //Function parametro active
@@ -1303,35 +1512,35 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
             update: {
                 $set: {
 
-                        'propiedades.$.id': req.body.idpropiedad,
-                        'propiedades.$.nombrePropiedad': req.body.nombrepropiedad,
-                        'propiedades.$.desPropiedad': req.body.despropiedad,
-                        'propiedades.$.barrio': req.body.barriopropiedad,
+                    'propiedades.$.id': req.body.idpropiedad,
+                    'propiedades.$.nombrePropiedad': req.body.nombrepropiedad,
+                    'propiedades.$.desPropiedad': req.body.despropiedad,
+                    'propiedades.$.barrio': req.body.barriopropiedad,
 
 
-                        'propiedades.$.nombreInquilino': req.body.nameinquilino,
-                        'propiedades.$.telInquilino': req.body.telinquilino,
-                        'propiedades.$.dniInquilino': req.body.dniinquilino,
-                        'propiedades.$.emailInquilino': req.body.emailinquilino,
+                    'propiedades.$.nombreInquilino': req.body.nameinquilino,
+                    'propiedades.$.telInquilino': req.body.telinquilino,
+                    'propiedades.$.dniInquilino': req.body.dniinquilino,
+                    'propiedades.$.emailInquilino': req.body.emailinquilino,
 
-                        'propiedades.$.garanteNombre': req.body.garanteNombre,
-                        'propiedades.$.garanteTel': req.body.garanteTel,
-                        'propiedades.$.garanteDni': req.body.garanteDni,
-                        'propiedades.$.garanteEmail': req.body.garanteEmail,
-                        'propiedades.$.garanteFile': req.body.isgarantefile,
-                        'propiedades.$.garanteDomicilio': req.body.garanteDomicilio,
+                    'propiedades.$.garanteNombre': req.body.garanteNombre,
+                    'propiedades.$.garanteTel': req.body.garanteTel,
+                    'propiedades.$.garanteDni': req.body.garanteDni,
+                    'propiedades.$.garanteEmail': req.body.garanteEmail,
+                    'propiedades.$.garanteFile': req.body.isgarantefile,
+                    'propiedades.$.garanteDomicilio': req.body.garanteDomicilio,
 
-                        'propiedades.$.propietarioNombre': req.body.propietarioNombre,
-                        'propiedades.$.propietarioTel': req.body.propietarioTel,
-                        'propiedades.$.propietarioDni': req.body.propietarioDni,
-                        'propiedades.$.propietarioEmail': req.body.propitarioEmail,
-                        'propiedades.$.propietarioDomicilio': req.body.propietarioDomicilio,
+                    'propiedades.$.propietarioNombre': req.body.propietarioNombre,
+                    'propiedades.$.propietarioTel': req.body.propietarioTel,
+                    'propiedades.$.propietarioDni': req.body.propietarioDni,
+                    'propiedades.$.propietarioEmail': req.body.propitarioEmail,
+                    'propiedades.$.propietarioDomicilio': req.body.propietarioDomicilio,
 
-                        'propiedades.$.contratoInicia': req.body.contratoInicio,
-                        'propiedades.$.contratoFinaliza': req.body.contratoFin,
-                        'propiedades.$.precioMensual': req.body.precioMensual,
-                        'propiedades.$.contrato': req.body.iscontrato,
-                        'propiedades.$.cuentaCorriente': req.body.precioMensual
+                    'propiedades.$.contratoInicia': req.body.contratoInicio,
+                    'propiedades.$.contratoFinaliza': req.body.contratoFin,
+                    'propiedades.$.precioMensual': req.body.precioMensual,
+                    'propiedades.$.contrato': req.body.iscontrato,
+                    'propiedades.$.cuentaCorriente': req.body.precioMensual
                 }
             },
             new: false,
@@ -1343,13 +1552,41 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
 
     }
 
+});
 
+router.post('/editdisponible', function(req, res, next){
 
+   var db = req.db;
+   var user = db.get('usuarios');
 
+   var _idpropiedad = req.body.idpropiedad;
 
+   user.findAndModify({
+        query: {
+            '_id': req.user._id,
+            propiedadesDisponibles: {
+                $elemMatch: {
+                    'id': req.body.idpropiedad
+                }
+            }
+        },
+        update: {
+            $set: {
+                'propiedadesDisponibles.$.nombre': req.body.nombrepropiedad,
+                'propiedadesDisponibles.$.description': req.body.despropiedad,
+                'propiedadesDisponibles.$.barrio': req.body.barriopropiedad,
+                'propiedadesDisponibles.$.propietario': req.body.nameinquilino,
+                'propiedadesDisponibles.$.telpropietario': req.body.telinquilino,
+                'propiedadesDisponibles.$.dnipropietario': req.body.dniinquilino,
+                'propiedadesDisponibles.$.emailpropietario': req.body.emailinquilino,
+                'propiedadesDisponibles.$.domiciliopropietario': req.body.domicliopropietario
+            }
+        },  
+        new: false
+   }).success(function(data){
 
-
-
+       res.redirect('disponibles/editpropiedad/'+_idpropiedad);
+   });
 
 
 });
@@ -1375,7 +1612,28 @@ router.post('/deletepropiedad', function(req, res, next) {
 });
 
 
-router.post('/deletemultimediaservice', function(req, res, next){
+router.post('/deletedisponible', function(req, res, next) {
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    var idDeletePropiedad = req.body.id;
+
+    //$Pull - Mongodb
+
+    user.update({ '_id': req.user._id }, {
+        $pull: {
+            'propiedadesDisponibles': {
+                'id': idDeletePropiedad
+            }
+        }
+    }).success(function() {
+        res.json({ removed: true });
+    });
+
+});
+
+
+router.post('/deletemultimediaservice', function(req, res, next) {
 
     var db = req.db;
     var user = db.get('usuarios');

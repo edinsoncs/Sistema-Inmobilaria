@@ -24,12 +24,12 @@ header.header__Site
               | Propiedades
          if menu === 'Disponibles'
           li.list.selectItem
-            a(href="panel/propiedades", class="tolink")
+            a(href="panel/disponibles", class="tolink")
              i(class="fa fa-folder-open" aria-hidden="true")
              | Disponibles
          else
           li.list
-            a(href="panel/propiedades", class="tolink")
+            a(href="panel/disponibles", class="tolink")
              i(class="fa fa-folder-o" aria-hidden="true")
              | Disponibles
          if menu === 'Agenda'
@@ -56,7 +56,10 @@ header.header__Site
 
         div.header__User
           figure.header__UserFigure
-            img(src="../../../images/avatar.jpg", alt="#{nombre}")
+             if foto
+              img(src="./fotoprofile/#{foto}", alt="#{nombre}")
+             else
+              img(src="http://landestate.com.ar/wp-content/uploads/2014/09/6262664_orig.png")
           div.header__ShowData.jsDownShow
             span
               | #{nombre}

@@ -9,6 +9,7 @@ var Schema = require('./schema');
 var ObjectExpectedError = require('./error/objectExpected');
 var StrictModeError = require('./error/strict');
 var ValidatorError = require('./schematype').ValidatorError;
+var VersionError = require('./error').VersionError;
 var utils = require('./utils');
 var clone = utils.clone;
 var isMongooseObject = utils.isMongooseObject;
@@ -501,10 +502,17 @@ Document.prototype.set = function(path, val, type, options) {
         }
       }
 
-      var keys = Object.keys(path),
-          i = keys.length,
-          pathtype,
-          key;
+      var keys = Object.keys(path);
+      var i = keys.length;
+      var pathtype;
+      var key;
+
+      if (i === 0 && !this.schema.options.minimize) {
+        if (val) {
+          this.set(val, {});
+        }
+        return this;
+      }
 
       while (i--) {
         key = keys[i];
@@ -568,7 +576,14 @@ Document.prototype.set = function(path, val, type, options) {
         this.setValue(path, null);
         cleanModifiedSubpaths(this, path);
       }
-      this.set(val, path, constructing);
+
+      if (Object.keys(val).length === 0) {
+        this.setValue(path, {});
+        this.markModified(path);
+        cleanModifiedSubpaths(this, path);
+      } else {
+        this.set(val, path, constructing);
+      }
       return this;
     }
     this.invalidate(path, new MongooseError.CastError('Object', val, path));
@@ -688,6 +703,10 @@ Document.prototype.set = function(path, val, type, options) {
     this.invalidate(path,
       new MongooseError.CastError(schema.instance, val, path, e));
     shouldSet = false;
+  }
+
+  if (schema.$isSingleNested) {
+    cleanModifiedSubpaths(this, path);
   }
 
   if (shouldSet) {
@@ -927,6 +946,23 @@ Document.prototype.markModified = function(path) {
 };
 
 /**
+ * Clears the modified state on the specified path.
+ *
+ * ####Example:
+ *
+ *     doc.foo = 'bar';
+ *     doc.unmarkModified('foo');
+ *     doc.save() // changes to foo will not be persisted
+ *
+ * @param {String} path the path to unmark modified
+ * @api public
+ */
+
+Document.prototype.unmarkModified = function(path) {
+  this.$__.activePaths.init(path);
+};
+
+/**
  * Returns the list of paths that have been modified.
  *
  * @return {Array}
@@ -939,7 +975,9 @@ Document.prototype.modifiedPaths = function() {
     var parts = path.split('.');
     return list.concat(parts.reduce(function(chains, part, i) {
       return chains.concat(parts.slice(0, i).concat(part).join('.'));
-    }, []));
+    }, []).filter(function(chain) {
+      return (list.indexOf(chain) === -1);
+    }));
   }, []);
 };
 
@@ -951,20 +989,28 @@ Document.prototype.modifiedPaths = function() {
  * ####Example
  *
  *     doc.set('documents.0.title', 'changed');
- *     doc.isModified()                    // true
- *     doc.isModified('documents')         // true
- *     doc.isModified('documents.0.title') // true
- *     doc.isDirectModified('documents')   // false
+ *     doc.isModified()                      // true
+ *     doc.isModified('documents')           // true
+ *     doc.isModified('documents.0.title')   // true
+ *     doc.isModified('documents otherProp') // true
+ *     doc.isDirectModified('documents')     // false
  *
  * @param {String} [path] optional
  * @return {Boolean}
  * @api public
  */
 
-Document.prototype.isModified = function(path) {
-  return path
-      ? !!~this.modifiedPaths().indexOf(path)
-      : this.$__.activePaths.some('modify');
+Document.prototype.isModified = function(paths) {
+  if (paths) {
+    if (!Array.isArray(paths)) {
+      paths = paths.split(' ');
+    }
+    var modified = this.modifiedPaths();
+    return paths.some(function(path) {
+      return !!~modified.indexOf(path);
+    });
+  }
+  return this.$__.activePaths.some('modify');
 };
 
 /**
@@ -1099,34 +1145,18 @@ Document.prototype.isSelected = function isSelected(path) {
  *     });
  *
  * @param {Object} optional options internal options
- * @param {Function} optional callback called after validation completes, passing an error if one occurred
+ * @param {Function} callback optional callback called after validation completes, passing an error if one occurred
  * @return {Promise} Promise
  * @api public
  */
 
 Document.prototype.validate = function(options, callback) {
-  var _this = this;
-  var Promise = PromiseProvider.get();
   if (typeof options === 'function') {
     callback = options;
     options = null;
   }
 
-  if (options && options.__noPromise) {
-    this.$__validate(callback);
-    return;
-  }
-
-  return new Promise.ES6(function(resolve, reject) {
-    _this.$__validate(function(error) {
-      callback && callback(error);
-      if (error) {
-        reject(error);
-        return;
-      }
-      resolve();
-    });
-  });
+  this.$__validate(callback);
 };
 
 /*!
@@ -1857,27 +1887,53 @@ Document.prototype.$__registerHooksFromSchema = function() {
       var args = [].slice.call(arguments);
       var lastArg = args.pop();
       var fn;
+      var originalStack = new Error().stack;
+      var $results;
+      if (lastArg && typeof lastArg !== 'function') {
+        args.push(lastArg);
+      } else {
+        fn = lastArg;
+      }
 
-      return new Promise.ES6(function(resolve, reject) {
-        if (lastArg && typeof lastArg !== 'function') {
-          args.push(lastArg);
-        } else {
-          fn = lastArg;
-        }
-        args.push(function(error, result) {
+      var promise = new Promise.ES6(function(resolve, reject) {
+        args.push(function(error) {
           if (error) {
+            // gh-2633: since VersionError is very generic, take the
+            // stack trace of the original save() function call rather
+            // than the async trace
+            if (error instanceof VersionError) {
+              error.stack = originalStack;
+            }
             _this.$__handleReject(error);
-            fn && fn(error);
             reject(error);
             return;
           }
 
-          fn && fn.apply(null, [null].concat(Array.prototype.slice.call(arguments, 1)));
-          resolve(result);
+          // There may be multiple results and promise libs other than
+          // mpromise don't support passing multiple values to `resolve()`
+          $results = Array.prototype.slice.call(arguments, 1);
+          resolve.apply(promise, $results);
         });
 
         _this[newName].apply(_this, args);
       });
+      if (fn) {
+        if (_this.constructor.$wrapCallback) {
+          fn = _this.constructor.$wrapCallback(fn);
+        }
+        return promise.then(
+          function() {
+            process.nextTick(function() {
+              fn.apply(null, [null].concat($results));
+            });
+          },
+          function(error) {
+            process.nextTick(function() {
+              fn(error);
+            });
+          });
+      }
+      return promise;
     };
 
     toWrap[pointCut].pre.forEach(function(args) {
@@ -2055,6 +2111,7 @@ Document.prototype.$toObject = function(options, json) {
  *     schema.options.toObject.transform = function (doc, ret, options) {
  *       // remove the _id of every document before returning the result
  *       delete ret._id;
+ *       return ret;
  *     }
  *
  *     // without the transformation in the schema
@@ -2097,6 +2154,7 @@ Document.prototype.$toObject = function(options, json) {
  *           delete ret[prop];
  *         });
  *       }
+ *       return ret;
  *     }
  *
  *     var doc = new Doc({ _id: 'anId', secret: 47, name: 'Wreck-it Ralph' });
@@ -2225,13 +2283,9 @@ Document.prototype.inspect = function(options) {
   var opts;
   if (isPOJO) {
     opts = options;
-  } else if (this.schema.options.toObject) {
-    opts = clone(this.schema.options.toObject);
-  } else {
-    opts = {};
+    opts.minimize = false;
+    opts.retainKeyOrder = true;
   }
-  opts.minimize = false;
-  opts.retainKeyOrder = true;
   return this.toObject(opts);
 };
 
@@ -2259,6 +2313,10 @@ Document.prototype.toString = function() {
  */
 
 Document.prototype.equals = function(doc) {
+  if (!doc) {
+    return false;
+  }
+
   var tid = this.get('_id');
   var docid = doc.get ? doc.get('_id') : doc;
   if (!tid && !docid) {
@@ -2365,7 +2423,7 @@ Document.prototype.populate = function populate() {
  *     doc.execPopulate().then(resolve, reject);
  *
  *
- * @see Document.populate #Document_model.populate
+ * @see Document.populate #document_Document-populate
  * @api public
  * @return {Promise} promise that resolves to the document when population is done
  */
@@ -2443,6 +2501,7 @@ Document.prototype.populated = function(path, val, options) {
  * If the path was not populated, this is a no-op.
  *
  * @param {String} path
+ * @see Document.populate #document_Document-populate
  * @api public
  */
 
