@@ -7,7 +7,7 @@ head
   
   base(href="http://localhost/")
 
-  title | #{title}
+  title #{title}
   
   link(rel="stylesheet", href="../stylesheets/normalize.min.css")
   link(rel="stylesheet", href="../stylesheets/icons.css")
@@ -38,13 +38,13 @@ body
     header.header__Welcome--Iz
      ul.ul
       li.list
-       a.link(href="#")
+       a.link()
         i(class="fa fa-briefcase", aria-hidden="true") 
         |  #{empresa} 
       li.list
        span.break /
       li.list
-       a.link.actuality(href="#")
+       a.link.actuality(href="panel/propiedades")
         | Propiedades
     aside.header__Welcome--De
       h2.title.jsAddDate

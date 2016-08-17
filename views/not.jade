@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 html(lang="en")
-head
-  meta(charset="UTF-8")
-  title  Administracion Inmobiliaria
-  base(href="http://localhost/")
+  head
+    meta(charset="UTF-8")
+    title  Administracion Inmobiliaria
+    base(href="http://localhost/")
+      
+    link(rel="stylesheet", href="stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="stylesheets/icons.css")
+    link(rel="stylesheet", href="stylesheets/app.css")
     
-  link(rel="stylesheet", href="stylesheets/normalize.min.css")
-  link(rel="stylesheet", href="stylesheets/icons.css")
-  link(rel="stylesheet", href="stylesheets/app.css")
-  
-  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
 body.bgHome
   
@@ -17,8 +17,8 @@ body.bgHome
     figure.panelHomeLogin__Figure
       img(src="images/logo.png", alt="", width="50px")
     header.panelHomeLogin__Header
-      h2.title
-        | Ingresar Cuenta
+      h2.title.red
+        | Error al ingresar
     form.formPanelHome--Form(action="/login", method="post")
       fieldset.formPanelHome--Fieldset
        input(type="text", placeholder="email", name='email')

@@ -39,18 +39,18 @@ body
     header.header__Welcome--Iz
      ul.ul
       li.list
-       a.link(href="#")
+       a.link()
         i(class="fa fa-briefcase", aria-hidden="true") 
         |  #{empresa} 
       li.list
        span.break /
       li.list
-       a.link.actuality(href="../../propiedades")
+       a.link.actuality(href="../panel/propiedades")
         | Propiedades
       li.list
        span.break /
       li.list
-       a.link.actuality(href="#")
+       a.link.actuality(href="../panel/propiedades/notify/#{propiedad.id}")
         | #{propiedad.nombrePropiedad}
     aside.header__Welcome--De
       h2.title.jsAddDate
@@ -116,7 +116,8 @@ body
             td #{cantNotify.mensaje}
             td #{cantNotify.fecha}
      else
-       table(width="1220px", align="center", id="dataDown")
+      div#dataDown
+       table(width="1220px", align="center", id="dataDownContainer")
         tbody(align="center")
           tr
             td Esta propiedad 
@@ -126,3 +127,32 @@ body
   script(src='../../../javascripts/app.js')
   script(src='../../../javascripts/buttons.js')
   script(src='../../../javascripts/sorttable.js')
+  script.
+    $(document).ready(function(){
+      $("table").DataTable({
+        "language": {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          }
+      });
+    });

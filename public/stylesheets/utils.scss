@@ -711,3 +711,42 @@ $blackShowServicesModal: rgba(0, 0, 0, 0.37);
 .uMargin {
     margin: 0 0 1.5em 0!important;
 }
+.uCenter {
+    text-align: center;
+}
+.dataTables_length, #dataDown_filter {
+    margin: 0 0 1em 0;
+}
+.dataTables_length {
+    padding: 0.5em;
+}
+select[name='dataDown_length'] {
+    border: 1px solid #dedede;
+    outline: medium none;
+    padding: 0.2em;
+}
+.dataTables_wrapper .dataTables_filter input {
+    padding: 0.3em 0.2em;
+    border: none;
+    border: 1px solid #dedede;
+    outline: medium none;
+    border-radius: 3px;
+}
+table.dataTable thead th, table.dataTable thead td {
+    border-bottom: 1px solid transparent!important;
+}
+table.dataTable.no-footer {
+    border-bottom: 1px solid transparent!important;
+}
+
+.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+    color: #6a6060!important;
+}
+
+.red {
+    color: red;
+}
+.flexContainer {
+    display: flex;
+    justify-content: space-between;
+}

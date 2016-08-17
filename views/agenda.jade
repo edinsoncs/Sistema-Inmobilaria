@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
+
+    base(href="http://localhost/")
+    
+    title #{title}
+    
+    link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../../../stylesheets/icons.css")
+    link(rel="stylesheet", href="../../../stylesheets/app.css")
+    link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+    
+
+    script(src="../../../javascripts/jquery-1.11.2.min.js")
+    script(src="../../../javascripts/app-dev1.js")
+    script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+    //Calendary
+    script(src="../../../javascripts/jquery.e-calendar.js")
+
+
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+    script(src="../../../javascripts/dcalendar.picker.js")
+
+body
+  include inc/header
+  
+  section.header__Welcome.widthBase
+    header.header__Welcome--Iz
+     ul.ul
+      li.list
+       a.link(href="#")
+        i(class="fa fa-briefcase", aria-hidden="true") 
+        |  #{empresa} 
+      li.list
+       span.break /
+      li.list
+       a.link.actuality(href="../propiedades")
+        | Agenda
+
+  main.widthBase.agenda
+    header.Propiedades
+      a.link.propiedadesLink(href="./panel/agenda/add", class="")
+       | Nueva Agenda
+    if agenda
+      div#dataDown 
+       table(width="1220px", align="center", id="dataDown")
+        thead
+          tr
+            th Nombre
+            th Propiedad
+            th Nombre Visitante
+            th Email Visitante
+            th Fecha
+            th Hora
+        tbody(align="center")
+         each a in agenda
+          tr
+            td #{a.name}
+            td #{a.propiedades}
+            td #{a.namevisitante}
+            td #{a.emailvisita}
+            td #{a.fechaagenda}
+            td #{a.horario}
+    else
+      table(width="1220px", align="center", id="dataDownContainer")
+        tbody(align="center")
+          tr
+            td No dispones de nuevas visitas
+             strong  en tu agenda
+            
+  
+  script(src='../../../javascripts/app.js')
+  script(src='../../../javascripts/buttons.js')
+  script(src='../../../javascripts/sorttable.js')
+  script.
+    $(document).ready(function(){
+      $("table").DataTable({
+        "language": {
+              "sProcessing":     "Procesando...",
+              "sLengthMenu":     "Mostrar _MENU_ registros",
+              "sZeroRecords":    "No se encontraron resultados",
+              "sEmptyTable":     "Ningún dato disponible en esta tabla",
+              "sInfo":           "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+              "sInfoEmpty":      "Mostrando registros del 0 al 0 de un total de 0 registros",
+              "sInfoFiltered":   "(filtrado de un total de _MAX_ registros)",
+              "sInfoPostFix":    "",
+              "sSearch":         "Buscar:",
+              "sUrl":            "",
+              "sInfoThousands":  ",",
+              "sLoadingRecords": "Cargando...",
+              "oPaginate": {
+                "sFirst":    "Primero",
+                "sLast":     "Último",
+                "sNext":     "Siguiente",
+                "sPrevious": "Anterior"
+              },
+              "oAria": {
+                "sSortAscending":  ": Activar para ordenar la columna de manera ascendente",
+                "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+              }
+          }
+      });
+    });

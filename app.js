@@ -129,6 +129,12 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/notfound'
 }));
 
+app.get('/notfound', function(req, res, next){
+  res.render('not', {
+    'title': 'Error verifique su cuenta porfavor'
+  });
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

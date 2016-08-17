@@ -1,5 +1,6 @@
 .header__Site {
 	background-color: #344c59;
+	    box-shadow: 0 0 6px black;
 	.header__Site--Container {
 		width: $widthPrimary;
 		margin: $centerMargin;
@@ -11,7 +12,7 @@
 			color: white;
 		}
 		.header__Site--De {
-			width: 73.5%;
+			width: 81.5%;
 			display: flex;
 			.ul .list {
 				list-style-type: none;

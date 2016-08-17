@@ -38,9 +38,7 @@ ul {
 	border-sizing: border-box;
 }
 
-* {
-	box-sizing: border-box;
-}
+
 $widthPrimary: 1220px;
 $centerMargin: 0 auto;
 $blanco: white;
@@ -80,7 +78,7 @@ table {
 }
 
 .bgHome {
-	background: #3498DB;
+	background: #f1f1f1;
 }
 .panelHomeLogin {
 	position: absolute;
@@ -92,6 +90,9 @@ table {
 	margin-left: -14em;
 	margin-top: -5em;
 	box-shadow: 10px 14px 0 rgba(0, 0, 0, 0.27);
+	.panelHomeLogin__Figure {
+		text-align: center;
+	}
 	.panelHomeLogin__Header {
 		text-align: center;
 		padding: 0 0 1em 0;
@@ -106,7 +107,7 @@ table {
 		fieldset input[type='text'], input[type='password'] {
 			width: 95%;
 			height: 30px;
-			padding: 0.5em 0.5em;
+			padding: 1em 0.5em;
 			outline: medium none;
 			transition: all 0.5s linear;
 			&:hover {

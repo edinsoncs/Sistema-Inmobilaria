@@ -4,9 +4,9 @@ main {
         justify-content: space-between;
         margin: 0 0 2em 0;
         .data__Services {
-        	&:hover {
-        		box-shadow: 0 0 10px #dedede;
-        	}
+            &:hover {
+                box-shadow: 0 0 10px #dedede;
+            }
             .data__Services--Cont {
                 width: 250px;
                 display: flex;
@@ -47,7 +47,7 @@ main {
             width: 60%;
             transition: all 0.5s linear;
             &:hover {
-            	box-shadow: 0 0 15px #dedede;
+                box-shadow: 0 0 15px #dedede;
             }
             .Welcome--Header {
                 text-align: center;
@@ -56,60 +56,58 @@ main {
                     font-weight: 400;
                 }
             }
-
         }
         .Welcome--De {
-        	background-color: white;
-        	padding: 1em;
-        	width: 38%;
-        	border: 1px solid #dedede;
-        	transition: all 0.5s linear;
+            background-color: white;
+            padding: 1em;
+            width: 30%;
+            border: 1px solid #dedede;
+            transition: all 0.5s linear;
             &:hover {
-            	box-shadow: 0 0 15px #dedede;
+                box-shadow: 0 0 15px #dedede;
             }
-        	.Welcome--Header {
-        		text-align: center;
-        		.title {
-        			font-weight: 400;
-        		}
-        	}
-        	.Welcome--User {
-            	text-align: center;
-            	margin: 1em 0;
-            	.user--Figure {
-            		text-align: center;
-            		img {
-            			display: block;
-            			margin: 0 auto;
-            			border: 1px solid #dedede;
-            		}
-            	}
-            	.user--Data {
-            		padding: 1em 0;
-            		.ul {
-            			
-            			width: 50%;
-            			margin: 0 auto;
-            			.list {
-            				list-style-type: none;
-            			}
-            		}
-            	}
-            	.user--DetailsAccount {
-            		margin: 1em 0;
-            		.showDetails {
-            			display: block;
-            		}
-            		.showActive {
-            			display: block;
-            			background-color: #2196F3;
-            			width: 20%;
-            			margin: 1em auto;
-            			padding: 0.5em 0;
-            			border-radius: 4px;
-            			color: white;
-            		}
-            	}
+            .Welcome--Header {
+                text-align: center;
+                .title {
+                    font-weight: 400;
+                }
+            }
+            .Welcome--User {
+                text-align: center;
+                margin: 1em 0;
+                .user--Figure {
+                    text-align: center;
+                    img {
+                        display: block;
+                        margin: 0 auto;
+                        border: 1px solid #dedede;
+                    }
+                }
+                .user--Data {
+                    padding: 1em 0;
+                    .ul {
+                        width: 50%;
+                        margin: 0 auto;
+                        .list {
+                            list-style-type: none;
+                        }
+                    }
+                }
+                .user--DetailsAccount {
+                    margin: 1em 0;
+                    .showDetails {
+                        display: block;
+                    }
+                    .showActive {
+                        display: block;
+                        background-color: #2196F3;
+                        width: 20%;
+                        margin: 1em auto;
+                        padding: 0.5em 0;
+                        border-radius: 4px;
+                        color: white;
+                    }
+                }
             }
         }
     }
@@ -148,12 +146,11 @@ main {
                 }
             }
             .header {
-               text-align: center;
-               .title {
-                font-weight: 400;
-               }
+                text-align: center;
+                .title {
+                    font-weight: 400;
+                }
             }
-
         }
         .OptionsAside__Container {
             width: 45%;
@@ -173,7 +170,6 @@ main {
                     margin: 0 0 1em 0;
                 }
             }
-
         }
     }
     .main__Content {
@@ -389,6 +385,105 @@ main {
                 }
             }
         }
+    }
+    
+
+}
+
+.support {
+        .support--Iz {
+            background-color: white;
+            width: 40%;
+            padding: 1em;
+            border: 1px solid #dedede;
+            .formSupport {
+                .formSupport--Fieldset {
+                    margin: 0.5em 0;
+                    .labelSupport--Label {
+                        display: block;
+                        font-size: 0.9rem;
+                        margin: 0 0 0.5em 0;
+                    }
+                    input {
+                        width: 98%;
+                        padding: 0.5em 0.5em;
+                        border: 1px solid #dfdfdf;
+                        outline: medium none;
+                        &:focus {
+                            border-color: #0069ff;
+                        }
+                    }
+                    textarea {
+                        width: 100%;
+                        resize: none;
+                        border: 1px solid #dfdfdf;
+                        outline: medium none;
+                        padding: 0.5em;
+                        &:focus {
+                            border-color: #0069ff;
+                        }
+                    }
+                    input[type='submit'] {
+                        width: 25%;
+                        background-color: #0069ff;
+                        color: white;
+                        font-size: 0.9em;
+                        padding: 0.8em 1em;
+                        font-family: helvetica;
+                        outline: medium none;
+                    }
+                }
+            }
+        }
+        .support--De {
+            background-color: white;
+            padding: 1em;
+            border: 1px solid #dedede;
+            width: 40%;
+            .support--De--Ticket {
+                .ticket--Header {
+                    margin: 0 0 1em 0;
+                    .title {
+                        font-weight: 400;
+                    }
+                }
+            }
+            .ticket--Container a{
+                    display: flex;
+                    text-decoration: none;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid #dedede;
+                    background-color: #04a193;
+                    padding: 0.5em;
+                    &:hover {
+                        background-color: #058b7f;
+                    }
+                    .ticket--Container--Iz {
+                        .title {
+                            color: white;
+                        }
+                    }
+                    .ticket--Container--Center {
+                        .title {
+                            color: white;
+                        }
+                    }
+                    .ticket--Container--De {
+                        .title {
+                            color: white;
+                            font-size: 0.9em;
+                        }
+                        padding: 0.3em;
+                        background-color: #2c706a;
+                    }
+            }
+        }
+}
+
+.agenda {
+    .Propiedades {
+        margin: 2em 0;
     }
 }
 

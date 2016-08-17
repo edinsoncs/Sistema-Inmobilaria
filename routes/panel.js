@@ -41,7 +41,9 @@ router.get('/', function(req, res, next) {
             empresa: req.user.empresa,
             menu: 'Inicio',
             serv: req.user.propiedades,
-            foto: req.user.foto
+            foto: req.user.foto,
+            disponibles: req.user.propiedadesDisponibles,
+            agenda: req.user.agenda
         });
 
     } else {
@@ -145,6 +147,39 @@ router.get('/disponibles', function(req, res, next) {
         dispo: req.user.propiedadesDisponibles,
         foto: req.user.foto
     });
+
+});
+
+router.get('/agenda', function(req, res, next) {
+
+    res.render('agenda', {
+        title: 'Panel de administración',
+        user: req.user,
+        cuenta: req.user.cuenta,
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        menu: 'Agenda',
+        serv: req.user.propiedades,
+        dispo: req.user.propiedadesDisponibles,
+        foto: req.user.foto,
+        agenda: req.user.agenda
+    });
+
+});
+
+router.get('/agenda/add', function(req, res, next) {
+
+    res.render('newagenda', {
+        title: 'Crear agenda',
+        user: req.user,
+        cuenta: req.user.cuenta,
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        menu: 'Agenda',
+        serv: req.user.propiedades,
+        disponibles: req.user.propiedadesDisponibles,
+        foto: req.user.foto
+    })
 
 });
 
@@ -361,7 +396,7 @@ router.get('/disponibles/show/:id', function(req, res, next) {
 
     user.findOne({ _id: req.user._id }, function(err, resultado) {
         var prop = resultado.propiedadesDisponibles;
-        
+
         for (var i = 0; i < prop.length; i++) {
             if (prop[i].id == req.params.id) {
 
@@ -650,7 +685,8 @@ router.get('/config', function(req, res, next) {
         title: 'Config Zimba',
         nombre: req.user.nombre,
         empresa: req.user.empresa,
-        menu: 'Config'
+        menu: 'Config',
+        foto: req.user.foto
     });
 });
 
@@ -660,7 +696,20 @@ router.get('/config/email', function(req, res, next) {
         nombre: req.user.nombre,
         empresa: req.user.empresa,
         emailTemplate: req.user.emailTemplate,
-        menu: 'Config'
+        menu: 'Config',
+        foto: req.user.foto
+    });
+});
+
+router.get('/ticket/support', function(req, res, next) {
+    res.render('support', {
+        title: 'Soporte Zimba',
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        emailTemplate: req.user.emailTemplate,
+        menu: 'Config',
+        foto: req.user.foto,
+        support: req.user.support
     });
 });
 
@@ -814,7 +863,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
 });
 
-router.post('/newpoperti', function(req, res, next){
+router.post('/newpoperti', function(req, res, next) {
 
     var db = req.db;
     var usuario = db.get('usuarios');
@@ -828,7 +877,7 @@ router.post('/newpoperti', function(req, res, next){
             '_id': req.user.id
         },
         update: {
-             $push: {   
+            $push: {
                 'propiedadesDisponibles': {
                     'id': esid(6),
                     'nombre': req.body.nombrepropiedad,
@@ -844,8 +893,8 @@ router.post('/newpoperti', function(req, res, next){
             }
         },
         new: true
-    }).success(function(data){
-       res.redirect('/panel/disponibles')
+    }).success(function(data) {
+        res.redirect('/panel/disponibles')
     });
 
 
@@ -868,6 +917,34 @@ router.post('/newpoperti', function(req, res, next){
         }
 
     }
+});
+
+router.post('/addagenda', function(req, res, next) {
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    user.findAndModify({
+        query: {
+            '_id': req.user._id
+        },
+        update: {
+            $push: {
+                'agenda': {
+                    'name': req.body.nombreagenda,
+                    'propiedades': req.body.propiedades,
+                    'namevisitante': req.body.namevisita,
+                    'telvisita': req.body.telvisita,
+                    'dnivisita': req.body.dnivisita,
+                    'emailvisita': req.body.emailvisita,
+                    'fechaagenda': req.body.fechaagenda,
+                    'horario': req.body.horario
+                }
+            }
+        },
+        new: true
+    }).success(function(data) {
+        res.redirect('/panel/agenda');
+    });
 });
 
 
@@ -1554,14 +1631,14 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
 
 });
 
-router.post('/editdisponible', function(req, res, next){
+router.post('/editdisponible', function(req, res, next) {
 
-   var db = req.db;
-   var user = db.get('usuarios');
+    var db = req.db;
+    var user = db.get('usuarios');
 
-   var _idpropiedad = req.body.idpropiedad;
+    var _idpropiedad = req.body.idpropiedad;
 
-   user.findAndModify({
+    user.findAndModify({
         query: {
             '_id': req.user._id,
             propiedadesDisponibles: {
@@ -1581,12 +1658,12 @@ router.post('/editdisponible', function(req, res, next){
                 'propiedadesDisponibles.$.emailpropietario': req.body.emailinquilino,
                 'propiedadesDisponibles.$.domiciliopropietario': req.body.domicliopropietario
             }
-        },  
+        },
         new: false
-   }).success(function(data){
+    }).success(function(data) {
 
-       res.redirect('disponibles/editpropiedad/'+_idpropiedad);
-   });
+        res.redirect('disponibles/editpropiedad/' + _idpropiedad);
+    });
 
 
 });
@@ -1658,6 +1735,34 @@ router.post('/deletemultimediaservice', function(req, res, next) {
     });
 
 });
+
+router.post('/ticket', function(req, res, next){
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+
+    user.findAndModify({
+        query: {
+            '_id': req.user._id
+        },
+        update: {
+            $push: {
+                'support': {
+                    'name': req.body.name,
+                    'asunto': req.body.asunto,
+                    'mensaje': req.body.mensaje
+                }
+            }
+        },
+        new: true
+    }).success(function(data){
+        console.log('enviado');
+    });
+
+
+});
+
 
 
 module.exports = router;

@@ -1,84 +1,78 @@
 <!DOCTYPE html>
 html(lang="es")
-head
-  meta(charset="UTF-8")
-  meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
-  meta(name="description", content="Administracion de inmobiliarias")
-  
-  title #{title}
-  
-  link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
-  link(rel="stylesheet", href="../../../stylesheets/icons.css")
-  link(rel="stylesheet", href="../../../stylesheets/app.css")
-  link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
+    
+    title #{title}
+    
+    link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../../../stylesheets/icons.css")
+    link(rel="stylesheet", href="../../../stylesheets/app.css")
+    link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
 
-  link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
-  link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+    link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
 
-  script(src="../../../javascripts/jquery-1.11.2.min.js")
-  script(src="../../../javascripts/app-dev1.js")
-  script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+    script(src="../../../javascripts/jquery-1.11.2.min.js")
+    script(src="../../../javascripts/app-dev1.js")
+    script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
 
-  //Library create edinsoncs flatui buttons
-  script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
 
 
-  //functions create edinsoncs
-  script(src="../../../javascripts/thisF.unctions.js")
-  script(src="../../../javascripts/dcalendar.picker.js")
-
+    //functions create edinsoncs
+    script(src="../../../javascripts/thisF.unctions.js")
+    script(src="../../../javascripts/dcalendar.picker.js")
 body
-  header.header__Site
-    .header__Site--Container
-      figure.header__Site--Iz
-        h1.title Zimba
-      nav.header__Site--De
-        ul.ul
-          li.list
-            a.tolink(href="../../panel")
-              i(class="fa fa-home" aria-hidden="true")
-              | Inicio
-          li.list
-            a(href="../../panel/propiedades", class="tolink")
-              i(class="fa fa-folder-open" aria-hidden="true")
-              | Propiedades
-          li.list.selectItem
-            a(href="../../panel/config", class="tolink")
-              i(class="fa fa-cog" aria-hidden="true")
-              | Config
-        div.header__User
-          figure.header__UserFigure
-            img(src="../../../images/avatar.jpg", alt="#{nombre}")
-          div.header__ShowData.jsDownShow
-            span
-              | #{nombre}
-            .header__ShowData--SubMenu
-              ul.ul.jsDown.uNoneDisplay
-                li.listSub
-                  a.link(href="panel")
-                    |Panel
-                li.listSub
-                  a.link(href="panel/edit")
-                    |Editar mi perfil
-                li.listSub
-                  a.link(href="#")
-                    | Salir
+  include inc/header
   main.widthBase.config
    section.config--Base
     header.config--Header
      h2.title
       | Configuracion de modulos
-   section.config--Modulos
-    article.Modulos
-     header.Modulos--Header
-      h2.title
-       | Config Email
-     figure.Modulos--Figure
-      i(class="fa fa-envelope", aria-hidden="true")
-     div.Modulos--Description
-      p.description
-       | Configure y Edite información de los emails salientes a inquilinos u otra persona.
-     div.Modulos--Link
-      a.link(href="config/email")
-       | Entrar
+   .flexContainer 
+    section.config--Modulos
+      article.Modulos
+       header.Modulos--Header
+        h2.title
+         | Config Email
+       figure.Modulos--Figure
+        i(class="fa fa-envelope", aria-hidden="true")
+       div.Modulos--Description
+        p.description
+         | Configure y Edite información de los emails salientes a inquilinos u otra persona.
+       div.Modulos--Link
+        a.link(href="config/email")
+         | Entrar
+
+    section.config--Modulos
+      article.Modulos
+       header.Modulos--Header
+        h2.title
+         | Ticket
+       figure.Modulos--Figure
+        i(class="fa fa-ticket", aria-hidden="true")
+       div.Modulos--Description
+        p.description
+         | Configure y Edite información de los emails salientes a inquilinos u otra persona.
+       div.Modulos--Link
+        a.link(href="ticket/support")
+         | Entrar
+
+    section.config--Modulos
+      article.Modulos
+       header.Modulos--Header
+        h2.title
+         | Pagos
+       figure.Modulos--Figure
+        i(class="fa fa-credit-card-alt", aria-hidden="true")
+       div.Modulos--Description
+        p.description
+         | Configure y Edite información de los emails salientes a inquilinos u otra persona.
+       div.Modulos--Link
+        a.link(href="config/email")
+         | Entrar

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
+    
+    title #{title}
+    
+    link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../../../stylesheets/icons.css")
+    link(rel="stylesheet", href="../../../stylesheets/app.css")
+    link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+
+    script(src="../../../javascripts/jquery-1.11.2.min.js")
+    script(src="../../../javascripts/app-dev1.js")
+    script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+
+    //functions create edinsoncs
+    script(src="../../../javascripts/thisF.unctions.js")
+    script(src="../../../javascripts/dcalendar.picker.js")
+body
+    include inc/header
+    main.widthBase.config
+       section.config--Base
+        header.config--Header
+         h2.title
+          i(class="fa fa-cog" aria-hidden="true") 
+          | Ticket / Support
+       section.support.flexContainer
+        section.support--Iz
+         form.formSupport(action="/panel/ticket", method="post")
+          fieldset.formSupport--Fieldset
+           label.labelSupport--Label
+            | Nuevo ticket de soporte
+           input(type="text", placeholder="Titulo", name="name")
+          fieldset.formSupport--Fieldset
+           label.labelSupport--Label
+            | Asunto
+           input(type="text", placeholder="Asunto", name="asunto")
+          fieldset.formSupport--Fieldset
+           label.labelSupport--Label
+            | Mensaje
+           textarea(type="text", placeholder="mensaje", name="mensaje")
+          fieldset.formSupport--Fieldset.uCenter
+           input(type="submit", value="Enviar Ticket")
+
+        aside.support--De
+         article.support--De--Ticket
+          header.ticket--Header
+           h2.title
+            | Ultimos Tickets
+         if support 
+           each ti in support
+              div.ticket--Container
+               a.link(href="#")
+                div.ticket--Container--Iz
+                 span.title
+                  | Ticket
+                div.ticket--Container--Center
+                 span.title
+                  | #{ti.asunto}
+                div.ticket--Container--De
+                 span.title
+                  | Enviado
+         else
+          //

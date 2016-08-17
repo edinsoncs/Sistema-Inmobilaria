@@ -197,18 +197,18 @@ body
               | Garante
           div.form--Container
             fieldset.fieldset--Form
-              input(type="text", placeholder="Nombre Garante", name="garanteNombre")
+              input(type="text", placeholder="Nombre Garante", name="garanteNombre", required)
             fieldset.fieldset--Form
-              input(type="tel", placeholder="Tel Garante", name="garanteTel")
+              input(type="tel", placeholder="Tel Garante", name="garanteTel", required)
           div.form--Container
             fieldset.fieldset--Form
-              input(type="text", placeholder="Dni Garante", name="garanteDni")
+              input(type="text", placeholder="Dni Garante", name="garanteDni", required)
             fieldset.fieldset--Form
-              input(type="text", placeholder="Email Garante", name="garanteEmail")
+              input(type="text", placeholder="Email Garante", name="garanteEmail", required)
           fieldset.fieldset--Form
-            input(type="text", name="garanteDomicilio", placeholder="Domicilio Garante")
+            input(type="text", name="garanteDomicilio", placeholder="Domicilio Garante", required)
           fieldset.fieldset--Form
-            input(type="file", name="garanteFile")
+            input(type="file", name="garanteFile", required)
         div.fieldset--Steps
           header.header--Steps
             h2.title
@@ -216,16 +216,16 @@ body
               | Propietario
           div.form--Container
             fieldset.fieldset--Form
-              input(type="text", placeholder="Nombre Propietario", name="propietarioNombre")
+              input(type="text", placeholder="Nombre Propietario", name="propietarioNombre", required)
             fieldset.fieldset--Form
-              input(type="tel", placeholder="Tel Propietario", name="propietarioTel")
+              input(type="tel", placeholder="Tel Propietario", name="propietarioTel", required)
           div.form--Container
             fieldset.fieldset--Form
-              input(type="text", placeholder="Dni Propietario", name="propietarioDni")
+              input(type="text", placeholder="Dni Propietario", name="propietarioDni", required)
             fieldset.fieldset--Form
-              input(type="text", placeholder="Email Propietario", name="propitarioEmail")
+              input(type="text", placeholder="Email Propietario", name="propitarioEmail", required)
           fieldset.fieldset--Form
-            input(type="text", name="propietarioDomicilio", placeholder="Domicilio Propietario")
+            input(type="text", name="propietarioDomicilio", placeholder="Domicilio Propietario", required)
         
       div.fieldset--Steps
         header.header--Steps
@@ -234,13 +234,13 @@ body
             | Contrato
         div.form--Container
           fieldset.fieldset--Form.tree
-            input(type="text", placeholder="Contrato Inicia", name="contratoInicio")
+            input(type="text", placeholder="Contrato Inicia", name="contratoInicio", required)
           fieldset.fieldset--Form.tree
-            input(type="text", placeholder="Contrato Finalizado", name="contratoFin")
+            input(type="text", placeholder="Contrato Finalizado", name="contratoFin", required)
           fieldset.fieldset--Form.tree
-            input(type="text", placeholder="Precio Mensual", name="precioMensual")
+            input(type="text", placeholder="Precio Mensual", name="precioMensual", required)
         fieldset.fieldset--Form
-          input(type="file", name="contrato")
+          input(type="file", name="contrato", required)
       fieldset.fieldset--Form
         input(type="submit", class="submit", value="Crear Propiedad")  
     

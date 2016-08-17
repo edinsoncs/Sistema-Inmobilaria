@@ -20,8 +20,10 @@ var usuario = new Schema ({
 		'TelefonoEmpresa': String,
 		'emailEmpresa': String
 	},					      
-	'propiedadesDisponibles': Array,                                         
-	'account': Object
+	'propiedadesDisponibles': Array,
+	'agenda': Array,                                         
+	'account': Object,
+	'support': Array
 }, {
 	collection: 'usuarios'
 });

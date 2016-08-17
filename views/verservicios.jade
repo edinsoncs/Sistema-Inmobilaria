@@ -158,34 +158,35 @@ body
           a.link.viewServices(href="../servicios/#{propiedad.id}")
             | Subir Servicios
       div.container--Services--View
-       each item in propiedad.serviciosMultimedia
-        article.view--Service(data-id="#{item.id}")
-          header.header
-            - var name = item.name
-            - var searching = name.search('jpg')
-            - var searchingOther = name.search('png');
-            if searching > 0 || searchingOther > 0
-               h2 Es una imagen
-               strong.fecha
-                | #{item.fecha}
-            else
-              h2 Es un archivo pdf 
-              strong.fecha
-                | #{item.fecha}
-            //h2 #{searching}
-          figure.figure
-            if searching > 0 || searchingOther > 0
-              img(src="../../../services/#{item.name}", alt="")
-            else 
-              object(data="../../../services/#{item.name}", type="application/pdf", width="150px", height="80px")
-          div.view--Services--Options
-            .Options--Iz
-              a(href="../../../services/#{item.name}", download="#{item.name}")
-                i.fa.fa-download
-            .Options--De.jsClickZoom
-              i.fa.fa-search-plus
-            .Option--De.jsClickDelete
-              i.fa.fa-times-circle
+        if propiedad.serviciosMultimedia
+         each item in propiedad.serviciosMultimedia
+          article.view--Service(data-id="#{item.id}")
+            header.header
+              - var name = item.name
+              - var searching = name.search('jpg')
+              - var searchingOther = name.search('png');
+              if searching > 0 || searchingOther > 0
+                 h2 Es una imagen
+                 strong.fecha
+                  | #{item.fecha}
+              else
+                h2 Es un archivo pdf 
+                strong.fecha
+                  | #{item.fecha}
+              //h2 #{searching}
+            figure.figure
+              if searching > 0 || searchingOther > 0
+                img(src="../../../services/#{item.name}", alt="")
+              else 
+                object(data="../../../services/#{item.name}", type="application/pdf", width="150px", height="80px")
+            div.view--Services--Options
+              .Options--Iz
+                a(href="../../../services/#{item.name}", download="#{item.name}")
+                  i.fa.fa-download
+              .Options--De.jsClickZoom
+                i.fa.fa-search-plus
+              .Option--De.jsClickDelete
+                i.fa.fa-times-circle
 
 
   script(src='../../../javascripts/app.js')
