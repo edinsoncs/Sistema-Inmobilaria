@@ -749,4 +749,10 @@ table.dataTable.no-footer {
 .flexContainer {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+}
+
+.inputLogin {
+    height: 20px!important;
+    padding: 0.5em!important;
 }

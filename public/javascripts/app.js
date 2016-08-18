@@ -26,9 +26,10 @@ $(document).ready(function() {
     //
     var deletePropiedad = $(".jsDelete");
     var isDisponible = $(".jsDeleteDisponible");
-
+    var deleteTicket = $(".deleteTicket");
 
     //
+    deleteTicketSupport(deleteTicket);
     isDeletePropiedad(deletePropiedad);
     isDeletePropiedadDisponible(isDisponible);
 
@@ -333,8 +334,29 @@ $(document).ready(function() {
     });
 
 
-
-
+    function deleteTicketSupport(element){
+        $(element).click(function(e){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: '../../deleteticket',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    idremove: id
+                }),
+                success: function(data){
+                    templateNotify('Se Removio El Ticket')
+                    setTimeout(function(){
+                        window.location.href = '../support';
+                    }, 1000);
+                },
+                error: function(err) {
+                    return err;
+                }
+            });
+        });
+    }
 
 
 });

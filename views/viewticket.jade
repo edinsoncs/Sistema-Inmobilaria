@@ -25,7 +25,7 @@ html(lang="es")
 
 
     //functions create edinsoncs
-
+    
     script(src="../../../javascripts/dcalendar.picker.js")
 body
     include inc/header
@@ -35,41 +35,32 @@ body
          h2.title
           i(class="fa fa-cog" aria-hidden="true") 
           | Ticket / Support
-       section.support.flexContainer
-        section.support--Iz
-         form.formSupport(action="/panel/ticket", method="post")
-          fieldset.formSupport--Fieldset
-           label.labelSupport--Label
-            | Nuevo ticket de soporte
-           input(type="text", placeholder="Titulo", name="name")
-          fieldset.formSupport--Fieldset
-           label.labelSupport--Label
-            | Asunto
-           input(type="text", placeholder="Asunto", name="asunto")
-          fieldset.formSupport--Fieldset
-           label.labelSupport--Label
-            | Mensaje
-           textarea(type="text", placeholder="mensaje", name="mensaje")
-          fieldset.formSupport--Fieldset.uCenter
-           input(type="submit", value="Enviar Ticket")
+       section.support
+        article.supportShow
+          header.supportShow--Header
+            figure.showHeader--Iz
+              img(src="/fotoprofile/#{view.foto}", alt="")
+            aside.showHeader--De
+             h2.title
+              | #{view.name}
+            div.showHeader--Date
+              strong.createDate
+               | #{view.fecha}
+          div.supportShow--Data
+            strong.showAssunt
+              | Asunto: #{view.asunto}
+            p.show
+              | #{view.mensaje}
+        article.supportShow
+          header.supportNotShow--Header
+            h2.title
+              | Aun no hay respuestas
+       section.supportOptions
+        div.supportOptions--Iz
+          a.linkOption.deleteTicket(data-id="#{view.id}", href="#")
+           | Borrar Ticket
+        div.supportOptions--De
+          a.linkOption(href="../support")
+           | Crear Nuevo
 
-        aside.support--De
-         article.support--De--Ticket
-          header.ticket--Header
-           h2.title
-            | Ultimos Tickets
-         if support 
-           each ti in support
-              div.ticket--Container
-               a.link(href="view/#{ti.id}")
-                div.ticket--Container--Iz
-                 span.title
-                  | Ticket
-                div.ticket--Container--Center
-                 span.title
-                  | #{ti.asunto}
-                div.ticket--Container--De
-                 span.title
-                  | Enviado
-         else
-          //
+    script(src='../../../javascripts/app.js')

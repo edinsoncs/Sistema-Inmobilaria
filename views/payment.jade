@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
+    
+    title #{title}
+    
+    link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../../../stylesheets/icons.css")
+    link(rel="stylesheet", href="../../../stylesheets/app.css")
+    link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+
+    script(src="../../../javascripts/jquery-1.11.2.min.js")
+    script(src="../../../javascripts/app-dev1.js")
+    script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+
+    //functions create edinsoncs
+
+    script(src="../../../javascripts/dcalendar.picker.js")
+body
+    include inc/header
+    main.widthBase.config
+       section.config--Base
+        header.config--Header
+         h2.title
+          i(class="fa fa-cog" aria-hidden="true") 
+          | Pagos
+       .paymentContainer
+          section.payment
+            figure.payment--Figure
+             img(src="/fotoprofile/#{foto}")
+            header.payment--Header
+             h2.title
+              | #{nombre}
+            ul.payment--Ul
+             label
+              | Servicios Activos
+             li.list
+              | Propiedades: Activo
+             li.list
+              | P. Disponibles: Activo
+             li.list
+              | Agenda: Activo
+             li.list
+              | Email: Activo
+             li.list
+              | Ticket: Activo
+             li.list
+              | Notificaciones: Activo
+            ul.payment--Ul
+             label
+              | Datos de la cuenta
+             li.list
+              | Registro: #{userComplet.account.fecha}
+            if userComplet.account.type == 3 
+             div.payment--ExpiredAccount
+              h2.title
+               | Su cuenta expira el #{userComplet.account.dia} de 
+               span.monthExpired(data-month="#{userComplet.account.mes}")
+               | 
+              script.
+                    $(document).ready(function(){
+                        function expiredMonth(expired) {
+                            var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+                        "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                    ];
+                            var mesExpired = $(expired).attr('data-month');
+                            var aummentExpired = Number(mesExpired) + 3;
+                            $(expired).text(meses[aummentExpired]);
+                        }
+                        expiredMonth($(".monthExpired"));
+                    });
+
+            else if userComplet.account.type == 6
+             div.payment--ExpiredAccount
+              h2.title
+               | Su cuenta expira el #{userComplet.account.dia} de 
+               span.monthExpired(data-month="#{userComplet.account.mes}")
+               | 
+               script.
+                    $(document).ready(function(){
+                        function expiredMonth(expired) {
+                            var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+                        "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                    ];
+                            var mesExpired = $(expired).attr('data-month');
+                            var aummentExpired = Number(mesExpired) + 6;
+                            $(expired).text(meses[aummentExpired]);
+                        }
+                        expiredMonth($(".monthExpired"));
+                    });
+            else if userComplet.account.type == 12
+             div.payment--ExpiredAccount
+              h2.title
+               | Su cuenta expira el #{userComplet.account.dia} de 
+               pan.monthExpired(data-month="#{userComplet.account.mes}")
+               | 
+               script.
+                    $(document).ready(function(){
+                        function expiredMonth(expired) {
+                            var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+                        "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                    ];
+                            var date = new Date();
+                            var year = date.getFullYear();
+                            var newYear = year + 1;
+                            var mesExpired = $(expired).attr('data-month');
+                            var aummentExpired = Number(mesExpired);
+                            $(expired).text(meses[aummentExpired] + ' del ' + newYear);
+                        }
+                        expiredMonth($(".monthExpired"));
+                    });
+              
+
+    script(src='../../../javascripts/app.js')

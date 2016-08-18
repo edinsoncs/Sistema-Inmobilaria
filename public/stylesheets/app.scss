@@ -104,7 +104,7 @@ table {
 		fieldset {
 			margin: 0 0 0.5em 0;
 		}
-		fieldset input[type='text'], input[type='password'] {
+		.formPanelHome--Fieldset input[type='text'], input[type='password'] {
 			width: 95%;
 			height: 30px;
 			padding: 1em 0.5em;
@@ -139,4 +139,5 @@ table {
 @import "config";
 @import "print";
 @import "panel";
+@import "support";
 @import "utils";

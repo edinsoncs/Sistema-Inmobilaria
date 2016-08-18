@@ -702,6 +702,12 @@ router.get('/config/email', function(req, res, next) {
 });
 
 router.get('/ticket/support', function(req, res, next) {
+    var reverseSupport;
+    if (req.user.support) {
+        var s = req.user.support;
+        reverseSupport = s.reverse();
+    }
+
     res.render('support', {
         title: 'Soporte Zimba',
         nombre: req.user.nombre,
@@ -709,10 +715,67 @@ router.get('/ticket/support', function(req, res, next) {
         emailTemplate: req.user.emailTemplate,
         menu: 'Config',
         foto: req.user.foto,
-        support: req.user.support
+        support: reverseSupport
     });
 });
 
+router.get('/ticket/view/:id', function(req, res, next) {
+
+    var db = req.db;
+    var user = db.get('usuarios');
+
+    var idticket = req.params.id;
+
+    user.findOne({ '_id': req.user._id }, function(err, fulluser) {
+
+        var findticket;
+
+        if (fulluser.support) {
+
+            findticket = fulluser.support;
+
+            findticket.forEach(function(index, cant, arr) {
+
+                if (index.id == idticket) {
+                    res.render('viewticket', {
+                        title: 'Soporte Zimba',
+                        nombre: req.user.nombre,
+                        empresa: req.user.empresa,
+                        emailTemplate: req.user.emailTemplate,
+                        menu: 'Config',
+                        foto: req.user.foto,
+                        view: index
+                    });
+                }
+
+            });
+
+
+        } else {
+            console.log('not id ticket');
+        }
+
+
+
+
+    });
+
+
+});
+
+router.get('/payment', function(req, res, next) {
+
+    res.render('payment', {
+        title: 'Payment Zimba',
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        emailTemplate: req.user.emailTemplate,
+        menu: 'Config',
+        userComplet: req.user,
+        foto: req.user.foto
+    });
+
+});
 
 router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     var db = req.db;
@@ -1736,7 +1799,7 @@ router.post('/deletemultimediaservice', function(req, res, next) {
 
 });
 
-router.post('/ticket', function(req, res, next){
+router.post('/ticket', function(req, res, next) {
 
     var db = req.db;
     var user = db.get('usuarios');
@@ -1749,20 +1812,60 @@ router.post('/ticket', function(req, res, next){
         update: {
             $push: {
                 'support': {
+                    'id': esid(12),
+                    'foto': req.user.foto,
                     'name': req.body.name,
                     'asunto': req.body.asunto,
-                    'mensaje': req.body.mensaje
+                    'mensaje': req.body.mensaje,
+                    'fecha': dataFecha(new Date())
                 }
             }
         },
         new: true
-    }).success(function(data){
-        console.log('enviado');
+    }).success(function(data) {
+        res.redirect('/panel/ticket/support');
     });
 
 
+    function dataFecha(data) {
+
+        var dia = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"];
+        var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
+            "Septiembre", "Octubre", "Noviembre", "Diciembre"
+        ];
+
+        var day = data.getDate();
+        var dayStatus = data.getDay();
+        var mes = data.getMonth();
+        var year = data.getFullYear();
+
+
+        for (var i = 0; i < dia.length; i++) {
+            return dia[dayStatus] + " " + day + " del " + year;
+        }
+
+    }
+
 });
 
+router.post('/deleteticket', function(req, res, next) {
+    var db = req.db;
+    var user = db.get('usuarios');
+
+
+    console.log('is id remove: ' + req.body.idremove);
+
+    user.update({ '_id': req.user._id }, {
+        $pull: {
+            'support': {
+                'id': req.body.idremove
+            }
+        }
+    }).success(function() {
+        res.json({ removed: true });
+    });
+
+});
 
 
 module.exports = router;
