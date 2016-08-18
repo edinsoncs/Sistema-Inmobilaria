@@ -512,11 +512,13 @@ main {
         .fieldset--StepsContainer {
             display: flex;
             justify-content: space-between;
-            width: 97%;
+            width: 94%;
+            padding: 0 1em;
         }
         .fieldset--Steps {
             margin: 2em 0;
             width: 40%;
+            padding: 0 1em;
             .header--Steps {
                 .title {
                     i {
