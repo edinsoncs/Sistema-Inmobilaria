@@ -39,7 +39,10 @@ body
         article.supportShow
           header.supportShow--Header
             figure.showHeader--Iz
-              img(src="/fotoprofile/#{view.foto}", alt="")
+              if foto
+                img(src="/fotoprofile/#{view.foto}", alt="")
+              else
+                img(src="http://landestate.com.ar/wp-content/uploads/2014/09/6262664_orig.png")
             aside.showHeader--De
              h2.title
               | #{view.name}
