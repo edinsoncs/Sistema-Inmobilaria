@@ -38,7 +38,10 @@ body
        .paymentContainer
           section.payment
             figure.payment--Figure
-             img(src="/fotoprofile/#{foto}")
+             if foto
+              img(src="/fotoprofile/#{foto}")
+             else
+              img(src="http://landestate.com.ar/wp-content/uploads/2014/09/6262664_orig.png")
             header.payment--Header
              h2.title
               | #{nombre}
@@ -80,7 +83,6 @@ body
                         }
                         expiredMonth($(".monthExpired"));
                     });
-
             else if userComplet.account.type == 6
              div.payment--ExpiredAccount
               h2.title
