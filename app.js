@@ -129,6 +129,11 @@ app.post('/login', passport.authenticate('local', {
   failureRedirect: '/notfound'
 }));
 
+app.get('/logout', function(req, res, next){
+  req.logout();
+  res.redirect('./');
+});
+
 app.get('/notfound', function(req, res, next){
   res.render('not', {
     'title': 'Error verifique su cuenta porfavor'
