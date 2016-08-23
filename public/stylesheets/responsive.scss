@@ -1,77 +1,83 @@
 @media screen and (min-width: 0px) and (max-width: 769px) {
-	
-	//Base Ancho
-	.widthBase {
-		width: 100%;
-	}
-
-
-	//Home Login
-	.panelHomeLogin {
-		width: 100%;
-		margin: 0 auto;
-		left: 0;
-		top: 50%;
-		top: 24vh;
-	}
-
-	//Header
-	.header__Site {
-		.header__Site--Container {
-			width: 100%;
-			.header__Site--De {
-				width: 45%!important;
-				.ul {
-					display: none;
-				}
-			}
-		}
-	}
-
-	//Header
-	.header__Welcome {
-		width: 100%;
-		.header__Welcome--De {
-			display: none;
-		}
-	}
-
-	main .show__Welcome--Details {
-		display: block!important;
-	}
-
-	//Set
-	.Welcome--Iz {
-		width: 100%!important;
-	}
-	.Welcome--De {
-		width: 100%!important;
-	}
-
-
-	//
-	.show__Welcome--Data {
-		display: block!important;
-	}
-
-	.data__Services {
-		.data__Services--Cont {
-			width: 100%!important;
-		}
-	}
-
-	
-	//
-	.show__Welcome--Options {
-		display: block!important;
-	}
-
-	//
-	.Options__Container {
-		width: 100%!important;
-	}
-
-	.OptionsAside__Container {
-		width: 100%!important;
-	}
+    //Base Ancho
+    .widthBase {
+        width: 100%;
+    }
+    //Home Login
+    .panelHomeLogin {
+        width: 100%;
+        margin: 0 auto;
+        left: 0;
+        top: 50%;
+        top: 24vh;
+    }
+    //Header
+    .header__Site {
+        .header__Site--Container {
+            width: 100%;
+            .header__Site--De {
+                width: 45%!important;
+                .ul {
+                    display: none;
+                }
+            }
+        }
+    }
+    //Header
+    .header__Welcome {
+        width: 100%;
+        .header__Welcome--De {
+            display: none;
+        }
+    }
+    main .show__Welcome--Details {
+        display: block!important;
+    }
+    //Set
+    .Welcome--Iz {
+        width: 100%!important;
+    }
+    .Welcome--De {
+        width: 100%!important;
+    }
+    //
+    .show__Welcome--Data {
+        display: block!important;
+    }
+    .data__Services {
+        .data__Services--Cont {
+            width: 100%!important;
+        }
+    }
+    //
+    .show__Welcome--Options {
+        display: block!important;
+    }
+    //
+    .Options__Container {
+        width: 100%!important;
+    }
+    .OptionsAside__Container {
+        width: 100%!important;
+    }
+    .modal-content {
+        width: 50%;
+        font-size: 12px;
+        text-align: center;
+    }
+    .main__Content {
+        width: 100%!important;
+        display: block!important;
+        .main__Content--Iz {
+            width: 100%!important;
+            margin: 0 0 1em 0!important;
+            .Iz--Figure {
+            	width: 50%!important;
+            	margin: 0 auto;
+            }
+            img {
+                width: 100%!important;
+            }
+        }
+    }
 }
