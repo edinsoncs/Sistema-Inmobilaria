@@ -1,8 +1,20 @@
 @media screen and (min-width: 0px) and (max-width: 769px) {
+    //
+    .header__Welcome  {
+    	display: none;
+    }
+
     //Base Ancho
     .widthBase {
         width: 100%;
+        margin: 2em 0;
     }
+
+	//
+	.propiedadesLink {
+		padding: 0.5em;
+	}
+
     //Home Login
     .panelHomeLogin {
         width: 100%;
@@ -74,10 +86,108 @@
             .Iz--Figure {
             	width: 50%!important;
             	margin: 0 auto;
+            	&:hover {
+            		.Iz--Change i {
+            			margin: 1em 0!important; 
+            		}
+            	}
             }
             img {
                 width: 100%!important;
             }
         }
     }
+
+    .header__Site--Mobil {
+    	background-color: #262626;
+    	padding: 0.5em 1em;
+    	.Mobil--Container {
+    		display: flex;
+    		justify-content: space-between;
+    		.title { 
+				color: white;
+				font-weight: 400;
+    		}
+    	}
+    }
+
+    main .show__Welcome--Details .Welcome--Iz {
+    	margin: 0 0 1em 0;
+    }
+
+    main .ContainerPropiedades .articlesPropiedades {
+    	display: block;
+    	.articlesPropiedades--Header {
+    		width: 100%;
+    		text-align: center;
+    		padding: 0.5em;
+    		.title {
+    			text-transform: uppercase;
+    		}
+    	}
+    	.articlesPropiedades--Description {
+    		width: 100%;
+    		text-align: center;
+    		padding: 0.5em;
+    	}
+    	.articlesPropiedades--Cant {
+    		width: 100%;
+    		text-align: center;
+    		padding: 0.5em;
+    	}
+    	.articlesPropiedades--Actions {
+    		width: 100%;
+    		margin: 1em 0;
+    	}
+    }
+
+    .view .view--Iz .view--Iz--Top {
+    	text-align: center;
+    	position: inherit;
+    	.itemsProperty {
+    		margin: 0;
+    		text-align: center;
+    		.list {
+    			margin: 0;
+    			&:last-child {
+    				margin: 0;
+    			}
+    		}
+    		.btn {
+    			padding: 0.5em;
+    		}
+    	}
+    }
+
+    .view .view--Iz .view--Iz--SubMenu {
+    	text-align: center;
+    	.subMenu--Ul {
+    		.list {
+    			margin: 0.5em;
+    		}
+    	}
+    }
+
+    .view .view--Iz .view--Iz--Top .itemsProperty {
+    	width: 100%;
+    	position: inherit;
+    }
+
+    .view--Iz--Info {
+    	width: 100%!important;
+    }
+
+    .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--Iz .titleNames, .view .view--Iz .view--Iz--Info .view--Iz--Articls .Articls--De .titleNames {
+    	font-size: 14px;
+    }
+
+    .view .view--Iz .view--Iz--Info {
+    	overflow: hidden;
+    }
+    .view .view--Notify {
+    	left: 16%!important;
+    	margin-left: inherit;
+    	width: 70%;
+    }
+
 }

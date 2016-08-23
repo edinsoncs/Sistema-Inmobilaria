@@ -40,6 +40,15 @@ $(document).ready(function() {
     cheked(inputChecked);
 
 
+    //
+
+    //
+
+    var mobileSelect = $(".header__Site--Mobil");
+    mobilMenu(mobileSelect);
+
+
+
     $("#thisUploadImage").change(function(e) {
         changeImage(this)
     });
@@ -356,6 +365,17 @@ $(document).ready(function() {
                 }
             });
         });
+    }
+
+    function mobilMenu(element) {
+
+        var mobilActive = $(window).width();
+
+        if(mobilActive <= 768 ) {
+            //document.write('hola'); 
+
+        }
+
     }
 
 
