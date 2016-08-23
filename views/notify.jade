@@ -17,10 +17,13 @@ head
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
   link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+  link(rel="stylesheet", href="https://cdn.datatables.net/responsive/2.1.0/css/responsive.dataTables.min.css")
 
   script(src="../../../javascripts/jquery-1.11.2.min.js")
   script(src="../../../javascripts/app-dev1.js")
+
   script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+  script(src='https://cdn.datatables.net/responsive/2.1.0/js/dataTables.responsive.min.js')
 
   //Library create edinsoncs flatui buttons
   script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
@@ -31,6 +34,7 @@ head
   //functions create edinsoncs
 
   script(src="../../../javascripts/dcalendar.picker.js")
+
 
 body
   header.header__Site
@@ -101,7 +105,7 @@ body
        | Descargar Excel
      if (notify)
       div#dataDown 
-       table(width="1220px", align="center", id="dataDown")
+       table(width="1220px", align="center", id="dataDown", class="")
         thead
           tr
             th Correo
@@ -127,10 +131,12 @@ body
   script(src='../../../javascripts/app.js')
   script(src='../../../javascripts/buttons.js')
   script(src='../../../javascripts/sorttable.js')
+  
   script.
     $(document).ready(function(){
       $("table").DataTable({
-        "language": {
+        responsive: true,
+        language: {
               "sProcessing":     "Procesando...",
               "sLengthMenu":     "Mostrar _MENU_ registros",
               "sZeroRecords":    "No se encontraron resultados",
