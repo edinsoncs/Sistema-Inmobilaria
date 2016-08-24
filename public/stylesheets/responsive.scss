@@ -279,4 +279,40 @@
 		margin: 0 auto;
 	}
 
+	.flexContainer {
+		display: block!important;
+	}
+
+	.config .config--Modulos .Modulos {
+		width: 80%;
+		margin: 0 auto 1em auto;
+	}
+	.config--Email {
+		display: block!important;
+	}
+	.config .config--Email .config--Email--Form {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.config--Email--Demo {
+		display: none;
+	}
+	
+	.support .support--Iz {
+		width: 90%;
+		margin: 0 auto;
+	}
+
+	.support .support--De {
+		width: 90%;
+		margin: 1em auto 0 auto;
+	}
+	
+	.supportShow {
+		width: 90%;
+	}
+	.supportOptions {
+		width: 90%;
+		margin: 0 auto;
+	}
 }
