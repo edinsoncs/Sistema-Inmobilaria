@@ -44,7 +44,7 @@ $(document).ready(function() {
 
     //
 
-    var mobileSelect = $(".header__Site--Mobil");
+    var mobileSelect = $(".jsClickMobil");
     mobilMenu(mobileSelect);
 
 
@@ -369,13 +369,22 @@ $(document).ready(function() {
 
     function mobilMenu(element) {
 
-        var mobilActive = $(window).width();
+       $(element).click(function(){
+            var show = $(".Mobil--Sub").slideToggle('slow');
+            var i = $(this).find('i');
+            $(i).attr('class', 'fa fa-times-circle');
+       
+            verify(show, i);
+       });
 
-        if(mobilActive <= 768 ) {
-            //document.write('hola'); 
-
-        }
-
+       function verify(ele, z) {
+            if($(ele).is(":hidden")) {
+                console.log('hola');
+            } else {
+                console.log('g');
+                $(z).attr('class', 'fa fa-bars');
+            }
+       }
     }
 
 

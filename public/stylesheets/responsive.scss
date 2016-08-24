@@ -3,11 +3,14 @@
     .header__Welcome  {
     	display: none;
     }
+    .Welcome--ShowDetails {
+    	display: none;
+    }
 
     //Base Ancho
     .widthBase {
         width: 100%;
-        margin: 2em 0;
+        margin: 6em 0;
     }
 
 	//
@@ -27,6 +30,7 @@
     .header__Site {
         .header__Site--Container {
             width: 100%;
+            display: none;
             .header__Site--De {
                 width: 45%!important;
                 .ul {
@@ -44,6 +48,10 @@
     }
     main .show__Welcome--Details {
         display: block!important;
+    }
+
+    .Welcome--Iz .Welcome--Header {
+    	margin: 1em 0!important;
     }
     //Set
     .Welcome--Iz {
@@ -99,14 +107,44 @@
     }
 
     .header__Site--Mobil {
-    	background-color: #262626;
+    	background-color: #344c59;
     	padding: 0.5em 1em;
+    	display: block!important;
+    	position: fixed;
+    	top: 0;
+    	left: 0;
+    	right: 0;
+    	z-index: 899;
     	.Mobil--Container {
     		display: flex;
     		justify-content: space-between;
     		.title { 
 				color: white;
 				font-weight: 400;
+    		}
+    	}
+    	.Mobil--Sub {
+    		display: none;
+    		z-index: 899;
+    		.ulSub {
+    			padding: 0;
+    			margin: 0;
+    			.list {
+    				list-style-type: none;
+    				.link {
+    					text-decoration: none;
+    					color: #828181;
+    					font-size: 0.9em;
+    					border-bottom: 1px solid #828181;
+    					display: block;
+    					width: 100%;
+    					padding: 0.5em;
+    					&:active {
+    						background-color: white;
+    						color: black;
+    					}
+    				}
+    			}
     		}
     	}
     }
@@ -213,5 +251,10 @@
 	.view--NotifyContainer {
 		width: 90%;
 		margin: 0 auto;
+	}
+	
+	main .ContainerPropiedades .articlesPropiedades .articlesPropiedades--Actions--Disponibles {
+		width: 100%;
+		margin: 1em 0;
 	}
 }
