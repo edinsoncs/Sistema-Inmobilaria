@@ -315,4 +315,36 @@
 		width: 90%;
 		margin: 0 auto;
 	}
+
+	.config--Base {
+		margin: 1em!important;
+	}
+	
+	.config--Email {
+		input[type='file'] {
+				width: 80%;
+		}
+	}
+	.formSupport {
+		input[type="submit"] {
+			width: 50%!important;
+		}
+	}
+	.ticket--Container--Iz {
+		display: none;
+	}
+	.payment {
+		width: 90%;
+	}
+
+	#dataDown {
+		width: 90%;
+		margin: 0 auto;
+	}
+	.dataTables_info {
+		display: none;
+	}
+	.dataTables_length {
+		display: none;
+	}
 }

@@ -1,87 +1,108 @@
 .supportShow {
-	
-	width: 25% + 25%;
-	background-color: white;
-	margin: 0 auto 1em auto;
-	border: 1px solid #c0e0f6;
-	background-color: #fafdff;
-	padding: 1em;
-	.supportShow--Header {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-		position: relative;
-		width: 100%;
-		.showHeader--Iz {
-			width: 15%;
-			img {
-				width: 100%;
-				display: block;
-			}
-		}
-		.showHeader--De {
-			width: 70%;
-			text-align: left;
-			.title {
-				font-weight: 400;
-				color: #0069ff;
-				text-transform: capitalize;
-			}
-		}
-		.showHeader--Date {
-			position: absolute;
-			right: 0;
-			top: 0;
-			.createDate {
-				font-size: 0.8rem;
-				color: #0069ff;
-			}
-		}
-	}
-	.supportShow--Data {
-		width: 100%;
-		margin: 1em 0;
-		.showAssunt {
-			font-size: 0.9rem;
-			color: #0069ff;
-			margin: 0 0 0.5em 0;
-		}
-		.show {
-			color: #7e7e7e;
-			font-size: 0.9rem;
-			font-family: helvetica;
-		}
-	}
-	.supportNotShow--Header {
-		text-align: center;
-		.title {
-			font-weight: 400;
-			color: #0069ff;
-			font-size: 1.3em;
-		}
+    width: 25% + 25%;
+    background-color: white;
+    margin: 0 auto 1em auto;
+    border: 1px solid #c0e0f6;
+    background-color: #fafdff;
+    padding: 1em;
+    .supportShow--Header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        width: 100%;
+        .showHeader--Iz {
+            width: 15%;
+            img {
+                width: 100%;
+                display: block;
+            }
+        }
+        .showHeader--De {
+            width: 70%;
+            text-align: left;
+            .title {
+                font-weight: 400;
+                color: #0069ff;
+                text-transform: capitalize;
+            }
+        }
+        .showHeader--Date {
+            position: absolute;
+            right: 0;
+            top: 0;
+            .createDate {
+                font-size: 0.8rem;
+                color: #0069ff;
+            }
+        }
+    }
+    .supportShow--Data {
+        width: 100%;
+        margin: 1em 0;
+        .showAssunt {
+            font-size: 0.9rem;
+            color: #0069ff;
+            margin: 0 0 0.5em 0;
+        }
+        .show {
+            color: #7e7e7e;
+            font-size: 0.9rem;
+            font-family: helvetica;
+        }
+    }
+    .supportNotShow--Header {
+        text-align: center;
+        .title {
+            font-weight: 400;
+            color: #0069ff;
+            font-size: 1.3em;
+        }
+    }
+	.supportSend {
+	    textarea[name='mensaje'] {
+	        resize: none;
+	        width: 100%;
+	        display: block;
+	        outline: medium none;
+	        padding: 1em;
+	        border: none;
+	        border: 1px solid #dedede;
+	        margin: 0 0 1em 0;
+	    }
+	    input[type='submit'] {
+	    	border: none;
+	    	display: block;
+	    	margin: 0 auto;
+	    	padding: 0.7em;
+	    	width: 25%;
+	    	background-color: #0069ff;
+	    	color: white;
+	    }
 	}
 }
 
-.supportOptions {
-	width: 25% + 25%;
-	margin: 0 auto 1em auto;
-	padding: 1em;
-	display: flex;
-	justify-content: space-between;
-	.supportOptions--Iz .linkOption, .supportOptions--De .linkOption {
-		background-color: transparent;
-		padding: 0.6em 1em;
-		color: black;
-		text-decoration: none;
-		border-radius: 4px;
-	}
-	.supportOptions--Iz .linkOption {
-		background-color: #7a7a7a;
-		color: #bbbbbb																																																																																																																																																																																																							;
-	}
 
-	.supportOptions--De .linkOption {
-		background-color: #0069ff;
-		color: #fff																																																																																																																																																																																																							;
-	}
+.supportOptions {
+    width: 25% + 25%;
+    margin: 0 auto 1em auto;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    .supportOptions--Iz .linkOption,
+    .supportOptions--De .linkOption {
+        background-color: transparent;
+        padding: 0.6em 1em;
+        color: black;
+        text-decoration: none;
+        border-radius: 4px;
+    }
+    .supportOptions--Iz .linkOption {
+        background-color: #7a7a7a;
+        color: #bbbbbb;
+    }
+    .supportOptions--De .linkOption {
+        background-color: #0069ff;
+        color: #fff;
+    }
 }

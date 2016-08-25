@@ -19,6 +19,8 @@ var moment = require('moment');
 var dateFormat = require('dateformat');
 var now = new Date();
 
+var adminticket = require('../models/admin');
+var adminshowticket = require('../models/admintickets');
 
 
 
@@ -1813,10 +1815,12 @@ router.post('/ticket', function(req, res, next) {
             $push: {
                 'support': {
                     'id': esid(12),
+                    'iduser': req.user._id,
                     'foto': req.user.foto,
                     'name': req.body.name,
                     'asunto': req.body.asunto,
                     'mensaje': req.body.mensaje,
+                    'respuesta': Array,
                     'fecha': dataFecha(new Date())
                 }
             }
@@ -1865,6 +1869,16 @@ router.post('/deleteticket', function(req, res, next) {
         res.json({ removed: true });
     });
 
+});
+
+
+router.get('/admin', function(req, res, next){
+    adminticket(req, res, next);
+});
+
+router.get('/admin/ticket/:showid', function(req, res, next){
+    var idview = req.params.showid;
+    adminshowticket(req, res, next, idview);
 });
 
 
