@@ -54,6 +54,49 @@ body
               | Asunto: #{view.asunto}
             p.show
               | #{view.mensaje}
+       if view.respuesta
+        each response in view.respuesta
+         article.supportShow
+          header.supportShow--Header
+            figure.showHeader--Iz
+                img(src="/fotoprofile/#{response.foto}", alt="")
+            aside.showHeader--De
+             h2.title
+              | #{response.name}
+            div.showHeader--Date
+              strong.createDate
+               | #{response.fecha}
+          div.supportShow--Data
+            strong.showAssunt
+              | Asunto: #{view.asunto}
+            p.show
+              | #{response.mensaje}
+          h2 #{view.type}
+          if response.type == "admin"
+           div.supportShow--Details
+            ul.ulDetails
+              li.list
+                i.fa.fa-briefcase
+                |  Developer and Support
+              li.list
+                i.fa.fa-phone
+                |  +54 1150273309
+              li.list
+                i.fa.fa-envelope
+                |  edinson@millenialab.com
+          else
+           //
+        article.supportShow
+          header.supportNotShow--Header
+            h2.title
+              | Responder
+          form.supportSend(action="../../userticket", method="POST")
+           input(type="hidden", name="is_type", value="user")
+           input(type="hidden", name="idticket", value="#{view.id}")
+           input(type="hidden", name="iduser", value="#{view.iduser}")
+           textarea(name="mensaje", cols="30", rows="2")
+           input(type="submit", value="Responder")
+       else
         article.supportShow
           header.supportNotShow--Header
             h2.title

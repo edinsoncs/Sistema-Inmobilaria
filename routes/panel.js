@@ -22,7 +22,8 @@ var now = new Date();
 var adminticket = require('../models/admin');
 var adminshowticket = require('../models/admintickets');
 
-
+var resticket = require('../models/resticket');
+var resticketuser = require('../models/resticketuser');
 
 var bodyParser = require('body-parser');
 
@@ -1879,6 +1880,18 @@ router.get('/admin', function(req, res, next){
 router.get('/admin/ticket/:showid', function(req, res, next){
     var idview = req.params.showid;
     adminshowticket(req, res, next, idview);
+});
+
+router.post('/sendticket', function(req, res, next) {
+
+    resticket(req, res, next);
+
+});
+
+router.post('/userticket', function(req, res, next) {
+
+    resticketuser(req, res, next);
+
 });
 
 

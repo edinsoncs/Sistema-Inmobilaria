@@ -55,8 +55,11 @@ body
           header.supportNotShow--Header
             h2.title
               | Responder
-          form.supportSend(action="", method="GET")
-           textarea(name="mensaje", cols="30", rows="10")
+          form.supportSend(action="../../sendticket", method="POST")
+           input(type="hidden", name="is_type", value="admin")
+           input(type="hidden", name="idticket", value="#{mensaje.id}")
+           input(type="hidden", name="iduser", value="#{mensaje.iduser}")
+           textarea(name="mensaje", cols="30", rows="2")
            input(type="submit", value="Responder")
       
     script(src='../../../javascripts/app.js')

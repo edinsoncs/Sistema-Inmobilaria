@@ -1,5 +1,6 @@
 //Module admin show list peticions tickets support
 
+var bodyParser = require('body-parser');
 
 module.exports = function(req, res, next) {
 
@@ -18,14 +19,17 @@ module.exports = function(req, res, next) {
     function logic(data) {
         data.forEach(function(element, index, array) {
             if (element.support) {
-                verifyUser(req.user.nombre, element);
+            
+                verifyUser(req.user.nombre, element.support);
             }
         });
     }
 
     function verifyUser(user, element) {
 
-        if (user == 'edinson') {
+        if (user == 'edinson' || user == 'Edinson' || user == 'EDINSON') {
+            console.log(element);
+            
             res.render('admin', {
                 title: 'Soporte Admin',
                 support: element,
@@ -34,7 +38,7 @@ module.exports = function(req, res, next) {
                 foto: req.user.foto                                                                                                                                                                                                                                                                                                        
             });
         } else {
-            res.redirect('./panel');
+            //res.redirect('./panel');
         }
     }
 

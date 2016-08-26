@@ -41,8 +41,7 @@ body
      | Administrador
    section.usersTickets
      
-    each items in support.support 
-    
+    each items in support 
       article.article(data-ticket="#{items.id}", data-iduser="#{items.iduser}")
        .list
         div.list--Iz 

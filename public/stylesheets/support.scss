@@ -53,6 +53,7 @@
     }
     .supportNotShow--Header {
         text-align: center;
+        padding: 0 0 1em 0;
         .title {
             font-weight: 400;
             color: #0069ff;
@@ -105,4 +106,17 @@
         background-color: #0069ff;
         color: #fff;
     }
+}
+
+
+.supportShow--Details {
+	.ulDetails  {
+		border-top: 1px solid #eee;
+		padding: 0.5em 0;
+		.list {
+			list-style-type: none;
+			color: #807d7d;
+			font-size: 0.8em;
+		}
+	}
 }
