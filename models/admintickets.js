@@ -16,6 +16,9 @@ module.exports = function(req, res, next, id) {
         for (var i = 0; i < data.support.length; i++) {
             var _id = data.support[i].id;
             if (_id == id) {
+                console.log('hello');
+                console.log(data.support[i]);
+
                 res.render('resticket', {
                     title: 'Responder Ticket Zimba',
                     mensaje: data.support[i],

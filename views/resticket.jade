@@ -37,25 +37,42 @@ body
           | Ticket / Support
        section.support
         if mensaje
-         each support in mensaje
-          - console.log(support)
           article.supportShow
            header.supportShow--Header
              figure.showHeader--Iz
-               img(src="/fotoprofile/#{support.foto}", alt="")
+               img(src="/fotoprofile/#{mensaje.foto}", alt="")
              aside.showHeader--De
               h2.title
-               | #{support.name}
+               | #{mensaje.name}
              div.showHeader--Date
                strong.createDate
-                | #{support.fecha}
+                | #{mensaje.fecha}
            div.supportShow--Data
              strong.showAssunt
-               | Asunto: #{support.asunto}
+               | Asunto: #{mensaje.asunto}
              p.show
-               |#{support.mensaje}
+               |#{mensaje.mensaje}
         else
          //
+
+        if mensaje.respuesta
+         each n in mensaje.respuesta
+          article.supportShow
+           header.supportShow--Header
+             figure.showHeader--Iz
+               img(src="/fotoprofile/#{n.foto}", alt="")
+             aside.showHeader--De
+              h2.title
+               | #{n.name}
+             div.showHeader--Date
+               strong.createDate
+                | #{n.fecha}
+           div.supportShow--Data
+             strong.showAssunt
+               | Asunto: #{n.asunto}
+             p.show
+               |#{n.mensaje}
+
         article.supportShow
           header.supportNotShow--Header
             h2.title
