@@ -36,26 +36,25 @@ body
           i(class="fa fa-cog" aria-hidden="true") 
           | Ticket / Support
        section.support
-	     if mensaje
-	        each support in mensaje
-	         article.supportShow
-	          header.supportShow--Header
-	            figure.showHeader--Iz
-	              img(src="/fotoprofile/#{support.foto}", alt="")
-	            aside.showHeader--De
-	             h2.title
-	              | #{support.name}
-	            div.showHeader--Date
-	              strong.createDate
-	               | #{support.fecha}
-	          div.supportShow--Data
-	            strong.showAssunt
-	              | Asunto: #{support.asunto}
-	            p.show
-	              |#{support.mensaje}
-	     else
-	     	//
-        
+        if mensaje
+         each support in mensaje
+          article.supportShow
+           header.supportShow--Header
+             figure.showHeader--Iz
+               img(src="/fotoprofile/#{support.foto}", alt="")
+             aside.showHeader--De
+              h2.title
+               | #{support.name}
+             div.showHeader--Date
+               strong.createDate
+                | #{support.fecha}
+           div.supportShow--Data
+             strong.showAssunt
+               | Asunto: #{support.asunto}
+             p.show
+               |#{support.mensaje}
+        else
+        	//
         article.supportShow
           header.supportNotShow--Header
             h2.title
