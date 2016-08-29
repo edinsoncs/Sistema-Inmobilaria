@@ -40,18 +40,18 @@ body
          article.supportShow
           header.supportShow--Header
             figure.showHeader--Iz
-              img(src="/fotoprofile/#{mensaje.foto}", alt="")
+              img(src="/fotoprofile/#{i.foto}", alt="")
             aside.showHeader--De
              h2.title
-              | #{mensaje.name}
+              | #{i.name}
             div.showHeader--Date
               strong.createDate
-               | #{mensaje.fecha}
+               | #{i.fecha}
           div.supportShow--Data
             strong.showAssunt
-              | Asunto: #{mensaje.asunto}
+              | Asunto: #{i.asunto}
             p.show
-              |#{mensaje.mensaje}
+              |#{i.mensaje}
         
         article.supportShow
           header.supportNotShow--Header
