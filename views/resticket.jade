@@ -36,22 +36,22 @@ body
           i(class="fa fa-cog" aria-hidden="true") 
           | Ticket / Support
        section.support
-        each i in mensaje
+        each support in mensaje
          article.supportShow
           header.supportShow--Header
             figure.showHeader--Iz
-              img(src="/fotoprofile/#{i.foto}", alt="")
+              img(src="/fotoprofile/#{support.foto}", alt="")
             aside.showHeader--De
              h2.title
-              | #{i.name}
+              | #{support.name}
             div.showHeader--Date
               strong.createDate
-               | #{i.fecha}
+               | #{support.fecha}
           div.supportShow--Data
             strong.showAssunt
-              | Asunto: #{i.asunto}
+              | Asunto: #{support.asunto}
             p.show
-              |#{i.mensaje}
+              |#{support.mensaje}
         
         article.supportShow
           header.supportNotShow--Header
