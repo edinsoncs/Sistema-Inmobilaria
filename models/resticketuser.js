@@ -4,7 +4,7 @@ var esid = require('randomid');
 
 module.exports = (req, res, next) => {
 
-	 var db = req.db;
+    var db = req.db;
     var usuarios = db.get('usuarios');
 
     var type = req.body.is_type;
@@ -16,15 +16,14 @@ module.exports = (req, res, next) => {
 
     var idunique = esid(10);
 
-    console.log('siganme los programmers jajaj xD: ' + id);
 
     usuarios.findAndModify({
         query: {
             '_id': name,
             'support': {
-            	$elemMatch: {
-            		'id': id
-            	}
+                $elemMatch: {
+                    'id': id
+                }
             }
         },
         update: {
@@ -41,7 +40,7 @@ module.exports = (req, res, next) => {
         },
         new: true
     }).success((data) => {
-        res.redirect('/panel/ticket/view/'+id);
+        res.redirect('/panel/ticket/view/' + id);
     }).error((err) => {
         console.log(err);
     });

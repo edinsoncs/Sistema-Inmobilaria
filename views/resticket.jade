@@ -36,7 +36,8 @@ body
           i(class="fa fa-cog" aria-hidden="true") 
           | Ticket / Support
        section.support
-        article.supportShow
+        each i in mensaje
+         article.supportShow
           header.supportShow--Header
             figure.showHeader--Iz
               img(src="/fotoprofile/#{mensaje.foto}", alt="")
@@ -51,6 +52,7 @@ body
               | Asunto: #{mensaje.asunto}
             p.show
               |#{mensaje.mensaje}
+        
         article.supportShow
           header.supportNotShow--Header
             h2.title
