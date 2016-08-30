@@ -348,4 +348,13 @@
 	.dataTables_length {
 		display: none;
 	}
+
+	#calendario {
+		.c-grid {
+			width: 100%;
+		}
+		.c-event-grid {
+			width: 100%;
+		}
+	}
 }
