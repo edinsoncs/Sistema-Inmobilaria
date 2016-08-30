@@ -719,3 +719,99 @@ main {
         }
     }
 }
+.toPrint__BG {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 899;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+.toPrint__Container {
+    position: absolute;
+    top: 20%;
+    background-color: white;
+    left: 32%;
+    width: 30%;
+    z-index: 999;
+    padding: 1em;
+    .toPrint__Container--Header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 100%;
+        padding: 1em;
+        border: 1px solid #dedede;
+        .Header--Iz {
+            $toCenter: center;
+            .Header--Figure {
+                text-align: $toCenter;
+                img {
+                    width: 50%;
+                }
+            }
+            .Header--Description {
+                text-align: $toCenter;
+            }
+        }
+        .Header--Iz, .Header--De {
+            width: 50%;
+            .Header--De--Header {
+                margin: 0 0 1em 0;
+            }
+            .Sub {
+                margin: 0 0 1em 0;
+            }
+        }
+    }
+    
+    .toPrint__Show {
+        padding: 1em;
+        border: 1px solid black;
+        margin: 1em 0;
+        overflow: hidden;
+        p {
+            margin-bottom: 1em;
+        }
+        .toPrint__Show--Details {
+            .to__Ul {
+                .list {
+                    list-style-type: none;
+                    display: inline-block;
+                }
+            }
+        }
+        &:nth-child(1) {
+            display: none;
+        }
+        &:nth-child(2) {
+            display: none;
+        }
+        &:nth-child(3) {
+            display: none;
+        }
+
+        &:nth-child(4) {
+            display: none;
+        }
+    }
+
+    .toPrint__Show--Close {
+        text-align: center;
+        padding: 1.5em 0;
+        .delete {
+            cursor: pointer;
+            background-color: #F44336;
+            color: white;
+            padding: 0.5em 1em;
+        }
+    }
+
+    .toPrint__Options--Details {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 1em;
+    }
+
+}

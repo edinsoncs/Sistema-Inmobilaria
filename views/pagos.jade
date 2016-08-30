@@ -176,22 +176,27 @@ body
             th Mes saldado
             th Importe
             th Fecha
-            th.uNone Comentarios
+            th Comentarios
+            th Imprimir
         tbody(align="center")
          each p in isPagos
           tr
-            td #{p.inquilino}
+            td.uNone.jsEntreprise #{empresa}
+            td.uNone.jsNameProperti #{p.title}
+            td.jsInquilino #{p.inquilino}
             td #{p.tipoDePago}
-            td #{p.mesSaldado}
-            td #{p.importe}
+            td.jsMonthPayment #{p.mesSaldado}
+            td.jsPayment #{p.importe}
             - var data = p.fecha
-            td #{data.getDate()} - #{Number(data.getMonth()) + 1} - #{data.getFullYear()}
-            td.uNone
+            td.jsMonth #{data.getDate()} - #{Number(data.getMonth()) + 1} - #{data.getFullYear()}
+            td
               span.uCursor.jsShowComments ver
               div.dataMensaje
                div.dataMensaje--Close.jsCloseComments
                 span &#10006;
                span #{p.comentarios}
+            td.jsClickPrint
+              | Imprimir
      else
       table
         tbody(align="center")

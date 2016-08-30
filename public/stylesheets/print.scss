@@ -14,4 +14,38 @@
 	.view--NotifyContainer {
 		display: none;
 	}
+	
+	.view--Iz--Top {
+		display: none!important;
+	}	
+
+	#dataDown {
+		display: none!important;
+	}
+
+	.dataTable {
+		display: none;
+	}
+
+	//Print Facture
+		
+	.toPrint__Container {
+		display: block;
+	}
+
+	.toPrint__Container {
+		width: 100%!important;
+		left: 15%;
+		font-size: 1.5em;
+	}
+	 .toPrint__Show  {
+	 	display: block!important;
+	 }
+	
+	.toPrint__Show--Close {
+		display: none!important;
+	}
+
+
+
 }

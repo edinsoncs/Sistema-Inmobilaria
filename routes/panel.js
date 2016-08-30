@@ -408,6 +408,7 @@ router.get('/disponibles/show/:id', function(req, res, next) {
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
+                    foto: req.user.foto,
                     menu: 'Disponibles'
                 });
             }
@@ -441,6 +442,7 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
                     empresa: req.user.empresa,
                     propiedad: prop[i],
                     notify: reverseNotify,
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
             }
@@ -472,6 +474,7 @@ router.get('/propiedades/pagos/:id', function(req, res, next) {
                     empresa: req.user.empresa,
                     propiedad: prop[i],
                     isPagos: pagosShow,
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
             }
@@ -500,6 +503,7 @@ router.get('/propiedades/calendario/:id', function(req, res, next) {
                     empresa: req.user.empresa,
                     propiedad: prop[i],
                     ca: prop[i].calendarioNotify,
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
 
@@ -545,6 +549,7 @@ router.get('/propiedades/historial/:id', function(req, res, next) {
                     empresa: req.user.empresa,
                     propiedad: prop[i],
                     ca: prop[i].historialContrato,
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
 
@@ -572,6 +577,7 @@ router.get('/propiedades/servicios/:id', function(req, res, next) {
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
 
@@ -600,6 +606,7 @@ router.get('/propiedades/verservicios/:id', function(req, res, next) {
                     nombre: req.user.nombre,
                     empresa: req.user.empresa,
                     propiedad: prop[i],
+                    foto: req.user.foto,
                     menu: 'Propiedades'
                 });
 
@@ -1245,7 +1252,8 @@ router.post('/pagos', function(req, res, next) {
                     'importe': req.body.isPrecioPropiedad,
                     'mesSaldado': req.body.isMonthPayment,
                     'tipoDePago': req.body.typePayment,
-                    'comentarios': req.body.comentarios
+                    'comentarios': req.body.comentarios,
+                    'title': req.body.isNamePropiedad
                 }
             }
         },

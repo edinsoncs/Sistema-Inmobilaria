@@ -11,6 +11,7 @@ section.view--Notify
         input(type="submit", value="Notificar")
    section.view--Pagos
     form.formPagos(action="panel/pagos", method="POST")
+      input(type="hidden", value="#{propiedad.nombrePropiedad}", name="isNamePropiedad")
       input(type="hidden", value="#{propiedad.id}", name="isID")
       fieldset.formPagos__Fieldset
         label.formPagos__Fieldset--Label
@@ -65,3 +66,4 @@ section.view--Notify
         textarea(name="comentarios", cols="10", rows="1.5")
       fieldset.formPagos__Fieldset
         input(type="submit", value="Cobrar")
+        
