@@ -15,23 +15,18 @@ head
 
 body.bgHome
   
-  section.panelHomeLogin
+  section.panelHomeLogin.newAccountPanel
     figure.panelHomeLogin__Figure
       img(src="images/logo.png", alt="", width="50px")
     header.panelHomeLogin__Header
       h2.title
-        | Ingresar Cuenta
-    form.formPanelHome--Form(action="/login", method="post")
-      fieldset.formPanelHome--Fieldset
-       input(type="text", placeholder="email", name='email', class="inputLogin")
-      fieldset.formPanelHome--Fieldset
-        input(type="password", placeholder="password", name="password", class="inputLogin")
-      fieldset.formPanelHome--Fieldset
-        input(type="submit", value="Ingresar")
-    div.formPanelHome--NewAccount
-     a.NewAccount--Link(href="new")
-      i.fa.fa-user-plus(aria-hidden="true")
-      | Crear Cuenta Nueva
-
+        | Felicidades
+    div.formPanelHome--Form
+      div.formPanelHome--Form--Show
+        h2.formPanelHome--Form--Success
+          | Se creo su cuenta correctamente
+      div.formPanelHome--Form--Link
+        a.link(href="/")
+          | Ingresar
 
     

@@ -39,7 +39,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var panel = require('./routes/panel');
 var verify = require('./routes/verify');
-
+var account = require('./routes/account');
 var services = require('./routes/services');
 
 
@@ -115,6 +115,7 @@ app.use(flash());
 
 
 app.use('/', routes);
+app.use('/new', account);
 app.use('/users', users); 
 
 

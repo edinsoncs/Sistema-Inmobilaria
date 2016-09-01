@@ -1,134 +1,223 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,400italic,700,700italic);
-
-
-h1, h2, h3, h4, h5, h6,figure, p {
-	margin: 0;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+figure,
+p {
+    margin: 0;
 }
+
 fieldset {
-	border: none;
-	padding: 0;
-}
-ul {
-	padding: 0;
-	margin: 0;
-}
-.c1 {
-	width: 1220px;
-}
-.c2 {
-	width: 620px;
-}
-.c3 {
-	width: 140px;
-}
-.absolute {
-	position: absolute;
-}
-.uNoneDisplay {
-	display: none;
-}
-.uNone {
-	text-decoration: none;
-}
-.cursorPointer {
-	cursor: pointer;
-}
-* {
-	box-sizing: border-box;
+    border: none;
+    padding: 0;
 }
 
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.c1 {
+    width: 1220px;
+}
+
+.c2 {
+    width: 620px;
+}
+
+.c3 {
+    width: 140px;
+}
+
+.absolute {
+    position: absolute;
+}
+
+.uNoneDisplay {
+    display: none;
+}
+
+.uNone {
+    text-decoration: none;
+}
+
+.cursorPointer {
+    cursor: pointer;
+}
+
+* {
+    box-sizing: border-box;
+}
 
 $widthPrimary: 1220px;
 $centerMargin: 0 auto;
 $blanco: white;
 $naranja: #F89406;
+$center: center;
 .widthBase {
-	width: $widthPrimary;
-	margin: $centerMargin;
+    width: $widthPrimary;
+    margin: $centerMargin;
 }
+
 .btn {
-	padding: 0.8em 1em;
-	background-color: #dedede;
-	color: white;
-	cursor: pointer;
+    padding: 0.8em 1em;
+    background-color: #dedede;
+    color: white;
+    cursor: pointer;
 }
 
 body {
-	font-family: 'Open Sans', sans-serif;
-	background-color: #f7f7f7;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #f7f7f7;
 }
 
 @import "notify";
-
-
 table {
-	background-color: white;
-	border: 1px solid #ddd;
-	thead>tr>th {
-		border: 1px solid #ddd;
-		padding: 0.8em;
-		color: #34789f;
-	}
-	tbody>tr> td  {
-		border: 1px solid #ddd;
-		padding: 0.5em;
-		
-	}
+    background-color: white;
+    border: 1px solid #ddd;
+    thead>tr>th {
+        border: 1px solid #ddd;
+        padding: 0.8em;
+        color: #34789f;
+    }
+    tbody>tr> td {
+        border: 1px solid #ddd;
+        padding: 0.5em;
+    }
 }
 
 .bgHome {
-	background: #f1f1f1;
+    background: #f1f1f1;
 }
+
+.newAccountPanel {
+    top: 22%!important;
+}
+
 .panelHomeLogin {
-	position: absolute;
-	width: 450px;
-	background-color: #fff;
-	padding: 1em;
-	left: 50%;
-	top: 50%;
-	margin-left: -14em;
-	margin-top: -5em;
-	box-shadow: 10px 14px 0 rgba(0, 0, 0, 0.27);
-	.panelHomeLogin__Figure {
-		text-align: center;
-	}
-	.panelHomeLogin__Header {
-		text-align: center;
-		padding: 0 0 1em 0;
-		.title {
-			font-weight: 400;
-		}
-	}
-	.formPanelHome--Form {
-		fieldset {
-			margin: 0 0 0.5em 0;
-		}
-		.formPanelHome--Fieldset input[type='text'], input[type='password'] {
-			width: 95%;
-			height: 30px;
-			padding: 1em 0.5em;
-			outline: medium none;
-			transition: all 0.5s linear;
-			&:hover {
-				box-shadow: 0 0 12px #3498DB;
-				border: 1px solid #3498DB;
-				color: #3498DB;
-			}
-		}
-		fieldset:nth-child(3) {
-			text-align: center;
-		}
-		fieldset input[type='submit'] {
-			background-color: rgb(52, 152, 219);
-			border: none;
-			padding: 0.8em 1em;
-			color: white;
-			width: 50%;
-			margin: 0 auto;
-			border-radius: 5px;
-		}
-	}
+    position: absolute;
+    width: 450px;
+    background-color: #fff;
+    padding: 1em;
+    left: 50%;
+    top: 50%;
+    margin-left: -14em;
+    margin-top: -5em;
+    box-shadow: 10px 14px 0 rgba(0, 0, 0, 0.27);
+    .panelHomeLogin__Figure {
+        text-align: center;
+    }
+    .panelHomeLogin__Header {
+        text-align: center;
+        padding: 0 0 1em 0;
+        .title {
+            font-weight: 400;
+        }
+    }
+    .formPanelHome--Form {
+        fieldset {
+            margin: 0 0 0.5em 0;
+        }
+        .formPanelHome--Fieldset:last-child {
+            margin: 1em 0;
+        }
+        .formPanelHome--Fieldset input {
+            width: 95%;
+            
+            padding: 1em 0.5em;
+            outline: medium none;
+            transition: all 0.5s linear;
+            &:hover {
+                box-shadow: 0 0 12px #3498DB;
+                border: 1px solid #3498DB;
+                color: #3498DB;
+            }
+        }
+        fieldset {
+            &:nth-child(6) {
+                input[type="file"] {
+                    height: auto;
+                }
+            }
+        }
+        fieldset:last-child {
+            text-align: center;
+        }
+        fieldset input[type='submit'] {
+            background-color: rgb(52, 152, 219);
+            border: none;
+            padding: 1.5em 1em;
+            color: white;
+            width: 50%;
+            margin: 0 auto;
+            line-height: 0;
+            border-radius: 5px;
+            &:hover {
+                color: white!important;
+            }
+        }
+        .logoRegister {
+            .logoRegister--Name {
+                padding: 0.5em;
+                color: #9d9d9d;
+                font-weight: 700;
+                margin: 0.5em 0;
+                display: block;
+            }
+        }
+        .formPanelHome--Fieldset {
+            select[name="typeaccount"] {
+                width: 95%;
+                padding: 0.5em 0.5em;
+                color: #a4a4a4;
+                &:hover {
+                    box-shadow: 0 0 12px #3498DB;
+                    border: 1px solid #3498DB;
+                    color: #3498DB;
+                }
+            }
+        }
+        .formPanelHome--Form--Show {
+        	text-align: center;
+        }
+        .formPanelHome--Form--Success {
+            font-weight: 400;
+        }
+        .formPanelHome--Form--Link {
+        	text-align: center;
+   	 		margin: 2em 0;
+            .link {
+                background-color: #3498db;
+                border: none;
+                padding: 0.8em 1.5em;
+                color: white;
+                width: 50%;
+                margin: 0 auto;
+                line-height: 0;
+                border-radius: 5px;
+                text-decoration: none;
+            }
+        }
+    }
+    .formPanelHome--NewAccount {
+        text-align: $center;
+        margin: 1em 0 0 0;
+        .NewAccount--Link {
+            text-decoration: none;
+            color: #3498db;
+            font-size: 1em;
+            i {
+                margin: 0 0.3em 0 0;
+            }
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
 }
 
 @import "header";

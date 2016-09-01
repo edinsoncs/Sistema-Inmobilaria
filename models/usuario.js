@@ -23,7 +23,8 @@ var usuario = new Schema ({
 	'propiedadesDisponibles': Array,
 	'agenda': Array,                                         
 	'account': Object,
-	'support': Array
+	'support': Array,
+	'status': String
 }, {
 	collection: 'usuarios'
 });
