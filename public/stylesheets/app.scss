@@ -180,6 +180,16 @@ table {
                     color: #3498DB;
                 }
             }
+             select[name="typepayment"] {
+                width: 95%;
+                padding: 0.5em 0.5em;
+                color: #a4a4a4;
+                &:hover {
+                    box-shadow: 0 0 12px #3498DB;
+                    border: 1px solid #3498DB;
+                    color: #3498DB;
+                }
+            }
         }
         .formPanelHome--Form--Show {
         	text-align: center;

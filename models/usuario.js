@@ -24,7 +24,8 @@ var usuario = new Schema ({
 	'agenda': Array,                                         
 	'account': Object,
 	'support': Array,
-	'status': String
+	'status': String,
+	'payment': Array
 }, {
 	collection: 'usuarios'
 });

@@ -13,6 +13,10 @@ head
   
   link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
 
+  script(src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js")
+  script(src="javascripts/app.js")
+  script(type="text/javascript", src="//resources.mlstatic.com/mptools/render.js")
+
 body.bgHome
   
   section.panelHomeLogin.newAccountPanel
@@ -23,22 +27,25 @@ body.bgHome
         | Registrar
     form.formPanelHome--Form(action="new/newaccount", method="post", enctype="multipart/form-data")
       fieldset.formPanelHome--Fieldset
-       input(type="text", class="registerClass" placeholder="Empresa", name='empresa', class="inputLogin", required, maxlength="25", minlength="3")
+       input(type="text", class="inputLogin", placeholder="Nombre", name="nombre", minlength="3", required)
       fieldset.formPanelHome--Fieldset
-       input(type="email", class="registerClass" placeholder="Email", name='email', class="inputLogin", required)
+       input(type="text", placeholder="Empresa", name='empresa', class="inputLogin", required, maxlength="25", minlength="3")
       fieldset.formPanelHome--Fieldset
-       input(type="text", class="registerClass" placeholder="Dirección", name='direccion', class="inputLogin", required)
+       input(type="email", placeholder="Email", name='email', class="inputLogin", required)
       fieldset.formPanelHome--Fieldset
-       input(type="text", class="registerClass" placeholder="Teléfono", name='tel', class="inputLogin", required)
+       input(type="text", placeholder="Dirección", name='direccion', class="inputLogin", required)
       fieldset.formPanelHome--Fieldset
-        input(type="password", class="registerClass" placeholder="password", name="password", class="inputLogin", required)
+       input(type="text", placeholder="Teléfono", name='tel', class="inputLogin", required)
+      fieldset.formPanelHome--Fieldset
+        input(type="password", placeholder="password", name="password", class="inputLogin", required)
       fieldset.formPanelHome--Fieldset
        select(name="typeaccount")
-        option(value="Tipo de cuenta", selected) Tipo de cuenta
+        option(value="Tipo de cuenta") Tipo de cuenta
         option(value="0") 15 Dias gratis
         option(value="3") 3 Meses
         option(value="6") 6 Meses
         option(value="12") 12 Meses
+      fieldset.formPanelHome--Fieldset.jsAdding
       
       fieldset.formPanelHome--Fieldset.logoRegister
        label.logoRegister--Name
