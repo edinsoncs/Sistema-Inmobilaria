@@ -32,31 +32,39 @@ router.get('/', function(req, res, next) {
 
     var db = req.db;
     var user = db.get('usuarios');
-    console.log(req.user);
-    if (req.user.propiedades) {
 
+    var verifyUser = req.user.status;
 
-        res.render('panelservicios', {
-            title: 'Panel de administración',
-            user: req.user,
-            cuenta: req.user.cuenta,
-            nombre: req.user.nombre,
-            empresa: req.user.empresa,
-            menu: 'Inicio',
-            serv: req.user.propiedades,
-            foto: req.user.foto,
-            disponibles: req.user.propiedadesDisponibles,
-            agenda: req.user.agenda
-        });
+    if(JSON.parse(verifyUser) !== false) {
+
+        if (req.user.propiedades) {
+
+            res.render('panelservicios', {
+                title: 'Panel de administración',
+                user: req.user,
+                cuenta: req.user.cuenta,
+                nombre: req.user.nombre,
+                empresa: req.user.empresa,
+                menu: 'Inicio',
+                serv: req.user.propiedades,
+                foto: req.user.foto,
+                disponibles: req.user.propiedadesDisponibles,
+                agenda: req.user.agenda
+            });
+
+        } else {
+
+            res.render('panel', {
+                title: 'Panel de administración',
+                nombre: req.user.nombre,
+                empresa: req.user.empresa,
+                menu: 'Inicio'
+            });
+        }
+
 
     } else {
-
-        res.render('panel', {
-            title: 'Panel de administración',
-            nombre: req.user.nombre,
-            empresa: req.user.empresa,
-            menu: 'Inicio'
-        });
+        res.render('disable');
     }
 
 
