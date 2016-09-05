@@ -515,7 +515,12 @@ $(document).ready(function() {
                //Insert Payment
                $(".jsAdding").html(paymentCheck);
                
-            } 
+            } else {
+               //Verify item adding remove return = true
+
+               $(".jsAdding").html('');
+
+            }
         }
 
     }

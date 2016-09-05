@@ -51,7 +51,7 @@ module.exports = (req, res, next, file) => {
                         if (err) {
                             return err;
                         } else {
-                        	var _nombre = req.body.nombre;
+                            var _nombre = req.body.nombre;
                             var _empresa = req.body.empresa;
                             var _email = req.body.email;
                             var _direccion = req.body.direccion;
@@ -62,7 +62,7 @@ module.exports = (req, res, next, file) => {
                             var _status = true;
 
                             var obj = {
-                            	'nombre': _nombre,
+                                'nombre': _nombre,
                                 'empresa': _empresa,
                                 'email': _email,
                                 'direccion': _direccion,
@@ -84,131 +84,142 @@ module.exports = (req, res, next, file) => {
             });
 
         } else {
-        	var _false = JSON.parse(req.body.typepayment);
+            var _false = JSON.parse(req.body.typepayment);
 
-	        if(_false !== false) {
-	        	//Habilities payment mercadopago
+            if (_false !== false) {
+                //Habilities payment mercadopago
 
-	        	fs.readFile(file.logo.path, (err, dataIMG) => {
-	                try {
+                fs.readFile(file.logo.path, (err, dataIMG) => {
+                    try {
 
-	                	function paymentPrice(price) {
-	                		switch(price) {
-	                			case "3": {
-	                				return 2;
-	                				break;
-	                			}
-	                			case "6": {
-	                				return 789;
-	                				break;
-	                			}
-	                			case "12": {
-	                				return 1199;
-	                				break;
-	                			}
-	                		}
-	                	}
+                        function paymentPrice(price) {
+                            switch (price) {
+                                case "3":
+                                    {
+                                        return 2;
+                                        break;
+                                    }
+                                case "6":
+                                    {
+                                        return 789;
+                                        break;
+                                    }
+                                case "12":
+                                    {
+                                        return 1199;
+                                        break;
+                                    }
+                            }
+                        }
 
-	                    var directorio = path.join(__dirname, '..', 'public', 'registers/' + name);
-	                    
-	                    fs.writeFile(directorio, dataIMG, (err) => {
-	                        if (err) {
-	                            return err;
-	                        } else {
-	                        	
-	                        	var _nombre = req.body.nombre;
-	                            var _empresa = req.body.empresa;
-	                            var _email = req.body.email;
-	                            var _direccion = req.body.direccion;
-	                            var _telefono = req.body.tel;
-	                            var _password = req.body.password;
-	                            var _type = data;
-	                            var _userFoto = name;
-	                            var _status = true;
+                        var directorio = path.join(__dirname, '..', 'public', 'registers/' + name);
 
-	                            	
-	                            var obj = {
-	                            	'nombre': _nombre,
-	                                'empresa': _empresa,
-	                                'email': _email,
-	                                'direccion': _direccion,
-	                                'telefono': _telefono,
-	                                'password': _password,
-	                                'type': _type,
-	                                'userFoto': _userFoto,
-	                                'status': _status,
-	                                'price': paymentPrice(_type)
-	                            }
-	                            userPayment(obj);
-	                        }
-	                    });
+                        fs.writeFile(directorio, dataIMG, (err) => {
+                            if (err) {
+                                return err;
+                            } else {
 
-	                } catch (err) {
-	                    return err;
-	                }
-	            });
-	        } else {
-	        	console.log('estoy aqui ' + _false);
-	        	/*fs.readFile(file.logo.path, (err, dataIMG) => {
-	                try {
+                                var _nombre = req.body.nombre;
+                                var _empresa = req.body.empresa;
+                                var _email = req.body.email;
+                                var _direccion = req.body.direccion;
+                                var _telefono = req.body.tel;
+                                var _password = req.body.password;
+                                var _type = data;
+                                var _userFoto = name;
+                                var _status = true;
 
-	                	function paymentPrice(price) {
-	                		switch(price) {
-	                			case "3": {
-	                				return 450;
-	                				break;
-	                			}
-	                			case "6": {
-	                				return 789;
-	                				break;
-	                			}
-	                			case "12": {
-	                				return 1199;
-	                				break;
-	                			}
-	                		}
-	                	}
 
-	                    var directorio = path.join(__dirname, '..', 'public', 'registers/' + name);
-	                    
-	                    fs.writeFile(directorio, dataIMG, (err) => {
-	                        if (err) {
-	                            return err;
-	                        } else {
-	                        	
-	                        	var _nombre = req.body.nombre;
-	                            var _empresa = req.body.empresa;
-	                            var _email = req.body.email;
-	                            var _direccion = req.body.direccion;
-	                            var _telefono = req.body.tel;
-	                            var _password = req.body.password;
-	                            var _type = data;
-	                            var _userFoto = name;
-	                            var _status = true;
+                                var obj = {
+                                    'nombre': _nombre,
+                                    'empresa': _empresa,
+                                    'email': _email,
+                                    'direccion': _direccion,
+                                    'telefono': _telefono,
+                                    'password': _password,
+                                    'type': _type,
+                                    'userFoto': _userFoto,
+                                    'status': _status,
+                                    'price': paymentPrice(_type)
+                                }
+                                userPayment(obj);
+                            }
+                        });
 
-	                            	
-	                            var obj = {
-	                            	'nombre': _nombre,
-	                                'empresa': _empresa,
-	                                'email': _email,
-	                                'direccion': _direccion,
-	                                'telefono': _telefono,
-	                                'password': _password,
-	                                'type': type,
-	                                'userFoto': _userFoto,
-	                                'status': _status,
-	                                'price': paymentPrice(_type)
-	                            }
-	                            userPayment(obj);
-	                        }
-	                    });
+                    } catch (err) {
+                        return err;
+                    }
+                });
+            } else {
+                //Payment deposito
 
-	                } catch (err) {
-	                    return err;
-	                }
-	            });*/
-	        }
-	        	
+                fs.readFile(file.logo.path, (err, imgBuffer) => {
+                    try {
+
+                        var directorio = path.join(__dirname, '..', 'public', 'registers/' + name);
+
+                        fs.writeFile(directorio, imgBuffer, (err) => {
+                            if (err) {
+                                return err;
+                            } else {
+
+                                function paymentPrice(price) {
+                                    switch (price) {
+                                        case "3":
+                                            {
+                                                return 2;
+                                                break;
+                                            }
+                                        case "6":
+                                            {
+                                                return 789;
+                                                break;
+                                            }
+                                        case "12":
+                                            {
+                                                return 1199;
+                                                break;
+                                            }
+                                    }
+                                }
+
+                                var _nombre = req.body.nombre;
+                                var _empresa = req.body.empresa;
+                                var _email = req.body.email;
+                                var _direccion = req.body.direccion;
+                                var _telefono = req.body.tel;
+                                var _password = req.body.password;
+                                var _type = data;
+                                var _userFoto = name;
+                                var _status = false;
+
+
+                                var obj = {
+                                    'nombre': _nombre,
+                                    'empresa': _empresa,
+                                    'email': _email,
+                                    'direccion': _direccion,
+                                    'telefono': _telefono,
+                                    'password': _password,
+                                    'type': _type,
+                                    'userFoto': _userFoto,
+                                    'status': _status,
+                                    'price': paymentPrice(_type)
+                                }
+                                depositoPayment(obj);
+
+
+
+                            }
+                        });
+                    } catch (err) {
+                        return err;
+                    }
+
+                });
+
+            }
+
 
         }
 
@@ -216,16 +227,16 @@ module.exports = (req, res, next, file) => {
 
         function userFree(data) {
             users.insert({
-            	'nombre': data.nombre,
+                'nombre': data.nombre,
                 'empresa': data.empresa,
                 'email': data.email,
                 'direccion': data.direccion,
                 'telefono': data.telefono,
                 'password': data.password,
                 'account': {
-                	type: data.type,
-                	fecha: dataFecha(new Date()),
-                	dia: dataDia(new Date())
+                    type: data.type,
+                    fecha: dataFecha(new Date()),
+                    dia: dataDia(new Date())
                 },
                 'userFoto': data.userFoto,
                 'status': data.status
@@ -234,7 +245,7 @@ module.exports = (req, res, next, file) => {
                     return err;
                 } else {
                     res.render('success', {
-                    	title: 'Se creo su cuenta'
+                        title: 'Se creo su cuenta'
                     });
                 }
             });
@@ -244,78 +255,116 @@ module.exports = (req, res, next, file) => {
         //Function payment mercadopago
 
         function userPayment(data) {
-        	
-        	var preference = {
-	            "items": [
-	                {
-	                    "title": 'Activar cuenta de ' +  data.type +' Meses Zimba Administracion de inmobiliarias',
-	                    "quantity": 1,
-	                    "currency_id": "ARS",
-	                    "unit_price": data.price
-	                }
-	            ]
-	        };
+
+            var preference = {
+                "items": [{
+                    "title": 'Activar cuenta de ' + data.type + ' Meses Zimba Administracion de inmobiliarias',
+                    "quantity": 1,
+                    "currency_id": "ARS",
+                    "unit_price": data.price
+                }]
+            };
 
 
-	        mp.createPreference(preference, function (err, mlData){
-		        if (err) {
-		            res.send (err);
-		        } else {
-		            console.log('funciono');
-		            console.log(mlData);
-
-
-		            users.insert({
-		            	'nombre': data.nombre,
-		                'empresa': data.empresa,
-		                'email': data.email,
-		                'direccion': data.direccion,
-		                'telefono': data.telefono,
-		                'password': data.password,
-		                'account': {
-		                	type: data.type,
-		                	fecha: dataFecha(new Date()),
-		                	dia: dataDia(new Date())
-		                },
-		                'userFoto': data.userFoto,
-		                'status': data.status
-		            }, (err, result) => {
-		                if (err) {
-		                    return err;
-		                } else {
-		                   
-		                }
-		            });
-
-		        }
-		    });
-
-        	
-
-
-        	/*users.insert({
-            	'nombre': data.nombre,
-                'empresa': data.empresa,
-                'email': data.email,
-                'direccion': data.direccion,
-                'telefono': data.telefono,
-                'password': data.password,
-                'account': {
-                	type: data.type,
-                	fecha: dataFecha(new Date()),
-                	dia: dataDia(new Date())
-                },
-                'userFoto': data.userFoto,
-                'status': data.status
-            }, (err, result) => {
+            mp.createPreference(preference, function(err, mlData) {
                 if (err) {
-                    return err;
+                    res.send(err);
                 } else {
-                    res.render('success', {
-                    	title: 'Se creo su cuenta'
+                    console.log('funciono');
+                    console.log(mlData);
+
+
+                    users.insert({
+                        'nombre': data.nombre,
+                        'empresa': data.empresa,
+                        'email': data.email,
+                        'direccion': data.direccion,
+                        'telefono': data.telefono,
+                        'password': data.password,
+                        'account': {
+                            type: data.type,
+                            fecha: dataFecha(new Date()),
+                            dia: dataDia(new Date())
+                        },
+                        'userFoto': data.userFoto,
+                        'status': data.status
+                    }, (err, result) => {
+                        if (err) {
+                            return err;
+                        } else {
+
+                        }
                     });
+
                 }
-            });*/
+            });
+
+
+        }
+
+        //Function deposito payment
+        function depositoPayment(data) {
+
+            //Step1 send email register payment deposito
+
+            var transporter = nodemailer.createTransport(smtpTransport({
+                host: "viaintimedia.com", // hostname
+                secure: true, // use SSL
+                port: 465, // port for secure SMTP
+                auth: {
+                    user: 'info@viaintimedia.com',
+                    pass: 'via123'
+                },
+                tls: {
+                    rejectUnauthorized: false
+                }
+            }));
+
+
+            var mailOptions = {
+                from: 'support@zimba.me',
+                to: data.email, // list of receivers
+                subject: 'Zimba.me para completa el registro complete el pago', // Subject line
+                text: 'Complete el pago de su cuenta', // plaintext body
+                html: '<h1>ZIMBA</h1><h3>Usted a creado correctamente su cuenta: "'+data.empresa+'"<br/> Para completa el registro, devera abonar el saldo de: "'+data.price+'"</h3><br/><p>Detalles de la cuenta: </p><p>Recuerde enviarnos un correo del pago realizado, att. zimba soluciones de inmobiliarias</p>' // html body
+            };
+
+            transporter.sendMail(mailOptions, function(error, info) {
+                if (error) {
+                    console.log(error)
+                } else {
+
+                    users.insert({
+                        'nombre': data.nombre,
+                        'empresa': data.empresa,
+                        'email': data.email,
+                        'direccion': data.direccion,
+                        'telefono': data.telefono,
+                        'password': data.password,
+                        'account': {
+                            type: data.type,
+                            fecha: dataFecha(new Date()),
+                            dia: dataDia(new Date())
+                        },
+                        'userFoto': data.userFoto,
+                        'status': data.status
+                    }, (err, result) => {
+                        if (err) {
+                            return err;
+                        } else {
+
+                        	res.render('paymentdeposito', {
+                        		title: 'Complete el registro del pago'
+                        	});
+
+                        }
+                    });
+
+                }
+            });
+
+
+
 
         }
 
@@ -344,7 +393,7 @@ module.exports = (req, res, next, file) => {
     }
 
     function dataDia(data) {
-    	return data.getDate();
+        return data.getDate();
     }
 
 
