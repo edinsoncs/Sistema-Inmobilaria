@@ -49,8 +49,13 @@ var app = express();
 app.use(function(req, res, next) {
     req.db = database;
     console.log('connectado a la bd');
+    tiempo.active(cron, req);
     next();
 });
+
+
+  
+
 
 
 app.use(function (req, res, next) {
@@ -174,7 +179,6 @@ app.use(function(err, req, res, next) {
 });
 
 
-tiempo.active(cron);
 
 
 

@@ -236,7 +236,8 @@ module.exports = (req, res, next, file) => {
                     'account': {
                         type: data.type,
                         fecha: dataFecha(new Date()),
-                        dia: dataDia(new Date())
+                        dia: dataDia(new Date()),
+                        mes: dataMes(new Date())
                     },
                     'userFoto': data.userFoto,
                     'status': data.status
@@ -283,7 +284,8 @@ module.exports = (req, res, next, file) => {
                                     'account': {
                                         type: data.type,
                                         fecha: dataFecha(new Date()),
-                                        dia: dataDia(new Date())
+                                        dia: dataDia(new Date()),
+                                        mes: dataMes(new Date())
                                     },
                                     'userFoto': data.userFoto,
                                     'status': data.status,
@@ -390,7 +392,8 @@ module.exports = (req, res, next, file) => {
                                 'account': {
                                     type: data.type,
                                     fecha: dataFecha(new Date()),
-                                    dia: dataDia(new Date())
+                                    dia: dataDia(new Date()),
+                                    mes: dataMes(new Date())
                                 },
                                 'userFoto': data.userFoto,
                                 'status': data.status
@@ -440,6 +443,15 @@ module.exports = (req, res, next, file) => {
 
             function dataDia(data) {
                 return data.getDate();
+            }
+
+            function dataMes(data) {
+            	var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+            	for(var i = 0; i < arr.length; i++) {
+            		var mes = arr[data.getMonth()];
+            		return mes;
+            	}
+            	
             }
 
 
