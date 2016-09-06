@@ -86,10 +86,14 @@ module.exports = {
                 function expiredUser() {
                     var _expire = monthRegister + 1;
 
+                    //Preguntamos si estamos en el mes
                     if (_month == _expire) {
 
+                    	//Preguntamos si la fecha de registro del usuario y la fecha actual es igual
 		                if(isDate.getDate() == dayRegister) {
 
+		                     //Desabilitamos al usuario
+		                        
 		                        users.findAndModify({
 		                            query: {
 		                                _id: infoUser._id
