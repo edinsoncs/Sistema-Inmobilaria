@@ -80,7 +80,7 @@ module.exports = {
 
 
         function suspendUser(dayRegister, infoUser, monthRegister, type) {
-            time.schedule('* * */2 * * *', function() {
+            time.schedule('* * 2 * * *', function() {
 
                 var isDate = new Date();
 
