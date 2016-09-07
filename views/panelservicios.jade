@@ -126,7 +126,10 @@ body
           div.user--DetailsAccount
             span.showDetails
               | La cuenta de: 
-              strong #{user.account.type} meses
+              if user.account.type == 0
+               strong Prueba
+              else
+                strong #{user.account.type}  Meses
             strong.showActive
               | Activo
               

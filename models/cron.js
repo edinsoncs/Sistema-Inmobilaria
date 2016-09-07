@@ -23,30 +23,53 @@ module.exports = {
                     switch (JSON.parse(element.account.type)) {
                         case 0:
 
-                            if (_user_register_day <= 27) {
+                            if (_user_register_day <= 31) {
                                 //Primary Date´s
                                 var _sum_days_registers = _user_register_day;
                                 var _month_expired = element.account.mes;
-                                suspendUser(_sum_days_registers, element, _month_expired);
+                                var _type = 0;
+                                suspendUser(_sum_days_registers, element, _month_expired, 0);
 
-                            } else {
-                                //Other date
-                                /*console.log('se pasaron de la fecha');
-                                console.log(_user_register_day);
-                                console.log('fin de la fecha');*/
+                            }
+                            break;
 
+                        case 3:
+
+                            if (_user_register_day <= 31) {
+
+                                var _sum_days_registers = _user_register_day;
+                                var _month_expired = element.account.mes;
+                                var _type = 3;
+
+                                suspendUser(_sum_days_registers, element, _month_expired, _type);
                             }
 
                             break;
+                        case 6:
+                            if (_user_register_day <= 31) {
 
-                        case 3 | 6 | 12:
-                            //console.log('cuentas registrados con meses');
+                                var _sum_days_registers = _user_register_day;
+                                var _month_expired = element.account.mes;
+                                var _type = 6;
+
+                                suspendUser(_sum_days_registers, element, _month_expired, _type);
+                            }
                             break;
+                        case 12:
+                            if (_user_register_day <= 31) {
 
+                                var _sum_days_registers = _user_register_day;
+                                var _month_expired = element.account.mes;
+                                var _type = 12;
+
+                                suspendUser(_sum_days_registers, element, _month_expired, _type);
+                            }
+
+                            break;
                         default:
                             //console.log('ninguna cuenta');
-                            break;
 
+                            break;
                     }
 
                 });
@@ -56,77 +79,122 @@ module.exports = {
         });
 
 
-        function suspendUser(dayRegister, infoUser, monthRegister) {
-            time.schedule('*/1 * * * *', function() {
+        function suspendUser(dayRegister, infoUser, monthRegister, type) {
+            time.schedule('* * */2 * * *', function() {
 
                 var isDate = new Date();
 
-
                 request('http://localhost/', function(error, response, body) {
-                    /*if (!error && response.statusCode == 200) {
-                      console.log(body) // Show the HTML for the Google homepage. 
-                    }*/
-                    console.log('tick');
-                    //console.log('enviado');
+                    
                 });
 
-                var _month = isDate.getMonth();
+                var _month = isDate.getMonth() + 1;
+                var _typeAccount = type;
 
 
-                if (monthRegister <= 11) {
+                if (monthRegister <= 12) {
 
-                    expiredUser();
+                    expiredUser(_typeAccount);
 
-                } else {
-
-                    expiredUserNewYear();
                 }
 
-
-                function expiredUser() {
+                function expiredUser(is_type) {
                     var _expire = monthRegister + 1;
 
-                    //Preguntamos si estamos en el mes
-                    if (_month == _expire) {
+                    console.log(is_type);
 
-                    	//Preguntamos si la fecha de registro del usuario y la fecha actual es igual
-		                if(isDate.getDate() == dayRegister) {
+                    switch (is_type) {
+                        case 0:
+                            //Preguntamos si estamos en el mes
 
-		                     //Desabilitamos al usuario
-		                        
-		                        users.findAndModify({
-		                            query: {
-		                                _id: infoUser._id
-		                            },
-		                            update: {
-		                                $set: {
-		                                    'status': false
-		                                }
-		                            },
-		                            new: true
-		                        }).success(function(result) {
-		                            console.log('las cuentas gratuitas se suspendieron');
+                            if (_month == _expire) {
 
-		                        }).error(function(err) {
-		                            console.log(err);
-		                        });
-		                } else {
-		                	console.log('Estoy en el mes igual pero no el dia igual');
-		                }
+                                //Preguntamos si la fecha de registro del usuario y la fecha actual es igual
+                                if (isDate.getDate() == dayRegister) {
 
-                    } else {
-                    	console.log('No estoy en el mes');
+                                    //Desabilitamos al usuario
+                                    bdDesabilty(infoUser._id);
+
+                                } else {
+                                    console.log('Estoy en el mes igual pero no el dia igual');
+                                }
+
+                            } else {
+                                console.log('No estoy en el mes');
+                            }
+
+                            break;
+                        //Continue creado el 07/09/16
+
+                        /*case 3:
+
+                            console.log('analizando usuarios.... de 3 meses pago');
+
+                            //Preguntamos si estamos en el mes
+                        	var _isMonthActuality = isDate.getMonth() + 2;
+                        	var _expire_month = monthRegister + 2;
+
+                            if (_isMonthActuality == _expire_month) {
+
+                                //Preguntamos si la fecha de registro del usuario y la fecha actual es igual
+                                if (isDate.getDate() == dayRegister) {
+
+                                    //Desabilitamos al usuario
+                                    bdDesabilty(infoUser._id);
+
+                                } else {
+                                    console.log('Estoy en el mes igual pero no el dia igual');
+                                }
+
+
+                            } else {
+                                console.log('No estoy en el mes');
+                            }
+							
+							
+                            break;
+
+                        case 6:
+
+                        	console.log('Analizando usuarios de..... 6 meses pago');
+
+                            var _isMonthActuality = isDate.getMonth();
+                            var _expire_month = monthRegister + 2;
+
+                            if (_isMonthActuality == _expire_month) {
+
+                                //Preguntamos si la fecha de registro del usuario y la fecha actual es igual
+                                if (isDate.getDate() == dayRegister) {
+
+                                    //Desabilitamos al usuario
+                                    bdDesabilty(infoUser._id);
+
+                                } else {
+                                    console.log('Estoy en el mes igual pero no el dia igual');
+                                }
+
+
+                            } else {
+                                console.log('No estoy en el mes');
+                            }
+
+                            break;
+                           */
+
+                        default:
+                            console.log('nddasdas');
                     }
+
+
 
                 }
 
 
-                /*if (isDate.getDate() == data) {
-                    //To iqual show
+                function bdDesabilty(id) {
 
                     users.findAndModify({
                         query: {
-                            _id: info._id
+                            _id: id
                         },
                         update: {
                             $set: {
@@ -136,24 +204,18 @@ module.exports = {
                         new: true
                     }).success(function(result) {
                         console.log('las cuentas gratuitas se suspendieron');
-
                     }).error(function(err) {
                         console.log(err);
-                    })
+                    });
 
-                    console.log('estoy en la fecha correspondiente: ' + data);
+                }
 
-                } else {
-                    //Not iqual error
-                    console.log('No esta en la fecha correspondiente: ' + data);
-                }*/
 
 
 
 
             });
         }
-
 
     }
 }

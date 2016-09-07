@@ -1,3 +1,17 @@
+$colorGreen: #4CAF50;
+.header__SubSite {
+	background-color: $colorGreen;
+	.header__SubSite--Container {
+		width: 1220px;
+		margin: 0 auto;
+		padding: 0.5em 0;
+		h2 {
+			color: white;
+			font-weight: 400;
+			font-size: 1.15em;
+		}
+	}
+}
 .header__Site {
 	background-color: #344c59;
 	    box-shadow: 0 0 6px black;
@@ -91,7 +105,6 @@
 .header__Welcome {
 	display: flex;
 	justify-content: space-between;
-	align-items: center;
 	background-color: #e6e6e6;
 	padding: 0.5em;
 	margin: 2em auto;
@@ -125,6 +138,9 @@
 				text-transform: capitalize;
 			}
 		}
+	}
+	.header__Welcome--De {
+		margin: 0.5em 0;
 	}
 	.header__Welcome--De .title {
 		font-weight: 400;
