@@ -37,6 +37,8 @@ router.get('/', function(req, res, next) {
 
     if(JSON.parse(verifyUser) !== false) {
 
+    	
+
         if (req.user.propiedades) {
 
             res.render('panelservicios', {
@@ -51,17 +53,10 @@ router.get('/', function(req, res, next) {
                 disponibles: req.user.propiedadesDisponibles,
                 agenda: req.user.agenda
             });
+          
+            console.log(req.user);
 
-        } else {
-
-            res.render('panel', {
-                title: 'Panel de administración',
-                nombre: req.user.nombre,
-                empresa: req.user.empresa,
-                menu: 'Inicio'
-            });
-        }
-
+        } 
 
     } else {
         res.render('disable');
@@ -339,6 +334,7 @@ router.get('/propiedades/add', function(req, res, next) {
         nombre: req.user.nombre,
         empresa: req.user.empresa,
         user: req.user,
+        foto: req.user.foto,
         menu: 'Propiedades'
     });
 
@@ -352,6 +348,7 @@ router.get('/disponibles/add', function(req, res, next) {
         nombre: req.user.nombre,
         empresa: req.user.empresa,
         user: req.user,
+        foto: req.user.foto,
         menu: 'Disponibles'
     });
 
@@ -884,7 +881,6 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
 
 
-
     usuarios.findAndModify({
         query: {
             '_id': req.user._id
@@ -922,15 +918,21 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
                     'contratoInicia': req.body.contratoInicio,
                     'contratoFinaliza': req.body.contratoFin,
-                    'precioMensual': req.body.precioMensual,
 
                     'contrato': idNameContrato,
+
                     'periodosPrecios': Array,
+                    
                     'notificaciones': Array,
+                    
                     'pagos': Array,
+                    
                     'estadoPago': false,
+                    
                     'pagosTotal': Array,
+                    
                     'cuentaCorriente': req.body.precioMensual,
+                    
                     'calendarioNotify': Array
 
                 }

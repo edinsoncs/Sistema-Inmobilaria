@@ -386,99 +386,97 @@ main {
             }
         }
     }
-    
-
 }
 
 .support {
-        .support--Iz {
-            background-color: white;
-            width: 40%;
-            padding: 1em;
-            border: 1px solid #dedede;
-            .formSupport {
-                .formSupport--Fieldset {
-                    margin: 0.5em 0;
-                    .labelSupport--Label {
-                        display: block;
-                        font-size: 0.9rem;
-                        margin: 0 0 0.5em 0;
-                    }
-                    input {
-                        width: 96%;
-                        padding: 0.5em 0.5em;
-                        border: 1px solid #dfdfdf;
-                        outline: medium none;
-                        &:focus {
-                            border-color: #0069ff;
-                        }
-                    }
-                    textarea {
-                        width: 96%;
-                        resize: none;
-                        border: 1px solid #dfdfdf;
-                        outline: medium none;
-                        padding: 0.5em;
-                        &:focus {
-                            border-color: #0069ff;
-                        }
-                    }
-                    input[type='submit'] {
-                        width: 25%;
-                        background-color: #0069ff;
-                        color: white;
-                        font-size: 0.9em;
-                        padding: 0.8em 1em;
-                        font-family: helvetica;
-                        outline: medium none;
+    .support--Iz {
+        background-color: white;
+        width: 40%;
+        padding: 1em;
+        border: 1px solid #dedede;
+        .formSupport {
+            .formSupport--Fieldset {
+                margin: 0.5em 0;
+                .labelSupport--Label {
+                    display: block;
+                    font-size: 0.9rem;
+                    margin: 0 0 0.5em 0;
+                }
+                input {
+                    width: 96%;
+                    padding: 0.5em 0.5em;
+                    border: 1px solid #dfdfdf;
+                    outline: medium none;
+                    &:focus {
+                        border-color: #0069ff;
                     }
                 }
-            }
-        }
-        .support--De {
-            background-color: white;
-            padding: 1em;
-            border: 1px solid #dedede;
-            width: 40%;
-            .support--De--Ticket {
-                .ticket--Header {
-                    margin: 0 0 1em 0;
-                    .title {
-                        font-weight: 400;
-                    }
-                }
-            }
-            .ticket--Container a{
-                    display: flex;
-                    text-decoration: none;
-                    justify-content: space-between;
-                    align-items: center;
-                    border-bottom: 1px solid #dedede;
-                    background-color: #04a193;
+                textarea {
+                    width: 96%;
+                    resize: none;
+                    border: 1px solid #dfdfdf;
+                    outline: medium none;
                     padding: 0.5em;
-                    &:hover {
-                        background-color: #058b7f;
+                    &:focus {
+                        border-color: #0069ff;
                     }
-                    .ticket--Container--Iz {
-                        .title {
-                            color: white;
-                        }
-                    }
-                    .ticket--Container--Center {
-                        .title {
-                            color: white;
-                        }
-                    }
-                    .ticket--Container--De {
-                        .title {
-                            color: white;
-                            font-size: 0.9em;
-                        }
-                        padding: 0.3em;
-                        background-color: #2c706a;
-                    }
+                }
+                input[type='submit'] {
+                    width: 25%;
+                    background-color: #0069ff;
+                    color: white;
+                    font-size: 0.9em;
+                    padding: 0.8em 1em;
+                    font-family: helvetica;
+                    outline: medium none;
+                }
             }
         }
+    }
+    .support--De {
+        background-color: white;
+        padding: 1em;
+        border: 1px solid #dedede;
+        width: 40%;
+        .support--De--Ticket {
+            .ticket--Header {
+                margin: 0 0 1em 0;
+                .title {
+                    font-weight: 400;
+                }
+            }
+        }
+        .ticket--Container a {
+            display: flex;
+            text-decoration: none;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #dedede;
+            background-color: #04a193;
+            padding: 0.5em;
+            &:hover {
+                background-color: #058b7f;
+            }
+            .ticket--Container--Iz {
+                .title {
+                    color: white;
+                }
+            }
+            .ticket--Container--Center {
+                .title {
+                    color: white;
+                }
+            }
+            .ticket--Container--De {
+                .title {
+                    color: white;
+                    font-size: 0.9em;
+                }
+                padding: 0.3em;
+                background-color: #2c706a;
+            }
+        }
+    }
 }
 
 .agenda {
@@ -542,7 +540,7 @@ main {
             input[type='file'],
             input[type='tel'] {
                 padding: 0.5em 1em;
-                width: 95%;
+                width: 98%;
                 border-radius: 4px;
                 border: none;
                 border: 1px solid #dedede;
@@ -553,6 +551,9 @@ main {
             }
             input[type='submit'] {
                 border: none;
+            }
+            input.error {
+                border: 1px solid red;
             }
             .fieldset--Form--Figure {
                 width: 250px;
@@ -570,6 +571,32 @@ main {
                 margin: 1em auto 1.3em auto;
                 width: 25%;
                 cursor: pointer;
+            }
+            label.error {
+                color: red;
+                display: block;
+                margin-bottom: 0.5em;
+                font-size: 0.9rem;
+            }
+            .sum {
+                cursor: pointer;
+                font-weight: 700;
+                padding: 0.5em 0 0.5em 0;
+                display: block;
+                color: #fff;
+                background-color: #3c8dbc;
+                width: 20px;
+                text-align: center;
+            }
+            .delete {
+                cursor: pointer;
+                font-weight: 700;
+                padding: 0.5em 0 0.5em 0;
+                display: block;
+                color: #fff;
+                width: 20px;
+                text-align: center;
+                background-color: #E91E63;
             }
         }
         .tree {
@@ -705,7 +732,7 @@ main {
                 }
                 .date {
                     color: #34a9ed;
-                    margin: 0 0 0 1em;   
+                    margin: 0 0 0 1em;
                 }
                 .subLink {
                     background-color: #4CAF50;
@@ -719,6 +746,7 @@ main {
         }
     }
 }
+
 .toPrint__BG {
     position: fixed;
     top: 0;
@@ -728,6 +756,7 @@ main {
     z-index: 899;
     background-color: rgba(0, 0, 0, 0.3);
 }
+
 .toPrint__Container {
     position: absolute;
     top: 20%;
@@ -755,7 +784,8 @@ main {
                 text-align: $toCenter;
             }
         }
-        .Header--Iz, .Header--De {
+        .Header--Iz,
+        .Header--De {
             width: 50%;
             .Header--De--Header {
                 margin: 0 0 1em 0;
@@ -765,7 +795,6 @@ main {
             }
         }
     }
-    
     .toPrint__Show {
         padding: 1em;
         border: 1px solid black;
@@ -791,12 +820,10 @@ main {
         &:nth-child(3) {
             display: none;
         }
-
         &:nth-child(4) {
             display: none;
         }
     }
-
     .toPrint__Show--Close {
         text-align: center;
         padding: 1.5em 0;
@@ -807,11 +834,9 @@ main {
             padding: 0.5em 1em;
         }
     }
-
     .toPrint__Options--Details {
         display: flex;
         justify-content: space-around;
         margin-top: 1em;
     }
-
 }

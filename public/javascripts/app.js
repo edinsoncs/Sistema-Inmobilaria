@@ -527,5 +527,33 @@ $(document).ready(function() {
 
 
 
+    $(".newPropiedad--Form").validate({
+    	lang: 'es' 
+    });
+
+    $(".jsSum").click(function(){
+    	var _theme = '';
+    	_theme += "<div class='form--Container jsAppendDates'>"+
+    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='De' name='contratode'></fieldset>" +
+    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='Hasta' name='contratohasta'></fieldset>" +
+    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='Precio' name='precio'></fieldset>" +
+    					"<fieldset class='fieldset--Form tree'><span class='delete jsDeleteOne'>-</span></fieldset>" +
+    				"</div>";
+    	$(".jsAppendDates:last-child").after(_theme);
+
+    	
+    	var _delete = $(".jsDeleteOne");
+
+    	removeItemAddProperti(_delete);
+    });
+
+    function removeItemAddProperti(item) {
+    	$(item).click(function(){
+    		var _remove = $(this).parent().parent();
+    		$(_remove).remove();
+    	});
+    }
+
+    
 
 });

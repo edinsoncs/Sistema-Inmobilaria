@@ -8,7 +8,7 @@ $(document).ready(function(){
 	$(".saveEmail").flat('flattres');
 	$(".viewServices").flat('flat-t-dos');
 
-	$('input[name="fechaagenda"], input[name="ingresoinquilino"], input[name="finInquilino"], input[name="contratoInicio"], input[name="contratoFin"], input[name="isDateEntry"], input[name="isDateExit"]').dcalendarpicker({
+	$('input[name="fechaagenda"], input[name="ingresoinquilino"], input[name="finInquilino"], input[name="contratoInicio"], input[name="contratoFin"], input[name="isDateEntry"], input[name="isDateExit"], input[name="contratode"], input[name="contratohasta"]').dcalendarpicker({
 		 format: 'dd-mm-yyyy'
 	});
 

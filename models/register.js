@@ -239,7 +239,7 @@ module.exports = (req, res, next, file) => {
                         dia: dataDia(new Date()),
                         mes: dataMes(new Date())
                     },
-                    'userFoto': data.userFoto,
+                    'foto': data.userFoto,
                     'status': data.status
                 }, (err, result) => {
                     if (err) {
@@ -287,7 +287,7 @@ module.exports = (req, res, next, file) => {
                                         dia: dataDia(new Date()),
                                         mes: dataMes(new Date())
                                     },
-                                    'userFoto': data.userFoto,
+                                    'foto': data.userFoto,
                                     'status': data.status,
                                     'payment': {
                                         'id': mlData.response.id,
@@ -395,7 +395,7 @@ module.exports = (req, res, next, file) => {
                                     dia: dataDia(new Date()),
                                     mes: dataMes(new Date())
                                 },
-                                'userFoto': data.userFoto,
+                                'foto': data.userFoto,
                                 'status': data.status
                             }, (err, result) => {
                                 if (err) {
@@ -413,10 +413,7 @@ module.exports = (req, res, next, file) => {
                     });
 
 
-
-
                 }
-
 
 
             }
