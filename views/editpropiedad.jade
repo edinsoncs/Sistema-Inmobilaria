@@ -72,7 +72,7 @@ body
            input(type="file", required, name="img", id="thisUploadImage")
          fieldset.fieldset--Form
            input(type="hidden", name="idpropiedad", value="#{propiedad.id}")
-           input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad", value="#{propiedad.nombrePropiedad}")
+           input(type="text", placeholder="Dirección de la propiedad", required, name="nombrepropiedad", value="#{propiedad.nombrePropiedad}")
          fieldset.fieldset--Form
           input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad", value="#{propiedad.desPropiedad}")
          fieldset.fieldset--Form
@@ -501,25 +501,41 @@ body
           fieldset.fieldset--Form
             input(type="text", name="propietarioDomicilio", placeholder="Domicilio Propietario", value="#{propiedad.propietarioDomicilio}")
         
-      div.fieldset--Steps.uMarginTree
-        header.header--Steps
+      section.fieldset--StepsContainer  
+        div.fieldset--Steps
+          header.header--Steps
+            h2.title
+              i.fa.fa-book
+              | Contrato
+          div.form--Container
+            fieldset.fieldset--Form.tree
+              input(type="text", placeholder="Contrato Inicia", name="contratoInicio", required, value="#{propiedad.contratoInicia}")
+            fieldset.fieldset--Form.tree
+              input(type="text", placeholder="Contrato Finalizado", name="contratoFin", required, value="#{propiedad.contratoFinaliza}")
+            //fieldset.fieldset--Form.tree
+              input(type="text", placeholder="Precio Mensual", name="precioMensual", required)
+          fieldset.fieldset--Form
+            input(type="file", name="contrato")
+        div.fieldset--Steps
+         header.header--Steps
           h2.title
-            i.fa.fa-book
-            | Contrato
-        div.form--Container
-          fieldset.fieldset--Form.tree
-            input(type="text", placeholder="Contrato Inicia", name="contratoInicio", value="#{propiedad.contratoInicia}")
-          fieldset.fieldset--Form.tree
-            input(type="text", placeholder="Contrato Finalizado", name="contratoFin", value="#{propiedad.contratoFinaliza}")
-          fieldset.fieldset--Form.tree
-            input(type="text", placeholder="Precio Mensual", name="precioMensual", value="#{propiedad.precioMensual}")
-          a.u--AddMore.jsDialogActive 
-           | Nuevo
-        div.form--Container.appendNew
-
-        fieldset.fieldset--Form
-          input(type="hidden", name="iscontrato", value="#{propiedad.contrato}")
-          input(type="file", name="contrato")
+           i.fa.fa-usd
+           | Precios
+           span.sum.jsSumEditOne
+            | +
+         each precios in propiedad.precios
+           div.form--Container.jsAppendDatesEdit
+            fieldset.fieldset--Form.tree
+             input(type="hidden", name="price[#{precios.id}][id]", value="#{precios.id}")
+             input(class="priceSum", type="text", placeholder="De", name="price[#{precios.id}][preciodesde]", value="#{precios.preciodesde}")
+            fieldset.fieldset--Form.tree
+             input(class="priceSum", type="text", placeholder="Hasta", name="price[#{precios.id}][preciohasta]", value="#{precios.preciohasta}")
+            fieldset.fieldset--Form.tree
+             input(type="number", placeholder="Precio", name="price[#{precios.id}][precio]", value="#{precios.precio}")
+            fieldset.fieldset--Form.tree
+             span.delete.jsDeleteOneEdit
+              | -
+     
       fieldset.fieldset--Form.uMarginDouble
         input(type="submit", class="submit", value="Actualizar")  
     

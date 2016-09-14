@@ -1,7 +1,8 @@
 $(document).ready(function() {
 
-	//
-	var sum = 1;
+    //
+    var sum = 1;
+    var soom = 569;
 
     //
     var noneItemOne = $(".view--NotifyBG");
@@ -69,6 +70,9 @@ $(document).ready(function() {
     var removePriceSelector = $(".listPrecios--Remove");
     removePrice(removePriceSelector);
 
+    removePriceViewEdit($(".jsDeleteOneEdit"));
+
+    addPriceViewEdit($(".jsSumEditOne"));
 
     $("#thisUploadImage").change(function(e) {
         changeImage(this)
@@ -192,7 +196,7 @@ $(document).ready(function() {
     }
 
 
-   
+
 
 
     function cheked(inputCheck) {
@@ -500,29 +504,29 @@ $(document).ready(function() {
 
         //Select HTML
         $(select).change(function() {
-           //Option 
-            $("select[name='typeaccount'] option:selected").each(function(){
+            //Option 
+            $("select[name='typeaccount'] option:selected").each(function() {
                 var show = this;
                 verifyOption(this.value, show);
             });
         });
 
         function verifyOption(val, state) {
-            if(val == 3 || val == 6 || val == 12) {
-               var paymentCheck =   "<select name='typepayment'>"+
-                                            "<option value='false'>Deposito</option>"+
-                                            "<option value='true'>MercadoPago</option>"+
-                                    "</select>";
+            if (val == 3 || val == 6 || val == 12) {
+                var paymentCheck = "<select name='typepayment'>" +
+                    "<option value='false'>Deposito</option>" +
+                    "<option value='true'>MercadoPago</option>" +
+                    "</select>";
 
-               var addingPayment = $(state).parent().parent();
+                var addingPayment = $(state).parent().parent();
 
-               //Insert Payment
-               $(".jsAdding").html(paymentCheck);
-               
+                //Insert Payment
+                $(".jsAdding").html(paymentCheck);
+
             } else {
-               //Verify item adding remove return = true
+                //Verify item adding remove return = true
 
-               $(".jsAdding").html('');
+                $(".jsAdding").html('');
 
             }
         }
@@ -531,78 +535,111 @@ $(document).ready(function() {
 
 
 
-    
 
 
 
-    $(".jsSum").click(function(){
-    	var _numberID = sum ++;
-    	var _theme = '';
-    	_theme += "<div class='form--Container jsAppendDates'>"+
-    					"<input type='hidden' name='price["+_numberID+"][id]' value="+_numberID+">" +
-    					"<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='De' name='price["+_numberID+"][preciodesde]'></fieldset>" +
-    					"<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='Hasta' name='price["+_numberID+"][preciohasta]'></fieldset>" +
-    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='Precio' name='price["+_numberID+"][precio]'></fieldset>" +
-    					"<fieldset class='fieldset--Form tree'><span class='delete jsDeleteOne'>-</span></fieldset>" +
-    				"</div>";
-    	$(".jsAppendDates:last-child").after(_theme);
 
-    	$('.priceSum').dcalendarpicker({
-			 format: 'dd-mm-yyyy'
-		});
+    $(".jsSum").click(function() {
+        var _numberID = sum++;
+        var _theme = '';
+        _theme += "<div class='form--Container jsAppendDates'>" +
+            "<input type='hidden' name='price[" + _numberID + "][id]' value=" + _numberID + ">" +
+            "<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='De' name='price[" + _numberID + "][preciodesde]'></fieldset>" +
+            "<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='Hasta' name='price[" + _numberID + "][preciohasta]'></fieldset>" +
+            "<fieldset class='fieldset--Form tree'><input type='text' placeholder='Precio' name='price[" + _numberID + "][precio]'></fieldset>" +
+            "<fieldset class='fieldset--Form tree'><span class='delete jsDeleteOne'>-</span></fieldset>" +
+            "</div>";
+        $(".jsAppendDates:last-child").after(_theme);
 
-    	
-    	var _delete = $(".jsDeleteOne");
+        $('.priceSum').dcalendarpicker({
+            format: 'dd-mm-yyyy'
+        });
 
-    	removeItemAddProperti(_delete);
+
+        var _delete = $(".jsDeleteOne");
+
+        removeItemAddProperti(_delete);
     });
 
-    function removeItemAddProperti(item) {
-    	$(item).click(function(){
-    		var _remove = $(this).parent().parent();
-    		$(_remove).remove();
-    	});
-    }
-
-    function removePrice(selector) {
-    	$(selector).click(function(){
-    		var _elementparent = $(this).parent();
-    		var _idremove = $(_elementparent).attr('data-id');
-
-    		$.ajax({
-    			url: '../../panel/deleteprice',
-    			type: 'POST',
-    			dataType: 'json',
-    			contentType: 'application/json',
-    			data: JSON.stringify({
-    				id: _idremove
-    			}),
-    			success: function(data) {
-    				 templateNotify('Se Removio el precio');
-    				$(element).remove();
-
-    				setTimeout(function(){
-    					window.location.reload();
-    				}, 2000);
-
-    			},
-    			error: function(err) {
-    				console.log(err);
-    			}
-    		})
-
-    	});
-    }
-
     
 
-     function templateNotify(removeName) {
+    function removePrice(selector) {
+        $(selector).click(function() {
+            var _elementparent = $(this).parent();
+            var _idremove = $(_elementparent).attr('data-id');
+
+            $.ajax({
+                url: '../../panel/deleteprice',
+                type: 'POST',
+                dataType: 'json',
+                contentType: 'application/json',
+                data: JSON.stringify({
+                    id: _idremove
+                }),
+                success: function(data) {
+                    templateNotify('Se Removio el precio');
+                    $(element).remove();
+
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 2000);
+
+                },
+                error: function(err) {
+                    console.log(err);
+                }
+            })
+
+        });
+    }
+
+    function removePriceViewEdit(element) {
+
+        $(element).click(function() {
+            var _remove = $(this).parent().parent();
+            $(_remove).remove();
+        });
+
+    }
+
+    function addPriceViewEdit(element) {
+        $(element).click(function() {
+            var _numberID = soom++;
+            var _theme = '';
+            _theme += "<div class='form--Container jsAppendDatesEdit'>" +
+                "<input type='hidden' name='price[" + _numberID + "][id]' value=" + _numberID + ">" +
+                "<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='De' name='price[" + _numberID + "][preciodesde]'></fieldset>" +
+                "<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='Hasta' name='price[" + _numberID + "][preciohasta]'></fieldset>" +
+                "<fieldset class='fieldset--Form tree'><input type='text' placeholder='Precio' name='price[" + _numberID + "][precio]'></fieldset>" +
+                "<fieldset class='fieldset--Form tree'><span class='delete jsDeleteOneEdit'>-</span></fieldset>" +
+                "</div>";
+            $(".jsAppendDatesEdit:last-child").after(_theme);
+
+            $('.priceSum').dcalendarpicker({
+                format: 'dd-mm-yyyy'
+            });
+
+             var _delete = $(".jsDeleteOneEdit");
+
+        	removeItemAddProperti(_delete);
+
+        });
+    }
+
+    function templateNotify(removeName) {
 
         var template = "<div class='NotifyContainer'>" +
             "<header class='NotifyContainer--Title'><h2 class='title'><i class='fa fa-exclamation' aria-hidden='true'></i>" +
             removeName + "</h2></header>" + "</div>";
 
         $("body").append(template).fadeIn('slow');
+    }
+
+    function removeItemAddProperti(item) {
+        $(item).click(function() {
+            var _remove = $(this).parent().parent();
+            $(_remove).remove();
+        });
     }
 
 });

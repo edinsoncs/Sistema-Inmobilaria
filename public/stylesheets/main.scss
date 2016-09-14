@@ -502,6 +502,9 @@ main {
         display: flex;
         justify-content: space-between;
     }
+    .jsAppendDatesEdit:nth-child(1) {
+		background: red;
+    }
     .newPropiedad--Form {
         width: 100%;
         border: 1px solid #E6E9ED;
@@ -518,6 +521,13 @@ main {
             width: 40%;
             padding: 0 1em;
             .header--Steps {
+            	.sum {
+            		margin: 0 0 0 0.5em;
+            		background-color: #3c8dbc;
+            		color: white;
+            		padding: 0 0.5em;
+            		cursor: pointer;
+            	}
                 .title {
                     i {
                         margin: 0 0.5em 0 0;

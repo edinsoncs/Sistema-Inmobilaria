@@ -1394,7 +1394,6 @@ router.get('/propiedades/editpropiedad/:id', function(req, res, next) {
                         empresa: req.user.empresa,
                         propiedad: doc.propiedades[i],
                         user: req.user,
-                        foto: req.user.foto,
                         menu: 'Propiedades'
 
                     });
@@ -1450,9 +1449,41 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
 
     //Create object
     var obj = new Object();
+    if (req.body.newContrato !== undefined) {
 
-    console.log(req.body);
-    
+        obj.inicia = req.body.contratoInicio;
+        obj.finaliza = req.body.contratoFin;
+        obj.mensual = req.body.precioMensual;
+
+
+
+        //Create function insert in array contrats lasted
+        //Function parametro active
+        /*function activeHistoryNewContratos(active) {
+            if (active == 'si') {
+                user.findAndModify({
+                    query: {
+                        '_id': req.user._id,
+                        propiedades: {
+                            $elemMatch: {
+                                'id': req.body.idpropiedad
+                            }
+                        }
+                    },
+                    update: {
+                        $push: {
+                            'propiedades.$.historialContrato': obj
+                        }
+                    }
+                });
+            } else {
+                console.log('NO SE AGREGARAN HISTORIAL DE CONTRATOS');
+            }
+        }*/
+    } else {
+        //
+    }
+
 
     if (validation.length > 1 && validationTwo.length > 1) {
 
@@ -1637,6 +1668,23 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
 
     } else {
 
+        user.findAndModify({
+            query: {
+                '_id': req.user._id,
+                propiedades: {
+                    $elemMatch: {
+                        'id': req.body.idpropiedad
+                    }
+                }
+            },
+            update: {
+                $push: {
+                    'propiedades.$.historialContrato': obj
+                }
+            },
+            new: true
+        });
+
 
         user.findAndModify({
             query: {
@@ -1678,8 +1726,7 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
                     'propiedades.$.contratoFinaliza': req.body.contratoFin,
                     'propiedades.$.precioMensual': req.body.precioMensual,
                     'propiedades.$.contrato': req.body.iscontrato,
-                    'propiedades.$.cuentaCorriente': req.body.precioMensual,
-                    'propiedades.$.precios': req.body.price
+                    'propiedades.$.cuentaCorriente': req.body.precioMensual
                 }
             },
             new: false,
@@ -1689,8 +1736,7 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
             res.redirect('./propiedades/show/' + req.body.idpropiedad);
         });
 
-    } 
-
+    }
 
 });
 
