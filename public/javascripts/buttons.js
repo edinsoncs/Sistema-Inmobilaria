@@ -12,6 +12,11 @@ $(document).ready(function(){
 		 format: 'dd-mm-yyyy'
 	});
 
+	$('.priceSum').dcalendarpicker({
+			 format: 'dd-mm-yyyy'
+		});
+	
+
 
 
 	//$("table").addSortWidget();

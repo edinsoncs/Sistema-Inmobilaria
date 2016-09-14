@@ -1,5 +1,8 @@
 $(document).ready(function() {
 
+	//
+	var sum = 1;
+
     //
     var noneItemOne = $(".view--NotifyBG");
     var noneItemTwo = $(".view--Notify");
@@ -57,6 +60,14 @@ $(document).ready(function() {
 
     var print = $(".jsClickPrint");
     printActiveClick(print);
+
+
+    //
+
+    //
+
+    var removePriceSelector = $(".listPrecios--Remove");
+    removePrice(removePriceSelector);
 
 
     $("#thisUploadImage").change(function(e) {
@@ -181,14 +192,7 @@ $(document).ready(function() {
     }
 
 
-    function templateNotify(removeName) {
-
-        var template = "<div class='NotifyContainer'>" +
-            "<header class='NotifyContainer--Title'><h2 class='title'><i class='fa fa-exclamation' aria-hidden='true'></i>" +
-            removeName + "</h2></header>" + "</div>";
-
-        $("body").append(template).fadeIn('slow');
-    }
+   
 
 
     function cheked(inputCheck) {
@@ -527,19 +531,25 @@ $(document).ready(function() {
 
 
 
-    $(".newPropiedad--Form").validate({
-    	lang: 'es' 
-    });
+    
+
+
 
     $(".jsSum").click(function(){
+    	var _numberID = sum ++;
     	var _theme = '';
     	_theme += "<div class='form--Container jsAppendDates'>"+
-    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='De' name='contratode'></fieldset>" +
-    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='Hasta' name='contratohasta'></fieldset>" +
-    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='Precio' name='precio'></fieldset>" +
+    					"<input type='hidden' name='price["+_numberID+"][id]' value="+_numberID+">" +
+    					"<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='De' name='price["+_numberID+"][preciodesde]'></fieldset>" +
+    					"<fieldset class='fieldset--Form tree'><input class='priceSum' type='text' placeholder='Hasta' name='price["+_numberID+"][preciohasta]'></fieldset>" +
+    					"<fieldset class='fieldset--Form tree'><input type='text' placeholder='Precio' name='price["+_numberID+"][precio]'></fieldset>" +
     					"<fieldset class='fieldset--Form tree'><span class='delete jsDeleteOne'>-</span></fieldset>" +
     				"</div>";
     	$(".jsAppendDates:last-child").after(_theme);
+
+    	$('.priceSum').dcalendarpicker({
+			 format: 'dd-mm-yyyy'
+		});
 
     	
     	var _delete = $(".jsDeleteOne");
@@ -554,6 +564,45 @@ $(document).ready(function() {
     	});
     }
 
+    function removePrice(selector) {
+    	$(selector).click(function(){
+    		var _elementparent = $(this).parent();
+    		var _idremove = $(_elementparent).attr('data-id');
+
+    		$.ajax({
+    			url: '../../panel/deleteprice',
+    			type: 'POST',
+    			dataType: 'json',
+    			contentType: 'application/json',
+    			data: JSON.stringify({
+    				id: _idremove
+    			}),
+    			success: function(data) {
+    				 templateNotify('Se Removio el precio');
+    				$(element).remove();
+
+    				setTimeout(function(){
+    					window.location.reload();
+    				}, 2000);
+
+    			},
+    			error: function(err) {
+    				console.log(err);
+    			}
+    		})
+
+    	});
+    }
+
     
+
+     function templateNotify(removeName) {
+
+        var template = "<div class='NotifyContainer'>" +
+            "<header class='NotifyContainer--Title'><h2 class='title'><i class='fa fa-exclamation' aria-hidden='true'></i>" +
+            removeName + "</h2></header>" + "</div>";
+
+        $("body").append(template).fadeIn('slow');
+    }
 
 });

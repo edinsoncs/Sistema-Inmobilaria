@@ -2,6 +2,11 @@
     cursor: pointer;
 }
 
+.scroll {
+    max-height: 560px;
+    overflow-y: auto;
+}
+
 .dataMensaje {
     width: 250px;
     background-color: black;

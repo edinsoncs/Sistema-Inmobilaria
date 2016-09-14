@@ -930,6 +930,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'estadoPago': false,
                     
                     'pagosTotal': Array,
+
+                    'precios': req.body.price,
                     
                     'cuentaCorriente': req.body.precioMensual,
                     
@@ -960,7 +962,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         historialArr.push(obj);
 
         return historialArr;
-    }
+    } 
+
 
 
 
@@ -1771,6 +1774,25 @@ router.post('/editdisponible', function(req, res, next) {
         res.redirect('disponibles/editpropiedad/' + _idpropiedad);
     });
 
+
+});
+
+router.post('/deleteprice', function(req, res, next) {
+	var db = req.db;
+	var user = db.get('usuarios');
+
+
+	user.update({'propiedades.precios.id': req.body.id}, {
+		$pull: {
+			'propiedades.$.precios': {
+				'id': req.body.id
+			}
+		}
+	}, function(err, result){
+		if(err) throw err;
+
+		res.json({delete: true});
+	});
 
 });
 

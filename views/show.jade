@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 html(lang="es")
-head
+ head
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
   meta(name="description", content="Administracion de inmobiliarias")
@@ -91,18 +91,33 @@ body
           a.link(href="panel/propiedades/servicios/#{propiedad.id}")
             | Servicios
           
-    div.view--Iz--Info
+    div.view--Iz--Info.scroll
       header.view--Iz--Info--Header
         h2.title
-          | Contrato Mensual
+          | Precios y Contrato
       article.view--Iz--Articls
         div.Articls--Iz
-          span.titleNames
-            i.fa.fa-money(aria-hidden="true")  
-            |  Mensual:
-            strong 
-             | $#{propiedad.precioMensual}
+          header.titleNames--Header
+            h4.title
+              | Precios
+          ul.ul
+           each precios in propiedad.precios
+            li.titleNames.listPrecios(data-id="#{precios.id}")
+              i.fa.fa-calendar-o(aria-hidden="true")  
+              |  Desde:  #{precios.preciodesde}
+              br
+              i.fa.fa-calendar-o(aria-hidden="true")
+              |  Hasta: #{precios.preciohasta}
+              br
+              i.fa.fa-usd(aria-hidden="true")
+              |  Precio: $#{precios.precio}
+              div.listPrecios--Remove
+               i.fa.fa-times
+
         div.Articls--De
+         header.titleNames--Header
+          h4.title
+           | Fecha del contrato
          span.titleNames
           i.fa.fa-calendar-plus-o(aria-hidden="true") 
           |  Ingreso:

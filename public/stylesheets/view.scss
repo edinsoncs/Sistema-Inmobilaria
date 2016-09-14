@@ -102,12 +102,61 @@
                 margin: 0 0 0.5em 0;
                 .Articls--Iz {
                     width: 40%;
+                   .titleNames--Header {
+                    margin: 0 0 0.5em 0;
+                        .title {
+                            color: #9E9E9E;
+                            font-weight: 400;
+                        }
+                   }
+                    li.listPrecios {
+                        position: relative;
+                        .listPrecios--Remove {
+                            position: absolute;
+                            z-index: 89;
+                            right: 0;
+                            top: 50%;
+                            margin-top: -1em;
+                            background-color: white;
+                            border-radius: 50%;
+                            width: 26px;
+                            text-align: center;
+                            height: 26px;
+                            margin-right: 0.5em;
+                            display: none;
+                            cursor: pointer;
+                            i {
+                                color: red;
+                            }
+                        }
+                        &:hover {
+                            .listPrecios--Remove {
+                                display: block;
+                            }
+                        }
+                    }
                 }
                 .Articls--De {
                     width: 50%;
+                    .titleNames--Header {
+                        .title {
+                            color: #9E9E9E;
+                            font-weight: 400;
+                            margin: 0 0 0.5em 0;
+                        }
+                    }
                 }
                 .Articls--Iz,
                 .Articls--De {
+                    li.listPrecios {
+                        background: #344c59;
+                        font-size: 0.9rem;
+                        color: white;
+                        border-bottom: 8px solid white;
+                    }
+                    li.listPrecios i {
+                        color: white;
+                    }
                     .titleNames {
                         letter-spacing: 0.5px;
                         padding: 0.5em;

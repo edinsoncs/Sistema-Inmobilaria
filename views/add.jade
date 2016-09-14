@@ -64,7 +64,7 @@ body
          //fieldset.fieldset--Form.uNoneDisplay
            input(type="file", required, name="img", id="thisUploadImage")
          fieldset.fieldset--Form
-           input(type="text", placeholder="Nombre de la propiedad", required, name="nombrepropiedad")
+           input(type="text", placeholder="Dirección de la propiedad", required, name="nombrepropiedad")
          fieldset.fieldset--Form
           input(type="text", placeholder="Descripcciòn de la propiedad", required, name="despropiedad")
          fieldset.fieldset--Form
@@ -251,11 +251,12 @@ body
            | Precios
          div.form--Container.jsAppendDates
           fieldset.fieldset--Form.tree
-           input(type="text", placeholder="De", name="contratode")
+           input(type="hidden", name="price[0][id]", value="0")
+           input(class="priceSum", type="text", placeholder="De", name="price[0][preciodesde]")
           fieldset.fieldset--Form.tree
-           input(type="text", placeholder="Hasta", name="contratohasta")
+           input(class="priceSum", type="text", placeholder="Hasta", name="price[0][preciohasta]")
           fieldset.fieldset--Form.tree
-           input(type="number", placeholder="Precio", name="precio")
+           input(type="number", placeholder="Precio", name="price[0][precio]")
           fieldset.fieldset--Form.tree
            span.sum.jsSum
             | +
@@ -264,5 +265,7 @@ body
     
       
 
-  script(src='../../javascripts/buttons.js')
   script(src='../../javascripts/app.js')
+  script(src='../../javascripts/buttons.js')
+  script.
+   $(".newPropiedad--Form").validate({lang:'es'});
