@@ -480,8 +480,85 @@ main {
 }
 
 .agenda {
+    background-color: white; 
+    padding: 0 1em 1em 1em;
     .Propiedades {
         margin: 2em 0;
+        text-align: right;
+        a {
+            font-size: 0.9rem;
+        }
+    }
+
+    .agendaTabs {
+        padding: 0 0 1em 0;
+        .agendaTabs__List {
+            list-style-type: none;
+            display: inline-block;
+            margin: 1em 1em;
+            &:first-child {
+                margin-left: 0;
+            }
+            .link {
+                text-decoration: none;
+                padding: 1em;
+                background-color: #607D8B;
+                color: white;
+                border-bottom-left-radius: 10px;
+                border-bottom-right-radius: 10px;
+                &:hover {
+                    background-color: #3b525d;
+                }
+            }
+            .selectItemAgend {
+                background-color: #3b525d;
+            }
+        }
+    }
+
+    .containerTabs {
+        .containerTabs__Agenda {
+        }
+        .containerTabs__Contratos {
+            display: none;
+            .containerTabs__Colors {
+                display: flex;
+                .one {
+                    width: 89px;
+                    height: 5px;
+                    background-color: #FFC107;
+                    text-align: center;
+                    margin: 0.5em 0;
+                    &:after {
+                        content: "Ingresa";
+                        padding-top: 0.5em;
+                        display: block;
+                        font-size: 0.9rem;
+                        color: #848484;
+                    }
+                }
+                .two {
+                    width: 89px;
+                    height: 5px;
+                    background-color: #2196F3;
+                    text-align: center;
+                    margin: 0.5em 0;
+                    &:after {
+                        content: "Termina";
+                        padding-top: 0.5em;
+                        display: block;
+                        font-size: 0.9rem;
+                        color: #848484;
+                    }
+                }
+            }
+        }
+        .containerTabs__VencimientoContratos {
+            display: none;
+        }
+        .containerTabs__VencimientosPrecios {
+            display: none;
+        }
     }
 }
 

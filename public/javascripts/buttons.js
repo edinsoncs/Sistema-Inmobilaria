@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$('.priceSum').dcalendarpicker({
 			 format: 'dd-mm-yyyy'
 		});
-	
+
 
 
 
@@ -23,3 +23,6 @@ $(document).ready(function(){
 
 
 });
+$(".newPropiedad--Form").validate({
+    	lang: 'es' 
+    });

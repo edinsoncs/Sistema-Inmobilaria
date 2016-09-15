@@ -52,47 +52,149 @@ body
   main.widthBase.agenda
     ul.agendaTabs
      li.agendaTabs__List
-      a.link(href="#")
+      a.link.jsAgendaLink(href="panel/agenda/#propiedades")
        | Agenda
      li.agendaTabs__List
-      a.link(href="#")
+      a.link.jsAgendaLink(href="panel/agenda/#contratos")
        | Contratos
      li.agendaTabs__List
-      a.link(href="#")
-       | Vencimiento Contratos
+      a.link.jsAgendaLink(href="panel/agenda/#vencimientoscontratos")
+       | Vencimientos de contratos
      li.agendaTabs__List
-      a.link(href="#")
-       | Vencimiento de precios
+      a.link.jsAgendaLink(href="panel/agenda/#vencimientosprecios")
+       | Vencimientos de precios
     header.Propiedades
       a.link.propiedadesLink(href="./panel/agenda/add", class="")
        | Nueva Agenda
-    if agenda
-      div#dataDown 
-       table(width="1220px", align="center", id="dataDown")
-        thead
-          tr
-            th Nombre
-            th Propiedad
-            th Nombre Visitante
-            th Email Visitante
-            th Fecha
-            th Hora
-        tbody(align="center")
-         each a in agenda
-          tr
-            td #{a.name}
-            td #{a.propiedades}
-            td #{a.namevisitante}
-            td #{a.emailvisita}
-            td #{a.fechaagenda}
-            td #{a.horario}
-    else
-      table(width="1220px", align="center", id="dataDownContainer")
-        tbody(align="center")
-          tr
-            td No dispones de nuevas visitas
-             strong  en tu agenda
-            
+    div.containerTabs
+      section.containerTabs__Agenda
+        if agenda
+          div#dataDown 
+           table(width="100%", align="center", id="dataDown")
+            thead
+              tr
+                th Nombre
+                th Propiedad
+                th Nombre Visitante
+                th Email Visitante
+                th Fecha
+                th Hora
+            tbody(align="center")
+             each a in agenda
+              tr
+                td #{a.name}
+                td #{a.propiedades}
+                td #{a.namevisitante}
+                td #{a.emailvisita}
+                td #{a.fechaagenda}
+                td #{a.horario}
+        else
+          table(width="100%", align="center", id="dataDownContainer")
+            tbody(align="center")
+              tr
+                td No dispones de nuevas visitas
+                 strong  en tu agenda
+      section.containerTabs__Contratos
+       if contratos
+          div#dataDown 
+           table(width="100%", align="center", id="dataDown")
+            thead
+              tr
+                th Fecha de contrato
+                th Propiedad
+                th Barrio
+                th Inquilino
+
+            tbody(align="center")
+             each a in contratos
+              tr
+                td 
+                 span.contBeginner #{a.contratoInicia}
+                 span.contExpired #{a.contratoFinaliza}
+                td #{a.nombrePropiedad}
+                td #{a.barrio}
+                td #{a.nombreInquilino}
+          div.containerTabs__Colors
+           div.one
+           div.two
+        else
+          table(width="100%", align="center", id="dataDownContainer")
+            tbody(align="center")
+              tr
+                td No dispones de contratos
+                 strong  en tu agendas
+      section.containerTabs__VencimientoContratos
+       if contratos
+          div#dataDown 
+           table(width="100%", align="center", id="dataDown")
+            thead
+              tr
+                th Propiedad
+                th Año actual
+                th Año del vencimiento
+                th Restan
+
+            tbody(align="center")
+             each a in contratos
+              tr
+                td #{a.nombrePropiedad}
+                td 
+                 script.
+                  var data = new Date();
+                  document.write(data.getFullYear());
+                td #{a.datos.yearexpired}
+                td 
+                 script.
+                  var data = new Date();
+                  var expired = Number(#{a.datos.yearexpired})
+                  var result = expired - data.getFullYear();
+                  if(result == 0){
+                    document.write('<span class="finalizadoContratos">Contrato Finalizado</span>');
+                  }
+                  else if(result < 0) {
+                     document.write('<span class="finalizadoContratos">Contrato Finalizado</span>');
+                    }
+                  else {
+                    document.write('Restan: ' +result + ' Año');
+                  }
+          div.containerTabs__Colors
+           div.one
+           div.two
+        else
+          table(width="100%", align="center", id="dataDownContainer")
+            tbody(align="center")
+              tr
+                td No dispones de contratos
+                 strong  en tu agendas
+      section.containerTabs__VencimientosPrecios
+       if contratos
+          div#dataDown 
+           table(width="100%", align="center", id="dataDown")
+            thead
+              tr
+                th Propiedad
+                th Año actual
+                th Año del vencimiento
+                th Restan
+
+            tbody(align="center")
+             each propiedades in contratos
+              each p in propiedades.precios
+                tr
+                  td #{propiedades.nombrePropiedad}
+                  td #{p.preciodesde}
+                  td #{p.preciohasta}
+               
+               
+          div.containerTabs__Colors
+           div.one
+           div.two
+        else
+          table(width="100%", align="center", id="dataDownContainer")
+            tbody(align="center")
+              tr
+                td No dispones de contratos
+                 strong  en tu agendas
   
   script(src='../../../javascripts/app.js')
   script(src='../../../javascripts/buttons.js')

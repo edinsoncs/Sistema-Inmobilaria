@@ -168,7 +168,8 @@ router.get('/agenda', function(req, res, next) {
         serv: req.user.propiedades,
         dispo: req.user.propiedadesDisponibles,
         foto: req.user.foto,
-        agenda: req.user.agenda
+        agenda: req.user.agenda,
+        contratos: req.user.propiedades
     });
 
 });
@@ -834,7 +835,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     }
 
 
-    fs.readFile(garantePath, function(err, data) {
+   fs.readFile(garantePath, function(err, data) {
 
         if (err) {
             return err;
@@ -919,7 +920,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'contratoInicia': req.body.contratoInicio,
                     'contratoFinaliza': req.body.contratoFin,
 
-                    'contrato': idNameContrato,
+                    //'contrato': idNameContrato,
 
                     'periodosPrecios': Array,
                     
@@ -933,9 +934,16 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
                     'precios': req.body.price,
                     
-                    'cuentaCorriente': req.body.precioMensual,
+                    //'cuentaCorriente': req.body.precioMensual,
                     
-                    'calendarioNotify': Array
+                    'calendarioNotify': Array,
+
+                    'datos':{
+                        'yearexpired': getYear(),
+                        'monthexpired': getMonth(),
+                        'dayexpired': getDay(),
+                        'completExpired': req.body.contratoFin
+                    }
 
                 }
             }
@@ -964,7 +972,24 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         return historialArr;
     } 
 
+    function getYear() {
+        var fecha  = req.body.contratoFin;
+        var isFecha = fecha.split('-');
+        return isFecha[2];
 
+    }
+
+    function getMonth(date) {
+        var fecha  = req.body.contratoFin;
+        var isFecha = fecha.split('-');
+        return isFecha[1];
+    }
+
+    function getDay(date) {
+        var fecha  = req.body.contratoFin;
+        var isFecha = fecha.split('-');
+        return isFecha[0];
+    }
 
 
 });

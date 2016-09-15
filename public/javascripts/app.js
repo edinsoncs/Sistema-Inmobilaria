@@ -74,6 +74,9 @@ $(document).ready(function() {
 
     addPriceViewEdit($(".jsSumEditOne"));
 
+
+    tabAgenda($(".jsAgendaLink"));
+
     $("#thisUploadImage").change(function(e) {
         changeImage(this)
     });
@@ -561,7 +564,7 @@ $(document).ready(function() {
         removeItemAddProperti(_delete);
     });
 
-    
+
 
     function removePrice(selector) {
         $(selector).click(function() {
@@ -619,9 +622,9 @@ $(document).ready(function() {
                 format: 'dd-mm-yyyy'
             });
 
-             var _delete = $(".jsDeleteOneEdit");
+            var _delete = $(".jsDeleteOneEdit");
 
-        	removeItemAddProperti(_delete);
+            removeItemAddProperti(_delete);
 
         });
     }
@@ -641,5 +644,66 @@ $(document).ready(function() {
             $(_remove).remove();
         });
     }
+
+    function tabAgenda(element) {
+        $(element).on('click', function() {
+            _isHref = $(this).attr('href');
+            _isHash = window.location.hash;
+
+            window.location.reload();
+
+        });
+    }
+
+    function fnTabView() {
+        var verifyHash = window.location.hash;
+
+        var obj = {
+            uno: $(".containerTabs__Agenda"),
+            dos: $(".containerTabs__Contratos"),
+            tres: $(".containerTabs__VencimientoContratos"),
+            cuatro: $(".containerTabs__VencimientosPrecios")
+
+        }
+
+        switch (verifyHash) {
+            case '#propiedades':
+                $(obj.dos, obj.tres, obj.cuatro).css('display', 'none');
+                $(obj.unp).fadeIn('slow');
+                $(".agendaTabs__List:nth-child(1) a").addClass('selectItemAgend')
+                $(".agendaTabs__List:nth-child(1) a").addClass('selectItemAgend')
+                break;
+            case '#contratos':
+                $(obj.uno, obj.tres, obj.cuatro).css('display', 'none');
+                $(obj.dos).fadeIn('slow');
+                $(".agendaTabs__List:nth-child(2) a").addClass('selectItemAgend')
+                button($(".propiedadesLink"));
+                break;
+            case '#vencimientoscontratos':
+                $(obj.uno, obj.ods, obj.cuatro).css('display', 'none');
+                $(obj.tres).fadeIn('slow');
+                $(".agendaTabs__List:nth-child(3) a").addClass('selectItemAgend')
+                button($(".propiedadesLink"));
+                break;
+            case '#vencimientosprecios':
+                $(obj.uno, obj.dos, obj.tres).css('display', 'none');
+                $(obj.cuatro).fadeIn('slow');
+                $(".agendaTabs__List:nth-child(4) a").addClass('selectItemAgend')
+                button($(".propiedadesLink"));
+                break;
+
+            default:
+                //alert('error');
+        }
+
+        function button(btn) {
+        	$(btn).remove();
+        }
+
+
+    }
+    fnTabView();
+
+    
 
 });
