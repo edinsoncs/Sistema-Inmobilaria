@@ -4,6 +4,7 @@
     padding: 0.2em 0.5em;
     margin: 0 0.5em 0 0;
 }
+
 .contExpired {
     background-color: #2196F3;
     padding: 0.2em 0.5em;
@@ -16,13 +17,46 @@
     color: white;
 }
 
+.containerTabs__Colors {
+    display: flex;
+    .one {
+        width: 89px;
+        height: 5px;
+        background-color: #FFC107;
+        text-align: center;
+        margin: 0.5em 0;
+        &:after {
+            content: "Ingresa";
+            padding-top: 0.5em;
+            display: block;
+            font-size: 0.9rem;
+            color: #848484;
+        }
+    }
+    .two {
+        width: 89px;
+        height: 5px;
+        background-color: #2196F3;
+        text-align: center;
+        margin: 0.5em 0;
+        &:after {
+            content: "Termina";
+            padding-top: 0.5em;
+            display: block;
+            font-size: 0.9rem;
+            color: #848484;
+        }
+    }
+}
 
 .dataTables_info {
     font-size: 0.8rem;
 }
-.dataTables_paginate  {
+
+.dataTables_paginate {
     font-size: 0.8rem;
 }
+
 .uCursor {
     cursor: pointer;
 }
@@ -738,23 +772,30 @@ $blackShowServicesModal: rgba(0, 0, 0, 0.37);
 .uNone {
     display: none;
 }
+
 .uMargin {
     margin: 0 0 1.5em 0!important;
 }
+
 .uCenter {
     text-align: center;
 }
-.dataTables_length, #dataDown_filter {
+
+.dataTables_length,
+#dataDown_filter {
     margin: 0 0 1em 0;
 }
+
 .dataTables_length {
     padding: 0.5em;
 }
+
 select[name='dataDown_length'] {
     border: 1px solid #dedede;
     outline: medium none;
     padding: 0.2em;
 }
+
 .dataTables_wrapper .dataTables_filter input {
     padding: 0.3em 0.2em;
     border: none;
@@ -762,20 +803,28 @@ select[name='dataDown_length'] {
     outline: medium none;
     border-radius: 3px;
 }
-table.dataTable thead th, table.dataTable thead td {
+
+table.dataTable thead th,
+table.dataTable thead td {
     border-bottom: 1px solid transparent!important;
 }
+
 table.dataTable.no-footer {
     border-bottom: 1px solid transparent!important;
 }
 
-.dataTables_wrapper .dataTables_length, .dataTables_wrapper .dataTables_filter, .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_processing, .dataTables_wrapper .dataTables_paginate {
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_processing,
+.dataTables_wrapper .dataTables_paginate {
     color: #6a6060!important;
 }
 
 .red {
     color: red;
 }
+
 .flexContainer {
     display: flex;
     justify-content: space-between;
@@ -786,13 +835,16 @@ table.dataTable.no-footer {
     height: 20px!important;
     padding: 1em!important;
 }
+
 .uMarginDouble {
     margin: 0 2em!important;
     padding: 0 0 1em 0!important;
 }
+
 .uMarginTree {
     margin: 2em 1em!important;
 }
+
 .jsClickPrint {
     cursor: pointer;
 }

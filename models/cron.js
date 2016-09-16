@@ -3,11 +3,11 @@
 var request = require("request");
 
 module.exports = {
-    active: function(time, req) {
+    active: function(time, req, res, next) {
 
         var db = req.db;
         var users = db.get('usuarios');
-
+        var cronpropiedades = db.get('usuarioscron');
 
 
         users.find({}, (err, data) => {
@@ -83,6 +83,7 @@ module.exports = {
             time.schedule('* * 2 * * *', function() {
 
                 var isDate = new Date();
+
 
                 request('http://localhost/', function(error, response, body) {
                     
@@ -216,6 +217,54 @@ module.exports = {
 
             });
         }
+
+
+
+        cronpropiedades.find({}, (err, data) => {
+            if(err) {
+                return err;
+            } else {
+                var date = new Date();
+                var yearActuality = date.getFullYear();
+                var monthActuality = date.getMonth() + 1;
+                data.map(function(thisArr, index, array){
+                    if(thisArr.yearexpired == yearActuality) {
+
+                        propiedades(thisArr, index, array, monthActuality);
+
+                    } else {
+                        console.log('estoy en el año: ' + yearActuality);
+                    }
+
+                });
+            }
+        });
+
+        function propiedades(propiedad, index, array, month) {
+
+            
+            //Verify month 3-1-17
+
+            if(month == (propiedad.monthexpired - 1)) {
+               console.log('Esta propiedad vence el proximo mes');
+               console.log(propiedad);
+            } else {
+                console.log('esta propiedad vencio el año pasado')
+                console.log(propiedad);
+            }
+           
+
+            time.schedule('20 * * * * *', function(){
+                 request('http://localhost/', function(error, response, body) {
+                    
+                });
+
+                console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
+            });
+
+        }
+
+
 
     }
 }

@@ -27,6 +27,7 @@ html(lang="es")
 
     //Calendary
     script(src="../../../javascripts/jquery.e-calendar.js")
+    script(src="../../javascripts/jquery.validate.js")
 
 
     //Library create edinsoncs flatui buttons
@@ -35,7 +36,7 @@ html(lang="es")
 
 body
   include inc/header
-  
+
   section.header__Welcome.widthBase
     header.header__Welcome--Iz
      ul.ul
@@ -173,22 +174,25 @@ body
             thead
               tr
                 th Propiedad
-                th Año actual
-                th Año del vencimiento
-                th Restan
+                th Fecha desde
+                th Fecha hasta
+                th Precio
+               
 
             tbody(align="center")
              each propiedades in contratos
-              each p in propiedades.precios
-                tr
+               if propiedades.precios
+                each p in propiedades.precios
+                 tr
                   td #{propiedades.nombrePropiedad}
-                  td #{p.preciodesde}
-                  td #{p.preciohasta}
-               
-               
+                  td 
+                    span.contBeginner #{p.preciodesde}
+                  td 
+                    span.contExpired #{p.preciohasta}
+                  td $#{p.precio}
           div.containerTabs__Colors
            div.one
-           div.two
+           div.two     
         else
           table(width="100%", align="center", id="dataDownContainer")
             tbody(align="center")

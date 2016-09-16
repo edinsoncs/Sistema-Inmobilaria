@@ -35,9 +35,9 @@ router.get('/', function(req, res, next) {
 
     var verifyUser = req.user.status;
 
-    if(JSON.parse(verifyUser) !== false) {
+    if (JSON.parse(verifyUser) !== false) {
 
-    	
+
 
         if (req.user.propiedades) {
 
@@ -53,10 +53,10 @@ router.get('/', function(req, res, next) {
                 disponibles: req.user.propiedadesDisponibles,
                 agenda: req.user.agenda
             });
-          
+
             console.log(req.user);
 
-        } 
+        }
 
     } else {
         res.render('disable');
@@ -817,6 +817,8 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     var db = req.db;
     var usuarios = db.get('usuarios');
 
+    var cronUsers = db.get('usuarioscron');
+
     //var imgPath = req.files.img.path;
     var garantePath = req.files.garanteFile.path;
     var contratoPath = req.files.contrato.path;
@@ -829,13 +831,14 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
     var historialArr = [];
 
+    var isidpropiedad = esid(26);
 
     function idUser() {
         return req.user._id;
     }
 
 
-   fs.readFile(garantePath, function(err, data) {
+    fs.readFile(garantePath, function(err, data) {
 
         if (err) {
             return err;
@@ -889,7 +892,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         update: {
             $push: {
                 'propiedades': {
-                    'id': esid(26),
+                    'id': isidpropiedad,
                     'nombrePropiedad': req.body.nombrepropiedad,
                     'desPropiedad': req.body.despropiedad,
                     'barrio': req.body.barriopropiedad,
@@ -923,22 +926,22 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     //'contrato': idNameContrato,
 
                     'periodosPrecios': Array,
-                    
+
                     'notificaciones': Array,
-                    
+
                     'pagos': Array,
-                    
+
                     'estadoPago': false,
-                    
+
                     'pagosTotal': Array,
 
                     'precios': req.body.price,
-                    
+
                     //'cuentaCorriente': req.body.precioMensual,
-                    
+
                     'calendarioNotify': Array,
 
-                    'datos':{
+                    'datos': {
                         'yearexpired': getYear(),
                         'monthexpired': getMonth(),
                         'dayexpired': getDay(),
@@ -955,6 +958,17 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         res.redirect('/panel/propiedades');
     });
 
+    cronUsers.insert({
+        'idUsuario': req.user._id,
+        'idPropiedad': isidpropiedad,
+        'nombrePropiedad': req.body.nombrepropiedad,
+        'yearexpired': getYear(),
+        'monthexpired': getMonth(),
+        'dayexpired': getDay(),
+        'completExpired': req.body.contratoFin
+    });
+
+
 
     function contrato(body) {
         var inicia = body.contratoInicio;
@@ -970,23 +984,23 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         historialArr.push(obj);
 
         return historialArr;
-    } 
+    }
 
     function getYear() {
-        var fecha  = req.body.contratoFin;
+        var fecha = req.body.contratoFin;
         var isFecha = fecha.split('-');
         return isFecha[2];
 
     }
 
     function getMonth(date) {
-        var fecha  = req.body.contratoFin;
+        var fecha = req.body.contratoFin;
         var isFecha = fecha.split('-');
         return isFecha[1];
     }
 
     function getDay(date) {
-        var fecha  = req.body.contratoFin;
+        var fecha = req.body.contratoFin;
         var isFecha = fecha.split('-');
         return isFecha[0];
     }
@@ -1477,7 +1491,7 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
     var obj = new Object();
 
     console.log(req.body);
-    
+
 
     if (validation.length > 1 && validationTwo.length > 1) {
 
@@ -1714,7 +1728,7 @@ router.post('/editpropiedad', multipartMiddleware, function(req, res, next) {
             res.redirect('./propiedades/show/' + req.body.idpropiedad);
         });
 
-    } 
+    }
 
 
 });
@@ -1757,27 +1771,28 @@ router.post('/editdisponible', function(req, res, next) {
 });
 
 router.post('/deleteprice', function(req, res, next) {
-	var db = req.db;
-	var user = db.get('usuarios');
+    var db = req.db;
+    var user = db.get('usuarios');
 
 
-	user.update({'propiedades.precios.id': req.body.id}, {
-		$pull: {
-			'propiedades.$.precios': {
-				'id': req.body.id
-			}
-		}
-	}, function(err, result){
-		if(err) throw err;
+    user.update({ 'propiedades.precios.id': req.body.id }, {
+        $pull: {
+            'propiedades.$.precios': {
+                'id': req.body.id
+            }
+        }
+    }, function(err, result) {
+        if (err) throw err;
 
-		res.json({delete: true});
-	});
+        res.json({ delete: true });
+    });
 
 });
 
 router.post('/deletepropiedad', function(req, res, next) {
     var db = req.db;
     var user = db.get('usuarios');
+    var usercron = db.get('usuarioscron');
 
     var idDeletePropiedad = req.body.id;
 
@@ -1914,11 +1929,11 @@ router.post('/deleteticket', function(req, res, next) {
 });
 
 
-router.get('/admin', function(req, res, next){
+router.get('/admin', function(req, res, next) {
     adminticket(req, res, next);
 });
 
-router.get('/admin/ticket/:showid', function(req, res, next){
+router.get('/admin/ticket/:showid', function(req, res, next) {
     var idview = req.params.showid;
     adminshowticket(req, res, next, idview);
 });

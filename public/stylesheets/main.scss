@@ -521,37 +521,7 @@ main {
         }
         .containerTabs__Contratos {
             display: none;
-            .containerTabs__Colors {
-                display: flex;
-                .one {
-                    width: 89px;
-                    height: 5px;
-                    background-color: #FFC107;
-                    text-align: center;
-                    margin: 0.5em 0;
-                    &:after {
-                        content: "Ingresa";
-                        padding-top: 0.5em;
-                        display: block;
-                        font-size: 0.9rem;
-                        color: #848484;
-                    }
-                }
-                .two {
-                    width: 89px;
-                    height: 5px;
-                    background-color: #2196F3;
-                    text-align: center;
-                    margin: 0.5em 0;
-                    &:after {
-                        content: "Termina";
-                        padding-top: 0.5em;
-                        display: block;
-                        font-size: 0.9rem;
-                        color: #848484;
-                    }
-                }
-            }
+            
         }
         .containerTabs__VencimientoContratos {
             display: none;
