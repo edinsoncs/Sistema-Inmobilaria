@@ -848,3 +848,14 @@ table.dataTable.no-footer {
 .jsClickPrint {
     cursor: pointer;
 }
+
+.notifyLoop i{
+    animation: isAnimation 1s infinite;
+}
+
+@keyframes isAnimation {
+    20% {
+        transform: scale(1.2, 1.2);
+        color: #FFC107;
+    }
+}

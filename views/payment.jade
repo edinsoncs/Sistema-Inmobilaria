@@ -39,7 +39,7 @@ body
           section.payment
             figure.payment--Figure
              if foto
-              img(src="/fotoprofile/#{foto}")
+              img(src="/registers/#{foto}")
              else
               img(src="http://landestate.com.ar/wp-content/uploads/2014/09/6262664_orig.png")
             header.payment--Header
@@ -71,15 +71,29 @@ body
                | Su cuenta expira el #{userComplet.account.dia} de 
                span.monthExpired(data-month="#{userComplet.account.mes}")
                | 
-              script.
+               script.
                     $(document).ready(function(){
                         function expiredMonth(expired) {
                             var meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
                         "Septiembre", "Octubre", "Noviembre", "Diciembre"
                     ];
                             var mesExpired = $(expired).attr('data-month');
-                            var aummentExpired = Number(mesExpired) + 3;
-                            $(expired).text(meses[aummentExpired]);
+                            var aummentExpired = Number(mesExpired) + 2;
+                            
+                            if(aummentExpired == 12) {
+                                $(expired).text(meses[0]);
+                            } 
+                            else if (aummentExpired == 13){
+                                 $(expired).text(meses[1]);
+                            }
+                            else if (aummentExpired == 14){
+                                 $(expired).text(meses[2]);
+                            }
+                            else {
+                              $(expired).text(meses[aummentExpired]);
+                            }
+                          
+
                         }
                         expiredMonth($(".monthExpired"));
                     });
@@ -97,7 +111,33 @@ body
                     ];
                             var mesExpired = $(expired).attr('data-month');
                             var aummentExpired = Number(mesExpired) + 6;
-                            $(expired).text(meses[aummentExpired]);
+
+                            if(aummentExpired == 12){
+                              $(expired).text(meses[0]);
+                            }
+                            else if(aummentExpired == 13) {
+                              $(expired).text(meses[1]);
+                            }
+                             else if(aummentExpired == 14) {
+                              $(expired).text(meses[2]);
+                            }
+                          else if(aummentExpired == 15) {
+                              $(expired).text(meses[3]);
+                            }
+                             else if(aummentExpired == 16) {
+                              $(expired).text(meses[4]);
+                            }
+                          else if(aummentExpired == 17) {
+                              $(expired).text(meses[5]);
+                            }
+                             else if(aummentExpired == 18) {
+                              $(expired).text(meses[6]);
+                            } else {
+                              $(expired).text(meses[aummentExpired]);
+                            }
+
+
+                            //$(expired).text(meses[aummentExpired]);
                         }
                         expiredMonth($(".monthExpired"));
                     });

@@ -323,6 +323,7 @@ router.get('/propiedades', function(req, res, next) {
         foto: req.user.foto,
         propiedades: reverse,
         user: req.user,
+        serv: req.user.propiedades,
         menu: 'Propiedades'
     });
 });
@@ -336,6 +337,7 @@ router.get('/propiedades/add', function(req, res, next) {
         empresa: req.user.empresa,
         user: req.user,
         foto: req.user.foto,
+        serv: req.user.propiedades,
         menu: 'Propiedades'
     });
 
@@ -350,6 +352,7 @@ router.get('/disponibles/add', function(req, res, next) {
         empresa: req.user.empresa,
         user: req.user,
         foto: req.user.foto,
+        serv: req.user.propiedades,
         menu: 'Disponibles'
     });
 
@@ -393,6 +396,7 @@ router.get('/propiedades/show/:id', function(req, res, next) {
                     cuentaC: cuentaShow,
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
             }
@@ -422,6 +426,7 @@ router.get('/disponibles/show/:id', function(req, res, next) {
                     propiedad: prop[i],
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Disponibles'
                 });
             }
@@ -457,6 +462,7 @@ router.get('/propiedades/notify/:id', function(req, res, next) {
                     notify: reverseNotify,
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
             }
@@ -490,6 +496,7 @@ router.get('/propiedades/pagos/:id', function(req, res, next) {
                     isPagos: pagosShow,
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
             }
@@ -520,6 +527,7 @@ router.get('/propiedades/calendario/:id', function(req, res, next) {
                     ca: prop[i].calendarioNotify,
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
 
@@ -567,6 +575,7 @@ router.get('/propiedades/historial/:id', function(req, res, next) {
                     ca: prop[i].historialContrato,
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
 
@@ -596,6 +605,7 @@ router.get('/propiedades/servicios/:id', function(req, res, next) {
                     propiedad: prop[i],
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
 
@@ -626,6 +636,7 @@ router.get('/propiedades/verservicios/:id', function(req, res, next) {
                     propiedad: prop[i],
                     foto: req.user.foto,
                     user: req.user,
+                    serv: req.user.propiedades,
                     menu: 'Propiedades'
                 });
 
@@ -663,6 +674,7 @@ router.get('/propiedades/payments/:idpropiedad', function(req, res, next) {
                         propiedadID: propiedades[i].id,
                         paymentsData: payments_Show.reverse(),
                         user: req.user,
+                        serv: req.user.propiedades,
                         menu: 'Propiedades'
                     });
                 }
@@ -698,6 +710,7 @@ router.get('/propiedades/notificaciones/:idpropiedad', function(req, res, next) 
                         propiedadID: propiedades[i].id,
                         notify: notificaciones.reverse(),
                         user: req.user,
+                        serv: req.user.propiedades,
                         menu: 'Propiedades'
                     });
                 }
@@ -718,6 +731,7 @@ router.get('/config', function(req, res, next) {
         empresa: req.user.empresa,
         menu: 'Config',
         user: req.user,
+        serv: req.user.propiedades,
         foto: req.user.foto
     });
 });
@@ -730,6 +744,7 @@ router.get('/config/email', function(req, res, next) {
         emailTemplate: req.user.emailTemplate,
         menu: 'Config',
         user: req.user,
+        serv: req.user.propiedades,
         foto: req.user.foto
     });
 });
@@ -749,6 +764,7 @@ router.get('/ticket/support', function(req, res, next) {
         menu: 'Config',
         foto: req.user.foto,
         user: req.user,
+        serv: req.user.propiedades,
         support: reverseSupport
     });
 });
@@ -779,6 +795,7 @@ router.get('/ticket/view/:id', function(req, res, next) {
                         menu: 'Config',
                         foto: req.user.foto,
                         user: req.user,
+                        serv: req.user.propiedades,
                         view: index
                     });
                 }
@@ -808,6 +825,7 @@ router.get('/payment', function(req, res, next) {
         menu: 'Config',
         userComplet: req.user,
         user: req.user,
+        serv: req.user.propiedades,
         foto: req.user.foto
     });
 
@@ -1012,10 +1030,6 @@ router.post('/newpoperti', function(req, res, next) {
 
     var db = req.db;
     var usuario = db.get('usuarios');
-
-    console.log('hola');
-
-    console.log(req.body);
 
     usuario.findAndModify({
         query: {
@@ -1434,7 +1448,8 @@ router.get('/propiedades/editpropiedad/:id', function(req, res, next) {
                         propiedad: doc.propiedades[i],
                         user: req.user,
                         foto: req.user.foto,
-                        menu: 'Propiedades'
+                        menu: 'Propiedades',
+                        serv: req.user.propiedades
 
                     });
 
@@ -1466,6 +1481,7 @@ router.get('/disponibles/editpropiedad/:id', function(req, res, next) {
                         empresa: req.user.empresa,
                         propiedad: doc.propiedadesDisponibles[i],
                         user: req.user,
+                        serv: req.user.propiedades,
                         menu: 'Disponibles'
 
                     });
@@ -1801,8 +1817,8 @@ router.post('/deletepropiedad', function(req, res, next) {
     console.log(req.user._id);
 
 
-    usercron.remove({'idUsuario': req.user._id}, function(err, result){
-        if(err) {
+    usercron.remove({ 'idUsuario': req.user._id }, function(err, result) {
+        if (err) {
             return err;
         } else {
             console.log(result);
@@ -1818,7 +1834,7 @@ router.post('/deletepropiedad', function(req, res, next) {
         }
     }).success(function() {
         res.json({ removed: true });
-    }); 
+    });
 
 
 

@@ -96,7 +96,7 @@ module.exports = (req, res, next, file) => {
                                 switch (price) {
                                     case "3":
                                         {
-                                            return 2;
+                                            return 379;
                                             break;
                                         }
                                     case "6":
@@ -433,7 +433,7 @@ module.exports = (req, res, next, file) => {
 
 
                 for (var i = 0; i < dia.length; i++) {
-                    return dia[dayStatus] + " " + day + " del " + year;
+                    return dia[dayStatus] + " " + day + " de " + meses[mes] + " del " + year;
                 }
 
             }

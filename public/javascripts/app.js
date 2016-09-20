@@ -234,15 +234,30 @@ $(document).ready(function() {
 
 
 
+    function downHTMLFN(uri, name) {
+    	var link = document.createElement('a');
+    	link.download = name;
+    	link.href = uri;
+    	document.body.appendChild(link);
+    	link.click();
+    	document.body.removeChild(link);
+    	delete link;
+    }
+
 
     function dowloadXLS() {
         $(".linkDownload").click(function() {
             var table = $(this).parent().parent();
-            var down = $(table).find('#dataDown');
-
+            var down = $(table).find('#dataDown').html();
+            var titlePropiedad = $(".view--Iz--Top .title").text();
             $(".uNone").css('display', ' none;')
+            var fileHTML = "<body>" + down + "</body>";
 
-            window.open('data:application/vnd.ms-excel,' + $(down).html());
+
+           downHTMLFN("data:text/html, '"+fileHTML+"'", titlePropiedad+'.html');
+
+            return false;
+
         });
     }
     dowloadXLS();
@@ -695,13 +710,20 @@ $(document).ready(function() {
         }
 
         function button(btn) {
-        	$(btn).remove();
+            $(btn).remove();
         }
 
 
     }
     fnTabView();
 
-    
+    function activeNotify() {
+
+        var _one = $(".activeNewNotify").parent().parent();
+        var _two = $(_one).siblings('.header__ShowNotify');
+        $(_two).addClass('notifyLoop');
+    }
+
+    activeNotify();
 
 });

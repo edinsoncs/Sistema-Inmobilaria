@@ -1,7 +1,7 @@
 'use strict';
 
 var request = require("request");
- var GLOBAL_ELEMENT;
+var GLOBAL_ELEMENT;
 
 module.exports = {
     active: function(time, req, res, next) {
@@ -218,112 +218,6 @@ module.exports = {
 
             });
         }
-
-
-
-        /*cronpropiedades.find({}, (err, data) => {
-            if (err) {
-                return err;
-            } else {
-                var date = new Date();
-                var yearActuality = date.getFullYear();
-                var monthActuality = date.getMonth() + 1;
-                data.map(function(thisArr, index, array) {
-                    if (thisArr.yearexpired == yearActuality) {
-
-                        propiedades(thisArr, index, array, monthActuality);
-
-                    } else {
-                        console.log('estoy en el año: ' + yearActuality);
-                    }
-
-                });
-            }
-        });*/
-
-        var ISDATE = new Date();
-        var yearActuality = ISDATE.getFullYear();
-        var monthActuality = ISDATE.getMonth() + 1;
-
-        cronpropiedades.find({ 'yearexpired': yearActuality.toString() }, function(err, doc) {
-            if (err) {
-                return err;
-            } else {
-                propiedades(doc, monthActuality);
-            }
-        });
-
-        /*function propiedades(propiedad, index, array, month) {
-
-
-            //Verify month 3-1-17
-
-            if (month == (propiedad.monthexpired - 1)) {
-                console.log('Esta propiedad vence el proximo mes');
-                applyNotify(propiedad);
-
-            } else {
-                console.log('esta propiedad vencio el año pasado')
-                    //console.log(propiedad);
-            }
-
-
-            time.schedule('* 1 * * * *', function() {
-                request('http://localhost/', function(error, response, body) {
-
-                });
-
-            });
-
-        }*/
-
-        function propiedades(data, month) {
-           
-            data.forEach(function(element, index, arr) {
-                if ((element.monthexpired - 1) == month) {
-                    applyNotify(element);
-                } else {
-                    console.log('esta propiedad vencio el año pasado')
-                        //console.log(propiedad);
-                }
-            });
-            
-        }
-
-        function applyNotify(data) {
-            users.find({ 'allNotify.idpropiedad': { $exists: true, $in: [data.idPropiedad] } }, function(err, result) {
-                if (err) {
-                    return err;
-                } else {
-                    console.log(result.length);
-
-                }
-            });
-
-
-           /*users.findAndModify({
-                 query: {
-                     '_id': data.idUsuario
-                 },
-                 update: {
-                     $add: {
-                         'allNotify': {
-                             'txt': data.nombrePropiedad,
-                             'fecha': data.completExpired
-                         }
-                     }
-                 },
-                 new: true
-             }).success(function(great){
-                 console.log('se aplico');
-             });*/
-
-           
-
-        } 
-
-
-
 
 
     }

@@ -41,7 +41,14 @@ $(document).ready(function(){
 				$(element).slideToggle()
 			});
 		}
-		showUserProfile($(".jsDown"))
+		showUserProfile($(".jsDown"));
+
+		function showUserProfileNotify(element) {
+			$(".jsShowNotify").on('click', function(){
+				$(element).slideToggle()
+			});
+		}
+		showUserProfileNotify($(".jsDownNotify"));
 
 
 	///En Menu User
