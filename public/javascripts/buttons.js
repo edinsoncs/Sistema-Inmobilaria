@@ -25,4 +25,4 @@ $(document).ready(function(){
 });
 $(".newPropiedad--Form").validate({
     	lang: 'es' 
-    });
+});

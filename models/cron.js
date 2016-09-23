@@ -10,7 +10,6 @@ module.exports = {
         var users = db.get('usuarios');
         var cronpropiedades = db.get('usuarioscron');
 
-
         users.find({}, (err, data) => {
             if (err) {
                 return err;
@@ -79,7 +78,6 @@ module.exports = {
 
         });
 
-
         function suspendUser(dayRegister, infoUser, monthRegister, type) {
             time.schedule('* * 2 * * *', function() {
 
@@ -87,7 +85,11 @@ module.exports = {
 
 
                 request('http://localhost/', function(error, response, body) {
-
+                    if(error){
+                        return err;
+                    } else {
+                        console.log(body);
+                    }
                 });
 
                 var _month = isDate.getMonth() + 1;

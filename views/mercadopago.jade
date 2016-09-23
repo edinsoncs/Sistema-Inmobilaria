@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
+    
+    title #{title}
+    
+    link(rel="stylesheet", href="../../../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../../../stylesheets/icons.css")
+    link(rel="stylesheet", href="../../../stylesheets/app.css")
+    link(rel="stylesheet", href="../../../stylesheets/dcalendar.picker.css")
+
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+
+    script(src="../../../javascripts/jquery-1.11.2.min.js")
+    script(src="../../../javascripts/app-dev1.js")
+    script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+
+    //functions create edinsoncs
+    script(src="../../../javascripts/app.js")
+    script(src="../../../javascripts/dcalendar.picker.js")
+
+body
+  include inc/header
+  section.panelHomeLogin.newAccountPanel
+    
+    header.panelHomeLogin__Header
+      h2.title
+        | Zimba Payment
+    div.formPanelHome--Form
+      div.formPanelHome--Form--Show
+        p.formPanelHome--Form--Success
+          | Gracias por selecionar el pago de MercadoPago, El pago se encuentra 
+          span.jsTypePayment #{description}
+  script.
+   $(document).ready(function(){ 
+    $.ajax({
+   	 url: "../mercadopago",
+   	 method: "POST",
+   	 dataType: "json",
+   	 contentType: "application/json",
+   	 data: JSON.stringify({
+   		type: $(".jsTypePayment").text()
+   	 }),
+   	 success: function(e){
+   	 	setTimeout(function(){
+			window.location.href = '/panel';
+   	 	}, 5000);
+   	 },
+   	 error: function(err){
+   	 console.log(err);
+   	 }
+    });
+   });

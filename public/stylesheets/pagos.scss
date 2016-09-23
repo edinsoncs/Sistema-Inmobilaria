@@ -1,111 +1,143 @@
 .payments {
-	.newPayments--Header {
-		.title {
-			margin: 0;
-			font-weight: 400;
-		}
-	}
-	.payments--Container {
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		.payments--Articles {
-			width: 250px;
-			border: 1px solid #27ae60;
-			border-top-left-radius: 4px;
-			border-top-right-radius: 4px;
-			margin: 1em 0 1em 0;
-			.payments--Articles--Header {
-				text-align: center;
-				padding: 0.5em 0;
-				background-color: #27ae60;
-				
-				.title {
-					font-weight: 400;
-					color: white;
-					font-size: 1.4em;
-				}
-			}
-			.payments--Articles--Cantidad {
-				text-align: center;
-				padding: 1em 0;
-				.cantidad {
-					font-weight: 400;
-				}
-			}
-		}
-	}
+    .newPayments--Header {
+        .title {
+            margin: 0;
+            font-weight: 400;
+        }
+    }
+    .payments--Container {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        .payments--Articles {
+            width: 250px;
+            border: 1px solid #27ae60;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            margin: 1em 0 1em 0;
+            .payments--Articles--Header {
+                text-align: center;
+                padding: 0.5em 0;
+                background-color: #27ae60;
+                .title {
+                    font-weight: 400;
+                    color: white;
+                    font-size: 1.4em;
+                }
+            }
+            .payments--Articles--Cantidad {
+                text-align: center;
+                padding: 1em 0;
+                .cantidad {
+                    font-weight: 400;
+                }
+            }
+        }
+    }
 }
 
 .paymentContainer {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+    width: 1220px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
-.payment {
-	width: 50%;
-	margin: 0 auto;
-	background-color: white;
-	padding: 1em;
-	border: 1px solid #dedede;
-	.payment--Figure {
-		text-align: center;
-		img {
-			display: block;
-			width: 50%;
-			margin: 0 auto;
-		}
-	}
-	.payment--Header {
-		margin: 0.4em 0;
-		text-align: center;
-		.title {
-			font-weight: 400;
-			text-transform: capitalize;
-		}
-	}
-	.payment--Ul {
-		padding: 0.5em;
-		label {
-			background-color: #f5f5f5;
-			width: 97%;
-			display: block;
-			padding: 0.5em;
-			text-align: center;
-			border-top: 1px solid #d8d8d8;
-			border-left: 1px solid #d8d8d8;
-			border-right: 1px solid #d8d8d8;
-			border-top-left-radius: 4px;
-			border-top-right-radius: 4px;
-			color: #333;
-		}
-		.list {
-			list-style-type: none;
-			font-size: 0.9rem;
-			padding: 0.5em 0;
-			border-bottom: 1px solid #dedede;
-			&:before {
-				content: '';
-				width: 5px;
-				height: 5px;
-				background-color: #dedede;
-				display: inline-block;
-				margin: 0 0.5em 0.2em 0;
-			}
-			&:hover {
-				color: #0052ff;
-			}
-			&:last-child {
-				border-bottom: 1px solid transparent;
-			}
-		}
-	}
 
-	.payment--ExpiredAccount {
-		text-align: center;
-		.title {
-			font-weight: 400;
-			color: #34a9ed;
-		}
-	}
+.payment {
+    width: 55%;
+    background-color: white;
+    padding: 1em;
+    border: 1px solid #dedede;
+    .payment--Figure {
+        text-align: center;
+        img {
+            display: block;
+            width: 50%;
+            margin: 0 auto;
+        }
+    }
+    .payment--Header {
+        margin: 0.4em 0;
+        text-align: center;
+        .title {
+            font-weight: 400;
+            text-transform: capitalize;
+        }
+    }
+    .payment--Ul {
+        padding: 0.5em;
+        label {
+            background-color: #f5f5f5;
+            width: 97%;
+            display: block;
+            padding: 0.5em;
+            text-align: center;
+            border-top: 1px solid #d8d8d8;
+            border-left: 1px solid #d8d8d8;
+            border-right: 1px solid #d8d8d8;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            color: #333;
+        }
+        .list {
+            list-style-type: none;
+            font-size: 0.9rem;
+            padding: 0.5em 0;
+            border-bottom: 1px solid #dedede;
+            &:before {
+                content: '';
+                width: 5px;
+                height: 5px;
+                background-color: #dedede;
+                display: inline-block;
+                margin: 0 0.5em 0.2em 0;
+            }
+            &:hover {
+                color: #0052ff;
+            }
+            &:last-child {
+                border-bottom: 1px solid transparent;
+            }
+        }
+    }
+    .payment--ExpiredAccount {
+        text-align: center;
+        .title {
+            font-weight: 400;
+            color: #34a9ed;
+        }
+    }
+}
+
+.typePayment {
+    width: 28%;
+    .typePayment--Articl {
+        background-color: white;
+        border: 1px solid #dedede;
+        .typePayment--Header {
+            background-color: #4CAF50;
+            padding: 0.5em;
+            .title {
+                font-weight: 400;
+                color: white;
+            }
+            .ml {
+                margin-left: 64px;
+            }
+        }
+        .typePayment--Cont {
+            padding: 0.5em;
+            .linkPayment {
+                background-color: #2196F3;
+                padding: 0.7em 1em;
+                display: block;
+                width: 50%;
+                text-align: center;
+                margin: 1em auto 1em auto;
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+        }
+    }
 }

@@ -34,7 +34,7 @@ body
         header.config--Header
          h2.title
           i(class="fa fa-cog" aria-hidden="true") 
-          | Pagos
+          |  Pagos
        .paymentContainer
           section.payment
             figure.payment--Figure
@@ -162,6 +162,18 @@ body
                         }
                         expiredMonth($(".monthExpired"));
                     });
+          aside.typePayment
+            article.typePayment--Articl
+              header.typePayment--Header
+                h3.title
+                  i.fa.fa-credit-card
+                  |  Pago Online 
+                  span.ml
+                    | MercadoPago
+              div.typePayment--Cont
+                img(src='../images/payments.png', width="100%")
+                a.linkPayment
+                  | Realizar Pago
               
 
     script(src='../../../javascripts/app.js')

@@ -25,6 +25,10 @@ var adminshowticket = require('../models/admintickets');
 var resticket = require('../models/resticket');
 var resticketuser = require('../models/resticketuser');
 
+var accountpayment = require('../models/paymentuser');
+var statepayment = require('../models/statepayment');
+var processPayment = require('../models/processpayment');
+
 var bodyParser = require('body-parser');
 
 
@@ -836,6 +840,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     var usuarios = db.get('usuarios');
 
     var cronUsers = db.get('usuarioscron');
+    var emailing = db.get('email');
 
     //var imgPath = req.files.img.path;
     var garantePath = req.files.garanteFile.path;
@@ -986,6 +991,28 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
         'completExpired': req.body.contratoFin
     });
 
+
+    emailing.insert({
+
+        'idUsuario': req.user._id,
+        'idPropiedad': isidpropiedad,
+        
+        'nombrePropiedad': req.body.nombrepropiedad,
+        
+        'nombreInquilino': req.body.nameinquilino,
+        'telInquilino': req.body.telinquilino,
+        'dniInquilino': req.body.dniinquilino,
+        'emailInquilino': req.body.emailinquilino,
+
+        'barrio': req.body.barriopropiedad,
+        
+        'empresa': req.user.empresa,
+        'emailempresa': req.user.email,
+        'telefonoempresa': req.user.telefono,
+
+        'logo': req.user.foto
+
+    });
 
 
     function contrato(body) {
@@ -1809,6 +1836,7 @@ router.post('/deletepropiedad', function(req, res, next) {
     var db = req.db;
     var user = db.get('usuarios');
     var usercron = db.get('usuarioscron');
+    var emailing = db.get('email');
 
     var idDeletePropiedad = req.body.id;
 
@@ -1817,11 +1845,19 @@ router.post('/deletepropiedad', function(req, res, next) {
     console.log(req.user._id);
 
 
+    emailing.remove({'idUsuario': req.user._id}, function(err, result){
+        if(err){
+            return err;
+        } else {
+            console.log('removido collection email');
+        }
+    });
+
     usercron.remove({ 'idUsuario': req.user._id }, function(err, result) {
         if (err) {
             return err;
         } else {
-            console.log(result);
+            console.log('removido del cron la propiedad');
         }
     });
 
@@ -1835,6 +1871,7 @@ router.post('/deletepropiedad', function(req, res, next) {
     }).success(function() {
         res.json({ removed: true });
     });
+
 
 
 
@@ -1984,6 +2021,18 @@ router.post('/userticket', function(req, res, next) {
 
     resticketuser(req, res, next);
 
+});
+
+router.post('/paymentuser', function(req, res, next) {
+    accountpayment(req, res, next);
+});
+
+router.get('/paymentsuccess/:type', function(req, res, next) {
+    statepayment(req, res, next, req.params.type);
+});
+
+router.post('/mercadopago', function(req, res, next) {
+    processPayment(req, res, next);
 });
 
 

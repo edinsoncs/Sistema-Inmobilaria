@@ -167,17 +167,17 @@ module.exports = (req, res, next, file) => {
                                         switch (price) {
                                             case "3":
                                                 {
-                                                    return 390;
+                                                    return 499;
                                                     break;
                                                 }
                                             case "6":
                                                 {
-                                                    return 789;
+                                                    return 749;
                                                     break;
                                                 }
                                             case "12":
                                                 {
-                                                    return 1199;
+                                                    return 999;
                                                     break;
                                                 }
                                         }
@@ -271,8 +271,6 @@ module.exports = (req, res, next, file) => {
                         if (err) {
                             res.send(err);
                         } else {
-
-
 
                             users.insert({
                                     'nombre': data.nombre,

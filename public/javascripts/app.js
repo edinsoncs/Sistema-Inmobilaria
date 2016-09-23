@@ -235,13 +235,13 @@ $(document).ready(function() {
 
 
     function downHTMLFN(uri, name) {
-    	var link = document.createElement('a');
-    	link.download = name;
-    	link.href = uri;
-    	document.body.appendChild(link);
-    	link.click();
-    	document.body.removeChild(link);
-    	delete link;
+        var link = document.createElement('a');
+        link.download = name;
+        link.href = uri;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        delete link;
     }
 
 
@@ -254,7 +254,7 @@ $(document).ready(function() {
             var fileHTML = "<body>" + down + "</body>";
 
 
-           downHTMLFN("data:text/html, '"+fileHTML+"'", titlePropiedad+'.html');
+            downHTMLFN("data:text/html, '" + fileHTML + "'", titlePropiedad + '.html');
 
             return false;
 
@@ -675,36 +675,41 @@ $(document).ready(function() {
             uno: $(".containerTabs__Agenda"),
             dos: $(".containerTabs__Contratos"),
             tres: $(".containerTabs__VencimientoContratos"),
-            cuatro: $(".containerTabs__VencimientosPrecios")
-
+            cuatro: $(".containerTabs__VencimientosPrecios"),
+            cinco: $(".containerTabs__VencimientoInquilino")
         }
 
         switch (verifyHash) {
             case '#propiedades':
-                $(obj.dos, obj.tres, obj.cuatro).css('display', 'none');
-                $(obj.unp).fadeIn('slow');
+                $(obj.dos, obj.tres, obj.cuatro, obj.cinco).css('display', 'none');
+                $(obj.uno).fadeIn('slow');
                 $(".agendaTabs__List:nth-child(1) a").addClass('selectItemAgend')
                 $(".agendaTabs__List:nth-child(1) a").addClass('selectItemAgend')
                 break;
             case '#contratos':
-                $(obj.uno, obj.tres, obj.cuatro).css('display', 'none');
+                $(obj.uno, obj.tres, obj.cuatro, obj.cinco).css('display', 'none');
                 $(obj.dos).fadeIn('slow');
                 $(".agendaTabs__List:nth-child(2) a").addClass('selectItemAgend')
                 button($(".propiedadesLink"));
                 break;
             case '#vencimientoscontratos':
-                $(obj.uno, obj.ods, obj.cuatro).css('display', 'none');
+                $(obj.uno, obj.dos, obj.cuatro, obj.cinco).css('display', 'none');
                 $(obj.tres).fadeIn('slow');
                 $(".agendaTabs__List:nth-child(3) a").addClass('selectItemAgend')
                 button($(".propiedadesLink"));
                 break;
             case '#vencimientosprecios':
-                $(obj.uno, obj.dos, obj.tres).css('display', 'none');
+                $(obj.uno, obj.dos, obj.tres, obj.cinco).css('display', 'none');
                 $(obj.cuatro).fadeIn('slow');
                 $(".agendaTabs__List:nth-child(4) a").addClass('selectItemAgend')
                 button($(".propiedadesLink"));
                 break;
-
+            case '#vencimientoinquilino':
+                $(obj.uno, obj.dos, obj.tres, obj.cuatro).css('display', 'none');
+                $(obj.cinco).fadeIn('slow');
+                $(".agendaTabs__List:nth-child(5) a").addClass('selectItemAgend')
+                button($(".propiedadesLink"));
+                break;
             default:
                 //alert('error');
         }
@@ -725,5 +730,23 @@ $(document).ready(function() {
     }
 
     activeNotify();
+
+    function paymentUser() {
+
+        $(".linkPayment").click(function() {
+            $.ajax({
+                url: 'paymentuser',
+                type: 'POST',
+                success: function(data) {
+                    console.log(data);
+                    var _url = data.mlData.response.init_point;
+                    var _browser = 'toolbar=no, location=no, status=no, menubar=yes, scrollbars=yes, resizable=yes, width=1000px, height=750px, left=225px, top=300, scrollbars=yes';
+                    window.open(_url, 'Zimba - Payment Mercadopago', _browser);
+                }
+            });
+        });
+
+    }
+    paymentUser();
 
 });

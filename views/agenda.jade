@@ -64,6 +64,10 @@ body
      li.agendaTabs__List
       a.link.jsAgendaLink(href="panel/agenda/#vencimientosprecios")
        | Vencimientos de precios
+     li.agendaTabs__List
+      a.link.jsAgendaLink(href="panel/agenda/#vencimientoinquilino")
+       | Notificaciones al inquilino
+
     header.Propiedades
       a.link.propiedadesLink(href="./panel/agenda/add", class="")
        | Nueva Agenda
@@ -193,6 +197,26 @@ body
           div.containerTabs__Colors
            div.one
            div.two     
+        else
+          table(width="100%", align="center", id="dataDownContainer")
+            tbody(align="center")
+              tr
+                td No dispones de contratos
+                 strong  en tu agendas
+      section.containerTabs__VencimientoInquilino
+       if user.viewNotify
+          div#dataDown 
+           table(width="100%", align="center", id="dataDown")
+            thead
+              tr
+                th Fecha del envio
+                th Estado de la notificacion
+
+            tbody(align="center")
+             each isNotifyAll in user.viewNotify
+                 tr
+                  td #{isNotifyAll.fecha}
+                  td(style="background-color: #FFEB3B; color: black;") #{isNotifyAll.Estado}
         else
           table(width="100%", align="center", id="dataDownContainer")
             tbody(align="center")
