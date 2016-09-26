@@ -717,9 +717,8 @@ $(document).ready(function() {
         function button(btn) {
             $(btn).remove();
         }
-
-
     }
+
     fnTabView();
 
     function activeNotify() {

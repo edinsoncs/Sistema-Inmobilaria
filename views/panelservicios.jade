@@ -108,16 +108,17 @@ body
          if foto
           figure.user--Figure
             img(src="../registers/#{foto}", alt="", width="250px")
-          //div.user--Data
+          div.user--Data
             ul.ul
               li.list
                 | #{user.nombre}
               li.list
-                | #{user.apellidos}
-              li.list
                 | #{user.empresa}
               li.list
-                | #{user.dni}
+                | #{user.email}
+              li.list.activeAccount
+                | Activo
+
          else
           figure.user--Figure
             img(src="http://landestate.com.ar/wp-content/uploads/2014/09/6262664_orig.png", alt="", width="250px")

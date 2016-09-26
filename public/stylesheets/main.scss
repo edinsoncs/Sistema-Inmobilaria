@@ -78,18 +78,27 @@ main {
                 .user--Figure {
                     text-align: center;
                     img {
-                        display: block;
+                         display: block;
                         margin: 0 auto;
                         border: 1px solid #dedede;
                     }
                 }
                 .user--Data {
-                    padding: 1em 0;
                     .ul {
-                        width: 50%;
-                        margin: 0 auto;
+                        width: 95%;
+                        border: 1px solid #dedede;
+                        padding: 0.5em;
+                        margin: 1em auto 0 auto;
                         .list {
                             list-style-type: none;
+                            color: #7c7a7a;
+                        }
+                        .activeAccount {
+                            background-color: #03A9F4;
+                            color: white;
+                            padding: 0.4em;
+                            width: 50%;
+                            margin: 0.7em auto 0 auto;
                         }
                     }
                 }
@@ -480,7 +489,7 @@ main {
 }
 
 .agenda {
-    background-color: white; 
+    background-color: white;
     padding: 0 1em 1em 1em;
     .Propiedades {
         margin: 2em 0;
@@ -489,7 +498,6 @@ main {
             font-size: 0.9rem;
         }
     }
-
     .agendaTabs {
         padding: 0 0 1em 0;
         .agendaTabs__List {
@@ -515,13 +523,10 @@ main {
             }
         }
     }
-
     .containerTabs {
-        .containerTabs__Agenda {
-        }
+        .containerTabs__Agenda {}
         .containerTabs__Contratos {
             display: none;
-            
         }
         .containerTabs__VencimientoContratos {
             display: none;
@@ -529,7 +534,7 @@ main {
         .containerTabs__VencimientosPrecios {
             display: none;
         }
-        .containerTabs__VencimientoInquilino { 
+        .containerTabs__VencimientoInquilino {
             display: none;
         }
     }
@@ -553,7 +558,7 @@ main {
         justify-content: space-between;
     }
     .jsAppendDatesEdit:nth-child(1) {
-		background: red;
+        background: red;
     }
     .newPropiedad--Form {
         width: 100%;
@@ -571,13 +576,13 @@ main {
             width: 40%;
             padding: 0 1em;
             .header--Steps {
-            	.sum {
-            		margin: 0 0 0 0.5em;
-            		background-color: #3c8dbc;
-            		color: white;
-            		padding: 0 0.5em;
-            		cursor: pointer;
-            	}
+                .sum {
+                    margin: 0 0 0 0.5em;
+                    background-color: #3c8dbc;
+                    color: white;
+                    padding: 0 0.5em;
+                    cursor: pointer;
+                }
                 .title {
                     i {
                         margin: 0 0.5em 0 0;
