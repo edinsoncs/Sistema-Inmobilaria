@@ -356,6 +356,7 @@ $(document).ready(function() {
     }
 
     $(".jsClickDelete").click(function() {
+    	var _remove = $(this).parent().parent();
         var id = $(this).parent().parent();
         var id_show = $(id).attr('data-id');
 
@@ -368,7 +369,7 @@ $(document).ready(function() {
                 idremove: id_show
             }),
             success: function() {
-                alert('removing progress success');
+            	$(_remove).remove();
             },
             error: function(err) {
                 console.log(err);

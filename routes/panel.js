@@ -906,8 +906,6 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
     }, 1000);
 
 
-
-
     usuarios.findAndModify({
         query: {
             '_id': req.user._id
@@ -946,7 +944,7 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
                     'contratoInicia': req.body.contratoInicio,
                     'contratoFinaliza': req.body.contratoFin,
 
-                    //'contrato': idNameContrato,
+                    'contrato': idNameContrato,
 
                     'periodosPrecios': Array,
 
