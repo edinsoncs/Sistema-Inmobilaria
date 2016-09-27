@@ -20,7 +20,10 @@ section.view--Notify
       fieldset.formPagos__Fieldset
         label.formPagos__Fieldset--Label
           | Precio
-        input(type="text", value="#{propiedad.precioMensual}", name="isPrecioPropiedad")
+        select(name="isPrecioPropiedad")
+          each it in propiedad.precios
+            option(value="#{it.precio}") #{it.precio}
+        //input(type="text", value="#{propiedad.precioMensual}", name="isPrecioPropiedad")
       fieldset.formPagos__Fieldset
         label.De--Label
           | Mes
