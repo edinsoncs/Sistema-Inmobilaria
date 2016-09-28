@@ -994,16 +994,16 @@ router.post('/addcreate', multipartMiddleware, function(req, res, next) {
 
         'idUsuario': req.user._id,
         'idPropiedad': isidpropiedad,
-        
+
         'nombrePropiedad': req.body.nombrepropiedad,
-        
+
         'nombreInquilino': req.body.nameinquilino,
         'telInquilino': req.body.telinquilino,
         'dniInquilino': req.body.dniinquilino,
         'emailInquilino': req.body.emailinquilino,
 
         'barrio': req.body.barriopropiedad,
-        
+
         'empresa': req.user.empresa,
         'emailempresa': req.user.email,
         'telefonoempresa': req.user.telefono,
@@ -1843,8 +1843,8 @@ router.post('/deletepropiedad', function(req, res, next) {
     console.log(req.user._id);
 
 
-    emailing.remove({'idUsuario': req.user._id}, function(err, result){
-        if(err){
+    emailing.remove({ 'idUsuario': req.user._id }, function(err, result) {
+        if (err) {
             return err;
         } else {
             console.log('removido collection email');
@@ -2033,5 +2033,19 @@ router.post('/mercadopago', function(req, res, next) {
     processPayment(req, res, next);
 });
 
+router.get('/instructive', function(req, res, next) {
+    res.render('instructive', {
+        title: 'Instructive de administración',
+        user: req.user,
+        cuenta: req.user.cuenta,
+        nombre: req.user.nombre,
+        empresa: req.user.empresa,
+        menu: 'Inicio',
+        serv: req.user.propiedades,
+        foto: req.user.foto,
+        disponibles: req.user.propiedadesDisponibles,
+        agenda: req.user.agenda
+    });
+});
 
 module.exports = router;

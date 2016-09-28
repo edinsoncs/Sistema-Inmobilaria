@@ -1,0 +1,476 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600italic,700,600,700italic);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic,400italic,700,700italic);
+.uNone {
+  display: none;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url("fonts/DINPro-Medium.eot");
+  src: url("fonts/DINPro-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/DINPro-Medium.woff") format("woff"), url("fonts/DINPro-Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url("fonts/DINPro-Bold.eot");
+  src: url("fonts/DINPro-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/DINPro-Bold.woff") format("woff"), url("fonts/DINPro-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url("fonts/DINPro-Black.eot");
+  src: url("fonts/DINPro-Black.eot?#iefix") format("embedded-opentype"), url("fonts/DINPro-Black.woff") format("woff"), url("fonts/DINPro-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url("fonts/DINPro-Light.eot");
+  src: url("fonts/DINPro-Light.eot?#iefix") format("embedded-opentype"), url("fonts/DINPro-Light.woff") format("woff"), url("fonts/DINPro-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DINPro';
+  src: url("fonts/DINPro-Regular.eot");
+  src: url("fonts/DINPro-Regular.eot?#iefix") format("embedded-opentype"), url("fonts/DINPro-Regular.woff") format("woff"), url("fonts/DINPro-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.header__Security {
+  width: 100%;
+}
+
+.header__Security .header__Security--Container {
+  width: 1220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__Security .header__Security--Container .header__Security--Access .linkAccess {
+  text-decoration: none;
+  color: white;
+  background-color: #344c59;
+  padding: 0.8em 1em;
+}
+
+main .main__Top {
+  height: 550px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 30px solid #dedede;
+  background-image: url("../../images/img/bgproperti.jpg");
+  background-color: black;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+}
+
+main .main__Top .main__Top--bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.62);
+}
+
+main .main__Top .main__Top--Container {
+  width: 1220px;
+  margin: 0 auto;
+  position: relative;
+  height: 530px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+main .main__Top .main__Top--Container .Container--Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--Iz {
+  width: 20px;
+  height: 20px;
+  background-image: url("../../images/img/banerblancoiz.png");
+  margin: 0 2em 0 0;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--Center {
+  height: 160px;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--Center .title {
+  color: white;
+  font-size: 40px;
+  font-family: DINPro;
+  font-weight: 400;
+  text-transform: uppercase;
+  animation: isText 5s infinite;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--Center .title strong {
+  font-weight: 600;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--Center .title:nth-child(2) {
+  display: none;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--Center .title:nth-child(3) {
+  display: none;
+}
+
+main .main__Top .main__Top--Container .Container--Header .Container--Header--De {
+  width: 20px;
+  height: 20px;
+  background-image: url("../../images/img/banerblancode.png");
+  margin: 0 0 0 2em;
+}
+
+main .main__Top .main__Top--Container .Container--Access {
+  position: absolute;
+  top: 2%;
+  right: 0;
+  background: transparent;
+  border: 1px solid #dedede;
+  padding: 0.8em;
+}
+
+main .main__Top .main__Top--Container .Container--Access a {
+  color: white;
+  text-decoration: none;
+}
+
+main .main__Content {
+  width: 1220px;
+  margin: 5em auto 2em auto;
+}
+
+main .main__Content .main__Content--Header {
+  text-align: center;
+  /*&:after {
+				content: "";
+				background-image: url('../../images/img/blue-sep.png');
+				background-size: contain;
+				width: 30%;
+				height: 20px;
+				margin: 0 auto;
+				display: block;
+			}*/
+}
+
+main .main__Content .main__Content--Header .title {
+  font-weight: 400;
+  font-size: 2em;
+  font-family: 'Lato', sans-serif;
+  color: #344c59;
+}
+
+main .main__Content .main__Content--Header .title strong {
+  font-weight: 600;
+}
+
+main .main__Content .main__Content--Description .description {
+  font-weight: 400;
+  font-size: 1.2em;
+  color: #B5B2B4;
+  line-height: 30px;
+  font-family: 'Lato', sans-serif;
+  color: #585657;
+}
+
+main .main__Content .main__Content--Description .description strong {
+  color: #34ABE3;
+}
+
+main .main__Content--Sub {
+  background-color: #b2b2b2;
+  height: auto;
+  border-bottom: 30px solid #dedede;
+  position: relative;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container {
+  width: 1220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz {
+  width: 40%;
+  text-align: center;
+  padding: 2em 0;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Iz--Header .title {
+  color: #4c4c4c;
+  font-weight: 400;
+  font-family: DINPro;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details label {
+  color: #4c4c4c;
+  margin: 2em 0;
+  display: block;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details .list {
+  list-style-type: none;
+  color: #4c4c4c;
+  margin: 0 0 1em 0;
+  line-height: 20px;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details .list span, main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details .list a {
+  color: #4c4c4c;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details .list:nth-child(2):before {
+  content: "";
+  background: url("../../images/img/colorright.png");
+  width: 11px;
+  height: 15px;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Ul--Details .list:nth-child(3):before {
+  content: "";
+  background: url("../../images/img/arr.png");
+  width: 11px;
+  height: 15px;
+  display: inline-block;
+  margin: 0 0.5em 0 0;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Btn a {
+  text-decoration: none;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Btn .Btn--Show {
+  padding: 0.5em 1em;
+  background: #ffd149;
+  display: block;
+  width: 36%;
+  margin: 0 auto;
+  color: white;
+  font-family: 'Lato', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Btn .dataShowInstalation {
+  text-align: center;
+  display: none;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Btn .dataShowInstalation .figureShow {
+  width: 150px;
+  margin: 2em auto 2em auto;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Btn .dataShowInstalation .figureShow img {
+  display: block;
+  margin: 0 auto;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--Iz .Container--Btn .dataShowInstalation .figureShow .details {
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--De {
+  width: 40%;
+  padding: 2em 0;
+  text-align: center;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--De .Container--De--Header .title {
+  color: #4c4c4c;
+  font-weight: 400;
+  font-family: 'Lato', sans-serif;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--De .Container--Ul--Details {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--De .Container--Ul--Details label {
+  color: #4c4c4c;
+  margin: 2em 0;
+  display: block;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--De .Container--Ul--Details .list {
+  list-style-type: none;
+  color: #4c4c4c;
+  margin: 0 0 1em 0;
+  line-height: 20px;
+}
+
+main .main__Content--Sub .main__Content--Sub--Container .Sub--Container--De .Container--Ul--Details .list span {
+  color: #4c4c4c;
+  font-weight: 700;
+}
+
+main .main__Content--Sub .imgAdorn {
+  background-image: url("../../images/img/adorn.png");
+  background-size: cover;
+  width: 200px;
+  height: 449px;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  margin-top: -6.8em;
+}
+
+main .main__Content--Bottom {
+  background-color: white;
+  padding: 1em 0;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container {
+  width: 1220px;
+  margin: 0 auto;
+  position: relative;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Header {
+  text-align: center;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Header .title {
+  font-family: DINPro;
+  color: #344c59;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services {
+  display: flex;
+  justify-content: space-between;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services {
+  transition: all 0.5s linear;
+  margin: 0;
+  width: 180px;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services .Services--Top {
+  text-align: center;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services .Services--Top img {
+  display: block;
+  margin: 0 auto;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services .Services--Top img:last-child {
+  margin: 1em auto;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services .ServicesData {
+  display: none;
+  text-align: center;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services .ServicesData .lorem {
+  color: #585659;
+}
+
+main .main__Content--Bottom .main__Content--Bottom--Container .Bottom--Services .Services .ServicesData .lorem span {
+  color: #34ABE3;
+}
+
+main .main__Steps {
+  background-color: #107AC0;
+  width: 100%;
+}
+
+main .main__Steps .main__Steps--Container {
+  width: 1220px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+main .main__Steps .main__Steps--Container .main__Steps--Header {
+  padding: 0.5em 0;
+}
+
+main .main__Steps .main__Steps--Container .main__Steps--Header .title {
+  color: white;
+  font-weight: 400;
+  margin: 0;
+  padding: 0.5em 0;
+  font-size: 2em;
+}
+
+main .main__Steps .main__Steps--Container .main__Steps--Description .description {
+  margin: 0;
+  font-size: 1em;
+  font-weight: 400;
+  color: #95D5FE;
+  line-height: 30px;
+}
+
+.footer {
+  width: 100%;
+  padding: 2em 0;
+  background-color: #3c3c3a;
+  position: relative;
+}
+
+.footer .footer__Content {
+  width: 520px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .footer__Content .footer__Content--Figure {
+  display: block;
+  margin: 0 auto;
+}
+
+.footer .footer__Content .footer__Content--Section .ulSection .listData {
+  list-style-type: none;
+  color: white;
+}
+
+.footer .footer__Adorno {
+  position: absolute;
+  width: 280px;
+  height: 238px;
+  background-image: url("../../images/img/left.png");
+  top: 50%;
+  left: 0;
+  margin-top: -12.5em;
+}

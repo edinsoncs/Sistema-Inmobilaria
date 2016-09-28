@@ -532,7 +532,7 @@ $(document).ready(function() {
             if (val == 3 || val == 6 || val == 12) {
                 var paymentCheck = "<select name='typepayment'>" +
                     "<option value='false'>Deposito</option>" +
-                    "<option value='true'>MercadoPago</option>" +
+                    //"<option value='true'>MercadoPago</option>" +
                     "</select>";
 
                 var addingPayment = $(state).parent().parent();

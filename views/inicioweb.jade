@@ -1,0 +1,178 @@
+doctype html
+html(lang='es')
+  head
+    meta(charset='UTF-8')
+    title Security
+    link(rel='stylesheet', href='stylesheets/front/normalize.css')
+    link(rel='stylesheet', href='stylesheets/front/icons.css')
+    link(rel='stylesheet', href='stylesheets/front/app.css')
+    <link href="https://fonts.googleapis.com/css?family=Lato|Open+Sans" rel="stylesheet">
+    script(src='https://code.jquery.com/jquery-1.12.4.min.js')
+    script(src='javascripts/js/codigo.js')
+    script(src='javascripts/js/responsiveslides.min.js')
+  body
+    //header.header__Security
+      section.header__Security--Container
+        figure.header__Security--Figure
+          img(src='images/img/logo.png', alt='')
+        div.header__Security--Access
+          a.linkAccess(href="acceso")
+           i.fa.fa-user
+           |  Panel del sistema
+    main
+      section.main__Top
+        .main__Top--bg
+        .main__Top--Container
+          header.Container--Header
+            .Container--Header--Iz
+            .Container--Header--Center
+              img(src="images/img/logoz.png", alt="")
+              //ul.rslides
+                li
+                  img(src="images/img/logoz.png", alt="")
+                li
+                  h2.title
+                    | Toda su 
+                    span.rotate
+                    | información en un 
+                    strong solo lugar
+                li
+                  h2.title.uN
+                    strong Administre sus
+                    br
+                    span
+                      | Propiedades
+                
+            .Container--Header--De
+          div.Container--Access
+           a.linkAccess(href="acceso")
+            i.fa.fa-user
+            |  Ingresar al sistema
+      section.main__Content
+        header.main__Content--Header
+          h2.title
+            span ¿QUÉ ES 
+            strong ZIMBA PROPIEDADES?
+        .main__Content--Description
+          h3.description
+            | Es un sistema de 
+            strong administración 
+            | de propiedades para inmobiliarias, cuenta con multitples funciones para mejorar nuestras tareas administrativas
+          h3.description
+            | Administre sus propiedades de una manera simple y sencilla
+            strong  suba todo los
+            |  datos de una propiedad 
+            strong Envíe notificaciones a sus clientes
+          h3.description
+            | En zimba propiedades le brindamos distintas opciones de control a sus clientes, propiedades nuevas, agenda de listas mas importantes
+      section.main__Content--Sub
+        .main__Content--Sub--Container
+          .Sub--Container--Iz
+            header.Container--Iz--Header
+              h2.title
+                | ¿COMO 
+                strong FUNCIONA?
+            ul.Container--Ul--Details
+              label.title
+                | Es un proceso muy sencillo:
+              li.list
+                | Tener una cuenta en nuestro sistema
+                br
+                span 
+                 | ingresa para registrarte
+              li.list
+                | Ingresar al sistema y cargar
+                br
+                | su primera propiedad
+                span  completar todo los campos 
+                |  requeridos
+                br
+            .Container--Btn
+              a(href="acceso")
+               span.Btn--Show
+                 | Crear
+                 br
+                 | cuenta de
+                 strong  Prueba
+              .dataShowInstalation
+                figure.figureShow
+                  img(src='images/img/MillSecuritySystem_smartphone1.png', alt='')
+                  span.details
+                    | 1- Descargar la app "BriaStretto" en
+                    | la AppStore para Iphone o en GooglePlay
+                    | para Android
+                figure.figureShow
+                  img(src='images/img/MillSecuritySystem_smartphone2.png', alt='')
+                  span.details
+                    | 2- Una vez instalada la app ingresar
+                    | el usuario y la contraseña dados por
+                    | el equipo técnico
+                figure.figureShow
+                  img(src='images/img/MillSecuritySystem_Asmartphone3.png', alt='')
+                  span.details
+                    | 3- Despues de haber ingresado
+                    | correctamente ya puede realizar
+                    | llamadas a cualquier lugar.
+          .Sub--Container--De
+            header.Container--De--Header
+              h2.title
+                | ¿CUÁL 
+                strong ES EL COSTO?
+            ul.Container--Ul--Details
+              li.list
+                span Contamos con diferentes planes:
+                br
+              li.list
+                | Cuenta de prueba 30 días / Gratuito
+                br
+              li.list
+                span Cuenta de 3 Meses / $499 Pesos
+              li.list
+                span Cuenta de 6 Meses / $749 Pesos
+              li.list
+                span Cuenta de 12 Meses / $999 Pesos
+          //.imgAdorn
+      section.main__Content--Bottom
+        .main__Content--Bottom--Container
+          header.Bottom--Header
+            h2.title
+              | ¿Por qué creemos que 
+              strong debería implementarlo?
+          .Bottom--Services
+            figure.Services
+              .Services--Top
+                img(src='images/img/sysOne.png', alt='data', title='img')
+                img(src='images/img/arrowdouble.png', alt='')
+              .ServicesData
+                p.lorem
+                  | Simple de usar
+            figure.Services
+              .Services--Top
+                img(src='images/img/sysTwo.png', alt='data', title='img')
+                img(src='images/img/arrowdouble.png', alt='')
+              .ServicesData
+                p.lorem
+                  | Conexíon desde cualquier ubicación
+            figure.Services
+              .Services--Top
+                img(src='images/img/sysTree.png', alt='data', title='img')
+                img(src='images/img/arrowdouble.png', alt='')
+              .ServicesData
+                p.lorem
+                  | Reporte de sus propiedades
+            figure.Services
+              .Services--Top
+                img(src='images/img/sysFour.png', alt='data', title='img')
+                img(src='images/img/arrowdouble.png', alt='')
+              .ServicesData
+                p.lorem
+                  | Mantenga notificados a sus clientes
+    footer.footer
+      .footer__Content
+        figure.footer__Content--Figure
+          img(src='images/img/lgblanco.png', alt='')
+      //.footer__Adorno
+    script.
+      $(function() {
+      $(".rslides").responsiveSlides();
+      });

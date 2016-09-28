@@ -60,6 +60,8 @@ module.exports = (req, res, next, file) => {
                                 var _type = data;
                                 var _userFoto = name;
                                 var _status = true;
+                                var _iva = req.body.iva;
+                                var _razon = req.body.razon;
 
                                 var obj = {
                                     'nombre': _nombre,
@@ -70,7 +72,9 @@ module.exports = (req, res, next, file) => {
                                     'password': _password,
                                     'type': _type,
                                     'userFoto': _userFoto,
-                                    'status': _status
+                                    'status': _status,
+                                    'iva': _iva,
+                                    'razon': _razon
                                 }
 
                                 userFree(obj)
@@ -128,7 +132,8 @@ module.exports = (req, res, next, file) => {
                                     var _type = data;
                                     var _userFoto = name;
                                     var _status = false;
-
+                                    var _iva = req.body.iva;
+                                    var _razon = req.body.razon;
 
                                     var obj = {
                                         'nombre': _nombre,
@@ -140,7 +145,9 @@ module.exports = (req, res, next, file) => {
                                         'type': _type,
                                         'userFoto': _userFoto,
                                         'status': _status,
-                                        'price': paymentPrice(_type)
+                                        'price': paymentPrice(_type),
+                                        'iva': _iva,
+                                        'razon': _razon
                                     }
                                     userPayment(obj);
                                 }
@@ -192,6 +199,8 @@ module.exports = (req, res, next, file) => {
                                     var _type = data;
                                     var _userFoto = name;
                                     var _status = false;
+                                    var _iva = req.body.iva;
+                                    var _razon = req.body.razon;
 
 
                                     var obj = {
@@ -204,7 +213,9 @@ module.exports = (req, res, next, file) => {
                                         'type': _type,
                                         'userFoto': _userFoto,
                                         'status': _status,
-                                        'price': paymentPrice(_type)
+                                        'price': paymentPrice(_type),
+                                        'iva': _iva,
+                                        'razon': _razon
                                     }
                                     depositoPayment(obj);
 
@@ -240,7 +251,9 @@ module.exports = (req, res, next, file) => {
                         mes: dataMes(new Date())
                     },
                     'foto': data.userFoto,
-                    'status': data.status
+                    'status': data.status,
+                    'iva': data.iva,
+                    'razon': data.razon
                 }, (err, result) => {
                     if (err) {
                         return err;
@@ -292,7 +305,9 @@ module.exports = (req, res, next, file) => {
                                         'url': mlData.response.init_point,
                                         'client_id': mlData.response.client_id,
                                         'createPayment': mlData.response.date_created
-                                    }
+                                    },
+                                    'iva': data.iva,
+                                    'razon': data.razon
                                 }, (err, result) => {
                                     if (err) {
                                         return err;
@@ -394,7 +409,9 @@ module.exports = (req, res, next, file) => {
                                     mes: dataMes(new Date())
                                 },
                                 'foto': data.userFoto,
-                                'status': data.status
+                                'status': data.status,
+                                'razon': data.razon,
+                                'iva': data.iva
                             }, (err, result) => {
                                 if (err) {
                                     return err;

@@ -28,7 +28,9 @@ var usuario = new Schema ({
 	'payment': Array,
 	'allNotify': Array,
 	'misPagos': Array,
-	'viewNotify': Array
+	'viewNotify': Array,
+	'razonsocial': String,
+	'iva': String
 }, {
 	collection: 'usuarios'
 });

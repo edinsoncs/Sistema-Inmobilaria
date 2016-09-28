@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    meta(name="description", content="Administracion de inmobiliarias")
+    
+    include inc/base
+
+    title #{title}
+    
+    link(rel="stylesheet", href="../stylesheets/normalize.min.css")
+    link(rel="stylesheet", href="../stylesheets/icons.css")
+    link(rel="stylesheet", href="../stylesheets/app.css")
+
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic,700,700italic', rel='stylesheet', type='text/css')
+
+    link(rel="stylesheet", href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css")
+    
+
+    script(src="../../../javascripts/jquery-1.11.2.min.js")
+    script(src="../../../javascripts/app-dev1.js")
+    script(src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js")
+
+    //Library create edinsoncs flatui buttons
+    script(src="http://ockang.github.io/jquery-flatui/jquery.flat.min.js")
+
+    //Calendary
+    script(src="../../../javascripts/jquery.e-calendar.js")
+
+    //functions create edinsoncs
+
+    script(src="../../../javascripts/dcalendar.picker.js")
+
+  body
+    include inc/header
+    main.widthBase.instructive
+      header.instructive__Header
+        h2.title
+          | Manual de uso
+      iframe(style="border:none;", src="https://docs.google.com/document/d/1ZiUbhiBNQty5lytuGGlRrnia8Kz81I5Qt2QTcd5kiNU/pub?embedded=true", width="100%", height="780px")

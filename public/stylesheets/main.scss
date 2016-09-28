@@ -56,6 +56,19 @@ main {
                     font-weight: 400;
                 }
             }
+            .user--DetailsInstructive {
+                margin: 1em 0;
+                text-align: center;
+                .linkInstructive {
+                    background: red;
+                    color: white;
+                    padding: 0.5em 1em;
+                    display: block;
+                    width: 50%;
+                    margin: 0 auto;
+                    text-decoration: none;
+                }
+            }
         }
         .Welcome--De {
             background-color: white;
@@ -78,7 +91,7 @@ main {
                 .user--Figure {
                     text-align: center;
                     img {
-                         display: block;
+                        display: block;
                         margin: 0 auto;
                         border: 1px solid #dedede;
                     }
@@ -394,6 +407,20 @@ main {
                 }
             }
         }
+    }
+}
+
+.instructive {
+    text-align: center;
+    background-color: white;
+    padding: 1em;
+    border: 1px solid #dedede;
+    margin-top: 1em;
+    .instructive__Header {
+        padding: 0 0 2em 0;
+    }
+    .title {
+        font-weight: 400;
     }
 }
 

@@ -38,7 +38,7 @@ require('./models/passport')(passport);
 
 
 /* To connect mongodb database */
-
+var home = require('./routes/home');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var panel = require('./routes/panel');
@@ -131,14 +131,14 @@ app.use(flash());
 
 var task = cron.schedule('10 * * * * *', function() {
 
-    /*request('http://localhost/monthproperti', function(error, response, body) {
+    request('http://localhost/monthproperti', function(error, response, body) {
         if (error) {
             return error;
         } else {
             console.log('Se envio un cron a monthproperti');
         }
 
-    }); */
+    });
 }, false);
 
 task.start();
@@ -146,8 +146,8 @@ task.start();
 
 
 
-
-app.use('/', routes);
+app.use('/', home);
+app.use('/acceso', routes);
 app.use('/new', account);
 app.use('/users', users);
 
