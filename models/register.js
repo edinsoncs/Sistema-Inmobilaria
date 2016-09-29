@@ -215,7 +215,7 @@ module.exports = (req, res, next, file) => {
                                         'status': _status,
                                         'price': paymentPrice(_type),
                                         'iva': _iva,
-                                        'razon': _razon
+                                        'razon': _razon,
                                     }
                                     depositoPayment(obj);
 
@@ -392,10 +392,9 @@ module.exports = (req, res, next, file) => {
 
                     transporter.sendMail(mailOptions, function(error, info) {
                         if (error) {
-                            console.log(error)
+                           console.log(error);
                         } else {
-
-                            users.insert({
+                           users.insert({
                                 'nombre': data.nombre,
                                 'empresa': data.empresa,
                                 'email': data.email,
@@ -406,7 +405,8 @@ module.exports = (req, res, next, file) => {
                                     type: data.type,
                                     fecha: dataFecha(new Date()),
                                     dia: dataDia(new Date()),
-                                    mes: dataMes(new Date())
+                                    mes: dataMes(new Date()),
+                                    precio: data.price
                                 },
                                 'foto': data.userFoto,
                                 'status': data.status,
@@ -418,19 +418,21 @@ module.exports = (req, res, next, file) => {
                                 } else {
 
                                     res.render('paymentdeposito', {
-                                        title: 'Complete el registro del pago'
+                                        title: 'Complete el registro del pago',
+                                        precio: resultPriceIva(result.account.precio)
                                     });
+
+                                    function resultPriceIva(data) {
+                                        var _resultado = data * 21 / 100;
+                                        var _isResult = Math.round(_resultado) + data;
+                                        return _isResult;
+                                    }
 
                                 }
                             });
-
                         }
                     });
-
-
                 }
-
-
             }
 
 

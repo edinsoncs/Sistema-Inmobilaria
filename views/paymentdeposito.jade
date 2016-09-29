@@ -15,7 +15,7 @@ head
 
 body.bgHome
   
-  section.panelHomeLogin.newAccountPanel
+  section.panelHomeLogin.newAccoun
     figure.panelHomeLogin__Figure
       img(src="images/logo.png", alt="", width="50px")
     header.panelHomeLogin__Header
@@ -26,10 +26,13 @@ body.bgHome
         h2.formPanelHome--Form--Success
           | Se creo su cuenta correctamente
         p
-          | Para habilitar su cuenta realice un deposito a nuestra cuenta bancaria
-          img(src="img/mlsa.png", alt="")
+          | Para habilitar su cuenta realice un deposito a nuestra cuenta bancaria, el
+          strong Total + IVA es: #{precio} 
+          img(src="images/ml1.png", alt="", style="display: block;margin:0 auto;")
           br
-          | Envienos un email con el pago realizado: atencion@zimba.com
+          img(src="images/mls2.png", alt="", style="display:block;margin: 0 auto;")
+          br
+          | Envienos un email con el pago realizado: pagos@millenialab.com
       div.formPanelHome--Form--Link
         a.link(href="/")
           | Ingresar
