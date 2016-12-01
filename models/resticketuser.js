@@ -43,6 +43,11 @@ module.exports = (req, res, next) => {
         res.redirect('/panel/ticket/view/' + id);
     }).error((err) => {
         console.log(err);
+        if(err) {
+            console.log(err);
+        } else {
+            return err;
+        }
     });
 
 

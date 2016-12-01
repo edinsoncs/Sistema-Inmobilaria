@@ -510,6 +510,7 @@ $(document).ready(function() {
                     $(".toPrint__BG").remove();
                     $(".toPrint__Container").remove();
                 }
+                 
 
             });
         }
