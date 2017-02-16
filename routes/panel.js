@@ -1797,6 +1797,18 @@ router.post('/deletepropiedad', function(req, res, next) {
     var idDeletePropiedad = req.body.id;
 
     //$Pull - Mongodb
+    console.log('mmm haber verificaremos si este id se encuentra');
+    console.log(req.user._id);
+
+
+    usercron.remove({'idUsuario': req.user._id}, function(err, result){
+        if(err) {
+            return err;
+        } else {
+            console.log(result);
+        }
+    });
+
 
     user.update({ '_id': req.user._id }, {
         $pull: {
@@ -1806,10 +1818,18 @@ router.post('/deletepropiedad', function(req, res, next) {
         }
     }).success(function() {
         res.json({ removed: true });
-    });
+    }); 
+
+
+
 
 });
 
+router.post('/deletecronpropiedad', function(req, res, next) {
+
+
+
+});
 
 router.post('/deletedisponible', function(req, res, next) {
     var db = req.db;

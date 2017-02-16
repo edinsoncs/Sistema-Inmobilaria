@@ -145,8 +145,6 @@ $(document).ready(function() {
             var deletePropiedadID = $(this).parent().parent().parent();
             var find = $(deletePropiedadID).attr('data-id');
 
-
-
             $.ajax({
                 url: "./panel/deletepropiedad",
                 type: "POST",

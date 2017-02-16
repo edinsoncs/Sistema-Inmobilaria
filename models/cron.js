@@ -1,6 +1,7 @@
 'use strict';
 
 var request = require("request");
+ var GLOBAL_ELEMENT;
 
 module.exports = {
     active: function(time, req, res, next) {
@@ -86,7 +87,7 @@ module.exports = {
 
 
                 request('http://localhost/', function(error, response, body) {
-                    
+
                 });
 
                 var _month = isDate.getMonth() + 1;
@@ -102,7 +103,7 @@ module.exports = {
                 function expiredUser(is_type) {
                     var _expire = monthRegister + 1;
 
-                    console.log(is_type);
+                    //console.log(is_type);
 
                     switch (is_type) {
                         case 0:
@@ -117,23 +118,23 @@ module.exports = {
                                     bdDesabilty(infoUser._id);
 
                                 } else {
-                                    console.log('Estoy en el mes igual pero no el dia igual');
+                                    //console.log('Estoy en el mes igual pero no el dia igual');
                                 }
 
                             } else {
-                                console.log('No estoy en el mes');
+                                //console.log('No estoy en el mes');
                             }
 
                             break;
-                        //Continue creado el 07/09/16
+                            //Continue creado el 07/09/16
 
-                        /*case 3:
+                            /*case 3:
 
                             console.log('analizando usuarios.... de 3 meses pago');
 
                             //Preguntamos si estamos en el mes
-                        	var _isMonthActuality = isDate.getMonth() + 2;
-                        	var _expire_month = monthRegister + 2;
+                            var _isMonthActuality = isDate.getMonth() + 2;
+                            var _expire_month = monthRegister + 2;
 
                             if (_isMonthActuality == _expire_month) {
 
@@ -151,13 +152,13 @@ module.exports = {
                             } else {
                                 console.log('No estoy en el mes');
                             }
-							
-							
+                            
+                            
                             break;
 
                         case 6:
 
-                        	console.log('Analizando usuarios de..... 6 meses pago');
+                            console.log('Analizando usuarios de..... 6 meses pago');
 
                             var _isMonthActuality = isDate.getMonth();
                             var _expire_month = monthRegister + 2;
@@ -220,15 +221,15 @@ module.exports = {
 
 
 
-        cronpropiedades.find({}, (err, data) => {
-            if(err) {
+        /*cronpropiedades.find({}, (err, data) => {
+            if (err) {
                 return err;
             } else {
                 var date = new Date();
                 var yearActuality = date.getFullYear();
                 var monthActuality = date.getMonth() + 1;
-                data.map(function(thisArr, index, array){
-                    if(thisArr.yearexpired == yearActuality) {
+                data.map(function(thisArr, index, array) {
+                    if (thisArr.yearexpired == yearActuality) {
 
                         propiedades(thisArr, index, array, monthActuality);
 
@@ -238,31 +239,90 @@ module.exports = {
 
                 });
             }
+        });*/
+
+        var ISDATE = new Date();
+        var yearActuality = ISDATE.getFullYear();
+        var monthActuality = ISDATE.getMonth() + 1;
+
+        cronpropiedades.find({ 'yearexpired': yearActuality.toString() }, function(err, doc) {
+            if (err) {
+                return err;
+            } else {
+                propiedades(doc, monthActuality);
+            }
         });
 
-        function propiedades(propiedad, index, array, month) {
+        /*function propiedades(propiedad, index, array, month) {
 
-            
+
             //Verify month 3-1-17
 
-            if(month == (propiedad.monthexpired - 1)) {
-               console.log('Esta propiedad vence el proximo mes');
-               console.log(propiedad);
+            if (month == (propiedad.monthexpired - 1)) {
+                console.log('Esta propiedad vence el proximo mes');
+                applyNotify(propiedad);
+
             } else {
                 console.log('esta propiedad vencio el año pasado')
-                console.log(propiedad);
+                    //console.log(propiedad);
             }
-           
 
-            time.schedule('20 * * * * *', function(){
-                 request('http://localhost/', function(error, response, body) {
-                    
+
+            time.schedule('* 1 * * * *', function() {
+                request('http://localhost/', function(error, response, body) {
+
                 });
 
-                console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
             });
 
+        }*/
+
+        function propiedades(data, month) {
+           
+            data.forEach(function(element, index, arr) {
+                if ((element.monthexpired - 1) == month) {
+                    applyNotify(element);
+                } else {
+                    console.log('esta propiedad vencio el año pasado')
+                        //console.log(propiedad);
+                }
+            });
+            
         }
+
+        function applyNotify(data) {
+            users.find({ 'allNotify.idpropiedad': { $exists: true, $in: [data.idPropiedad] } }, function(err, result) {
+                if (err) {
+                    return err;
+                } else {
+                    console.log(result.length);
+
+                }
+            });
+
+
+           /*users.findAndModify({
+                 query: {
+                     '_id': data.idUsuario
+                 },
+                 update: {
+                     $add: {
+                         'allNotify': {
+                             'txt': data.nombrePropiedad,
+                             'fecha': data.completExpired
+                         }
+                     }
+                 },
+                 new: true
+             }).success(function(great){
+                 console.log('se aplico');
+             });*/
+
+           
+
+        } 
+
+
 
 
 
