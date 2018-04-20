@@ -2,6 +2,12 @@
 
 Este proyecto esta desarrollado por mi persona en frontend y backend, en la area de frontend no se utilizo ningun framework para hacer el desarrollo, se uso nativo en su mayoria tanto en media queries y javascript con jquery.
 
+![alt text](http://i66.tinypic.com/rmk7lt.png)
+
+![alt text](http://i65.tinypic.com/1687hqr.png)
+
+![alt text](http://i66.tinypic.com/2utnrk5.png)
+
 
 Guía de usuarios
 
